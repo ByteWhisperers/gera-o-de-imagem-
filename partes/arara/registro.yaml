@@ -1,4 +1,4 @@
-# Registro das partes geradas para a ficha arara v1.0.
+# Registro das partes da marca arara (a biblioteca de partes).
 #
 # Cada parte gerada fora do código (pelo operador, via MCP) entra aqui com a
 # receita completa. O pipeline só aceita uma parte "escolhida" se o prompt
@@ -124,3 +124,67 @@ entradas:
     a red hibiscus flower, black sunglasses, green hawaiian shirt with white flowers, gold chain necklace,
     one wing raised, Pixar style character render, soft rim light, centered, isolated on a plain light
     grey studio background
+- parte: entorno
+  arquivo: comfyui-entorno-cd7979ad.png
+  modelo: comfyui/sd_turbo.safetensors
+  semente: 519
+  tamanho:
+  - 768
+  - 512
+  passos: 4
+  custo_usd: 0.0
+  escolhida: true
+  ficha_versao: '1.1'
+  prompt: one big glowing blue round paper plane icon and gold coins, scattered floating objects with
+    empty space between them, 3D render, glossy, soft rim light, isolated on a plain light grey studio
+    background, no text, no letters, no character
+  recorte: cor_da_borda
+- parte: mascote
+  arquivo: comfyui-mascote-b8544ce4.png
+  modelo: comfyui/sd_turbo.safetensors
+  semente: 519
+  tamanho:
+  - 512
+  - 704
+  passos: 4
+  custo_usd: 0.0
+  escolhida: true
+  ficha_versao: '1.1'
+  prompt: waist-up close-up portrait of a 3D animated cartoon scarlet macaw mascot, big curved black beak,
+    laughing with open beak, bright red body with yellow and blue wing feathers, wearing a straw hat with
+    a red hibiscus flower, black sunglasses, green hawaiian shirt with white flowers, gold chain necklace,
+    holding a smartphone showing a blue paper plane app icon, Pixar style character render, soft rim light,
+    centered, isolated on a plain light grey studio background
+  recorte: modelo
+- parte: entorno
+  arquivo: comfyui-entorno-6e050fdf.png
+  modelo: comfyui/sd_turbo.safetensors
+  semente: 519
+  tamanho:
+  - 768
+  - 512
+  passos: 4
+  custo_usd: 0.0
+  escolhida: true
+  ficha_versao: '1.1'
+  prompt: glossy pink and orange camera app icons and red heart icons, scattered floating objects with
+    empty space between them, 3D render, glossy, soft rim light, isolated on a plain light grey studio
+    background, no text, no letters, no character
+  recorte: cor_da_borda
+- parte: mascote
+  arquivo: comfyui-mascote-40b29952.png
+  modelo: comfyui/sd_turbo.safetensors
+  semente: 519
+  tamanho:
+  - 512
+  - 704
+  passos: 4
+  custo_usd: 0.0
+  escolhida: true
+  ficha_versao: '1.1'
+  prompt: waist-up close-up portrait of a 3D animated cartoon scarlet macaw mascot, big curved black beak,
+    laughing with open beak, bright red body with yellow and blue wing feathers, wearing a straw hat with
+    a red hibiscus flower, black sunglasses, green hawaiian shirt with white flowers, gold chain necklace,
+    holding a smartphone showing a pink and orange camera app icon and pointing at it with the other wing,
+    Pixar style character render, soft rim light, centered, isolated on a plain light grey studio background
+  recorte: modelo

@@ -3,6 +3,7 @@
 Uso:
     python pipeline.py fichas/arara/ficha-v1.1.yaml --tema instagram
     python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram --provedor comfyui --formato promo
+    python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram --provedor comfyui --novo mascote   # variação
     python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema realeza   # v1.0: tema = figurino
 
 O tema liga a mensagem ao mascote: escolhe o figurino, o que ele segura, os
@@ -26,9 +27,10 @@ from motor.portao import Portao
 RAIZ = Path(__file__).resolve().parent
 
 
-def rodar(caminho_ficha: str, formatos: list[str] | None, provedor: str, tema: str | None, saida: Path) -> dict:
+def rodar(caminho_ficha: str, formatos: list[str] | None, provedor: str, tema: str | None, saida: Path,
+          novas: list[str] | None = None) -> dict:
     ficha = F.carregar(caminho_ficha)
-    portao = Portao(provedor)
+    portao = Portao(provedor, novas=set(novas or []))
     t = F.resolver_tema(ficha, tema)
     nome_tema = t["nome"] or t["figurino"]
     linhas = F.linhas_de_texto(ficha, tema)
@@ -63,12 +65,16 @@ def main() -> None:
     ap.add_argument("--provedor", default="rascunho", choices=["rascunho", "registro", "comfyui"])
     ap.add_argument("--tema")
     ap.add_argument("--saida", default=str(RAIZ / "saida"))
+    ap.add_argument("--novo", nargs="*", default=[], metavar="PARTE",
+                    help="com --provedor comfyui: gera de novo estas partes em vez de reaproveitar da biblioteca")
     a = ap.parse_args()
-    rel = rodar(a.ficha, a.formato, a.provedor, a.tema, Path(a.saida))
+    rel = rodar(a.ficha, a.formato, a.provedor, a.tema, Path(a.saida), a.novo)
     for p in rel["pecas"]:
         falhas = [r["regra"] for r in p["qa"] if not r["ok"]]
         print(f"{p['formato']:6} {rel['tema']:10} QA {'ok' if p['qa_ok'] else 'FALHOU: ' + ', '.join(falhas)}  {p['arquivos']['png']}")
-    print(f"gasto registrado: US${rel['gasto_usd']}")
+    for l in rel["partes"]:
+        print(f"  {l['parte']:8} {'gerada agora' if l.get('gerada_agora') else 'da biblioteca':13} {l.get('arquivo', '')}")
+    print(f"custo das partes usadas (pago só quando cada uma foi gerada): US${rel['gasto_usd']}")
 
 
 if __name__ == "__main__":

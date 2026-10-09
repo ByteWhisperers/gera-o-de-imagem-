@@ -10,9 +10,11 @@ Provedores:
   registro   usa partes que o operador já gerou (por exemplo, via MCP) e
              registrou em partes/<marca>/registro.yaml com a receita completa.
              Só aceita a parte se o prompt registrado for o mesmo da ficha.
-  comfyui    gera a parte num ComfyUI local com o grafo
-             integracoes/comfyui/grafos/parte.json e a registra no
-             registro.yaml, com a mesma receita. Custo zero.
+  comfyui    biblioteca primeiro: se já existe parte registrada com a mesma
+             receita, reaproveita (o fundo não muda quando só o tema muda).
+             Se não existe, ou se a parte foi pedida em `novas`, gera num
+             ComfyUI local com o grafo integracoes/comfyui/grafos/parte.json e
+             a registra no registro.yaml. Custo zero.
 
 Próximo provedor: API externa com teto de gasto obrigatório.
 """
@@ -48,6 +50,7 @@ class Portao:
     log: list[dict] = field(default_factory=list)
     semente: int = 519
     recorte: dict = field(default_factory=dict)   # método de recorte de cada parte, vindo da receita
+    novas: set = field(default_factory=set)       # partes que o dono pediu para gerar de novo (variação)
 
     def parte(self, ficha: dict, parte: str, formato: str, tema: str | None = None) -> Image.Image:
         prompt = F.prompt_da_parte(ficha, parte, tema)
@@ -56,8 +59,16 @@ class Portao:
             self.log.append({"parte": parte, "formato": formato, "provedor": "rascunho", "custo_usd": 0.0})
             return im
         if self.provedor == "comfyui":
+            if parte not in self.novas:
+                try:
+                    return self._do_registro(ficha, parte, formato, prompt)
+                except ParteRecusada:
+                    pass                      # ainda não está na biblioteca: gera
             self._do_comfyui(ficha, parte, formato, prompt)
-        if self.provedor in ("registro", "comfyui"):
+            im = self._do_registro(ficha, parte, formato, prompt)
+            self.log[-1]["gerada_agora"] = True
+            return im
+        if self.provedor == "registro":
             return self._do_registro(ficha, parte, formato, prompt)
         raise ValueError(f"provedor desconhecido: {self.provedor}")
 
@@ -106,9 +117,18 @@ class Portao:
         registro["entradas"].append(entrada)
         caminho = pasta / "registro.yaml"
         texto = caminho.read_text(encoding="utf-8") if caminho.exists() else ""
-        cabecalho = texto[: texto.index("ficha:")] if "ficha:" in texto else ""
+        cabecalho = "".join(l for l in texto.splitlines(keepends=True)[: _fim_do_cabecalho(texto)])
         (pasta / "registro.yaml").write_text(
             cabecalho + yaml.safe_dump(registro, allow_unicode=True, sort_keys=False, width=100), encoding="utf-8")
+
+
+def _fim_do_cabecalho(texto: str) -> int:
+    """Quantas linhas do começo são comentário ou vazias (o cabeçalho que se mantém)."""
+    linhas = texto.splitlines()
+    n = 0
+    while n < len(linhas) and (not linhas[n].strip() or linhas[n].lstrip().startswith("#")):
+        n += 1
+    return n
 
 
 def _ler_registro(pasta: Path) -> dict:

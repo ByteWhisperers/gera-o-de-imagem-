@@ -25,6 +25,8 @@ python pipeline.py fichas/arara/ficha-v1.1.yaml --provedor comfyui --tema telegr
 python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema turista
 ```
 
+A pasta `partes/<marca>/` é a **biblioteca de partes**: cada fundo, mascote e entorno fica guardado uma vez, com a receita, no `registro.yaml`. Com `--provedor comfyui` o portão reaproveita a parte que já existe com a mesma receita e só gera o que falta. Para pedir uma variação, use `--novo mascote` (ou `cena`, `entorno`). Texto e logo não ficam guardados como imagem: saem do código toda vez.
+
 O **tema** liga a mensagem ao mascote: escolhe o figurino, o que ele segura, os objetos em volta (camada `entorno`) e as linhas de texto de exemplo. Os temas ficam na ficha.
 
 Saída em `saida/<marca>/`: um `.psd` com uma camada por item da ficha, `.png`, `.webp` e `relatorio-<provedor>-<tema>.json` com a origem de cada parte, o custo e o resultado do QA.

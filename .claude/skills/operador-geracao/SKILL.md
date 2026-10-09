@@ -13,7 +13,7 @@ Você opera o modelo de imagem (ComfyUI local pelo portão, ou o MCP do fal com 
 2. Confira o preço antes (`get_pricing`) e só gaste com autorização do dono. Teste com o modelo mais barato que sirva.
 3. Fixe a semente. Gere em PNG. Tamanho na proporção do formato (múltiplos de 16).
 4. Baixe para `partes/<marca>/` e registre em `registro.yaml`: arquivo, modelo, semente, tamanho, request_id, custo, prompt, `escolhida` e o `motivo` quando reprovar.
-5. Com ComfyUI, `--provedor comfyui` faz os passos 3 e 4 sozinho (custo 0, método de recorte de `integracoes/comfyui/config.yaml`).
+5. Com ComfyUI, `--provedor comfyui` faz os passos 3 e 4 sozinho (custo 0, método de recorte de `integracoes/comfyui/config.yaml`) e reaproveita o que já está na biblioteca; `--novo <parte>` pede variação.
 6. Rode `python pipeline.py <ficha> --provedor registro --tema <tema>` e entregue ao revisor.
 
 ## Regras

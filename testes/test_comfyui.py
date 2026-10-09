@@ -53,3 +53,40 @@ def test_provedor_comfyui_registra_a_parte_com_a_receita(tmp_path, monkeypatch):
     assert entrada["prompt"] == F.prompt_da_parte(f, "mascote", "telegram")
     assert entrada["custo_usd"] == 0 and entrada["recorte"] == "modelo"
     assert portao.recorte["mascote"] == "modelo" and portao.gasto_usd == 0
+
+
+def test_biblioteca_reaproveita_e_so_gera_o_que_falta_ou_foi_pedido(tmp_path, monkeypatch):
+    shutil.copytree(RAIZ / "integracoes", tmp_path / "integracoes")
+    (tmp_path / "partes" / "arara").mkdir(parents=True)
+    monkeypatch.setattr(P, "RAIZ", tmp_path)
+    geradas = []
+
+    def gerar(url, grafo):
+        geradas.append(1)
+        return Image.new("RGB", (64, 64), (len(geradas) * 40, 0, 0))
+
+    monkeypatch.setattr(P, "executar_comfyui", gerar)
+    f = F.carregar(FICHA)
+    P.Portao("comfyui").parte(f, "cena", "promo", "telegram")
+    im = P.Portao("comfyui").parte(f, "cena", "promo", "instagram")   # o fundo não depende do tema
+    assert len(geradas) == 1 and im.getpixel((0, 0))[0] == 40
+    P.Portao("comfyui").parte(f, "mascote", "promo", "instagram")       # mascote de tema novo: gera
+    assert len(geradas) == 2
+    portao = P.Portao("comfyui", novas={"cena"})
+    im = portao.parte(f, "cena", "promo", "telegram")                  # variação pedida: gera e passa a valer
+    assert len(geradas) == 3 and im.getpixel((0, 0))[0] == 120
+    assert portao.log[-1]["gerada_agora"]
+
+
+def test_registro_mantem_cabecalho_e_entradas_antigas(tmp_path, monkeypatch):
+    shutil.copytree(RAIZ / "integracoes", tmp_path / "integracoes")
+    (tmp_path / "partes" / "arara").mkdir(parents=True)
+    (tmp_path / "partes/arara/registro.yaml").write_text(
+        "# cabeçalho que cita a ficha: e entradas: no meio\n\nficha: x.yaml\nentradas: []\n", encoding="utf-8")
+    monkeypatch.setattr(P, "RAIZ", tmp_path)
+    monkeypatch.setattr(P, "executar_comfyui", lambda url, grafo: Image.new("RGB", (8, 8)))
+    P.Portao("comfyui").parte(F.carregar(FICHA), "mascote", "promo", "vip")
+    texto = (tmp_path / "partes/arara/registro.yaml").read_text(encoding="utf-8")
+    assert texto.startswith("# cabeçalho que cita a ficha: e entradas: no meio\n")
+    dados = yaml.safe_load(texto)
+    assert dados["ficha"] == "x.yaml" and len(dados["entradas"]) == 1
