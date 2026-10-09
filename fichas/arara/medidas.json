@@ -1,0 +1,626 @@
+[
+ {
+  "arquivo": "referencias/arara/home/banner1.webp",
+  "largura": 2048,
+  "altura": 682,
+  "proporcao": 3.003,
+  "L_mediana": 62.1,
+  "L_faixas": {
+   "esquerda": {
+    "media": 74.6,
+    "mediana": 43.5
+   },
+   "centro": {
+    "media": 89.8,
+    "mediana": 72.6
+   },
+   "direita": {
+    "media": 85.2,
+    "mediana": 70.7
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.442,
+   "y_h": 0.626,
+   "L": 243.9
+  },
+  "paleta": [
+   {
+    "cor": "#0d1f0d",
+    "fracao": 0.298
+   },
+   {
+    "cor": "#315126",
+    "fracao": 0.157
+   },
+   {
+    "cor": "#8e5e16",
+    "fracao": 0.145
+   },
+   {
+    "cor": "#552a0a",
+    "fracao": 0.145
+   },
+   {
+    "cor": "#b78c2f",
+    "fracao": 0.136
+   },
+   {
+    "cor": "#eacd59",
+    "fracao": 0.119
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/home/banner2.webp",
+  "largura": 2048,
+  "altura": 682,
+  "proporcao": 3.003,
+  "L_mediana": 67.0,
+  "L_faixas": {
+   "esquerda": {
+    "media": 90.8,
+    "mediana": 54.7
+   },
+   "centro": {
+    "media": 97.2,
+    "mediana": 80.7
+   },
+   "direita": {
+    "media": 76.4,
+    "mediana": 60.8
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.377,
+   "y_h": 0.223,
+   "L": 251.4
+  },
+  "paleta": [
+   {
+    "cor": "#081c0b",
+    "fracao": 0.298
+   },
+   {
+    "cor": "#44310b",
+    "fracao": 0.17
+   },
+   {
+    "cor": "#a06b18",
+    "fracao": 0.155
+   },
+   {
+    "cor": "#4f5a22",
+    "fracao": 0.139
+   },
+   {
+    "cor": "#facf3b",
+    "fracao": 0.137
+   },
+   {
+    "cor": "#c2a140",
+    "fracao": 0.101
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/home/banner3.webp",
+  "largura": 2048,
+  "altura": 682,
+  "proporcao": 3.003,
+  "L_mediana": 89.0,
+  "L_faixas": {
+   "esquerda": {
+    "media": 97.5,
+    "mediana": 70.8
+   },
+   "centro": {
+    "media": 111.3,
+    "mediana": 104.8
+   },
+   "direita": {
+    "media": 98.6,
+    "mediana": 88.7
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.354,
+   "y_h": 0.352,
+   "L": 253.0
+  },
+  "paleta": [
+   {
+    "cor": "#171c0b",
+    "fracao": 0.232
+   },
+   {
+    "cor": "#4a350e",
+    "fracao": 0.221
+   },
+   {
+    "cor": "#9b702a",
+    "fracao": 0.195
+   },
+   {
+    "cor": "#fdd355",
+    "fracao": 0.144
+   },
+   {
+    "cor": "#d2b664",
+    "fracao": 0.117
+   },
+   {
+    "cor": "#b42d29",
+    "fracao": 0.091
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/logo/logo.webp",
+  "largura": 2172,
+  "altura": 724,
+  "proporcao": 3.0,
+  "L_mediana": 39.0,
+  "L_faixas": {
+   "esquerda": {
+    "media": 82.1,
+    "mediana": 24.4
+   },
+   "centro": {
+    "media": 91.8,
+    "mediana": 50.3
+   },
+   "direita": {
+    "media": 79.9,
+    "mediana": 51.2
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.484,
+   "y_h": 0.421,
+   "L": 253.0
+  },
+  "paleta": [
+   {
+    "cor": "#000000",
+    "fracao": 0.374
+   },
+   {
+    "cor": "#e4d8a3",
+    "fracao": 0.245
+   },
+   {
+    "cor": "#9d6427",
+    "fracao": 0.214
+   },
+   {
+    "cor": "#370b07",
+    "fracao": 0.114
+   },
+   {
+    "cor": "#000101",
+    "fracao": 0.048
+   },
+   {
+    "cor": "#000001",
+    "fracao": 0.004
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790980959-9639e055.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 52.6,
+  "L_faixas": {
+   "esquerda": {
+    "media": 80.4,
+    "mediana": 38.6
+   },
+   "centro": {
+    "media": 77.1,
+    "mediana": 50.9
+   },
+   "direita": {
+    "media": 85.6,
+    "mediana": 68.9
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.399,
+   "y_h": 0.396,
+   "L": 252.5
+  },
+  "paleta": [
+   {
+    "cor": "#022b09",
+    "fracao": 0.326
+   },
+   {
+    "cor": "#b09031",
+    "fracao": 0.159
+   },
+   {
+    "cor": "#445614",
+    "fracao": 0.158
+   },
+   {
+    "cor": "#1a2808",
+    "fracao": 0.154
+   },
+   {
+    "cor": "#ecdd7b",
+    "fracao": 0.11
+   },
+   {
+    "cor": "#7e1e0b",
+    "fracao": 0.092
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790980982-3c38ef02.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 59.2,
+  "L_faixas": {
+   "esquerda": {
+    "media": 78.7,
+    "mediana": 38.7
+   },
+   "centro": {
+    "media": 82.0,
+    "mediana": 61.2
+   },
+   "direita": {
+    "media": 85.6,
+    "mediana": 71.4
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.394,
+   "y_h": 0.544,
+   "L": 245.6
+  },
+  "paleta": [
+   {
+    "cor": "#05220a",
+    "fracao": 0.255
+   },
+   {
+    "cor": "#222709",
+    "fracao": 0.211
+   },
+   {
+    "cor": "#575819",
+    "fracao": 0.163
+   },
+   {
+    "cor": "#b09030",
+    "fracao": 0.159
+   },
+   {
+    "cor": "#e9d569",
+    "fracao": 0.119
+   },
+   {
+    "cor": "#80210c",
+    "fracao": 0.094
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790980998-e0741671.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 76.0,
+  "L_faixas": {
+   "esquerda": {
+    "media": 93.0,
+    "mediana": 57.0
+   },
+   "centro": {
+    "media": 104.5,
+    "mediana": 90.3
+   },
+   "direita": {
+    "media": 90.0,
+    "mediana": 79.6
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.355,
+   "y_h": 0.607,
+   "L": 253.0
+  },
+  "paleta": [
+   {
+    "cor": "#102a14",
+    "fracao": 0.296
+   },
+   {
+    "cor": "#c99634",
+    "fracao": 0.187
+   },
+   {
+    "cor": "#d41c09",
+    "fracao": 0.151
+   },
+   {
+    "cor": "#512c0b",
+    "fracao": 0.145
+   },
+   {
+    "cor": "#7f5e1d",
+    "fracao": 0.133
+   },
+   {
+    "cor": "#f4df7f",
+    "fracao": 0.087
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790981047-26876e08.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 62.4,
+  "L_faixas": {
+   "esquerda": {
+    "media": 91.3,
+    "mediana": 51.3
+   },
+   "centro": {
+    "media": 93.0,
+    "mediana": 77.8
+   },
+   "direita": {
+    "media": 76.0,
+    "mediana": 57.8
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.384,
+   "y_h": 0.269,
+   "L": 252.9
+  },
+  "paleta": [
+   {
+    "cor": "#061d0b",
+    "fracao": 0.317
+   },
+   {
+    "cor": "#3b2e0d",
+    "fracao": 0.162
+   },
+   {
+    "cor": "#976a1d",
+    "fracao": 0.159
+   },
+   {
+    "cor": "#f9d548",
+    "fracao": 0.148
+   },
+   {
+    "cor": "#3a5d23",
+    "fracao": 0.131
+   },
+   {
+    "cor": "#b8a54b",
+    "fracao": 0.085
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790981066-c225f1b5.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 63.3,
+  "L_faixas": {
+   "esquerda": {
+    "media": 85.3,
+    "mediana": 45.2
+   },
+   "centro": {
+    "media": 91.1,
+    "mediana": 75.8
+   },
+   "direita": {
+    "media": 80.1,
+    "mediana": 63.4
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.402,
+   "y_h": 0.37,
+   "L": 252.5
+  },
+  "paleta": [
+   {
+    "cor": "#05200c",
+    "fracao": 0.275
+   },
+   {
+    "cor": "#262709",
+    "fracao": 0.188
+   },
+   {
+    "cor": "#64601b",
+    "fracao": 0.166
+   },
+   {
+    "cor": "#b29e44",
+    "fracao": 0.159
+   },
+   {
+    "cor": "#f8d165",
+    "fracao": 0.116
+   },
+   {
+    "cor": "#7b2609",
+    "fracao": 0.096
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790981102-82ba1db4.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 72.9,
+  "L_faixas": {
+   "esquerda": {
+    "media": 80.2,
+    "mediana": 42.0
+   },
+   "centro": {
+    "media": 102.6,
+    "mediana": 87.2
+   },
+   "direita": {
+    "media": 96.2,
+    "mediana": 84.3
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.377,
+   "y_h": 0.529,
+   "L": 249.5
+  },
+  "paleta": [
+   {
+    "cor": "#0e190d",
+    "fracao": 0.243
+   },
+   {
+    "cor": "#372b0c",
+    "fracao": 0.204
+   },
+   {
+    "cor": "#88641e",
+    "fracao": 0.192
+   },
+   {
+    "cor": "#fbd44a",
+    "fracao": 0.158
+   },
+   {
+    "cor": "#8a2808",
+    "fracao": 0.104
+   },
+   {
+    "cor": "#c8b15a",
+    "fracao": 0.098
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790981127-d91c22ef.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 69.4,
+  "L_faixas": {
+   "esquerda": {
+    "media": 90.5,
+    "mediana": 56.7
+   },
+   "centro": {
+    "media": 95.9,
+    "mediana": 81.8
+   },
+   "direita": {
+    "media": 85.0,
+    "mediana": 69.3
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.516,
+   "y_h": 0.325,
+   "L": 250.7
+  },
+  "paleta": [
+   {
+    "cor": "#091b19",
+    "fracao": 0.261
+   },
+   {
+    "cor": "#7a6226",
+    "fracao": 0.191
+   },
+   {
+    "cor": "#32290c",
+    "fracao": 0.19
+   },
+   {
+    "cor": "#fbd748",
+    "fracao": 0.151
+   },
+   {
+    "cor": "#802408",
+    "fracao": 0.105
+   },
+   {
+    "cor": "#afaf75",
+    "fracao": 0.102
+   }
+  ]
+ },
+ {
+  "arquivo": "referencias/arara/promo/promo-1790981412-117f1d73.webp",
+  "largura": 1867,
+  "altura": 842,
+  "proporcao": 2.217,
+  "L_mediana": 77.0,
+  "L_faixas": {
+   "esquerda": {
+    "media": 93.5,
+    "mediana": 59.2
+   },
+   "centro": {
+    "media": 95.0,
+    "mediana": 79.1
+   },
+   "direita": {
+    "media": 97.1,
+    "mediana": 87.5
+   }
+  },
+  "ponto_claro_centro": {
+   "x_w": 0.367,
+   "y_h": 0.326,
+   "L": 253.7
+  },
+  "paleta": [
+   {
+    "cor": "#0d1e0b",
+    "fracao": 0.312
+   },
+   {
+    "cor": "#b86626",
+    "fracao": 0.203
+   },
+   {
+    "cor": "#48591d",
+    "fracao": 0.177
+   },
+   {
+    "cor": "#fbd467",
+    "fracao": 0.14
+   },
+   {
+    "cor": "#802520",
+    "fracao": 0.087
+   },
+   {
+    "cor": "#ccae61",
+    "fracao": 0.081
+   }
+  ]
+ }
+]

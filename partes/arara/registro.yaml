@@ -1,0 +1,126 @@
+# Registro das partes geradas para a ficha arara v1.0.
+#
+# Cada parte gerada fora do código (pelo operador, via MCP) entra aqui com a
+# receita completa. O pipeline só aceita uma parte "escolhida" se o prompt
+# bater com o da ficha: assim nenhuma imagem entra sem a receita que a gerou.
+#
+# Gerado em 2026-10-09 com fal-ai/flux/schnell (4 passos), US$0,003 por megapixel.
+# As duas primeiras versões do mascote usaram um prompt antigo, corrigido na
+# ficha depois do teste (bico preto, meio-corpo).
+
+ficha: fichas/arara/ficha-v1.0.yaml
+entradas:
+- parte: cena
+  formato: home
+  arquivo: cena-home-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 519
+  tamanho:
+  - 1536
+  - 512
+  request_id: 01a12275-e17a-7c12-b91e-3399394d99f7
+  custo_usd: 0.0024
+  escolhida: false
+  motivo: dois sóis e uma torre escura cobrindo o lado esquerdo; sem o corredor das referências
+  prompt: cinematic sunset backlit river valley with tall karst limestone towers covered in jungle, dense
+    dark tropical jungle foliage framing the left and right edges, golden sun setting low between the
+    towers near the center, calm river in the lower third reflecting golden light, teal green sky with
+    warm golden clouds, saturated glowing colors, golden dust in the air, volumetric light, 3D animated
+    movie background, no people, no animals, no text
+- parte: cena
+  formato: home
+  arquivo: cena-home-v2-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 520
+  tamanho:
+  - 1536
+  - 512
+  request_id: 01a12276-a0f5-7e40-9893-c2884e8d90e0
+  custo_usd: 0.0024
+  escolhida: true
+  prompt: cinematic sunset backlit river valley with tall karst limestone towers covered in jungle, dense
+    dark tropical jungle foliage framing the left and right edges, golden sun setting low between the
+    towers near the center, calm river in the lower third reflecting golden light, teal green sky with
+    warm golden clouds, saturated glowing colors, golden dust in the air, volumetric light, 3D animated
+    movie background, no people, no animals, no text
+- parte: cena
+  formato: promo
+  arquivo: cena-promo-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 519
+  tamanho:
+  - 1536
+  - 688
+  request_id: 01a12275-e179-7ed2-83d0-50b67c4ca8ae
+  custo_usd: 0.0032
+  escolhida: true
+  prompt: cinematic sunset backlit river valley with tall karst limestone towers covered in jungle, dense
+    dark tropical jungle foliage framing the left and right edges, golden sun setting low between the
+    towers near the center, calm river in the lower third reflecting golden light, teal green sky with
+    warm golden clouds, saturated glowing colors, golden dust in the air, volumetric light, 3D animated
+    movie background, no people, no animals, no text
+- parte: mascote
+  figurino: realeza
+  arquivo: mascote-realeza-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 519
+  tamanho:
+  - 768
+  - 1024
+  request_id: 01a12275-e17a-7191-a5ee-5201050b7bd8
+  custo_usd: 0.0024
+  escolhida: false
+  motivo: corpo inteiro e bico amarelo; nas referências o bico é preto e o enquadramento é meio-corpo
+    (prompt antigo)
+  prompt: 3D animated cartoon scarlet macaw mascot, upper body, laughing with open beak, bright red body
+    with yellow and blue wing feathers, expressive eyes, wearing a golden crown with emerald gems and
+    green feathers, gold necklace with a big emerald, gold bracelets, one wing raised, Pixar style character
+    render, soft rim light, centered, isolated on a plain light grey studio background
+- parte: mascote
+  figurino: turista
+  arquivo: mascote-turista-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 519
+  tamanho:
+  - 768
+  - 1024
+  request_id: 01a12275-e179-7ed2-83d0-50ab4bbf7e7e
+  custo_usd: 0.0024
+  escolhida: false
+  motivo: sem a camisa havaiana, bico amarelo, corpo inteiro (prompt antigo)
+  prompt: 3D animated cartoon scarlet macaw mascot, upper body, laughing with open beak, bright red body
+    with yellow and blue wing feathers, expressive eyes, wearing a straw hat with a red hibiscus flower,
+    black sunglasses, green hawaiian shirt with white flowers, gold chain necklace, one wing raised, Pixar
+    style character render, soft rim light, centered, isolated on a plain light grey studio background
+- parte: mascote
+  figurino: realeza
+  arquivo: mascote-realeza-v2-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 519
+  tamanho:
+  - 768
+  - 1024
+  request_id: 01a12276-a0f2-7da1-92e0-67145409d95d
+  custo_usd: 0.0024
+  escolhida: true
+  observacao: bico preto ok, mas ainda sai de corpo inteiro
+  prompt: waist-up close-up portrait of a 3D animated cartoon scarlet macaw mascot, big curved black beak,
+    laughing with open beak, bright red body with yellow and blue wing feathers, wearing a golden crown
+    with emerald gems and green feathers, gold necklace with a big emerald, gold bracelets, one wing raised,
+    Pixar style character render, soft rim light, centered, isolated on a plain light grey studio background
+- parte: mascote
+  figurino: turista
+  arquivo: mascote-turista-v2-bruto.png
+  modelo: fal-ai/flux/schnell
+  semente: 519
+  tamanho:
+  - 768
+  - 1024
+  request_id: 01a12276-a0fb-7da1-8d68-9233bd122c0c
+  custo_usd: 0.0024
+  escolhida: true
+  prompt: waist-up close-up portrait of a 3D animated cartoon scarlet macaw mascot, big curved black beak,
+    laughing with open beak, bright red body with yellow and blue wing feathers, wearing a straw hat with
+    a red hibiscus flower, black sunglasses, green hawaiian shirt with white flowers, gold chain necklace,
+    one wing raised, Pixar style character render, soft rim light, centered, isolated on a plain light
+    grey studio background
