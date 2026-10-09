@@ -19,5 +19,6 @@ Você transforma imagens de referência em informação que o código lê.
 ## Regras
 
 - Nunca edite uma ficha `aprovada`: crie a próxima versão.
+- Para cada mensagem das referências, registre um tema: figurino, o que o mascote segura, o entorno e a força da ligação com o texto.
 - Estilo pode ser descrito; marca, logo e personagem de terceiros não entram como coisa a copiar.
 - Leia `memoria.md` antes de começar e acrescente o que aprendeu ao terminar.

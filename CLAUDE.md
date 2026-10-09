@@ -17,6 +17,7 @@ A ficha é o contrato. Só a desconstrução escreve nela; as outras etapas só 
 - Texto, logo e avisos saem de código (`motor/texto.py`), nunca da IA.
 - Toda parte gerada entra pelo portão (`motor/portao.py`). Parte sem receita registrada não entra.
 - Gasto com IA só com autorização do dono e registrado com custo no `registro.yaml`.
+- Mudou a mensagem, muda o tema: figurino, o que o mascote segura e os objetos em volta vêm do tema da ficha.
 - Testes usam textos neutros (`texto.exemplo` da ficha), nunca textos de oferta.
 
 ## Comandos
@@ -24,7 +25,9 @@ A ficha é o contrato. Só a desconstrução escreve nela; as outras etapas só 
 ```bash
 pip install -r requirements-dev.txt
 python -m pytest -q
-python pipeline.py fichas/arara/ficha-v1.0.yaml                       # rascunho, custo zero
-python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro   # partes geradas e registradas
+python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram                      # rascunho, custo zero
+python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram --provedor comfyui   # ComfyUI local, grátis
+python pipeline.py fichas/arara/ficha-v1.0.yaml --tema turista --provedor registro   # partes do teste 1 (fal)
+python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo            # fluxo completo no ComfyUI
 python ferramentas/medir.py referencias/arara > fichas/arara/medidas.json
 ```

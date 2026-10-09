@@ -1,0 +1,186 @@
+# Ficha de estilo ARARA v1.1
+#
+# É o contrato entre as etapas: a desconstrução escreve aqui, a criação e a
+# composição só leem. Mudou um número? Crie ficha-v1.1.yaml em vez de editar
+# esta, e o dono aprova a nova versão.
+#
+# Convenções
+#   x, y, w, h   frações da largura (x, w) e da altura (y, h) da peça
+#   L            luminância 0–255
+#   estimativa   número lido a olho nas referências, sem medição de pixel
+#
+# Evidência: ficha-v1.1.md (o que se vê em cada peça) e medidas.json
+# (saída de ferramentas/medir.py sobre referencias/arara/).
+
+versao: "1.1"
+marca: arara
+estado: aprovada            # aprovada pelo dono em 2026-10-09, com a regra dos temas
+referencias: referencias/arara
+
+em_uma_frase: >-
+  Pôr do sol em contraluz num vale de rio com torres cársticas e selva; à
+  direita uma arara-vermelha 3D de animação, rindo; à esquerda, numa zona
+  escura, uma pilha de texto em caixa alta pesada, branco cromado e dourado
+  metálico com contorno e sombra; logo no canto superior esquerdo.
+
+formatos:
+  home:   {largura: 2048, altura: 682}   # 3:1, banner1-3
+  promo:  {largura: 1867, altura: 842}   # 2,22:1, os 8 promos
+
+# Ordem de baixo para cima. Cada camada vira uma camada nomeada no PSD.
+camadas:
+  - {id: cena,          tipo: gerada, parte: cena}
+  - {id: escurecimento, tipo: efeito}
+  - {id: entorno,       tipo: gerada, parte: entorno}
+  - {id: mascote,       tipo: gerada, parte: mascote}
+  - {id: brilho,        tipo: efeito}
+  - {id: texto,         tipo: texto}
+  - {id: logo,          tipo: arquivo, arquivo: referencias/arara/logo/logo.webp}
+
+# Onde cada camada fica, por formato (estimativa, lida nas 11 peças).
+layout:
+  home:
+    logo:    {x: 0.030, y: 0.060, w: 0.140}
+    texto:   {x: 0.055, y: 0.200, w: 0.430, h: 0.600}
+    mascote: {x: 0.580, y: 0.000, w: 0.420, h: 1.000, ancora: base}
+    entorno: {x: 0.480, y: 0.000, w: 0.520, h: 1.000}
+  promo:
+    logo:    {x: 0.030, y: 0.050, w: 0.220}
+    texto:   {x: 0.030, y: 0.260, w: 0.520, h: 0.480}
+    mascote: {x: 0.500, y: 0.000, w: 0.500, h: 1.000, ancora: base}
+    entorno: {x: 0.420, y: 0.000, w: 0.580, h: 1.000}
+
+escurecimento:
+  # Gradiente da esquerda para a direita que acalma a zona do texto.
+  # Medido: a faixa esquerda (0-35% W) tem mediana de L 39-71, sempre abaixo do centro.
+  cor: "#04140a"
+  opacidade_inicio: 0.55
+  fim_x: 0.55
+
+brilho:
+  # Poeira dourada e raios finos espalhados pela peça.
+  cor: "#ffd34a"
+  particulas: 90
+  semente: 7
+
+partes:
+  cena:
+    transparente: false
+    prompt: >-
+      cinematic sunset backlit river valley with tall karst limestone towers
+      covered in jungle, dense dark tropical jungle foliage framing the left and
+      right edges, golden sun setting low between the towers near the center,
+      calm river in the lower third reflecting golden light, teal green sky with
+      warm golden clouds, saturated glowing colors, golden dust in the air,
+      volumetric light, 3D animated movie background, no people, no animals, no text
+  mascote:
+    transparente: true
+    figurino_padrao: turista     # 5 dos 8 promos usam este figurino; 2 usam realeza
+    prompt: >-
+      waist-up close-up portrait of a 3D animated cartoon scarlet macaw mascot,
+      big curved black beak, laughing with open beak, bright red body with
+      yellow and blue wing feathers, {figurino}, {segura}, Pixar style
+      character render, soft rim light, centered, isolated on a plain light grey
+      studio background
+    figurinos:
+      realeza: >-
+        wearing a golden crown with emerald gems and green feathers, gold
+        necklace with a big emerald, gold bracelets
+      turista: >-
+        wearing a straw hat with a red hibiscus flower, black sunglasses, green
+        hawaiian shirt with white flowers, gold chain necklace
+
+  entorno:
+    transparente: true
+    prompt: >-
+      {entorno}, scattered floating objects with empty space between them, 3D
+      render, glossy, soft rim light, isolated on a plain light grey studio
+      background, no text, no letters, no character
+
+# O TEXTO MANDA NO MASCOTE (observação do dono, 09/10/2026).
+# Cada tema liga a mensagem ao figurino, ao que o mascote segura e aos
+# elementos em volta dele. A ligação é forte nas peças de rede social
+# (Instagram, Telegram), onde o mascote fica envolto em ícones, e fraca nas
+# peças genéricas (convite). Ao trocar a mensagem, troque o tema: o pipeline
+# monta os prompts do mascote e do entorno a partir dele.
+tema_padrao: instagram
+temas:
+  convite:
+    ligacao: fraca
+    figurino: realeza
+    segura: holding up an open treasure chest full of gold coins with one wing
+    entorno: a few gold coins and small treasure chests
+    referencias: [home/banner1, home/banner2, promo/promo-1790980982-3c38ef02, promo/promo-1790981047-26876e08]
+  deposito:
+    ligacao: media
+    figurino: realeza
+    segura: holding up a shiny gold coin with one wing
+    entorno: shiny gold coins
+    referencias: [promo/promo-1790980959-9639e055]
+  instagram:
+    ligacao: forte
+    figurino: turista
+    segura: holding a smartphone showing a pink and orange camera app icon and pointing at it with the other wing
+    entorno: glossy pink and orange camera app icons and red heart icons
+    referencias: [home/banner3, promo/promo-1790981412-117f1d73]
+    texto_exemplo:
+      - {texto: "SIGA NOSSO", estilo: branco, peso: 1.0}
+      - {texto: "INSTAGRAM", estilo: dourado, peso: 1.45}
+      - {texto: "E FIQUE POR DENTRO", estilo: branco, peso: 0.62}
+  telegram:
+    ligacao: forte
+    figurino: turista
+    segura: holding a smartphone showing a blue paper plane app icon
+    entorno: one big glowing blue round paper plane icon and gold coins
+    referencias: [promo/promo-1790981127-d91c22ef]
+  envelopes:
+    ligacao: forte
+    figurino: turista
+    segura: holding a red envelope with gold details
+    entorno: red envelopes with gold details falling like rain
+    referencias: [promo/promo-1790980998-e0741671]
+  vip:
+    ligacao: forte
+    figurino: turista
+    segura: holding a black and gold VIP card, sitting on a golden throne
+    entorno: a tropical drink and gold ornaments
+    referencias: [promo/promo-1790981066-c225f1b5]
+  reembolso:
+    ligacao: forte
+    figurino: turista
+    segura: holding a fan of green banknotes
+    entorno: gold coins and a golden slot machine reel with sevens
+    referencias: [promo/promo-1790981102-82ba1db4]
+
+cores:
+  ceu_topo: "#0a3a2a"          # verde-azulado (estimativa)
+  selva_escura: "#061d0b"      # a cor mais frequente das 11 peças é um verde quase preto (medidas.json)
+  ouro: "#fbd448"              # entre as 4 cores principais em 5 peças
+  ouro_escuro: "#9b6a1c"
+  vermelho_arara: "#d41c09"
+
+texto:
+  fonte: fontes/montserrat-900.woff2
+  caixa_alta: true
+  vao_entre_linhas: 0.14       # fração do corpo (estimativa)
+  estilos:
+    branco:
+      rampa: [[0.0, "#ffffff"], [0.55, "#e9edf2"], [1.0, "#aeb6c2"]]
+    dourado:
+      rampa: [[0.0, "#fff3a6"], [0.45, "#ffd23c"], [1.0, "#c27a0e"]]
+  contorno: {cor: "#2a1503", espessura: 0.06}    # fração do corpo
+  sombra: {cor: "#000000", opacidade: 0.65, desvio: [0.0, 0.06], desfoque: 0.05}
+  # Linhas de exemplo para testes quando o tema não traz as suas.
+  # Nunca use textos de oferta nos testes.
+  exemplo:
+    - {texto: "VALIDAÇÃO DA", estilo: branco, peso: 1.0}
+    - {texto: "ARQUITETURA", estilo: dourado, peso: 1.45}
+    - {texto: "TESTE 1", estilo: branco, peso: 0.8}
+
+# Conferência automática (revisor). Faixas tiradas de medidas.json.
+qa:
+  L_mediana: [45, 95]           # referências: 52,6 a 89,0
+  esquerda_mais_escura_que_centro: true   # verdadeiro em 11 de 11 peças
+  ouro_presente_min: 0.01       # fração mínima de pixels perto de "ouro"
+  texto_dentro_da_zona: true
+  recorte_vazio_min: 0.15       # fração mínima transparente numa parte recortada

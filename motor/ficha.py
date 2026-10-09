@@ -22,6 +22,9 @@ def carregar(caminho: str | Path) -> dict:
     for formato in ficha["formatos"]:
         if formato not in ficha["layout"]:
             raise FichaInvalida(f"{caminho}: formato '{formato}' sem layout")
+    for nome, t in ficha.get("temas", {}).items():
+        if t.get("figurino") not in ficha["partes"]["mascote"].get("figurinos", {}):
+            raise FichaInvalida(f"{caminho}: o tema '{nome}' pede o figurino '{t.get('figurino')}', que não existe")
     for camada in ficha["camadas"]:
         if camada["tipo"] == "gerada" and camada["parte"] not in ficha["partes"]:
             raise FichaInvalida(f"{caminho}: camada '{camada['id']}' pede a parte '{camada['parte']}', que não existe")
@@ -29,14 +32,36 @@ def carregar(caminho: str | Path) -> dict:
     return ficha
 
 
-def prompt_da_parte(ficha: dict, parte: str, figurino: str | None = None) -> str:
-    """O prompt final de uma parte, já com o figurino escolhido."""
+def resolver_tema(ficha: dict, tema: str | None = None) -> dict:
+    """O tema liga a mensagem ao mascote: figurino, o que ele segura e o entorno.
+
+    Fichas sem `temas` (v1.0) só conhecem o figurino; nelas `tema` é o nome do figurino.
+    """
+    temas = ficha.get("temas")
+    if not temas:
+        return {"nome": None, "figurino": tema or ficha["partes"]["mascote"].get("figurino_padrao")}
+    nome = tema or ficha["tema_padrao"]
+    if nome not in temas:
+        raise FichaInvalida(f"tema '{nome}' não existe; temas da ficha: {sorted(temas)}")
+    return {"nome": nome, **temas[nome]}
+
+
+def prompt_da_parte(ficha: dict, parte: str, tema: str | None = None) -> str:
+    """O prompt final de uma parte, já com o figurino e os elementos do tema."""
     p = ficha["partes"][parte]
+    t = resolver_tema(ficha, tema)
     texto = " ".join(p["prompt"].split())
     if "{figurino}" in texto:
-        nome = figurino or p.get("figurino_padrao")
-        texto = texto.replace("{figurino}", " ".join(p["figurinos"][nome].split()))
+        texto = texto.replace("{figurino}", " ".join(ficha["partes"]["mascote"]["figurinos"][t["figurino"]].split()))
+    for chave in ("segura", "entorno"):
+        if "{" + chave + "}" in texto:
+            texto = texto.replace("{" + chave + "}", " ".join(t[chave].split()))
     return texto
+
+
+def linhas_de_texto(ficha: dict, tema: str | None = None) -> list[dict]:
+    """As linhas de exemplo do tema, ou as linhas neutras da ficha."""
+    return resolver_tema(ficha, tema).get("texto_exemplo") or ficha["texto"]["exemplo"]
 
 
 def tamanho(ficha: dict, formato: str) -> tuple[int, int]:

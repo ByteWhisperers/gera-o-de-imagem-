@@ -14,7 +14,7 @@
 
 versao: "1.0"
 marca: arara
-estado: proposta            # vira "aprovada" quando o dono confirmar
+estado: substituida        # trocada pela v1.1 em 2026-10-09 (temas)
 referencias: referencias/arara
 
 em_uma_frase: >-

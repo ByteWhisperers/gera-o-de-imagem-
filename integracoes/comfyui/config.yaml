@@ -1,0 +1,23 @@
+# Como o portão usa o ComfyUI. Isto é do modelo, não do estilo: trocar de
+# modelo mexe aqui, a ficha continua a mesma.
+#
+# SD-Turbo: gratuito e roda em CPU, bom para validar o fluxo. A licença dele
+# é de pesquisa, não comercial: para produção, troque o checkpoint.
+url: http://127.0.0.1:8188
+checkpoint: sd_turbo.safetensors
+passos: 4
+cfg: 1.0
+negativo: text, letters, words, watermark, logo, blurry, deformed
+# Tamanho de geração por parte (múltiplos de 64). A composição redimensiona.
+tamanhos:
+  cena:
+    home: [1024, 320]
+    promo: [1024, 448]
+  mascote: [512, 704]
+  entorno: [768, 512]
+# Como tirar o fundo de cada parte transparente (ver motor/recorte.py).
+# O SD-Turbo não obedece ao "fundo cinza liso": o mascote vem com fundo
+# texturizado (precisa do modelo de recorte) e o entorno com degradê.
+recorte:
+  mascote: modelo
+  entorno: cor_da_borda

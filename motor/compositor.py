@@ -16,7 +16,7 @@ from PIL import Image, ImageColor, ImageDraw, ImageFilter
 
 from . import ficha as F
 from . import texto as T
-from .recorte import recortar_conteudo, remover_fundo_liso
+from .recorte import recortar_conteudo, remover_fundo
 
 RAIZ = Path(__file__).resolve().parent.parent
 
@@ -79,7 +79,9 @@ def encaixar(im: Image.Image, caixa: dict, largura: int, altura: int) -> tuple[I
     return nova, x, y
 
 
-def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: list[dict]) -> list[Camada]:
+def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: list[dict],
+           recorte: dict[str, str] | None = None) -> list[Camada]:
+    """`recorte` diz o método de tirar o fundo de cada parte (padrão: liso)."""
     largura, altura = F.tamanho(ficha, formato)
     layout = ficha["layout"][formato]
     camadas: list[Camada] = []
@@ -90,7 +92,7 @@ def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: li
         elif tipo == "gerada":
             im = partes[c["parte"]]
             if ficha["partes"][c["parte"]].get("transparente") and im.mode != "RGBA":
-                im = remover_fundo_liso(im)
+                im = remover_fundo(im, (recorte or {}).get(c["parte"], "liso"))
             im, x, y = encaixar(recortar_conteudo(im.convert("RGBA")), layout[nome], largura, altura)
             camadas.append(Camada(nome, im, x, y))
         elif nome == "escurecimento":

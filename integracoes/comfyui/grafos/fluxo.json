@@ -1,0 +1,28 @@
+{
+  "1":  {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": "{{checkpoint}}"}},
+  "2":  {"class_type": "CLIPTextEncode", "inputs": {"clip": ["1", 1], "text": "{{negativo}}"}},
+
+  "10": {"class_type": "GeraFichaPrompt", "inputs": {"ficha": "{{ficha}}", "parte": "cena", "tema": "{{tema}}"}},
+  "11": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["1", 1], "text": ["10", 0]}},
+  "12": {"class_type": "EmptyLatentImage", "inputs": {"width": "{{cena_largura}}", "height": "{{cena_altura}}", "batch_size": 1}},
+  "13": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["11", 0], "negative": ["2", 0], "latent_image": ["12", 0],
+         "seed": "{{semente}}", "steps": "{{passos}}", "cfg": "{{cfg}}", "sampler_name": "euler_ancestral", "scheduler": "normal", "denoise": 1.0}},
+  "14": {"class_type": "VAEDecode", "inputs": {"samples": ["13", 0], "vae": ["1", 2]}},
+
+  "20": {"class_type": "GeraFichaPrompt", "inputs": {"ficha": "{{ficha}}", "parte": "mascote", "tema": "{{tema}}"}},
+  "21": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["1", 1], "text": ["20", 0]}},
+  "22": {"class_type": "EmptyLatentImage", "inputs": {"width": "{{mascote_largura}}", "height": "{{mascote_altura}}", "batch_size": 1}},
+  "23": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["21", 0], "negative": ["2", 0], "latent_image": ["22", 0],
+         "seed": "{{semente}}", "steps": "{{passos}}", "cfg": "{{cfg}}", "sampler_name": "euler_ancestral", "scheduler": "normal", "denoise": 1.0}},
+  "24": {"class_type": "VAEDecode", "inputs": {"samples": ["23", 0], "vae": ["1", 2]}},
+
+  "30": {"class_type": "GeraFichaPrompt", "inputs": {"ficha": "{{ficha}}", "parte": "entorno", "tema": "{{tema}}"}},
+  "31": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["1", 1], "text": ["30", 0]}},
+  "32": {"class_type": "EmptyLatentImage", "inputs": {"width": "{{entorno_largura}}", "height": "{{entorno_altura}}", "batch_size": 1}},
+  "33": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["31", 0], "negative": ["2", 0], "latent_image": ["32", 0],
+         "seed": "{{semente}}", "steps": "{{passos}}", "cfg": "{{cfg}}", "sampler_name": "euler_ancestral", "scheduler": "normal", "denoise": 1.0}},
+  "34": {"class_type": "VAEDecode", "inputs": {"samples": ["33", 0], "vae": ["1", 2]}},
+
+  "40": {"class_type": "GeraComporPeca", "inputs": {"cena": ["14", 0], "mascote": ["24", 0], "entorno": ["34", 0],
+         "ficha": "{{ficha}}", "formato": "{{formato}}", "tema": "{{tema}}"}}
+}

@@ -35,3 +35,11 @@ def test_registro_recusa_parte_de_outra_receita(tmp_path):
     f["partes"]["cena"]["prompt"] = "a completely different scene"
     with pytest.raises(ParteRecusada, match="prompt"):
         Portao("registro").parte(f, "cena", "promo")
+
+
+def test_ficha_com_temas_poe_o_entorno_no_psd(tmp_path):
+    rel = pipeline.rodar("fichas/arara/ficha-v1.1.yaml", ["home"], "rascunho", "telegram", tmp_path)
+    assert rel["tema"] == "telegram" and rel["figurino"] == "turista"
+    assert rel["pecas"][0]["qa_ok"], rel["pecas"][0]["qa"]
+    psd = PSDImage.open(tmp_path / "arara" / "home-telegram-rascunho.psd")
+    assert [l.name for l in psd][:4] == ["cena", "escurecimento", "entorno", "mascote"]
