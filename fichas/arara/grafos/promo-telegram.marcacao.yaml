@@ -14,6 +14,10 @@ ficha: fichas/arara/ficha-v1.1.yaml
 formato: promo
 tema: telegram
 
+# Recorte aprovado pelo dono: serve de modelo para as outras referências.
+estado: aprovada
+aprovacao: {por: Hermes, em: "2026-10-10", nota: "recorte aprovado como modelo para desconstruir as outras 10 referências"}
+
 # Onde procurar o que a ferramenta mede sozinha.
 zona_texto: [0.015, 0.22, 0.53, 0.54]
 zona_logo: [0.0, 0.0, 0.32, 0.26]

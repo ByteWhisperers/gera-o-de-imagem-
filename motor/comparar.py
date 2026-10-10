@@ -191,8 +191,12 @@ def na_tela(rgba: np.ndarray, x: int, y: int, largura: int, altura: int) -> np.n
     return tela
 
 
-def medir(grafo: dict, final: Image.Image, camadas: dict[str, tuple[np.ndarray, int, int]]) -> dict:
-    """Notas da peça inteira e de cada camada gerada, contra a referência do grafo."""
+def medir(grafo: dict, final: Image.Image, camadas: dict[str, tuple[np.ndarray, int, int]],
+          so: list[str] | None = None) -> dict:
+    """Notas da peça inteira e de cada camada gerada, contra a referência do grafo.
+
+    `so` limita as camadas medidas (as que o workflow gerou); sem ele, todas as do grafo.
+    """
     W, H = grafo["tamanho_px"]
     ref = np.asarray(Image.open(G.RAIZ / grafo["referencia"]).convert("RGB"))
     fim = np.asarray(final.convert("RGB").resize((W, H)))
@@ -206,7 +210,7 @@ def medir(grafo: dict, final: Image.Image, camadas: dict[str, tuple[np.ndarray, 
     notas = {"peca": {"dE00": round(de_medio(ref, fim, resto), 2), "ssim": round(ssim(ref, fim, resto), 3),
                       "paleta_dE": round(paleta_de(ref, fim, resto, resto), 2), "fora": "texto e logo"}}
     notas["peca"]["leitura"] = leitura_de(notas["peca"]["dE00"])
-    for camada in G.camadas_geradas(grafo):
+    for camada in (so if so is not None else G.camadas_geradas(grafo)):
         if camada not in camadas:
             notas[camada] = {"falta": True}
             continue

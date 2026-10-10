@@ -12,6 +12,9 @@ nós do grafo que caem nela:
 
 Texto e logo nunca viram ramo: saem de código (motor/texto.py). As placas da
 desconstrução já chegam sem eles, então a IA não tem como desenhar letras ali.
+Uma camada do grafo que a ficha ainda não conhece (ex.: "frente") também não
+vira ramo: fica embutida no fundo (a placa cena_limpa a mantém) e o compilador
+anota em `camadas_fora_da_ficha`.
 
 O mesmo grafo sempre dá o mesmo workflow (mesma ordem, mesmos nomes de
 arquivo, que são o hash do conteúdo). Isso permite guardar cada workflow
@@ -134,9 +137,8 @@ def compilar(grafo: dict, ficha: dict, cfg: dict, tema: str | None = None, semen
             carregadas[nome] = m.add("LoadImage", image=nome)
         return carregadas[nome]
 
-    for camada in G.camadas_geradas(grafo):
-        if camada not in ficha["partes"]:
-            raise G.GrafoInvalido(f"a camada '{camada}' do grafo não é uma parte da ficha {ficha['versao']}")
+    fora = [c for c in G.camadas_geradas(grafo) if c not in ficha["partes"]]
+    for camada in G.camadas_geradas(grafo, ficha["partes"]):
         classe = classe_da_camada(grafo, camada)
         prompt = prompt_no_lugar(ficha, camada, tema, cfg)
         if classe == "fundo":
@@ -164,7 +166,8 @@ def compilar(grafo: dict, ficha: dict, cfg: dict, tema: str | None = None, semen
         saidas[camada] = {"no": salvar, "x": x, "y": y, "w": w, "h": h, "classe": classe,
                           "geracao": [gw, gh], "denoise": forca[classe], "prompt": prompt}
     parametros = {"tema": tema, "semente": semente, "denoise": forca, "passos": cfg["passos"], "cfg": cfg["cfg"],
-                  "modelo": cfg["checkpoint"], "lado": comp["lado"], "margem": comp["margem"]}
+                  "modelo": cfg["checkpoint"], "lado": comp["lado"], "margem": comp["margem"],
+                  "camadas_fora_da_ficha": fora}
     return Compilado(m.nos, entradas, saidas, parametros)
 
 

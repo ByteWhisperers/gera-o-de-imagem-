@@ -53,3 +53,19 @@ def test_grafo_estragado_e_recusado(estrago, erro):
     estrago(g)
     with pytest.raises(G.GrafoInvalido, match=erro):
         G.conferir(copy.deepcopy(g))
+
+
+def test_rotulo_solto_nao_estica_o_bloco_de_texto():
+    g = copy.deepcopy(G.carregar(TELEGRAM))
+    antes = G.layout_medido(g)["texto"]
+    g["nos"].append({"id": "rotulo_nivel2", "tipo": "texto", "papel": "rotulo", "z": 6, "camada_psd": "texto",
+                     "caixa": [0.7, 0.9, 0.05, 0.03]})
+    assert G.layout_medido(g)["texto"] == antes
+
+
+def test_camada_que_a_ficha_nao_conhece_fica_de_fora_quando_pedido():
+    g = copy.deepcopy(G.carregar(TELEGRAM))
+    moedas = G.no(g, "moedas")
+    g["nos"].append({**moedas, "id": "folhagem", "camada_psd": "frente", "z": 5})
+    assert G.camadas_geradas(g) == ["cena", "entorno", "mascote", "frente"]
+    assert G.camadas_geradas(g, ["cena", "mascote", "entorno"]) == ["cena", "entorno", "mascote"]

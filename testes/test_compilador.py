@@ -85,3 +85,15 @@ def test_placa_apaga_so_o_buraco():
     classes = [n["class_type"] for n in comp.workflow.values()]
     assert "SetLatentNoiseMask" in classes and "ImageCompositeMasked" in classes
     assert comp.saidas["placa"]["no"] in comp.workflow
+
+
+def test_camada_fora_da_ficha_nao_vira_ramo_e_fica_anotada():
+    import copy
+
+    g = copy.deepcopy(GRAFO)
+    moedas = G.no(g, "moedas")
+    g["nos"].append({**moedas, "id": "folhagem", "camada_psd": "frente", "z": 5})
+    comp = C.compilar(g, FICHA, CFG)
+    assert list(comp.saidas) == ["cena", "entorno", "mascote"]
+    assert comp.parametros["camadas_fora_da_ficha"] == ["frente"]
+    assert comp.sha256() == C.compilar(GRAFO, FICHA, CFG).sha256()       # o workflow não muda

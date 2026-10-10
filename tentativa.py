@@ -72,7 +72,7 @@ def proximo_id(diario: Path, peca: str) -> str:
     return f"{peca}-{n + 1:03d}"
 
 
-def notas_de_psd(grafo: dict, psd: Path) -> tuple[Image.Image, dict]:
+def notas_de_psd(grafo: dict, psd: Path, so: list[str] | None = None) -> tuple[Image.Image, dict]:
     png = psd.with_suffix(".png")
     if png.exists():
         final = Image.open(png)
@@ -80,7 +80,7 @@ def notas_de_psd(grafo: dict, psd: Path) -> tuple[Image.Image, dict]:
         from psd_tools import PSDImage
 
         final = PSDImage.open(psd).composite()
-    return final, CMP.medir(grafo, final, CMP.camadas_do_psd(psd))
+    return final, CMP.medir(grafo, final, CMP.camadas_do_psd(psd), so)
 
 
 def rodar(caminho_grafo: str, tema: str | None = None, semente: int = 519, denoise: dict | None = None,
@@ -107,7 +107,8 @@ def rodar(caminho_grafo: str, tema: str | None = None, semente: int = 519, denoi
     tempos["conferir"] = round(time.perf_counter() - t, 1)
     if so_compilar:
         return {"workflow": _rel(arquivo_wf), "sha256": sha, "nos": len(comp.workflow),
-                "conferencia": "ok", "camadas": list(comp.saidas)}
+                "conferencia": "ok", "camadas": list(comp.saidas),
+                "camadas_fora_da_ficha": comp.parametros["camadas_fora_da_ficha"]}
 
     t = time.perf_counter()
     for nome, imagem in comp.entradas.items():
@@ -133,11 +134,11 @@ def rodar(caminho_grafo: str, tema: str | None = None, semente: int = 519, denoi
     tempos["compor"] = round(time.perf_counter() - t, 1)
 
     t = time.perf_counter()
-    notas = CMP.medir(grafo, final, {c.nome: (np.asarray(c.imagem), c.x, c.y) for c in camadas})
+    notas = CMP.medir(grafo, final, {c.nome: (np.asarray(c.imagem), c.x, c.y) for c in camadas}, list(comp.saidas))
     pecas, todas = {id_: final}, {id_: notas}
     for ctrl in controles or []:
         p = Path(ctrl)
-        im_c, n_c = notas_de_psd(grafo, p)
+        im_c, n_c = notas_de_psd(grafo, p, list(comp.saidas))
         pecas[p.stem], todas[p.stem] = im_c, n_c
     CMP.prancha(grafo, pecas, todas).save(destino / "prancha.jpg", quality=88)
     antigo = qa.conferir(efetiva, formato, final, camadas)

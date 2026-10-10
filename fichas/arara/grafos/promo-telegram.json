@@ -1,6 +1,6 @@
 {
  "formato": "grafo-peca/0.1",
- "estado": "proposta",
+ "estado": "aprovada",
  "peca": "promo-telegram",
  "marca": "arara",
  "ficha": "fichas/arara/ficha-v1.1.yaml",
@@ -15,8 +15,8 @@
  "marcacao": "fichas/arara/grafos/promo-telegram.marcacao.yaml",
  "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
  "recortes": {
-  "mascote": "recortes/mascote.webp",
   "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
   "texto": "recortes/texto.webp",
   "logo": "recortes/logo.webp"
  },
@@ -434,5 +434,10 @@
    "eixo": "esquerda",
    "delta_x": 0.012
   }
- ]
+ ],
+ "aprovacao": {
+  "por": "Hermes",
+  "em": "2026-10-10",
+  "nota": "recorte aprovado como modelo para desconstruir as outras 10 referências"
+ }
 }

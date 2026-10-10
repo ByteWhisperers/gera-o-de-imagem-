@@ -95,10 +95,16 @@ def mascara(grafo: dict, id_: str) -> np.ndarray:
     return np.asarray(Image.open(pasta(grafo) / n["mascara"]).convert("L")) > 127
 
 
-def camadas_geradas(grafo: dict) -> list[str]:
-    """Camadas do PSD que a IA gera nesta peça, de baixo para cima."""
+def camadas_geradas(grafo: dict, partes=None) -> list[str]:
+    """Camadas do PSD que a IA gera nesta peça, de baixo para cima.
+
+    Com `partes` (as partes da ficha), só as que a ficha conhece; as outras ficam
+    embutidas no fundo até uma versão da ficha incluí-las.
+    """
     vistas: dict[str, int] = {}
     for n in grafo["nos"]:
+        if partes is not None and n.get("camada_psd") not in partes:
+            continue
         if n["tipo"] in GERAVEIS and n.get("camada_psd") and "mascara" in n:
             vistas[n["camada_psd"]] = min(vistas.get(n["camada_psd"], 99), n.get("z", 0))
     return sorted(vistas, key=lambda c: vistas[c])
@@ -144,7 +150,8 @@ def layout_medido(grafo: dict) -> dict:
 
     Serve para montar a peça no lugar da referência, em vez das estimativas da ficha.
     """
-    textos = [n["caixa"] for n in grafo["nos"] if n["tipo"] == "texto" and "caixa" in n]
+    textos = [n["caixa"] for n in grafo["nos"] if n["tipo"] == "texto" and "caixa" in n
+              and n.get("papel") != "rotulo"]             # rótulo solto (ex.: "Nível 2") não é o bloco de texto
     logo = next((n["caixa"] for n in grafo["nos"] if n["tipo"] == "logo" and "caixa" in n), None)
     saida = {}
     if textos:

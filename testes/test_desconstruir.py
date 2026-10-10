@@ -28,3 +28,73 @@ def test_buraco_e_preenchido_com_as_cores_de_volta():
     cheio = D.preencher_buraco(rgb, buraco, reducao=2)
     assert np.abs(cheio[buraco] - [30, 90, 40]).max() < 12
     assert (cheio[~buraco] == rgb[~buraco]).all()
+
+
+def _faixa_de_texto(caixas):
+    """Fundo verde com retângulos brancos de contorno preto, como letras grossas."""
+    rgb = np.zeros((200, 400, 3), np.float32)
+    rgb[:] = [30, 90, 40]
+    for x0, y0, x1, y1 in caixas:
+        rgb[y0 - 3 : y1 + 3, x0 - 3 : x1 + 3] = [10, 10, 10]
+        rgb[y0:y1, x0:x1] = [255, 255, 255]
+    return rgb
+
+
+def test_caixas_de_linha_do_agente_viram_linhas_apertadas_nas_letras():
+    rgb = _faixa_de_texto([(40, 40, 120, 70), (140, 40, 220, 70), (40, 100, 300, 150)])
+    nada = np.zeros(rgb.shape[:2], bool)
+    _, auto = D.medir_texto(rgb, [0, 0, 1, 1], nada)
+    # a projeção junta as duas palavras da primeira linha; com caixas, o agente separa
+    _, marcadas = D.medir_texto(rgb, [0, 0, 1, 1], nada,
+                                [[0.08, 0.15, 0.25, 0.25], [0.33, 0.15, 0.25, 0.25], [0.08, 0.45, 0.75, 0.35]])
+    assert len(auto) == 2 and len(marcadas) == 3
+    assert marcadas[0]["caixa_px"] == [40, 40, 80, 30]
+    assert marcadas[2]["altura_px"] == 50 and marcadas[2]["peso_rel"] == round(50 / 30, 2)
+
+
+def test_rotulo_solto_pega_so_as_letras_claras_dentro_da_caixa():
+    rgb = np.zeros((100, 200, 3), np.float32)
+    rgb[:] = [20, 70, 30]
+    rgb[40:60, 60:140] = [20, 110, 40]                     # plaquinha verde
+    rgb[45:55, 70:130] = [250, 250, 250]                   # "letras"
+    rgb[5:15, 5:30] = [250, 250, 250]                      # algo claro fora da caixa
+    m, info = D.medir_rotulo(rgb, [0.28, 0.38, 0.45, 0.25], np.zeros((100, 200), bool))
+    assert m[46:54, 71:129].all() and not m[5:15, 5:30].any()    # a abertura só arredonda os cantos
+    assert info["altura_px"] == 10 and info["estilo_ficha"] == "branco"
+
+
+def test_cena_limpa_nao_apaga_camada_que_a_ficha_nao_conhece():
+    H, W = 120, 200
+    vazio = np.zeros((H, W), bool)
+    mascote, frente = vazio.copy(), vazio.copy()
+    mascote[20:80, 100:160] = True
+    frente[80:110, 90:170] = True                          # folhagem na frente, encostada no mascote
+    mascaras = {"mascote": mascote, "frente": frente, "texto": vazio, "logo": vazio}
+    b = D.buracos({"tamanho_px": [W, H]}, mascaras, [], partes={"cena", "mascote", "entorno"})
+    assert b["cena_limpa"][mascote].all()
+    assert not (b["cena_limpa"] & frente).any()            # nem a folga do mascote come a folhagem
+    assert D.buracos({"tamanho_px": [W, H]}, mascaras, [])["cena_limpa"][frente].all()
+
+
+def test_prancha_cabe_todas_as_partes_numa_linha():
+    from PIL import Image
+
+    im = Image.new("RGB", (1867, 842), (30, 90, 40))
+    pecas = {f"parte{i}": Image.new("RGBA", (900, 400), (200, 50, 50, 255)) for i in range(5)}
+    p = D.prancha(im, {"mascote": np.zeros((842, 1867), bool)}, pecas, {})
+    assert p.width == 1600 and p.height < 1600 * 842 / 1867 + 340
+
+
+def test_grade_desenha_marcacao_no_zoom():
+    from PIL import Image
+
+    from ferramentas import grade as GR
+
+    im = Image.new("RGB", (400, 200), (30, 90, 40))
+    mc = {"zona_texto": [0, 0.2, 0.5, 0.6], "nos": {"m": {"contorno": [[0.6, 0.2], [0.9, 0.2], [0.8, 0.9]]},
+                                                       "c": {"elipses": [[0.1, 0.1, 0.1, 0.2]]}}}
+    tela = GR.grade(im, (0.5, 0, 0.5, 1), largura=800, marcacao=mc)
+    so_grade = GR.grade(im, (0.5, 0, 0.5, 1), largura=800)
+    assert tela.size == (800, 800)
+    diferente = np.abs(np.asarray(tela, int) - np.asarray(so_grade, int)).sum(2) > 0
+    assert diferente[:, 150:].any()                        # o contorno "m" aparece no zoom

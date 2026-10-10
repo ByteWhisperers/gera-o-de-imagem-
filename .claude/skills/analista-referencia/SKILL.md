@@ -21,9 +21,20 @@ Você transforma imagens de referência em informação que o código lê.
    (segura, apresenta, cerca, veste, tema_liga). Rode
    `python ferramentas/desconstruir.py <marcacao> --placas` (precisa de `requirements-desconstrucao.txt`
    e do ComfyUI local para as placas).
+   Para marcar com precisão, gere a grade de frações e olhe a imagem:
+   `python ferramentas/grade.py referencias/<marca>/<peca>.webp -o grade.jpg` (peça inteira) e
+   `python ferramentas/grade.py <marcacao> --zoom X Y W H -o zoom.jpg` (de perto, com os vértices
+   numerados). Depois de rodar a desconstrução, `--encaixado` mostra a borda que a ferramenta encaixou.
 8. Abra `fichas/<marca>/grafos/<peca>/conferencia.jpg`. Contorno vazou ou cortou parte (asa, pena,
    objeto na frente)? Corrija os pontos da marcação e rode de novo. O grafo nasce `estado: proposta`;
-   o dono aprova o recorte uma vez por peça.
+   o dono aprova o recorte uma vez por peça (então `estado: aprovada` e `aprovacao` na marcação).
+   Casos que a marcação resolve:
+   - texto com linhas grudadas ou cortadas: `texto_linhas` com uma caixa por linha;
+   - logo fora do lugar (correlação baixa): `logo_caixa: [x, y, w]`;
+   - rótulo solto fora do bloco (ex.: "Nível 2" numa plaquinha): nó `tipo: texto` com `caixa`;
+   - folhagem ou objeto na frente do mascote: nó com `camada_psd: frente` e z acima do mascote.
+     Camada que a ficha não tem fica embutida no fundo até a próxima versão da ficha;
+   - o que a peça mostra e a ficha não prevê (tema diferente, figurino, objeto novo): `observacoes`.
 
 ## Regras
 
