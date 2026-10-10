@@ -15,12 +15,17 @@ tamanhos:
     promo: [1024, 448]
   mascote: [512, 704]
   entorno: [768, 512]
+  frente: [768, 512]
 # Como tirar o fundo de cada parte transparente (ver motor/recorte.py).
 # O SD-Turbo não obedece ao "fundo cinza liso": o mascote vem com fundo
-# texturizado (precisa do modelo de recorte) e o entorno com degradê.
+# texturizado (precisa do modelo de recorte) e o entorno com degradê. Na frente
+# ele obedece ao fundo cinza quando os objetos são poucos (flor e folhas); o
+# modelo de recorte ficaria só com o objeto do meio. Quando ele enche o quadro
+# (pilha de moedas), nenhum método salva e o QA acusa "frente_recortado".
 recorte:
   mascote: modelo
   entorno: cor_da_borda
+  frente: liso
 # Compilador grafo -> workflow (motor/compilador.py). São os botões que o loop
 # de produção ajusta, um por vez, anotando o resultado de cada tentativa.
 compilador:

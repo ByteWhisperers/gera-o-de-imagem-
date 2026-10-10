@@ -3,7 +3,7 @@
  "estado": "proposta",
  "peca": "promo-envelopes",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/promo/promo-1790980998-e0741671.webp",
  "formato_peca": "promo",
  "tema": "envelopes",
@@ -996,8 +996,5 @@
   "camada frente: seis envelopes grandes e desfocados no primeiro plano, alguns cobrindo a asa e o galho; a ficha v1.1 não tem camada frente",
   "cena: um galho grosso embaixo do mascote, como nas peças de convite e depósito; a ficha não prevê galho nem apoio",
   "texto: a última linha mistura uma parte dourada grande com palavras brancas menores; a ficha só prevê um estilo por linha"
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

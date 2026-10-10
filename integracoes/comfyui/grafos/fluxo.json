@@ -23,6 +23,13 @@
          "seed": "{{semente}}", "steps": "{{passos}}", "cfg": "{{cfg}}", "sampler_name": "euler_ancestral", "scheduler": "normal", "denoise": 1.0}},
   "34": {"class_type": "VAEDecode", "inputs": {"samples": ["33", 0], "vae": ["1", 2]}},
 
+  "50": {"class_type": "GeraFichaPrompt", "inputs": {"ficha": "{{ficha}}", "parte": "frente", "tema": "{{tema}}"}},
+  "51": {"class_type": "CLIPTextEncode", "inputs": {"clip": ["1", 1], "text": ["50", 0]}},
+  "52": {"class_type": "EmptyLatentImage", "inputs": {"width": "{{frente_largura}}", "height": "{{frente_altura}}", "batch_size": 1}},
+  "53": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["51", 0], "negative": ["2", 0], "latent_image": ["52", 0],
+         "seed": "{{semente}}", "steps": "{{passos}}", "cfg": "{{cfg}}", "sampler_name": "euler_ancestral", "scheduler": "normal", "denoise": 1.0}},
+  "54": {"class_type": "VAEDecode", "inputs": {"samples": ["53", 0], "vae": ["1", 2]}},
+
   "40": {"class_type": "GeraComporPeca", "inputs": {"cena": ["14", 0], "mascote": ["24", 0], "entorno": ["34", 0],
-         "ficha": "{{ficha}}", "formato": "{{formato}}", "tema": "{{tema}}"}}
+         "frente": ["54", 0], "ficha": "{{ficha}}", "formato": "{{formato}}", "tema": "{{tema}}"}}
 }

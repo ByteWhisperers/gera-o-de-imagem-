@@ -3,7 +3,7 @@
  "estado": "proposta",
  "peca": "promo-instagram",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/promo/promo-1790981412-117f1d73.webp",
  "formato_peca": "promo",
  "tema": "instagram",
@@ -778,8 +778,5 @@
   "cena: anéis e riscos de luz dourada em volta do mascote e um brilho amarelo forte no vão entre o pescoço e o celular; a ficha só prevê poeira dourada e raios finos na camada brilho",
   "texto: quatro linhas (o exemplo do tema tem três); a segunda é dourada e bem maior, a terceira e a quarta são menores e do mesmo tamanho; a última mistura palavras brancas e uma palavra dourada na mesma linha, e a ficha só prevê um estilo por linha",
   "mesma cena, mesmo figurino e mesmos objetos da peça home-instagram, só reenquadrados no formato promo: as duas peças podem sair do mesmo conjunto de partes"
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

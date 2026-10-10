@@ -27,8 +27,8 @@ A ficha é o contrato. Só a desconstrução escreve nela; as outras etapas só 
 ```bash
 pip install -r requirements-dev.txt
 python -m pytest -q
-python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram                      # rascunho, custo zero
-python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram --provedor comfyui   # ComfyUI local, grátis
+python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram                      # rascunho, custo zero
+python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram --provedor comfyui   # ComfyUI local, grátis
 python pipeline.py fichas/arara/ficha-v1.0.yaml --tema turista --provedor registro   # partes do teste 1 (fal)
 python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo            # fluxo completo no ComfyUI
 python ferramentas/medir.py referencias/arara > fichas/arara/medidas.json

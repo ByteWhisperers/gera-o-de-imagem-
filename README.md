@@ -16,18 +16,18 @@ pip install -r requirements-dev.txt
 python -m pytest -q
 
 # custo zero: partes de rascunho, testa layout, texto e camadas
-python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram
+python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram
 
 # partes geradas no ComfyUI local (grátis) e registradas em partes/arara/registro.yaml
-python pipeline.py fichas/arara/ficha-v1.1.yaml --provedor comfyui --tema telegram --formato promo
+python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor comfyui --tema telegram --formato promo
 
 # partes já registradas (por exemplo as do fal no teste 1, ficha v1.0)
 python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema turista
 ```
 
-A pasta `partes/<marca>/` é a **biblioteca de partes**: cada fundo, mascote e entorno fica guardado uma vez, com a receita, no `registro.yaml`. Com `--provedor comfyui` o portão reaproveita a parte que já existe com a mesma receita e só gera o que falta. Para pedir uma variação, use `--novo mascote` (ou `cena`, `entorno`). Texto e logo não ficam guardados como imagem: saem do código toda vez.
+A pasta `partes/<marca>/` é a **biblioteca de partes**: cada fundo, mascote e entorno fica guardado uma vez, com a receita, no `registro.yaml`. Com `--provedor comfyui` o portão reaproveita a parte que já existe com a mesma receita e só gera o que falta. Para pedir uma variação, use `--novo mascote` (ou `cena`, `entorno`, `frente`). Texto e logo não ficam guardados como imagem: saem do código toda vez.
 
-O **tema** liga a mensagem ao mascote: escolhe o figurino, o que ele segura, os objetos em volta (camada `entorno`) e as linhas de texto de exemplo. Os temas ficam na ficha.
+O **tema** liga a mensagem ao mascote: escolhe o figurino, o que ele segura, os objetos em volta (camada `entorno`), o que fica na frente dele (camada `frente`, desde a ficha v1.2) e as linhas de texto de exemplo. Os temas ficam na ficha.
 
 Saída em `saida/<marca>/`: um `.psd` com uma camada por item da ficha, `.png`, `.webp` e `relatorio-<provedor>-<tema>.json` com a origem de cada parte, o custo e o resultado do QA.
 

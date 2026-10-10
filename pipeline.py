@@ -1,9 +1,9 @@
 """Roda a linha de produção para uma ficha: partes -> composição -> QA -> arquivos.
 
 Uso:
-    python pipeline.py fichas/arara/ficha-v1.1.yaml --tema instagram
-    python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram --provedor comfyui --formato promo
-    python pipeline.py fichas/arara/ficha-v1.1.yaml --tema telegram --provedor comfyui --novo mascote   # variação
+    python pipeline.py fichas/arara/ficha-v1.2.yaml --tema instagram
+    python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram --provedor comfyui --formato promo
+    python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram --provedor comfyui --novo mascote   # variação
     python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema realeza   # v1.0: tema = figurino
 
 O tema liga a mensagem ao mascote: escolhe o figurino, o que ele segura, os

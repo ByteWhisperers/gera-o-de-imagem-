@@ -82,13 +82,15 @@ def encaixar(im: Image.Image, caixa: dict, largura: int, altura: int) -> tuple[I
 
 def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: list[dict],
            recorte: dict[str, str] | None = None, posicionadas: dict[str, tuple] | None = None,
-           ocultas: set[str] | None = None) -> list[Camada]:
+           ocultas: set[str] | None = None, vazias: set[str] | None = None) -> list[Camada]:
     """`recorte` diz o método de tirar o fundo de cada parte (padrão: liso).
 
     `posicionadas` traz partes que já chegam recortadas e no lugar certo, como
     (imagem RGBA, x, y): é o caso das partes refeitas a partir do grafo da
     referência. `ocultas` são camadas que entram no PSD desligadas (por exemplo,
-    um efeito que já vem embutido no fundo da referência).
+    um efeito que já vem embutido no fundo da referência). `vazias` são camadas
+    geradas que esta peça não tem (por exemplo, a frente numa referência sem nada
+    na frente do mascote): entram no PSD vazias, para a ordem seguir a ficha.
     """
     largura, altura = F.tamanho(ficha, formato)
     layout = ficha["layout"][formato]
@@ -101,6 +103,8 @@ def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: li
             im = im.convert("RGBA")
             caixa = im.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox() or (0, 0, im.width, im.height)
             camadas.append(Camada(nome, im.crop(caixa), x + caixa[0], y + caixa[1]))
+        elif nome in (vazias or set()):
+            camadas.append(Camada(nome, Image.new("RGBA", (1, 1), (0, 0, 0, 0))))
         elif tipo == "gerada" and c["parte"] == "cena":
             camadas.append(Camada(nome, cobrir(partes["cena"], largura, altura).convert("RGBA")))
         elif tipo == "gerada":

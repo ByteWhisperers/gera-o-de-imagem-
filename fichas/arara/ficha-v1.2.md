@@ -1,7 +1,7 @@
-# Ficha ARARA v1.2 (proposta): o que mudou e por quê
+# Ficha ARARA v1.2: o que mudou e por quê
 
-Estado: **proposta**, feita em 10/10/2026. Espera a aprovação do dono. Até lá a
-v1.1 continua valendo: nenhum comando usa a v1.2 sozinho.
+Feita e aprovada pelo dono em 10/10/2026. Substitui a v1.1, que fica guardada
+como estava.
 
 ## De onde vem
 
@@ -138,10 +138,33 @@ São coisas que pedem código, não só ficha. Ficam para depois da aprovação.
    vai nele em cada tema.
 8. **Turista sem óculos.** Nos envelopes o mascote está sem óculos e com a
    camisa aberta. A v1.2 mantém os óculos no figurino turista.
-9. **Ligar a frente no loop.** Para as tentativas usarem a camada frente, as
-   placas de fundo limpo precisam ser refeitas sem os objetos da frente (hoje
-   eles ficam dentro do fundo). É de graça, no ComfyUI, e só vale a pena
-   depois da aprovação.
+9. **Rótulos das plaquinhas.** Na árvore, a IA refaz as plaquinhas da frente
+   sem o texto (o texto sai de código e ainda não tem quem desenhe), por isso
+   a frente dessas duas peças fica longe da referência (ΔE 22 a 24).
+
+## Depois da aprovação (10/10/2026)
+
+As 11 marcações apontam para a v1.2; as duas peças da árvore usam o tema
+`convite_rede`. As placas de fundo limpo foram refeitas sem os objetos da
+frente, e o loop rodou uma volta em cada peça (`fluxos/arara/tentativas.jsonl`,
+denoise da melhor volta da fase 1: fundo 0,2, figura 0,3, objeto 0,3):
+
+| Peça | ΔE da peça | cena | entorno | mascote | frente |
+|---|---|---|---|---|---|
+| promo-telegram | 10,8 | 9,7 | 8,5 | 11,7 | (vazia) |
+| home-convite-1 | 9,4 | 9,1 | 11,4 | 10,0 | 10,7 |
+| promo-convite-1 | 8,0 | 7,0 | 11,5 | 9,9 | 9,6 |
+| home-convite-2 | 11,5 | 10,1 | 16,1 | 6,6 | 23,6 |
+| promo-convite-2 | 11,2 | 9,0 | 17,1 | 6,4 | 22,5 |
+| home-instagram | 10,6 | 11,0 | 10,7 | 10,5 | 8,0 |
+| promo-instagram | 9,1 | 8,9 | 10,5 | 9,6 | 6,7 |
+| promo-deposito | 7,8 | 5,5 | 10,6 | 9,3 | 9,3 |
+| promo-envelopes | 9,2 | 9,3 | 10,0 | 9,0 | 10,0 |
+| promo-vip | 10,5 | 8,5 | 6,1 | 10,8 | 14,6 |
+| promo-reembolso | 10,4 | 8,9 | 12,4 | 11,7 | 9,8 |
+
+O recorte aprovado do Telegram não tem frente: a camada entra vazia no PSD e a
+flor continua no fundo. A tentativa 005 dele repete a 004 da fase 1 (ΔE 10,8).
 
 ## Limites dos recortes
 

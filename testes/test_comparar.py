@@ -67,3 +67,13 @@ def test_borda_opaca_acusa_corte_reto_mas_nao_a_borda_da_peca():
     meio = redondo[:30]                                                  # cortado pela base da peça
     assert (meio[-1, :, 3] > 0).any()
     assert CMP.borda_opaca(meio, 100, 270, 400, 300) == 0.0
+
+
+def test_prancha_mostra_todas_as_candidatas_mesmo_num_recorte_largo():
+    from motor import grafo as G2
+
+    g = G2.carregar(RAIZ / "fichas/arara/grafos/promo-reembolso.json")
+    ref = Image.open(RAIZ / g["referencia"]).convert("RGB")
+    p = CMP.prancha(g, {"candidata": ref}, {})
+    ultimo = np.asarray(p)[-200:, 1600:1770]          # a frente é a última camada e é bem larga
+    assert (np.abs(ultimo.astype(int) - 22).sum(axis=2) > 30).mean() > 0.5

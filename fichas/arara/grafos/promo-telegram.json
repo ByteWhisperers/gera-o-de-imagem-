@@ -3,7 +3,7 @@
  "estado": "aprovada",
  "peca": "promo-telegram",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/promo/promo-1790981127-d91c22ef.webp",
  "formato_peca": "promo",
  "tema": "telegram",
@@ -41,24 +41,24 @@
    "estilo": {
     "paleta": [
      {
-      "cor": "#071409",
-      "fracao": 0.234
+      "cor": "#07140a",
+      "fracao": 0.232
      },
      {
-      "cor": "#202208",
-      "fracao": 0.182
+      "cor": "#1f2208",
+      "fracao": 0.183
      },
      {
       "cor": "#4a4a1d",
       "fracao": 0.176
      },
      {
-      "cor": "#8f6e21",
+      "cor": "#8f6f20",
       "fracao": 0.162
      },
      {
       "cor": "#3e2c08",
-      "fracao": 0.131
+      "fracao": 0.132
      },
      {
       "cor": "#d4ad35",
@@ -164,7 +164,7 @@
      15.0,
      24.0,
      41.6,
-     65.2,
+     65.3,
      54.0,
      90.8,
      95.5,
@@ -236,7 +236,7 @@
      "#fdde04",
      "#fcc303"
     ],
-    "contorno_escuro_frac": 0.67
+    "contorno_escuro_frac": 0.68
    },
    "fonte": "medido:limiar de cor + projeção por linha"
   },
@@ -290,7 +290,7 @@
      "#fcd605",
      "#fcbf03"
     ],
-    "contorno_escuro_frac": 0.68
+    "contorno_escuro_frac": 0.69
    },
    "fonte": "medido:limiar de cor + projeção por linha"
   },
@@ -429,7 +429,7 @@
    "rel": "contraste",
    "para": "cena",
    "wcag": 7.9,
-   "L_fundo_em_volta": 51.2
+   "L_fundo_em_volta": 51.4
   },
   {
    "de": "texto_l1",

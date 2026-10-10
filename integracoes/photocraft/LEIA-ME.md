@@ -17,7 +17,7 @@ cd photocraft && cargo build --release -p photocraft-cli    # gera target/releas
 
 ```bash
 python integracoes/photocraft/conferir_psd.py saida/arara/promo-telegram-comfyui.psd \
-    --ficha fichas/arara/ficha-v1.1.yaml --cli caminho/para/photocraft-cli
+    --ficha fichas/arara/ficha-v1.2.yaml --cli caminho/para/photocraft-cli
 ```
 
 Confere que as camadas lidas pelo PhotoCraft têm os nomes e a ordem da ficha e

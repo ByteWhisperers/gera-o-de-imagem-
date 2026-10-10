@@ -32,7 +32,7 @@ python ComfyUI/main.py --cpu --listen 127.0.0.1 --port 8188
 python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo --saida peca.png
 
 # ou parte por parte pelo portão, que registra a receita em partes/<marca>/registro.yaml
-python pipeline.py fichas/arara/ficha-v1.1.yaml --provedor comfyui --tema telegram --formato promo
+python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor comfyui --tema telegram --formato promo
 ```
 
 ## Workflow montado a partir do grafo (fase 1)

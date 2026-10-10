@@ -3,7 +3,7 @@
  "estado": "proposta",
  "peca": "promo-convite-1",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/promo/promo-1790980982-3c38ef02.webp",
  "formato_peca": "promo",
  "tema": "convite",
@@ -620,8 +620,5 @@
   "o objeto segurado bate com o tema (baú aberto erguido numa asa), mas o mascote segura com uma mão escura de dedos, não com a ponta da asa",
   "texto: cinco linhas; a última mistura palavras brancas e uma parte dourada bem maior na mesma linha; a ficha só prevê um estilo por linha",
   "dois riscos longos e curvos de luz verde neon atravessam o fundo e somem por trás da asa erguida; a ficha só prevê poeira dourada e raios finos dourados na camada brilho"
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

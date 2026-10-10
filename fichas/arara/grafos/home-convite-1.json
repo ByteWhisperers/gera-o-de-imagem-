@@ -3,7 +3,7 @@
  "estado": "proposta",
  "peca": "home-convite-1",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/home/banner1.webp",
  "formato_peca": "home",
  "tema": "convite",
@@ -640,8 +640,5 @@
   "o objeto segurado bate com o tema (baú aberto erguido numa asa), mas o mascote segura com uma mão escura de dedos, não com a ponta da asa",
   "texto: cinco linhas; a última mistura palavras brancas e uma parte dourada bem maior na mesma linha; a ficha só prevê um estilo por linha",
   "raios de luz dourados longos e diagonais atravessam o fundo e somem por trás da asa erguida e do baú; a ficha só prevê poeira dourada e raios finos na camada brilho"
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

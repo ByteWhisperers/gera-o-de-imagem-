@@ -282,9 +282,10 @@ def prancha(grafo: dict, pecas: dict[str, Image.Image], notas: dict[str, dict], 
         if camada == "cena":
             continue
         cx, cy, cw, ch = G.caixa_px(G.mascara_camada(grafo, camada), margem=0.03)
-        alt_d = 360
-        lado_d = round(cw * alt_d / ch)
-        n_col = max(1, min(len(todas), (largura - 20) // (lado_d + 20)))
+        # todas as candidatas lado a lado: um recorte largo (ex.: a frente) encolhe para caber
+        lado_d = min(round(cw * 360 / ch), (largura - 20) // len(todas) - 20)
+        alt_d = round(ch * lado_d / cw)
+        n_col = len(todas)
         b = Image.new("RGB", (largura, alt_d + 70), (22, 22, 22))
         d = ImageDraw.Draw(b)
         d.text((20, 12), f"detalhe: {camada}", font=f2, fill=(240, 240, 240))

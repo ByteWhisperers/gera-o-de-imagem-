@@ -3,7 +3,7 @@
  "estado": "proposta",
  "peca": "promo-vip",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/promo/promo-1790981066-c225f1b5.webp",
  "formato_peca": "promo",
  "tema": "vip",
@@ -517,8 +517,5 @@
   "entorno: uma esfera de vidro com coroa de ouro sobre um pedestal, à esquerda; a ficha fala em drinque e ornamentos de ouro, sem a esfera",
   "cena: mais escura e fechada que nas outras peças, com céu verde-escuro em cima; o sol aparece pequeno, à esquerda do mascote",
   "texto: três linhas; a última é uma palavra dourada enorme (1,7 vez a altura da primeira linha branca)"
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

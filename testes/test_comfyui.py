@@ -90,3 +90,31 @@ def test_registro_mantem_cabecalho_e_entradas_antigas(tmp_path, monkeypatch):
     assert texto.startswith("# cabeçalho que cita a ficha: e entradas: no meio\n")
     dados = yaml.safe_load(texto)
     assert dados["ficha"] == "x.yaml" and len(dados["entradas"]) == 1
+
+
+def test_provedor_comfyui_gera_a_frente_da_v12_com_recorte_de_fundo_liso(tmp_path, monkeypatch):
+    shutil.copytree(RAIZ / "integracoes", tmp_path / "integracoes")
+    (tmp_path / "partes" / "arara").mkdir(parents=True)
+    monkeypatch.setattr(P, "RAIZ", tmp_path)
+    pedidos = []
+    monkeypatch.setattr(P, "executar_comfyui", lambda url, grafo: pedidos.append(grafo) or Image.new("RGB", (64, 64)))
+    f = F.carregar("fichas/arara/ficha-v1.2.yaml")
+    P.Portao("comfyui").parte(f, "frente", "promo", "reembolso")
+    entrada = yaml.safe_load((tmp_path / "partes/arara/registro.yaml").read_text())["entradas"][0]
+    assert entrada["recorte"] == "liso" and entrada["tamanho"] == [768, 512]
+    assert "gold coins" in entrada["prompt"]
+
+
+def test_fluxo_completo_so_leva_os_ramos_das_partes_da_ficha():
+    import sys
+
+    sys.path.insert(0, str(RAIZ / "integracoes/comfyui"))
+    from rodar_fluxo import so_partes_da_ficha
+
+    fluxo = json.loads((RAIZ / "integracoes/comfyui/grafos/fluxo.json").read_text())
+    v11 = so_partes_da_ficha(json.loads(json.dumps(fluxo)), F.carregar(FICHA)["partes"])
+    v12 = so_partes_da_ficha(json.loads(json.dumps(fluxo)), F.carregar("fichas/arara/ficha-v1.2.yaml")["partes"])
+    assert "frente" not in v11["40"]["inputs"] and not any(n["inputs"].get("parte") == "frente" for n in v11.values())
+    assert v12["40"]["inputs"]["frente"] == ["54", 0] and len(v12) == len(v11) + 5
+    v10 = so_partes_da_ficha(json.loads(json.dumps(fluxo)), F.carregar("fichas/arara/ficha-v1.0.yaml")["partes"])
+    assert set(v10["40"]["inputs"]) == {"cena", "mascote", "ficha", "formato", "tema"}

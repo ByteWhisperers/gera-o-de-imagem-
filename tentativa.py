@@ -64,6 +64,11 @@ def camadas_ocultas(grafo: dict) -> set[str]:
             if n["tipo"] == "efeito" and str(n.get("na_referencia", "")).startswith("embutido")}
 
 
+def camadas_vazias(ficha: dict, posicionadas: dict) -> set[str]:
+    """Camadas geradas da ficha que o grafo desta peça não tem (ex.: frente no Telegram)."""
+    return {c["id"] for c in ficha["camadas"] if c["tipo"] == "gerada" and c["id"] not in posicionadas}
+
+
 def proximo_id(diario: Path, peca: str) -> str:
     n = 0
     if diario.exists():
@@ -124,7 +129,8 @@ def rodar(caminho_grafo: str, tema: str | None = None, semente: int = 519, denoi
         im = resultado[s["no"]][0]
         posicionadas[camada] = (im, s["x"], s["y"])
     linhas = F.linhas_de_texto(efetiva, comp.parametros["tema"])
-    camadas = M.montar(efetiva, formato, {}, linhas, posicionadas=posicionadas, ocultas=camadas_ocultas(grafo))
+    camadas = M.montar(efetiva, formato, {}, linhas, posicionadas=posicionadas, ocultas=camadas_ocultas(grafo),
+                       vazias=camadas_vazias(efetiva, posicionadas))
     w, h = F.tamanho(efetiva, formato)
     diario = pasta_fluxos / "tentativas.jsonl"
     id_ = proximo_id(diario, grafo["peca"])

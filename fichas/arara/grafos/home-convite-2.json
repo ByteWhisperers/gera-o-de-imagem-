@@ -3,10 +3,10 @@
  "estado": "proposta",
  "peca": "home-convite-2",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/home/banner2.webp",
  "formato_peca": "home",
- "tema": "convite",
+ "tema": "convite_rede",
  "tamanho_px": [
   2048,
   682
@@ -91,7 +91,7 @@
    "tipo": "acessorio",
    "z": 4,
    "camada_psd": "mascote",
-   "tema": "convite",
+   "tema": "convite_rede",
    "descricao": "coroa de ouro com pontas de bolinha e esmeraldas, sai por cima do medalhão",
    "caixa": [
     0.7235,
@@ -106,7 +106,7 @@
    "tipo": "acessorio",
    "z": 4,
    "camada_psd": "mascote",
-   "tema": "convite",
+   "tema": "convite_rede",
    "descricao": "colar verde com uma esmeralda grande no peito",
    "caixa": [
     0.705,
@@ -121,7 +121,7 @@
    "tipo": "acessorio",
    "z": 4,
    "camada_psd": "mascote",
-   "tema": "convite",
+   "tema": "convite_rede",
    "descricao": "selo redondo escuro com borda de ouro e ícone dourado de bonequinho com sinal de mais, no canto de baixo do medalhão do topo (fica na frente da placa 1)",
    "caixa": [
     0.7502,
@@ -136,7 +136,7 @@
    "tipo": "objeto_grupo",
    "z": 2,
    "camada_psd": "entorno",
-   "tema": "convite",
+   "tema": "convite_rede",
    "descricao": "treze medalhões redondos de ouro com variantes da arara (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas), em três fileiras de 3, 4 e 6 abaixo do mascote",
    "mascara": "mascaras/medalhoes.png",
    "caixa": [
@@ -153,7 +153,7 @@
    "tipo": "objeto_grupo",
    "z": 3,
    "camada_psd": "entorno",
-   "tema": "convite",
+   "tema": "convite_rede",
    "descricao": "selos redondos escuros com borda de ouro e ícone dourado de bonequinho com sinal de mais, um no canto de baixo à direita de cada medalhão (ficam na frente do aro do medalhão)",
    "mascara": "mascaras/selos.png",
    "caixa": [
@@ -504,19 +504,19 @@
    "de": "texto_l1",
    "rel": "tema_liga",
    "para": "medalhoes",
-   "tema": "convite"
+   "tema": "convite_rede"
   },
   {
    "de": "texto_l1",
    "rel": "tema_liga",
    "para": "selos",
-   "tema": "convite"
+   "tema": "convite_rede"
   },
   {
    "de": "texto_l1",
    "rel": "tema_liga",
    "para": "selo_convite",
-   "tema": "convite"
+   "tema": "convite_rede"
   },
   {
    "de": "mascote",
@@ -632,8 +632,5 @@
   "Uma das variantes (jogadora de futebol) segura uma bola que sai para fora do medalhão (nó bola, no entorno); a camisa dela tem um número impresso, que é texto dentro da imagem gerada.",
   "O layout home da ficha v1.1 põe o mascote em x 0,58 a 1,0 com a altura inteira; aqui o personagem é pequeno (cerca de 11% da largura e 41% da altura, no alto, em x 0,68 a 0,79) e o diagrama ocupa x 0,51 a 0,95.",
   "O bloco de texto tem 4 linhas (duas brancas em cima, duas douradas embaixo, a última bem maior); o único texto_exemplo da ficha (no tema instagram; o tema convite não tem) tem 3."
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

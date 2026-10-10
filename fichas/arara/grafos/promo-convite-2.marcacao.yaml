@@ -8,9 +8,9 @@
 
 peca: promo-convite-2
 referencia: referencias/arara/promo/promo-1790981047-26876e08.webp
-ficha: fichas/arara/ficha-v1.1.yaml
+ficha: fichas/arara/ficha-v1.2.yaml
 formato: promo
-tema: convite
+tema: convite_rede
 
 # Onde procurar o que a ferramenta mede sozinha.
 zona_texto: [0.025, 0.22, 0.5, 0.59]
@@ -60,28 +60,28 @@ nos:
     tipo: acessorio
     z: 4
     camada_psd: mascote
-    tema: convite
+    tema: convite_rede
     descricao: coroa de ouro com pontas de bolinha e esmeraldas, sai por cima do medalhão
     caixa: [0.7195, 0.0, 0.072, 0.105]
   colar:
     tipo: acessorio
     z: 4
     camada_psd: mascote
-    tema: convite
+    tema: convite_rede
     descricao: colar verde com uma esmeralda grande no peito
     caixa: [0.707, 0.202, 0.049, 0.058]
   selo_convite:
     tipo: acessorio
     z: 4
     camada_psd: mascote
-    tema: convite
+    tema: convite_rede
     descricao: selo redondo escuro com borda de ouro e ícone dourado de bonequinho com sinal de mais, no canto de baixo do medalhão do topo (fica na frente da placa 1)
     caixa: [0.7527, 0.184, 0.0515, 0.1075]
   medalhoes:
     tipo: objeto_grupo
     z: 2
     camada_psd: entorno
-    tema: convite
+    tema: convite_rede
     descricao: treze medalhões redondos de ouro com variantes da arara (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas), em três fileiras de 3, 4 e 6 abaixo do mascote
     elipses: [[0.5703, 0.3111, 0.0895, 0.1869], [0.6964, 0.3260, 0.0753, 0.1739], [0.8014, 0.3092, 0.0879, 0.1880],
               [0.5149, 0.5338, 0.0848, 0.1822], [0.6262, 0.5368, 0.0842, 0.1841], [0.7510, 0.5364, 0.0845, 0.1814],
@@ -92,7 +92,7 @@ nos:
     tipo: objeto_grupo
     z: 3
     camada_psd: entorno
-    tema: convite
+    tema: convite_rede
     descricao: selos redondos escuros com borda de ouro e ícone dourado de bonequinho com sinal de mais, um no canto de baixo à direita de cada medalhão (ficam na frente do aro do medalhão)
     elipses: [[0.6289, 0.4170, 0.0351, 0.0767], [0.7477, 0.4233, 0.0317, 0.0685], [0.8610, 0.4199, 0.0337, 0.0732],
               [0.5739, 0.6366, 0.0319, 0.0689], [0.6849, 0.6361, 0.0318, 0.0687], [0.8108, 0.6367, 0.0321, 0.0689],
@@ -169,9 +169,9 @@ arestas:
   - {de: rotulo_1, rel: fica_sobre, para: placa_1}
   - {de: rotulo_2, rel: fica_sobre, para: placa_2}
   - {de: rotulo_3, rel: fica_sobre, para: placa_3}
-  - {de: texto_l1, rel: tema_liga, para: medalhoes, tema: convite}
-  - {de: texto_l1, rel: tema_liga, para: selos, tema: convite}
-  - {de: texto_l1, rel: tema_liga, para: selo_convite, tema: convite}
+  - {de: texto_l1, rel: tema_liga, para: medalhoes, tema: convite_rede}
+  - {de: texto_l1, rel: tema_liga, para: selos, tema: convite_rede}
+  - {de: texto_l1, rel: tema_liga, para: selo_convite, tema: convite_rede}
 
 observacoes:
   - "A peça não tem um mascote grande: mostra uma árvore de indicação com 14 medalhões redondos de ouro (1 no topo, depois fileiras de 3, 4 e 6). O do topo (arara de coroa fazendo positivo, num medalhão maior) foi marcado como personagem; os outros 13 são variantes da arara com figurinos próprios (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas) e entram como objeto_grupo no entorno. A ficha v1.1 não tem palavra para medalhão com retrato nem para diagrama em árvore."

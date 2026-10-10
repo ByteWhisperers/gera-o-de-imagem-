@@ -7,7 +7,7 @@ Duas checagens, sem custo:
 
 Uso:
     python integracoes/photocraft/conferir_psd.py saida/arara/promo-telegram-comfyui.psd \
-        --ficha fichas/arara/ficha-v1.1.yaml --cli caminho/para/photocraft-cli
+        --ficha fichas/arara/ficha-v1.2.yaml --cli caminho/para/photocraft-cli
 """
 
 from __future__ import annotations
@@ -45,7 +45,7 @@ def conferir(psd: Path, ficha: dict, cli: str, diferenca_max: float = 6.0) -> di
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("psd", type=Path)
-    ap.add_argument("--ficha", default="fichas/arara/ficha-v1.1.yaml")
+    ap.add_argument("--ficha", default="fichas/arara/ficha-v1.2.yaml")
     ap.add_argument("--cli", default="photocraft-cli")
     a = ap.parse_args()
     r = conferir(a.psd, F.carregar(a.ficha), a.cli)

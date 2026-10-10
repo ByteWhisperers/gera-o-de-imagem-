@@ -97,3 +97,12 @@ def test_camada_fora_da_ficha_nao_vira_ramo_e_fica_anotada():
     assert list(comp.saidas) == ["cena", "entorno", "mascote"]
     assert comp.parametros["camadas_fora_da_ficha"] == ["frente"]
     assert comp.sha256() == C.compilar(GRAFO, FICHA, CFG).sha256()       # o workflow não muda
+
+
+def test_todos_os_grafos_compilam_com_a_ficha_deles_e_a_frente_vira_ramo():
+    for marcacao in sorted((RAIZ / "fichas/arara/grafos").glob("*.marcacao.yaml")):
+        g = G.carregar(marcacao.with_name(marcacao.name.replace(".marcacao.yaml", ".json")))
+        comp = C.compilar(g, F.carregar(RAIZ / g["ficha"]), CFG)
+        assert comp.parametros["camadas_fora_da_ficha"] == [], g["peca"]
+        tem_frente = any(n.get("camada_psd") == "frente" and "mascara" in n for n in g["nos"])
+        assert ("frente" in comp.saidas) == tem_frente, g["peca"]

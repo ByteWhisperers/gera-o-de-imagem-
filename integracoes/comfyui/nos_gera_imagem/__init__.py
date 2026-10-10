@@ -41,8 +41,8 @@ class FichaPrompt:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required": {
-            "ficha": ("STRING", {"default": "fichas/arara/ficha-v1.1.yaml"}),
-            "parte": (["cena", "mascote", "entorno"],),
+            "ficha": ("STRING", {"default": "fichas/arara/ficha-v1.2.yaml"}),
+            "parte": (["cena", "mascote", "entorno", "frente"],),
             "tema": ("STRING", {"default": "instagram"}),
         }}
 
@@ -62,11 +62,11 @@ class ComporPeca:
             "required": {
                 "cena": ("IMAGE",),
                 "mascote": ("IMAGE",),
-                "ficha": ("STRING", {"default": "fichas/arara/ficha-v1.1.yaml"}),
+                "ficha": ("STRING", {"default": "fichas/arara/ficha-v1.2.yaml"}),
                 "formato": (["home", "promo"],),
                 "tema": ("STRING", {"default": "instagram"}),
             },
-            "optional": {"entorno": ("IMAGE",)},
+            "optional": {"entorno": ("IMAGE",), "frente": ("IMAGE",)},
         }
 
     RETURN_TYPES = ()
@@ -74,11 +74,15 @@ class ComporPeca:
     OUTPUT_NODE = True
     CATEGORY = "gera-imagem"
 
-    def compor(self, cena, mascote, ficha, formato, tema, entorno=None):
+    def compor(self, cena, mascote, ficha, formato, tema, entorno=None, frente=None):
         f = _ficha(ficha)
         partes = {"cena": _pil(cena), "mascote": _pil(mascote)}
-        if entorno is not None:
-            partes["entorno"] = _pil(entorno)
+        for nome, im in (("entorno", entorno), ("frente", frente)):
+            if im is not None:
+                partes[nome] = _pil(im)
+        faltam = [c["parte"] for c in f["camadas"] if c["tipo"] == "gerada" and c["parte"] not in partes]
+        if faltam:
+            raise ValueError(f"a ficha {ficha} pede a(s) parte(s) {', '.join(faltam)}: ligue essa(s) entrada(s)")
         cfg = yaml.safe_load((RAIZ / "integracoes/comfyui/config.yaml").read_text(encoding="utf-8"))
         camadas = C.montar(f, formato, partes, F.linhas_de_texto(f, tema or None), cfg.get("recorte"))
         w, h = F.tamanho(f, formato)

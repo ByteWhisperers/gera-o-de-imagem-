@@ -3,7 +3,7 @@
  "estado": "proposta",
  "peca": "promo-deposito",
  "marca": "arara",
- "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "ficha": "fichas/arara/ficha-v1.2.yaml",
  "referencia": "referencias/arara/promo/promo-1790980959-9639e055.webp",
  "formato_peca": "promo",
  "tema": "deposito",
@@ -557,8 +557,5 @@
   "cena: verde dominante (céu, torres e rio esverdeados), não o pôr do sol dourado e verde-azulado que a ficha descreve; riscos de luz verde neon no fundo; um galho grosso onde o mascote se apoia, que a ficha não prevê",
   "entorno: além das moedas soltas que o tema deposito pede, há um baú aberto cheio de moedas no canto direito; as moedas são do tipo com furo quadrado no meio",
   "o mascote segura a moeda erguida pela mão da asa (mão de dedos escuros com pulseira), não com a ponta da asa como o tema descreve"
- ],
- "camadas_fora_da_ficha": [
-  "frente"
  ]
 }

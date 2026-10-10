@@ -1,4 +1,4 @@
-# Ficha de estilo ARARA v1.2 (PROPOSTA)
+# Ficha de estilo ARARA v1.2
 #
 # É o contrato entre as etapas: a desconstrução escreve aqui, a criação e a
 # composição só leem. Mudou um número? Crie ficha-v1.3.yaml em vez de editar
@@ -20,7 +20,7 @@
 
 versao: "1.2"
 marca: arara
-estado: proposta            # proposta em 2026-10-10 a partir dos grafos das 11 referências
+estado: aprovada            # aprovada pelo dono em 2026-10-10; feita a partir dos grafos das 11 referências
 referencias: referencias/arara
 
 em_uma_frase: >-

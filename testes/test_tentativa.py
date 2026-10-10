@@ -12,11 +12,11 @@ RAIZ = Path(__file__).resolve().parent.parent
 GRAFO = "fichas/arara/grafos/promo-telegram.json"
 
 
-def _comfyui_falso(monkeypatch):
+def _comfyui_falso(monkeypatch, grafo=GRAFO):
     """Faz o papel do ComfyUI: devolve, para cada SaveImage, o pedaço da referência que o ramo cobre."""
     from psd_tools import PSDImage  # noqa: F401  (o PSD precisa do psd-tools)
 
-    g = G.carregar(RAIZ / GRAFO)
+    g = G.carregar(RAIZ / grafo)
     ref = Image.open(RAIZ / g["referencia"]).convert("RGB")
     subidas = []
 
@@ -55,12 +55,28 @@ def test_tentativa_monta_psd_mede_e_anota_no_diario(tmp_path, monkeypatch):
     diario = (tmp_path / "fluxos/arara/tentativas.jsonl").read_text(encoding="utf-8").splitlines()
     assert json.loads(diario[-1])["workflow"]["sha256"] == linha["workflow"]["sha256"]
     assert Path(linha["workflow"]["arquivo"]).name.startswith(linha["workflow"]["sha256"][:16])
-    # PSD com as 7 camadas da ficha; os efeitos embutidos no fundo entram desligados
+    # PSD com as 8 camadas da ficha v1.2; os efeitos embutidos no fundo entram desligados e a
+    # frente, que o recorte aprovado do Telegram deixou no fundo, entra vazia
     from psd_tools import PSDImage
 
     psd = PSDImage.open(tmp_path / "saida/arara/tentativas/promo-telegram-001/peca.psd")
-    assert [l.name for l in psd] == ["cena", "escurecimento", "entorno", "mascote", "brilho", "texto", "logo"]
+    assert [l.name for l in psd] == ["cena", "escurecimento", "entorno", "mascote", "frente", "brilho", "texto", "logo"]
     assert {l.name for l in psd if not l.visible} == {"escurecimento", "brilho"}
+    frente = next(l for l in psd if l.name == "frente")
+    assert frente.width * frente.height <= 1
     assert (tmp_path / "saida/arara/tentativas/promo-telegram-001/prancha.jpg").exists()
     segunda = T.rodar(GRAFO, saida=tmp_path / "saida", fluxos=tmp_path / "fluxos", pai=linha["id"])
     assert segunda["id"] == "promo-telegram-002" and segunda["pai"] == "promo-telegram-001"
+
+
+def test_peca_com_frente_gera_a_frente_por_cima_do_mascote(tmp_path, monkeypatch):
+    grafo = "fichas/arara/grafos/promo-reembolso.json"
+    _comfyui_falso(monkeypatch, grafo)
+    linha = T.rodar(grafo, saida=tmp_path / "saida", fluxos=tmp_path / "fluxos")
+    assert set(linha["notas"]) >= {"entorno", "mascote", "frente"}
+    assert linha["notas"]["frente"]["dE00"] < 1
+    assert linha["parametros"]["camadas_fora_da_ficha"] == []
+    from psd_tools import PSDImage
+
+    nomes = [l.name for l in PSDImage.open(tmp_path / "saida/arara/tentativas/promo-reembolso-001/peca.psd")]
+    assert nomes.index("frente") == nomes.index("mascote") + 1

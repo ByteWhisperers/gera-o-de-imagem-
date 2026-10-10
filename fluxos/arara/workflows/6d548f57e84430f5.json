@@ -1,0 +1,591 @@
+{
+ "1": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "sd_turbo.safetensors"
+  }
+ },
+ "10": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/promo-convite-1/cena",
+   "images": [
+    "9",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "gera_sem_texto_99b12c086479.png"
+  }
+ },
+ "12": {
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 376,
+   "image": [
+    "11",
+    0
+   ],
+   "width": 749,
+   "x": 1118,
+   "y": 232
+  }
+ },
+ "13": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 320,
+   "image": [
+    "12",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 640
+  }
+ },
+ "14": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "13",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "15": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "open treasure chests overflowing with gold coins and emeralds, scattered floating objects with empty space between them, 3D render, glossy, soft rim light, no text, no letters, no character"
+  }
+ },
+ "16": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.3,
+   "latent_image": [
+    "14",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "15",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "17": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "16",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "18": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 376,
+   "image": [
+    "17",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 749
+  }
+ },
+ "19": {
+  "class_type": "LoadImageMask",
+  "inputs": {
+   "channel": "red",
+   "image": "gera_mascara_entorno_a4b5f3dcf384.png"
+  }
+ },
+ "2": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "text, letters, words, watermark, logo, blurry, deformed"
+  }
+ },
+ "20": {
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 376,
+   "mask": [
+    "19",
+    0
+   ],
+   "width": 749,
+   "x": 1118,
+   "y": 232
+  }
+ },
+ "21": {
+  "class_type": "InvertMask",
+  "inputs": {
+   "mask": [
+    "20",
+    0
+   ]
+  }
+ },
+ "22": {
+  "class_type": "JoinImageWithAlpha",
+  "inputs": {
+   "alpha": [
+    "21",
+    0
+   ],
+   "image": [
+    "18",
+    0
+   ]
+  }
+ },
+ "23": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/promo-convite-1/entorno",
+   "images": [
+    "22",
+    0
+   ]
+  }
+ },
+ "24": {
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 705,
+   "image": [
+    "11",
+    0
+   ],
+   "width": 807,
+   "x": 979,
+   "y": 0
+  }
+ },
+ "25": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 576,
+   "image": [
+    "24",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 640
+  }
+ },
+ "26": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "25",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "27": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "waist-up close-up portrait of a 3D animated cartoon scarlet macaw mascot, big curved black beak, laughing with open beak, bright red body with yellow and blue wing feathers, dark grey fingered hands at the wing tips, wearing a golden crown with emerald gems and a plume of red, yellow and blue feathers, gold necklace with a big emerald on the chest, wide gold bracelets with emeralds, holding up an open treasure chest full of gold coins in one dark fingered hand, Pixar style character render, soft rim light"
+  }
+ },
+ "28": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.3,
+   "latent_image": [
+    "26",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "27",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "29": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "28",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "3": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "gera_cena_limpa_aebbfd78193f.png"
+  }
+ },
+ "30": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 705,
+   "image": [
+    "29",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 807
+  }
+ },
+ "31": {
+  "class_type": "LoadImageMask",
+  "inputs": {
+   "channel": "red",
+   "image": "gera_mascara_mascote_090212a3003d.png"
+  }
+ },
+ "32": {
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 705,
+   "mask": [
+    "31",
+    0
+   ],
+   "width": 807,
+   "x": 979,
+   "y": 0
+  }
+ },
+ "33": {
+  "class_type": "InvertMask",
+  "inputs": {
+   "mask": [
+    "32",
+    0
+   ]
+  }
+ },
+ "34": {
+  "class_type": "JoinImageWithAlpha",
+  "inputs": {
+   "alpha": [
+    "33",
+    0
+   ],
+   "image": [
+    "30",
+    0
+   ]
+  }
+ },
+ "35": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/promo-convite-1/mascote",
+   "images": [
+    "34",
+    0
+   ]
+  }
+ },
+ "36": {
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 438,
+   "image": [
+    "11",
+    0
+   ],
+   "width": 667,
+   "x": 1200,
+   "y": 404
+  }
+ },
+ "37": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 448,
+   "image": [
+    "36",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 640
+  }
+ },
+ "38": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "37",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "39": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "a big open treasure chest overflowing with gold coins and an emerald, big objects very close to the camera, slightly out of focus, 3D render, glossy, soft rim light, no text, no letters, no character"
+  }
+ },
+ "4": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 448,
+   "image": [
+    "3",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 1024
+  }
+ },
+ "40": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.3,
+   "latent_image": [
+    "38",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "39",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "41": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "40",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "42": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 438,
+   "image": [
+    "41",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 667
+  }
+ },
+ "43": {
+  "class_type": "LoadImageMask",
+  "inputs": {
+   "channel": "red",
+   "image": "gera_mascara_frente_843b7309bb57.png"
+  }
+ },
+ "44": {
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 438,
+   "mask": [
+    "43",
+    0
+   ],
+   "width": 667,
+   "x": 1200,
+   "y": 404
+  }
+ },
+ "45": {
+  "class_type": "InvertMask",
+  "inputs": {
+   "mask": [
+    "44",
+    0
+   ]
+  }
+ },
+ "46": {
+  "class_type": "JoinImageWithAlpha",
+  "inputs": {
+   "alpha": [
+    "45",
+    0
+   ],
+   "image": [
+    "42",
+    0
+   ]
+  }
+ },
+ "47": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/promo-convite-1/frente",
+   "images": [
+    "46",
+    0
+   ]
+  }
+ },
+ "5": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "4",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "6": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "cinematic sunset backlit river valley with tall karst limestone towers covered in jungle, dense dark tropical jungle foliage framing the left and right edges, golden sun setting low between the towers near the center, calm river in the lower third reflecting golden light, teal green sky with warm golden clouds, saturated glowing colors, golden dust in the air, volumetric light, 3D animated movie background, no people, no animals, no text"
+  }
+ },
+ "7": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.2,
+   "latent_image": [
+    "5",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "6",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "8": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "7",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "9": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 842,
+   "image": [
+    "8",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 1867
+  }
+ }
+}
