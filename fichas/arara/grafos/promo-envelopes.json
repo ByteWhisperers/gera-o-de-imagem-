@@ -1,0 +1,1003 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-envelopes",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/promo/promo-1790980998-e0741671.webp",
+ "formato_peca": "promo",
+ "tema": "envelopes",
+ "tamanho_px": [
+  1867,
+  842
+ ],
+ "pasta": "fichas/arara/grafos/promo-envelopes",
+ "marcacao": "fichas/arara/grafos/promo-envelopes.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio entre torres cársticas com selva, céu verde com nuvens douradas, sol baixo perto do centro com reflexo dourado no rio; dezenas de envelopes vermelhos pequenos e desfocados caindo pelo céu; um galho grosso com musgo onde o mascote se apoia",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#092610",
+      "fracao": 0.273
+     },
+     {
+      "cor": "#264b1b",
+      "fracao": 0.188
+     },
+     {
+      "cor": "#352f0b",
+      "fracao": 0.158
+     },
+     {
+      "cor": "#5f4f12",
+      "fracao": 0.134
+     },
+     {
+      "cor": "#76661a",
+      "fracao": 0.127
+     },
+     {
+      "cor": "#c19c2b",
+      "fracao": 0.119
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "turista",
+   "descricao": "arara-vermelha 3D rindo, figurino turista sem óculos (chapéu de palha com faixa verde, folhas e hibisco amarelo e laranja, camisa havaiana verde com flores brancas, aberta, sem corrente)",
+   "pose": "de frente, pousada num galho; a asa esquerda erguida segura um envelope vermelho no alto com a mão; a asa direita aberta desce até a borda direita",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.5442,
+    0.019,
+    0.4558,
+    0.8967
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_erguido",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "envelopes",
+   "descricao": "envelope vermelho com borda e moeda de ouro com furo quadrado, erguido pela mão de dedos escuros",
+   "caixa": [
+    0.533,
+    0.012,
+    0.135,
+    0.27
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "chapeu",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "descricao": "chapéu de palha com faixa verde, folhas verdes e um hibisco amarelo e laranja do lado direito",
+   "caixa": [
+    0.76,
+    0.1,
+    0.188,
+    0.325
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "camisa",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "descricao": "camisa havaiana verde com flores brancas, aberta no peito, com botões de ouro",
+   "caixa": [
+    0.725,
+    0.42,
+    0.14,
+    0.405
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "envelope_01",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope grande e nítido no alto, entre o texto e o envelope erguido, cortado pela borda de cima",
+   "mascara": "mascaras/envelope_01.png",
+   "caixa": [
+    0.4162,
+    0.0,
+    0.1109,
+    0.1496
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_02",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope nítido no céu, à direita do texto, na altura da primeira linha",
+   "mascara": "mascaras/envelope_02.png",
+   "caixa": [
+    0.4633,
+    0.19,
+    0.0327,
+    0.0843
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_03",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope um pouco desfocado no céu, acima do fim da segunda linha de texto",
+   "mascara": "mascaras/envelope_03.png",
+   "caixa": [
+    0.4226,
+    0.2898,
+    0.0466,
+    0.0808
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_04",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope inclinado, nítido, no alto à direita do envelope erguido",
+   "mascara": "mascaras/envelope_04.png",
+   "caixa": [
+    0.6438,
+    0.0,
+    0.0386,
+    0.1247
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_05",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope nítido no alto, à esquerda do chapéu",
+   "mascara": "mascaras/envelope_05.png",
+   "caixa": [
+    0.699,
+    0.0166,
+    0.0611,
+    0.1568
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_06",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope acima do chapéu, cortado pela borda de cima",
+   "mascara": "mascaras/envelope_06.png",
+   "caixa": [
+    0.7766,
+    0.0,
+    0.0391,
+    0.0618
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_07",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope grande e nítido atrás do chapéu e das folhas, cortado pela borda de cima",
+   "mascara": "mascaras/envelope_07.png",
+   "caixa": [
+    0.8543,
+    0.0,
+    0.0862,
+    0.1556
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_08",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope brilhante na borda direita, à direita do hibisco",
+   "mascara": "mascaras/envelope_08.png",
+   "caixa": [
+    0.955,
+    0.1164,
+    0.045,
+    0.1627
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_09",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope grande e nítido à direita da aba do chapéu, atrás das folhas",
+   "mascara": "mascaras/envelope_09.png",
+   "caixa": [
+    0.9095,
+    0.3325,
+    0.0728,
+    0.1734
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_10",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope atrás da asa direita, com a parte de baixo escondida pelas penas",
+   "mascara": "mascaras/envelope_10.png",
+   "caixa": [
+    0.9272,
+    0.5463,
+    0.0557,
+    0.1211
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_11",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope nítido à esquerda da asa erguida, na altura da segunda linha de texto",
+   "mascara": "mascaras/envelope_11.png",
+   "caixa": [
+    0.5137,
+    0.3765,
+    0.0605,
+    0.1223
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_12",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope nítido à esquerda das penas amarelas da asa erguida",
+   "mascara": "mascaras/envelope_12.png",
+   "caixa": [
+    0.5672,
+    0.5404,
+    0.0584,
+    0.114
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_13",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope um pouco desfocado embaixo das penas azuis da asa erguida",
+   "mascara": "mascaras/envelope_13.png",
+   "caixa": [
+    0.6261,
+    0.677,
+    0.053,
+    0.095
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_14",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope pequeno e nítido entre o envelope erguido e o bico",
+   "mascara": "mascaras/envelope_14.png",
+   "caixa": [
+    0.6851,
+    0.158,
+    0.0289,
+    0.0653
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_15",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "ponta de envelope na borda direita, entre os dois envelopes grandes da direita",
+   "mascara": "mascaras/envelope_15.png",
+   "caixa": [
+    0.9738,
+    0.4287,
+    0.0262,
+    0.1081
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_16",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "envelopes",
+   "descricao": "envelope pequeno e nítido embaixo, à esquerda do envelope grande desfocado da frente",
+   "mascara": "mascaras/envelope_16.png",
+   "caixa": [
+    0.5056,
+    0.8314,
+    0.0428,
+    0.0748
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_frente_1",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "envelope desfocado no primeiro plano, cobre a ponta das penas azuis e o pé da camisa do lado esquerdo",
+   "mascara": "mascaras/envelope_frente_1.png",
+   "caixa": [
+    0.6936,
+    0.6876,
+    0.0675,
+    0.1152
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_frente_2",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "envelope enorme e desfocado no canto de baixo à direita, cobre a ponta da asa direita e a cauda",
+   "mascara": "mascaras/envelope_frente_2.png",
+   "caixa": [
+    0.8227,
+    0.7838,
+    0.1773,
+    0.2162
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_frente_3",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "envelope grande e desfocado embaixo, na frente do galho",
+   "mascara": "mascaras/envelope_frente_3.png",
+   "caixa": [
+    0.6786,
+    0.8884,
+    0.1452,
+    0.1116
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_frente_4",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "envelope grande e desfocado no primeiro plano, embaixo à esquerda do mascote",
+   "mascara": "mascaras/envelope_frente_4.png",
+   "caixa": [
+    0.5201,
+    0.6983,
+    0.1318,
+    0.2743
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_frente_5",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "canto de um envelope desfocado no primeiro plano, na borda de baixo",
+   "mascara": "mascaras/envelope_frente_5.png",
+   "caixa": [
+    0.5972,
+    0.9299,
+    0.0702,
+    0.0701
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope_frente_6",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "envelope grande e muito desfocado no primeiro plano, embaixo à esquerda, na frente do rio",
+   "mascara": "mascaras/envelope_frente_6.png",
+   "caixa": [
+    0.1173,
+    0.8682,
+    0.1157,
+    0.1318
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     29.1,
+     42.9,
+     39.5,
+     54.7,
+     85.4,
+     73.3,
+     44.2,
+     64.0,
+     76.7,
+     58.2
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 243,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0434,
+    0.2732,
+    0.2823,
+    0.0891
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 75,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fcfcfa",
+     "#fbfcfb",
+     "#fafbfa"
+    ],
+    "contorno_escuro_frac": 0.88
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0461,
+    0.3895,
+    0.4296,
+    0.0926
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 78,
+    "peso_rel": 1.04,
+    "rampa_tercos": [
+     "#fafcf9",
+     "#fafbfa",
+     "#fafbf9"
+    ],
+    "contorno_escuro_frac": 0.78
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0428,
+    0.5107,
+    0.4987,
+    0.1176
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 99,
+    "peso_rel": 1.32,
+    "rampa_tercos": [
+     "#fbe315",
+     "#fce313",
+     "#fabe05"
+    ],
+    "contorno_escuro_frac": 0.7
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0428,
+    0.6876,
+    0.3487,
+    0.1069
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.38,
+    "altura_px": 90,
+    "peso_rel": 1.2,
+    "rampa_tercos": [
+     "#fcfbf7",
+     "#fcfbf9",
+     "#fbefe7"
+    ],
+    "contorno_escuro_frac": 0.42
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0305,
+    0.0523,
+    0.2169,
+    0.1033
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.944"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "envelope_erguido",
+   "nota": "a mão da asa erguida mostra o envelope no alto"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "chapeu"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "camisa"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelope_erguido",
+   "tema": "envelopes"
+  },
+  {
+   "de": "envelope_01",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_02",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_03",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_04",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_05",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_06",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_07",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_08",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_09",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_10",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_11",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_12",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_13",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_14",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_15",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_16",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_frente_1",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_frente_2",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_frente_3",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_frente_4",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_frente_5",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "envelope_frente_6",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelope_frente_1",
+   "tema": "envelopes"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelope_frente_2",
+   "tema": "envelopes"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelope_01",
+   "tema": "envelopes"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelope_07",
+   "tema": "envelopes"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_01",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_02",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_03",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_04",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_05",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_06",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_07",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_08",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_09",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_10",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_11",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_12",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_13",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_14",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_15",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_16",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_frente_1",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_frente_2",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_frente_3",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_frente_4",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_frente_5",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelope_frente_6",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 10.8,
+   "L_fundo_em_volta": 43.2
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.31
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.8,
+   "L_fundo_em_volta": 58.6
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.31
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 7.5,
+   "L_fundo_em_volta": 51.7
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.51
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 7.1,
+   "L_fundo_em_volta": 70.0
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.013
+  }
+ ],
+ "observacoes": [
+  "figurino turista sem óculos escuros: a ficha descreve o turista sempre com óculos; aqui o mascote tem os olhos à mostra e uma camisa havaiana aberta, sem corrente de ouro visível",
+  "entorno: 16 envelopes nítidos atrás do mascote, mais dezenas de envelopes pequenos e desfocados que ficaram na cena; a ficha só diz envelopes caindo como chuva, sem dizer quantos nem que a profundidade varia (nítidos perto, desfocados longe e no primeiro plano)",
+  "camada frente: seis envelopes grandes e desfocados no primeiro plano, alguns cobrindo a asa e o galho; a ficha v1.1 não tem camada frente",
+  "cena: um galho grosso embaixo do mascote, como nas peças de convite e depósito; a ficha não prevê galho nem apoio",
+  "texto: a última linha mistura uma parte dourada grande com palavras brancas menores; a ficha só prevê um estilo por linha"
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}

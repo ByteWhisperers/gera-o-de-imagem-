@@ -1,0 +1,1382 @@
+{
+ "formato": "medidas-dos-grafos/0.1",
+ "pecas": [
+  {
+   "peca": "home-convite-1",
+   "formato": "home",
+   "tema": "convite",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0704,
+     "peso_rel": 1.0,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#f7dd32",
+      "#f9e240",
+      "#ecc018"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.0968,
+     "peso_rel": 1.38,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#efefef",
+      "#f5f6f5",
+      "#dcdcdc"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1745,
+     "peso_rel": 2.48,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fadd27",
+      "#f9dc28",
+      "#dea306"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "branco",
+     "altura_frac_H": 0.0718,
+     "peso_rel": 1.02,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#eeefee",
+      "#f5f6f5",
+      "#dbdbdb"
+     ]
+    },
+    {
+     "id": "texto_l5",
+     "estilo": "dourado",
+     "altura_frac_H": 0.11,
+     "peso_rel": 1.56,
+     "fracao_dourada": 0.42,
+     "rampa_tercos": [
+      "#f1e4cd",
+      "#f0ddd5",
+      "#f3cd1e"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {}
+  },
+  {
+   "peca": "home-convite-2",
+   "formato": "home",
+   "tema": "convite",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.088,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fbfbfb",
+      "#f7f7f7",
+      "#ebebeb"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.1188,
+     "peso_rel": 1.35,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfdfc",
+      "#f4f5f3",
+      "#e8e8e8"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1598,
+     "peso_rel": 1.82,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fcdd05",
+      "#fcda04",
+      "#f1ab02"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.2214,
+     "peso_rel": 2.52,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fcdf07",
+      "#fccf05",
+      "#eea202"
+     ]
+    }
+   ],
+   "rotulos": [
+    "rotulo_1",
+    "rotulo_2",
+    "rotulo_3"
+   ],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {
+    "medalhoes": 13,
+    "selos": 13
+   }
+  },
+  {
+   "peca": "home-instagram",
+   "formato": "home",
+   "tema": "instagram",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.1188,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fdfdfd",
+      "#fafafa",
+      "#e7e7e6"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1437,
+     "peso_rel": 1.21,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fde005",
+      "#fddd05",
+      "#fcb302"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "branco",
+     "altura_frac_H": 0.0718,
+     "peso_rel": 0.6,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfbfa",
+      "#f9f9f9",
+      "#e7e7e7"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "branco",
+     "altura_frac_H": 0.0718,
+     "peso_rel": 0.6,
+     "fracao_dourada": 0.49,
+     "rampa_tercos": [
+      "#fbe458",
+      "#f8df3f",
+      "#eccc72"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {
+    "moedas": 4
+   }
+  },
+  {
+   "peca": "promo-convite-1",
+   "formato": "promo",
+   "tema": "convite",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0653,
+     "peso_rel": 1.0,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#f8e43f",
+      "#fae849",
+      "#f0ca25"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.0855,
+     "peso_rel": 1.31,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#eeefee",
+      "#f6f8f6",
+      "#dcdddb"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1686,
+     "peso_rel": 2.58,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#f9e033",
+      "#f6d62c",
+      "#dda20d"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "branco",
+     "altura_frac_H": 0.0677,
+     "peso_rel": 1.04,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#edf3ea",
+      "#f6f9f5",
+      "#dadbd8"
+     ]
+    },
+    {
+     "id": "texto_l5",
+     "estilo": "branco",
+     "altura_frac_H": 0.0986,
+     "peso_rel": 1.51,
+     "fracao_dourada": 0.41,
+     "rampa_tercos": [
+      "#f0e590",
+      "#f3e3d7",
+      "#f4d932"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {}
+  },
+  {
+   "peca": "promo-convite-2",
+   "formato": "promo",
+   "tema": "convite",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.0808,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfdfb",
+      "#f9faf9",
+      "#efefef"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.0962,
+     "peso_rel": 1.19,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfdfc",
+      "#f8f8f8",
+      "#ebeceb"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1235,
+     "peso_rel": 1.53,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fce307",
+      "#fddb06",
+      "#f0ac02"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.177,
+     "peso_rel": 2.19,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fde407",
+      "#fcd505",
+      "#eda602"
+     ]
+    }
+   ],
+   "rotulos": [
+    "rotulo_1",
+    "rotulo_2",
+    "rotulo_3"
+   ],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {
+    "medalhoes": 13,
+    "selos": 13
+   }
+  },
+  {
+   "peca": "promo-deposito",
+   "formato": "promo",
+   "tema": "deposito",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.0938,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#eef0ee",
+      "#f6f8f6",
+      "#e6e8e6"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.0903,
+     "peso_rel": 0.96,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#f9fdf9",
+      "#fafcf9",
+      "#ebedeb"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.2197,
+     "peso_rel": 2.34,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fdea07",
+      "#fee907",
+      "#fbc604"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {
+    "moedas": 3,
+    "moedas_frente": 4
+   }
+  },
+  {
+   "peca": "promo-envelopes",
+   "formato": "promo",
+   "tema": "envelopes",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.0891,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfcfa",
+      "#fbfcfb",
+      "#fafbfa"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.0926,
+     "peso_rel": 1.04,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fafcf9",
+      "#fafbfa",
+      "#fafbf9"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1176,
+     "peso_rel": 1.32,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fbe315",
+      "#fce313",
+      "#fabe05"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "branco",
+     "altura_frac_H": 0.1069,
+     "peso_rel": 1.2,
+     "fracao_dourada": 0.38,
+     "rampa_tercos": [
+      "#fcfbf7",
+      "#fcfbf9",
+      "#fbefe7"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {}
+  },
+  {
+   "peca": "promo-instagram",
+   "formato": "promo",
+   "tema": "instagram",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.1057,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fdfdfc",
+      "#fafbfa",
+      "#e9e9e8"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1342,
+     "peso_rel": 1.27,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fde005",
+      "#fdde06",
+      "#fbb002"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "branco",
+     "altura_frac_H": 0.0677,
+     "peso_rel": 0.64,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fbfbf9",
+      "#f8f9f8",
+      "#e8e8e6"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0629,
+     "peso_rel": 0.6,
+     "fracao_dourada": 0.49,
+     "rampa_tercos": [
+      "#fae251",
+      "#f8de44",
+      "#eac257"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {
+    "moedas": 3
+   }
+  },
+  {
+   "peca": "promo-reembolso",
+   "formato": "promo",
+   "tema": "reembolso",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0903,
+     "peso_rel": 1.0,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fce433",
+      "#fde230",
+      "#f4b105"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1093,
+     "peso_rel": 1.21,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fce02b",
+      "#fde12a",
+      "#f3b104"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "branco",
+     "altura_frac_H": 0.0689,
+     "peso_rel": 0.76,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fbfbf9",
+      "#f8f8f7",
+      "#e5e5e4"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.2007,
+     "peso_rel": 2.22,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fddf2a",
+      "#fcdf2a",
+      "#f1af05"
+     ]
+    },
+    {
+     "id": "texto_l5",
+     "estilo": "branco",
+     "altura_frac_H": 0.0713,
+     "peso_rel": 0.79,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fbfbfa",
+      "#f9faf9",
+      "#eaeae9"
+     ]
+    },
+    {
+     "id": "texto_l6",
+     "estilo": "branco",
+     "altura_frac_H": 0.095,
+     "peso_rel": 1.05,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#f3f5f2",
+      "#fafaf9",
+      "#e7e8e6"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {
+    "moedas": 3,
+    "moedas_frente": 2
+   }
+  },
+  {
+   "peca": "promo-telegram",
+   "formato": "promo",
+   "tema": "telegram",
+   "estado": "aprovada",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.0879,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fdfdfc",
+      "#f9f9f8",
+      "#ebebeb"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1093,
+     "peso_rel": 1.24,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fde406",
+      "#fdde04",
+      "#fcc303"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "branco",
+     "altura_frac_H": 0.0903,
+     "peso_rel": 1.03,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfdfc",
+      "#fafaf9",
+      "#ebebeb"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0962,
+     "peso_rel": 1.09,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fce208",
+      "#fcd605",
+      "#fcbf03"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [],
+   "quantidades": {
+    "moedas": 5
+   }
+  },
+  {
+   "peca": "promo-vip",
+   "formato": "promo",
+   "tema": "vip",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.1271,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.01,
+     "rampa_tercos": [
+      "#f9fcf9",
+      "#fbfcfb",
+      "#f5f7f5"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.101,
+     "peso_rel": 0.79,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fcfdfb",
+      "#fcfcfb",
+      "#fafbfa"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.215,
+     "peso_rel": 1.69,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fddd36",
+      "#fcc103",
+      "#f3aa02"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [
+    "frente"
+   ],
+   "quantidades": {}
+  }
+ ],
+ "por_formato": {
+  "home": {
+   "pecas": 3,
+   "logo": {
+    "x": {
+     "mediana": 0.03,
+     "min": 0.03,
+     "max": 0.03,
+     "n": 3
+    },
+    "y": {
+     "mediana": 0.078,
+     "min": 0.078,
+     "max": 0.078,
+     "n": 3
+    },
+    "w": {
+     "mediana": 0.138,
+     "min": 0.138,
+     "max": 0.138,
+     "n": 3
+    },
+    "pecas": [
+     "home-convite-1",
+     "home-convite-2",
+     "home-instagram"
+    ]
+   },
+   "texto": {
+    "x": {
+     "mediana": 0.059,
+     "min": 0.052,
+     "max": 0.091,
+     "n": 3
+    },
+    "y": {
+     "mediana": 0.215,
+     "min": 0.202,
+     "max": 0.251,
+     "n": 3
+    },
+    "w": {
+     "mediana": 0.413,
+     "min": 0.343,
+     "max": 0.441,
+     "n": 3
+    },
+    "h": {
+     "mediana": 0.582,
+     "min": 0.479,
+     "max": 0.616,
+     "n": 3
+    },
+    "pecas": [
+     "home-convite-1",
+     "home-convite-2",
+     "home-instagram"
+    ]
+   },
+   "mascote": {
+    "x": {
+     "mediana": 0.588,
+     "min": 0.573,
+     "max": 0.604,
+     "n": 2
+    },
+    "y": {
+     "mediana": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "w": {
+     "mediana": 0.343,
+     "min": 0.323,
+     "max": 0.362,
+     "n": 2
+    },
+    "h": {
+     "mediana": 0.941,
+     "min": 0.881,
+     "max": 1.0,
+     "n": 2
+    },
+    "pecas": [
+     "home-convite-1",
+     "home-instagram"
+    ]
+   },
+   "entorno": {
+    "x": {
+     "mediana": 0.578,
+     "min": 0.507,
+     "max": 0.649,
+     "n": 2
+    },
+    "y": {
+     "mediana": 0.2,
+     "min": 0.025,
+     "max": 0.375,
+     "n": 2
+    },
+    "w": {
+     "mediana": 0.405,
+     "min": 0.324,
+     "max": 0.487,
+     "n": 2
+    },
+    "h": {
+     "mediana": 0.677,
+     "min": 0.378,
+     "max": 0.975,
+     "n": 2
+    },
+    "pecas": [
+     "home-convite-1",
+     "home-instagram"
+    ]
+   },
+   "frente": {
+    "x": {
+     "mediana": 0.593,
+     "min": 0.471,
+     "max": 0.715,
+     "n": 2
+    },
+    "y": {
+     "mediana": 0.674,
+     "min": 0.54,
+     "max": 0.809,
+     "n": 2
+    },
+    "w": {
+     "mediana": 0.319,
+     "min": 0.285,
+     "max": 0.352,
+     "n": 2
+    },
+    "h": {
+     "mediana": 0.326,
+     "min": 0.191,
+     "max": 0.46,
+     "n": 2
+    },
+    "pecas": [
+     "home-convite-1",
+     "home-instagram"
+    ]
+   },
+   "linhas_por_peca": {
+    "mediana": 4.0,
+    "min": 4.0,
+    "max": 5.0,
+    "n": 3
+   },
+   "altura_linha_frac_H": {
+    "mediana": 0.11,
+    "min": 0.07,
+    "max": 0.221,
+    "n": 13
+   },
+   "vao_entre_linhas_rel_altura": {
+    "mediana": 0.17,
+    "min": 0.0,
+    "max": 0.33,
+    "n": 10
+   },
+   "pares_de_linhas_lado_a_lado": 0,
+   "contraste_wcag": {
+    "mediana": 9.1,
+    "min": 6.8,
+    "max": 14.3,
+    "n": 13
+   },
+   "contorno_escuro_frac": {
+    "mediana": 0.79,
+    "min": 0.59,
+    "max": 0.93,
+    "n": 13
+   },
+   "texto_x_menos_logo_x": {
+    "mediana": 0.029,
+    "min": 0.022,
+    "max": 0.062,
+    "n": 3
+   },
+   "linhas_mistas": [
+    "home-convite-1:texto_l5",
+    "home-instagram:texto_l4"
+   ],
+   "L_fundo_por_decimo_de_W": [
+    25.5,
+    28.0,
+    33.6,
+    40.5,
+    86.8,
+    68.7,
+    45.8,
+    52.2,
+    47.8,
+    44.1
+   ]
+  },
+  "promo": {
+   "pecas": 8,
+   "logo": {
+    "x": {
+     "mediana": 0.03,
+     "min": 0.03,
+     "max": 0.033,
+     "n": 8
+    },
+    "y": {
+     "mediana": 0.052,
+     "min": 0.052,
+     "max": 0.052,
+     "n": 8
+    },
+    "w": {
+     "mediana": 0.217,
+     "min": 0.213,
+     "max": 0.217,
+     "n": 8
+    },
+    "pecas": [
+     "promo-convite-1",
+     "promo-convite-2",
+     "promo-deposito",
+     "promo-envelopes",
+     "promo-instagram",
+     "promo-reembolso",
+     "promo-telegram",
+     "promo-vip"
+    ]
+   },
+   "texto": {
+    "x": {
+     "mediana": 0.043,
+     "min": 0.028,
+     "max": 0.055,
+     "n": 8
+    },
+    "y": {
+     "mediana": 0.253,
+     "min": 0.214,
+     "max": 0.308,
+     "n": 8
+    },
+    "w": {
+     "mediana": 0.476,
+     "min": 0.416,
+     "max": 0.53,
+     "n": 8
+    },
+    "h": {
+     "mediana": 0.509,
+     "min": 0.427,
+     "max": 0.553,
+     "n": 8
+    },
+    "pecas": [
+     "promo-convite-1",
+     "promo-convite-2",
+     "promo-deposito",
+     "promo-envelopes",
+     "promo-instagram",
+     "promo-reembolso",
+     "promo-telegram",
+     "promo-vip"
+    ]
+   },
+   "mascote": {
+    "x": {
+     "mediana": 0.534,
+     "min": 0.419,
+     "max": 0.544,
+     "n": 7
+    },
+    "y": {
+     "mediana": 0.009,
+     "min": 0.0,
+     "max": 0.063,
+     "n": 7
+    },
+    "w": {
+     "mediana": 0.456,
+     "min": 0.4,
+     "max": 0.581,
+     "n": 7
+    },
+    "h": {
+     "mediana": 0.95,
+     "min": 0.805,
+     "max": 1.0,
+     "n": 7
+    },
+    "pecas": [
+     "promo-convite-1",
+     "promo-deposito",
+     "promo-envelopes",
+     "promo-instagram",
+     "promo-reembolso",
+     "promo-telegram",
+     "promo-vip"
+    ]
+   },
+   "entorno": {
+    "x": {
+     "mediana": 0.459,
+     "min": 0.396,
+     "max": 0.638,
+     "n": 7
+    },
+    "y": {
+     "mediana": 0.024,
+     "min": 0.0,
+     "max": 0.66,
+     "n": 7
+    },
+    "w": {
+     "mediana": 0.492,
+     "min": 0.101,
+     "max": 0.584,
+     "n": 7
+    },
+    "h": {
+     "mediana": 0.704,
+     "min": 0.34,
+     "max": 0.951,
+     "n": 7
+    },
+    "pecas": [
+     "promo-convite-1",
+     "promo-deposito",
+     "promo-envelopes",
+     "promo-instagram",
+     "promo-reembolso",
+     "promo-telegram",
+     "promo-vip"
+    ]
+   },
+   "frente": {
+    "x": {
+     "mediana": 0.577,
+     "min": 0.117,
+     "max": 0.657,
+     "n": 6
+    },
+    "y": {
+     "mediana": 0.663,
+     "min": 0.5,
+     "max": 0.811,
+     "n": 6
+    },
+    "w": {
+     "mediana": 0.423,
+     "min": 0.343,
+     "max": 0.883,
+     "n": 6
+    },
+    "h": {
+     "mediana": 0.337,
+     "min": 0.189,
+     "max": 0.5,
+     "n": 6
+    },
+    "pecas": [
+     "promo-convite-1",
+     "promo-deposito",
+     "promo-envelopes",
+     "promo-instagram",
+     "promo-reembolso",
+     "promo-vip"
+    ]
+   },
+   "linhas_por_peca": {
+    "mediana": 4.0,
+    "min": 3.0,
+    "max": 6.0,
+    "n": 8
+   },
+   "altura_linha_frac_H": {
+    "mediana": 0.096,
+    "min": 0.063,
+    "max": 0.22,
+    "n": 33
+   },
+   "vao_entre_linhas_rel_altura": {
+    "mediana": 0.23,
+    "min": 0.04,
+    "max": 0.76,
+    "n": 23
+   },
+   "pares_de_linhas_lado_a_lado": 2,
+   "contraste_wcag": {
+    "mediana": 9.4,
+    "min": 5.3,
+    "max": 15.2,
+    "n": 33
+   },
+   "contorno_escuro_frac": {
+    "mediana": 0.78,
+    "min": 0.4,
+    "max": 0.95,
+    "n": 33
+   },
+   "texto_x_menos_logo_x": {
+    "mediana": 0.013,
+    "min": 0.004,
+    "max": 0.023,
+    "n": 8
+   },
+   "linhas_mistas": [
+    "promo-convite-1:texto_l5",
+    "promo-envelopes:texto_l4",
+    "promo-instagram:texto_l4"
+   ],
+   "L_fundo_por_decimo_de_W": [
+    19.6,
+    24.3,
+    35.8,
+    57.6,
+    57.5,
+    56.0,
+    50.8,
+    59.1,
+    61.8,
+    49.3
+   ]
+  }
+ },
+ "cores_do_texto": {
+  "dourado": {
+   "rampa_tercos": [
+    "#fce00e",
+    "#fcde06",
+    "#f2b004"
+   ],
+   "linhas": 18,
+   "ficha_nos_tercos": [
+    "#ffe77f",
+    "#f9ca38",
+    "#d4951c"
+   ],
+   "dE00_ficha_x_medido": [
+    8.4,
+    7.2,
+    8.5
+   ]
+  },
+  "branco": {
+   "rampa_tercos": [
+    "#fbfcfa",
+    "#f9f9f9",
+    "#e9e9e8"
+   ],
+   "linhas": 23,
+   "ficha_nos_tercos": [
+    "#f8fafb",
+    "#ebeff3",
+    "#c4cad4"
+   ],
+   "dE00_ficha_x_medido": [
+    1.9,
+    3.4,
+    9.0
+   ]
+  }
+ },
+ "camadas_fora_da_ficha": {
+  "frente": [
+   "home-convite-1",
+   "home-convite-2",
+   "home-instagram",
+   "promo-convite-1",
+   "promo-convite-2",
+   "promo-deposito",
+   "promo-envelopes",
+   "promo-instagram",
+   "promo-reembolso",
+   "promo-vip"
+  ]
+ },
+ "rotulos_fora_do_bloco": {
+  "home-convite-2": [
+   "rotulo_1",
+   "rotulo_2",
+   "rotulo_3"
+  ],
+  "promo-convite-2": [
+   "rotulo_1",
+   "rotulo_2",
+   "rotulo_3"
+  ]
+ },
+ "temas": {
+  "convite": {
+   "pecas": [
+    "home-convite-1",
+    "home-convite-2",
+    "promo-convite-1",
+    "promo-convite-2"
+   ],
+   "figurinos": [
+    "realeza",
+    "realeza",
+    "realeza",
+    "realeza"
+   ]
+  },
+  "instagram": {
+   "pecas": [
+    "home-instagram",
+    "promo-instagram"
+   ],
+   "figurinos": [
+    "turista",
+    "turista"
+   ]
+  },
+  "deposito": {
+   "pecas": [
+    "promo-deposito"
+   ],
+   "figurinos": [
+    "realeza"
+   ]
+  },
+  "envelopes": {
+   "pecas": [
+    "promo-envelopes"
+   ],
+   "figurinos": [
+    "turista"
+   ]
+  },
+  "reembolso": {
+   "pecas": [
+    "promo-reembolso"
+   ],
+   "figurinos": [
+    "turista"
+   ]
+  },
+  "telegram": {
+   "pecas": [
+    "promo-telegram"
+   ],
+   "figurinos": [
+    "turista"
+   ]
+  },
+  "vip": {
+   "pecas": [
+    "promo-vip"
+   ],
+   "figurinos": [
+    "turista"
+   ]
+  }
+ },
+ "observacoes": {
+  "home-convite-1": [
+   "camada frente: dois baús ficam na frente do mascote (um cobre a ponta da asa direita, outro no primeiro plano embaixo, na frente do galho); a ficha v1.1 não tem camada frente",
+   "entorno: a ficha fala em algumas moedas soltas e baús pequenos; aqui não há moedas soltas no ar, são quatro baús grandes abertos e cheios de moedas (dois atrás do mascote, dois na frente)",
+   "cena: um galho grosso atravessa a parte de baixo e o mascote fica atrás dele, com uma mão agarrada no galho; a ficha não prevê galho nem apoio",
+   "um tufo de folhas em cima do galho esconde a parte de baixo do corpo do mascote; as folhas ficaram na cena (não viraram nó da camada frente), então um mascote novo em outra pose não seria coberto por elas",
+   "figurino realeza: as penas da coroa são vermelhas, amarelas e azuis (a ficha diz penas verdes); o colar tem uma esmeralda grande no peito e há duas pulseiras largas de ouro com esmeraldas",
+   "o objeto segurado bate com o tema (baú aberto erguido numa asa), mas o mascote segura com uma mão escura de dedos, não com a ponta da asa",
+   "texto: cinco linhas; a última mistura palavras brancas e uma parte dourada bem maior na mesma linha; a ficha só prevê um estilo por linha",
+   "raios de luz dourados longos e diagonais atravessam o fundo e somem por trás da asa erguida e do baú; a ficha só prevê poeira dourada e raios finos na camada brilho"
+  ],
+  "home-convite-2": [
+   "A peça não tem um mascote grande: mostra uma árvore de indicação com 14 medalhões redondos de ouro (1 no topo, depois fileiras de 3, 4 e 6). O do topo (arara de coroa fazendo positivo, num medalhão oval) foi marcado como personagem; os outros 13 são variantes da arara com figurinos próprios (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas) e entram como objeto_grupo no entorno. A ficha v1.1 não tem palavra para medalhão com retrato nem para diagrama em árvore.",
+   "O tema convite da ficha v1.1 pede o mascote segurando um baú do tesouro aberto cheio de moedas e, em volta, moedas e baús pequenos. Aqui o mascote não segura nada (faz sinal de positivo com a asa de luva azul) e o entorno é a árvore de medalhões: não há baú nem moeda na peça. Só o figurino confere (realeza: coroa de ouro com esmeraldas e colar verde com esmeralda).",
+   "Selos redondos escuros com borda de ouro e ícone de bonequinho com sinal de mais, um no canto de cada medalhão (14 no total, contando o do mascote): é um ícone de interface que a ficha v1.1 não prevê.",
+   "Linhas douradas finas e brilhantes ligam os medalhões como uma rede; ficaram na cena. Se a IA refizer o fundo elas somem, então a ficha v1.2 precisa dizer de onde vêm (código ou parte gerada).",
+   "Três plaquinhas verdes com borda de ouro entre as camadas da árvore, cada uma com um rótulo curto de texto (rotulo_1 a rotulo_3, tipo texto, fora do bloco principal: o texto sai de código). As placas ficam na frente do medalhão do topo e dos selos e medalhões vizinhos, por isso foram para a camada frente, que a ficha v1.1 não tem; placa e rótulo poderiam sair juntos de código.",
+   "O selo do medalhão do topo fica na frente da placa 1; as placas 2 e 3 cobrem a parte de baixo de selos e medalhões vizinhos; cada selo fica na frente do aro do seu medalhão. A ordem certa é: cena e linhas, medalhões, selos, mascote, placas, rótulos (com o selo do topo por cima da placa 1).",
+   "Uma das variantes (jogadora de futebol) segura uma bola que sai para fora do medalhão (nó bola, no entorno); a camisa dela tem um número impresso, que é texto dentro da imagem gerada.",
+   "O layout home da ficha v1.1 põe o mascote em x 0,58 a 1,0 com a altura inteira; aqui o personagem é pequeno (cerca de 11% da largura e 41% da altura, no alto, em x 0,68 a 0,79) e o diagrama ocupa x 0,51 a 0,95.",
+   "O bloco de texto tem 4 linhas (duas brancas em cima, duas douradas embaixo, a última bem maior); o único texto_exemplo da ficha (no tema instagram; o tema convite não tem) tem 3."
+  ],
+  "home-instagram": [
+   "camada frente: três objetos grandes e bem desfocados no primeiro plano, embaixo: um ícone de câmera à esquerda da asa (não chega a cobrir o mascote), uma moeda com coroa na frente da ponta da asa e um balão de coração na frente da barriga; a ficha v1.1 não tem camada frente",
+   "entorno: além dos ícones de câmera e dos corações que o tema instagram prevê, há quatro moedas de ouro grossas com uma coroa (uma à esquerda do mascote e três em fila à direita); o tema não fala em moedas",
+   "os ícones de câmera vêm em dois formatos (quadrado arredondado e balão com ponta, como balão de fala) e os corações vêm dentro de balões vermelhos com ponta; a ficha não tem palavra para esse balão",
+   "medalhão: a corrente leva um medalhão de ouro com uma coroa, não o ícone do tema (na peça telegram o medalhão mostrava o ícone)",
+   "figurino turista com extras que a ficha não cita: relógio de ouro com pulseira de couro no pulso da mão que aponta e uma pulseira larga de ouro no pulso da mão que segura o celular; a faixa do chapéu é verde",
+   "o objeto segurado bate com o tema (celular com o ícone de câmera rosa e laranja na tela, moldura dourada), mas o mascote aponta com um dedo de uma mão escura de garras, não com a ponta da asa",
+   "cena: anéis e riscos de luz dourada em volta do mascote e um brilho amarelo forte no vão entre o pescoço e o celular; a ficha só prevê poeira dourada e raios finos na camada brilho",
+   "texto: quatro linhas (o exemplo do tema tem três); a segunda é dourada e bem maior, a terceira e a quarta são menores e do mesmo tamanho; a última mistura palavras brancas e uma palavra dourada na mesma linha, e a ficha só prevê um estilo por linha",
+   "mesma cena, mesmo figurino e mesmos objetos da peça promo-instagram, só reenquadrados no formato home: as duas peças podem sair do mesmo conjunto de partes"
+  ],
+  "promo-convite-1": [
+   "camada frente: dois baús ficam na frente do mascote (um cobre a ponta da asa direita, outro no primeiro plano embaixo, na frente do galho); a ficha v1.1 não tem camada frente",
+   "entorno: a ficha fala em algumas moedas soltas e baús pequenos; aqui não há moedas soltas no ar, são quatro baús grandes abertos e cheios de moedas (dois atrás do mascote, dois na frente)",
+   "cena: um galho grosso atravessa a parte de baixo e o mascote fica atrás dele, com uma mão agarrada no galho; a ficha não prevê galho nem apoio",
+   "um tufo de folhas em cima do galho esconde a parte de baixo do corpo do mascote; as folhas ficaram na cena (não viraram nó da camada frente), então um mascote novo em outra pose não seria coberto por elas",
+   "figurino realeza: as penas da coroa são vermelhas, amarelas e azuis (a ficha diz penas verdes); o colar tem uma esmeralda grande no peito e há duas pulseiras largas de ouro com esmeraldas",
+   "o objeto segurado bate com o tema (baú aberto erguido numa asa), mas o mascote segura com uma mão escura de dedos, não com a ponta da asa",
+   "texto: cinco linhas; a última mistura palavras brancas e uma parte dourada bem maior na mesma linha; a ficha só prevê um estilo por linha",
+   "dois riscos longos e curvos de luz verde neon atravessam o fundo e somem por trás da asa erguida; a ficha só prevê poeira dourada e raios finos dourados na camada brilho"
+  ],
+  "promo-convite-2": [
+   "A peça não tem um mascote grande: mostra uma árvore de indicação com 14 medalhões redondos de ouro (1 no topo, depois fileiras de 3, 4 e 6). O do topo (arara de coroa fazendo positivo, num medalhão maior) foi marcado como personagem; os outros 13 são variantes da arara com figurinos próprios (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas) e entram como objeto_grupo no entorno. A ficha v1.1 não tem palavra para medalhão com retrato nem para diagrama em árvore.",
+   "O tema convite da ficha v1.1 pede o mascote segurando um baú do tesouro aberto cheio de moedas e, em volta, moedas e baús pequenos. Aqui o mascote não segura nada (faz sinal de positivo com a asa de luva azul) e o entorno é a árvore de medalhões: não há baú nem moeda na peça. Só o figurino confere (realeza: coroa de ouro com esmeraldas e colar verde com esmeralda).",
+   "Selos redondos escuros com borda de ouro e ícone de bonequinho com sinal de mais, um no canto de cada medalhão (14 no total, contando o do mascote): é um ícone de interface que a ficha v1.1 não prevê.",
+   "Linhas douradas finas e brilhantes ligam os medalhões como uma rede; ficaram na cena. Se a IA refizer o fundo elas somem, então a ficha v1.2 precisa dizer de onde vêm (código ou parte gerada).",
+   "Três plaquinhas verdes com borda de ouro entre as camadas da árvore, cada uma com um rótulo curto de texto (rotulo_1 a rotulo_3, tipo texto, fora do bloco principal: o texto sai de código). As placas ficam na frente do medalhão do topo e dos selos e medalhões vizinhos, por isso foram para a camada frente, que a ficha v1.1 não tem; placa e rótulo poderiam sair juntos de código.",
+   "O selo do medalhão do topo fica na frente da placa 1; as placas 2 e 3 cobrem a parte de baixo de selos e medalhões vizinhos; cada selo fica na frente do aro do seu medalhão. A ordem certa é: cena e linhas, medalhões, selos, mascote, placas, rótulos (com o selo do topo por cima da placa 1).",
+   "Uma das variantes (jogadora de futebol, a primeira da fileira do meio) segura uma bola na frente do aro do medalhão dela (nó bola, no entorno); a camisa dela tem um número impresso, que é texto dentro da imagem gerada.",
+   "O layout promo da ficha v1.1 põe o mascote em x 0,50 a 1,0 com a altura inteira; aqui o personagem é pequeno (cerca de 14% da largura e 35% da altura, no alto, em x 0,66 a 0,80) e o diagrama ocupa x 0,47 a 0,99 e quase a altura inteira.",
+   "O bloco de texto tem 4 linhas (duas brancas em cima, duas douradas embaixo, a última bem maior); o único texto_exemplo da ficha (no tema instagram; o tema convite não tem) tem 3. O bloco vai de y 0,24 a 0,79, mais alto que a caixa de texto do layout promo (y 0,26 a 0,74)."
+  ],
+  "promo-deposito": [
+   "camada frente: o galho com o tufo de musgo esconde a parte de baixo do corpo e corta a cauda (a cauda aparece embaixo dele); quatro moedas soltas e um montinho de moedas ficam na frente do mascote ou do galho (cobrindo a ponta da asa direita e a cauda); a ficha v1.1 não tem camada frente",
+   "cena: verde dominante (céu, torres e rio esverdeados), não o pôr do sol dourado e verde-azulado que a ficha descreve; riscos de luz verde neon no fundo; um galho grosso onde o mascote se apoia, que a ficha não prevê",
+   "entorno: além das moedas soltas que o tema deposito pede, há um baú aberto cheio de moedas no canto direito; as moedas são do tipo com furo quadrado no meio",
+   "o mascote segura a moeda erguida pela mão da asa (mão de dedos escuros com pulseira), não com a ponta da asa como o tema descreve"
+  ],
+  "promo-envelopes": [
+   "figurino turista sem óculos escuros: a ficha descreve o turista sempre com óculos; aqui o mascote tem os olhos à mostra e uma camisa havaiana aberta, sem corrente de ouro visível",
+   "entorno: 16 envelopes nítidos atrás do mascote, mais dezenas de envelopes pequenos e desfocados que ficaram na cena; a ficha só diz envelopes caindo como chuva, sem dizer quantos nem que a profundidade varia (nítidos perto, desfocados longe e no primeiro plano)",
+   "camada frente: seis envelopes grandes e desfocados no primeiro plano, alguns cobrindo a asa e o galho; a ficha v1.1 não tem camada frente",
+   "cena: um galho grosso embaixo do mascote, como nas peças de convite e depósito; a ficha não prevê galho nem apoio",
+   "texto: a última linha mistura uma parte dourada grande com palavras brancas menores; a ficha só prevê um estilo por linha"
+  ],
+  "promo-instagram": [
+   "camada frente: três objetos grandes e bem desfocados no primeiro plano, embaixo: um balão de coração na frente da ponta da asa e da barriga, uma moeda com coroa na frente do antebraço e um ícone de câmera no canto de baixo à direita; a ficha v1.1 não tem camada frente",
+   "entorno: além dos ícones de câmera e dos corações que o tema instagram prevê, há três moedas de ouro grossas com uma coroa (uma encostada no ombro, duas à direita do celular); o tema não fala em moedas",
+   "os ícones de câmera vêm em dois formatos (quadrado arredondado e balão com ponta, como balão de fala) e os corações vêm dentro de balões vermelhos com ponta; a ficha não tem palavra para esse balão",
+   "medalhão: a corrente leva um medalhão de ouro com uma coroa, não o ícone do tema (na peça telegram o medalhão mostrava o ícone)",
+   "figurino turista com extras que a ficha não cita: relógio de ouro com pulseira de couro no pulso da mão que aponta e uma pulseira larga de ouro no pulso da mão que segura o celular; a faixa do chapéu é verde",
+   "o objeto segurado bate com o tema (celular com o ícone de câmera rosa e laranja na tela, moldura dourada), mas o mascote aponta com um dedo de uma mão escura de garras, não com a ponta da asa",
+   "cena: anéis e riscos de luz dourada em volta do mascote e um brilho amarelo forte no vão entre o pescoço e o celular; a ficha só prevê poeira dourada e raios finos na camada brilho",
+   "texto: quatro linhas (o exemplo do tema tem três); a segunda é dourada e bem maior, a terceira e a quarta são menores e do mesmo tamanho; a última mistura palavras brancas e uma palavra dourada na mesma linha, e a ficha só prevê um estilo por linha",
+   "mesma cena, mesmo figurino e mesmos objetos da peça home-instagram, só reenquadrados no formato promo: as duas peças podem sair do mesmo conjunto de partes"
+  ],
+  "promo-reembolso": [
+   "o medalhão da corrente mostra o ícone de avião de papel do tema telegram, e não um símbolo ligado a reembolso; a ficha v1.1 não diz o que vai no medalhão em cada tema",
+   "camada frente: duas moedas de ouro grandes e desfocadas no primeiro plano (uma embaixo no centro, na frente da barra da camisa, e uma no canto de baixo à direita) e uma folha grande desfocada na frente da barriga; a ficha v1.1 não tem camada frente",
+   "entorno: a máquina caça-níquel mostra cerejas e coroas de ouro além do sete, e a ficha só fala em setes; atrás da cabeça, à esquerda, há outra estrutura de ouro desfocada com moedas claras desfocadas (ficaram na cena)",
+   "texto: embaixo das três linhas empilhadas, o bloco vira duas colunas, uma frase branca de duas linhas ao lado de um número dourado enorme da mesma altura; a ficha descreve só uma pilha de linhas, e o bloco desce até perto de 0,81 da altura, abaixo da zona de texto do layout promo"
+  ],
+  "promo-vip": [
+   "o trono de ouro com estofado verde fica atrás do mascote e foi para a camada mascote (z 2); a ficha diz sentado num trono, mas não diz que o trono é uma parte própria, com contorno",
+   "camada frente: mesinha de vidro com óculos escuros, taça de drinque tropical e uma folha grande no primeiro plano cobrem a base do trono e do mascote; a ficha v1.1 não tem camada frente",
+   "entorno: uma esfera de vidro com coroa de ouro sobre um pedestal, à esquerda; a ficha fala em drinque e ornamentos de ouro, sem a esfera",
+   "cena: mais escura e fechada que nas outras peças, com céu verde-escuro em cima; o sol aparece pequeno, à esquerda do mascote",
+   "texto: três linhas; a última é uma palavra dourada enorme (1,7 vez a altura da primeira linha branca)"
+  ]
+ },
+ "fora_do_layout": [
+  "home-convite-2",
+  "promo-convite-2"
+ ],
+ "convencao": "caixas em fração de W e H; mediana, mínimo e máximo das peças de cada formato"
+}

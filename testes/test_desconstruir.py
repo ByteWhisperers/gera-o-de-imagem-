@@ -121,3 +121,17 @@ def test_letra_grande_sai_inteira_e_o_miolo_do_o_continua_vazado():
     assert not letras[(r < 12)].any()                      # o miolo do O é fundo
     assert letras[(r < 37) & (r > 21)].mean() > 0.97
     assert linhas[0]["fracao_dourada"] == 1.0
+
+
+def test_brilho_dourado_do_fundo_nao_entra_pela_falha_do_contorno():
+    H, W = 140, 300
+    rgb = np.zeros((H, W, 3), np.float32)
+    rgb[:] = [20, 50, 25]
+    rgb[16:124, 16:84] = [15, 10, 5]                       # contorno
+    rgb[20:120, 20:80] = [250, 215, 30]                    # letra dourada
+    rgb[20:120, 84:200] = [235, 190, 40]                   # brilho dourado do fundo encostado na letra...
+    rgb[60:70, 80:84] = [235, 190, 40]                     # ...entrando por uma falha do contorno
+    letras, linhas = D.medir_texto(rgb, [0, 0, 0.5, 1], np.zeros((H, W), bool),
+                                   [[0.05, 0.1, 0.25, 0.8]])
+    assert letras[24:116, 24:76].mean() > 0.97
+    assert letras[30:110, 90:200].mean() < 0.05

@@ -39,3 +39,14 @@ def test_linhas_de_texto_do_tema_ou_neutras():
     f = F.carregar(FICHA)
     assert [l["texto"] for l in F.linhas_de_texto(f, "instagram")][1] == "INSTAGRAM"
     assert F.linhas_de_texto(f, "convite") == f["texto"]["exemplo"]
+
+
+def test_prompt_usa_qualquer_campo_do_tema_e_reclama_do_que_falta():
+    import copy
+
+    f = copy.deepcopy(F.carregar(FICHA))
+    f["partes"]["frente"] = {"transparente": True, "prompt": "{frente}, blurred, foreground"}
+    f["temas"]["telegram"]["frente"] = "two big gold coins"
+    assert F.prompt_da_parte(f, "frente", "telegram") == "two big gold coins, blurred, foreground"
+    with pytest.raises(F.FichaInvalida, match="frente"):
+        F.prompt_da_parte(f, "frente", "vip")

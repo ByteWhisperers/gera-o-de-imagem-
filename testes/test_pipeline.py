@@ -43,3 +43,11 @@ def test_ficha_com_temas_poe_o_entorno_no_psd(tmp_path):
     assert rel["pecas"][0]["qa_ok"], rel["pecas"][0]["qa"]
     psd = PSDImage.open(tmp_path / "arara" / "home-telegram-rascunho.psd")
     assert [l.name for l in psd][:4] == ["cena", "escurecimento", "entorno", "mascote"]
+
+
+def test_proposta_v12_poe_a_frente_por_cima_do_mascote(tmp_path):
+    rel = pipeline.rodar("fichas/arara/ficha-v1.2.yaml", ["promo"], "rascunho", "reembolso", tmp_path)
+    assert rel["pecas"][0]["qa_ok"], rel["pecas"][0]["qa"]
+    psd = PSDImage.open(tmp_path / "arara" / "promo-reembolso-rascunho.psd")
+    nomes = [l.name for l in psd]
+    assert nomes.index("frente") == nomes.index("mascote") + 1

@@ -253,10 +253,15 @@ def completar_letras(rgb: np.ndarray, glifo: np.ndarray, caixa: tuple[int, int, 
         frac = ndi.mean(cor_de_letra, rot, idx)
         saida[y0:y1, x0:x1] |= np.isin(rot, idx[np.asarray(frac) > 0.6])
     # 3. o que tem cor de letra e se liga ao limiar sem atravessar o contorno escuro,
-    #    só dentro da caixa justa da linha (o vazamento, se houver, fica preso nela)
+    #    só dentro da caixa justa da linha e perto do limiar (até 0,2 da altura da
+    #    linha: o miolo de uma haste fica a meia haste da borda). Letra dourada em
+    #    cima de brilho dourado ainda vaza um pouco onde o contorno é fino; vazar é
+    #    menos grave que deixar a letra oca, porque a placa sem texto apagaria só a
+    #    borda da letra.
     dentro = np.zeros_like(g)
     dentro[y - y0 : y - y0 + h, x - x0 : x - x0 + w] = True
-    pode = cor_de_letra & ~ndi.binary_dilation(lum < 60, iterations=1) & dentro
+    perto = ndi.distance_transform_edt(~g) <= 0.2 * h
+    pode = cor_de_letra & ~ndi.binary_dilation(lum < 60, iterations=1) & dentro & perto
     saida[y0:y1, x0:x1] |= ndi.binary_propagation(g & pode, mask=pode)
     return saida
 

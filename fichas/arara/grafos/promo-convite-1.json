@@ -21,7 +21,10 @@
   "texto": "recortes/texto.webp",
   "logo": "recortes/logo.webp"
  },
- "placas": {},
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
  "nos": [
   {
    "id": "cena",
@@ -52,7 +55,7 @@
      },
      {
       "cor": "#475c14",
-      "fracao": 0.166
+      "fracao": 0.167
      },
      {
       "cor": "#95912c",
@@ -60,7 +63,7 @@
      },
      {
       "cor": "#2a2908",
-      "fracao": 0.09
+      "fracao": 0.089
      }
     ],
     "fonte": "medido:só os pixels de fundo"
@@ -365,7 +368,7 @@
      "#f6f9f5",
      "#dadbd8"
     ],
-    "contorno_escuro_frac": 0.77
+    "contorno_escuro_frac": 0.76
    },
    "fonte": "medido:limiar de cor + caixas de linha do agente"
   },

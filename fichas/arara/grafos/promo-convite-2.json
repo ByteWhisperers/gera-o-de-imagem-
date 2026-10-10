@@ -21,7 +21,10 @@
   "texto": "recortes/texto.webp",
   "logo": "recortes/logo.webp"
  },
- "placas": {},
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
  "nos": [
   {
    "id": "cena",
@@ -40,15 +43,15 @@
     "paleta": [
      {
       "cor": "#041807",
-      "fracao": 0.217
+      "fracao": 0.216
      },
      {
       "cor": "#132007",
-      "fracao": 0.212
+      "fracao": 0.213
      },
      {
       "cor": "#314212",
-      "fracao": 0.194
+      "fracao": 0.192
      },
      {
       "cor": "#57611b",
@@ -239,7 +242,7 @@
      24.6,
      35.8,
      60.5,
-     87.5,
+     87.7,
      39.3,
      34.8,
      33.9,
@@ -590,8 +593,8 @@
    "de": "texto_l3",
    "rel": "contraste",
    "para": "cena",
-   "wcag": 7.4,
-   "L_fundo_em_volta": 52.6
+   "wcag": 7.3,
+   "L_fundo_em_volta": 53.1
   },
   {
    "de": "texto_l3",
@@ -609,7 +612,7 @@
    "rel": "contraste",
    "para": "cena",
    "wcag": 5.7,
-   "L_fundo_em_volta": 67.8
+   "L_fundo_em_volta": 68.0
   },
   {
    "de": "texto_l1",

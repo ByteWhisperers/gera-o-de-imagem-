@@ -178,6 +178,12 @@ def _rascunho(ficha: dict, parte: str, formato: str) -> Image.Image:
         for x, y in ((90, 80), (620, 120), (160, 400), (560, 420), (380, 60)):
             d.ellipse((x - 34, y - 34, x + 34, y + 34), fill=cores["ouro"], outline=cores["ouro_escuro"], width=6)
         return im
+    if parte == "frente":
+        im = Image.new("RGB", (768, 512), (205, 205, 205))
+        d = ImageDraw.Draw(im)
+        for x, y, r in ((230, 330, 150), (580, 390, 105)):
+            d.ellipse((x - r, y - r, x + r, y + r), fill=cores["ouro"], outline=cores["ouro_escuro"], width=12)
+        return im
     im = Image.new("RGB", (768, 1024), (205, 205, 205))
     d = ImageDraw.Draw(im)
     d.ellipse((184, 260, 584, 1024), fill=cores["vermelho_arara"])

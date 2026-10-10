@@ -3,10 +3,11 @@
 Uso:
     python ferramentas/juntar_grafos.py fichas/arara/grafos -o fichas/arara/grafos/medidas-dos-grafos.json
     python ferramentas/juntar_grafos.py fichas/arara/grafos --folha saida/arara/fase2-pranchas.jpg
+    python ferramentas/juntar_grafos.py fichas/arara/grafos --fora-do-layout home-convite-2 promo-convite-2
 
-Para cada formato (home, promo): onde ficam o logo, o bloco de texto, o mascote
-e o entorno (mediana, mínimo e máximo das peças), quantas linhas de texto, a
-altura e o vão das linhas, as cores de cada estilo de letra, as linhas que
+Para cada formato (home, promo): onde ficam o logo, o bloco de texto, o mascote,
+o entorno e a frente (mediana, mínimo e máximo das peças), quantas linhas de
+texto, a altura e o vão das linhas, as cores de cada estilo de letra, as linhas que
 misturam branco e dourado, o contraste do texto com o fundo e a curva de
 escurecimento. E o que não cabe na ficha atual: camadas que ela não tem,
 rótulos fora do bloco de texto, observações das marcações. Cada número diz de
@@ -72,15 +73,18 @@ def ler(pasta: Path) -> list[dict]:
     return grafos
 
 
-def juntar(grafos: list[dict], ficha: dict | None = None) -> dict:
+def juntar(grafos: list[dict], ficha: dict | None = None, fora_do_layout=()) -> dict:
+    """fora_do_layout: peças de composição diferente (ex.: a árvore de indicação), que
+    ficam fora das caixas do mascote, do entorno e da frente; o resto delas conta."""
     pecas, por_formato = [], {}
     fora, rotulos, observacoes, temas = {}, {}, {}, {}
     estilos: dict[str, list[list[str]]] = {}
     for g in grafos:
         W, H = g["tamanho_px"]
         fmt = g["formato_peca"]
-        f = por_formato.setdefault(fmt, {"logo": {}, "texto": {}, "mascote": {}, "entorno": {}, "linhas": [],
-                                         "altura_linha": [], "vao": [], "contraste": [], "contorno": [],
+        f = por_formato.setdefault(fmt, {"logo": {}, "texto": {}, "mascote": {}, "entorno": {}, "frente": {},
+                                         "linhas": [], "altura_linha": [], "vao": [], "lado_a_lado": 0,
+                                         "contraste": [], "contorno": [],
                                          "escurecimento": [], "mistas": [], "delta_logo_texto": []})
         lay = G.layout_medido(g)
         if "logo" in lay:
@@ -88,7 +92,9 @@ def juntar(grafos: list[dict], ficha: dict | None = None) -> dict:
         if "texto" in lay:
             t = lay["texto"]
             f["texto"][g["peca"]] = [t["x"], t["y"], t["w"], t["h"]]
-        for camada in ("mascote", "entorno"):
+        for camada in ("mascote", "entorno", "frente"):
+            if g["peca"] in fora_do_layout:
+                break
             m = G.mascara_camada(g, camada)
             c = G.caixa_px(m)
             if c is not None:
@@ -109,8 +115,10 @@ def juntar(grafos: list[dict], ficha: dict | None = None) -> dict:
             elif est.get("rampa_tercos"):
                 estilos.setdefault(est.get("estilo_ficha"), []).append(est["rampa_tercos"])
         for a in g["arestas"]:
-            if a["rel"] == "empilhado_acima":
+            if a["rel"] == "empilhado_acima" and a["vao_rel_altura"] >= 0:
                 f["vao"].append(a["vao_rel_altura"])
+            elif a["rel"] == "empilhado_acima":  # linhas que se sobrepõem na altura: estão lado a lado
+                f["lado_a_lado"] += 1
             if a["rel"] == "contraste":
                 f["contraste"].append(a["wcag"])
             if a["rel"] == "alinhado_com" and a.get("para") == "logo":
@@ -142,9 +150,11 @@ def juntar(grafos: list[dict], ficha: dict | None = None) -> dict:
             "texto": caixa_resumo(f["texto"]),
             "mascote": caixa_resumo(f["mascote"]),
             "entorno": caixa_resumo(f["entorno"]),
+            "frente": caixa_resumo(f["frente"]),
             "linhas_por_peca": resumo(f["linhas"], 1),
             "altura_linha_frac_H": resumo(f["altura_linha"]),
             "vao_entre_linhas_rel_altura": resumo(f["vao"], 2) if f["vao"] else {},
+            "pares_de_linhas_lado_a_lado": f["lado_a_lado"],
             "contraste_wcag": resumo(f["contraste"], 1) if f["contraste"] else {},
             "contorno_escuro_frac": resumo(f["contorno"], 2),
             "texto_x_menos_logo_x": resumo(f["delta_logo_texto"]) if f["delta_logo_texto"] else {},
@@ -168,7 +178,7 @@ def juntar(grafos: list[dict], ficha: dict | None = None) -> dict:
             cores[est]["dE00_ficha_x_medido"] = [round(v, 1) for v in de]
     return {"formato": "medidas-dos-grafos/0.1", "pecas": pecas, "por_formato": saida_fmt, "cores_do_texto": cores,
             "camadas_fora_da_ficha": fora, "rotulos_fora_do_bloco": rotulos, "temas": temas,
-            "observacoes": observacoes,
+            "observacoes": observacoes, "fora_do_layout": sorted(fora_do_layout),
             "convencao": "caixas em fração de W e H; mediana, mínimo e máximo das peças de cada formato"}
 
 
@@ -205,12 +215,14 @@ def main() -> None:
     ap.add_argument("-o", "--saida", help="arquivo JSON (padrão: imprime)")
     ap.add_argument("--ficha", help="ficha para comparar as cores do texto (padrão: a do primeiro grafo)")
     ap.add_argument("--folha", help="também salva a folha com as pranchas de conferência de todas as peças")
+    ap.add_argument("--fora-do-layout", nargs="*", default=[], metavar="PECA",
+                    help="peças de composição diferente, fora das caixas do mascote, do entorno e da frente")
     a = ap.parse_args()
     grafos = ler(Path(a.pasta))
     from motor import ficha as F
 
     ficha = F.carregar(RAIZ / (a.ficha or grafos[0]["ficha"])) if grafos else None
-    r = juntar(grafos, ficha)
+    r = juntar(grafos, ficha, a.fora_do_layout)
     texto = json.dumps(r, ensure_ascii=False, indent=1) + "\n"
     if a.saida:
         Path(a.saida).write_text(texto, encoding="utf-8")

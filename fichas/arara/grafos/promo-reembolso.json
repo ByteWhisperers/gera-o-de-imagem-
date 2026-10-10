@@ -1,0 +1,627 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-reembolso",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/promo/promo-1790981102-82ba1db4.webp",
+ "formato_peca": "promo",
+ "tema": "reembolso",
+ "tamanho_px": [
+  1867,
+  842
+ ],
+ "pasta": "fichas/arara/grafos/promo-reembolso",
+ "marcacao": "fichas/arara/grafos/promo-reembolso.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio ao pôr do sol entre torres cársticas cobertas de selva; sol baixo à esquerda do centro com reflexo dourado no rio; folhagem de selva em volta; atrás da cabeça do mascote, à esquerda, uma estrutura de ouro desfocada com moedas claras desfocadas; folhas de palmeira nítidas embaixo à esquerda do mascote",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#091005",
+      "fracao": 0.217
+     },
+     {
+      "cor": "#1e1d06",
+      "fracao": 0.197
+     },
+     {
+      "cor": "#494112",
+      "fracao": 0.182
+     },
+     {
+      "cor": "#826415",
+      "fracao": 0.155
+     },
+     {
+      "cor": "#382605",
+      "fracao": 0.133
+     },
+     {
+      "cor": "#cea32b",
+      "fracao": 0.115
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "turista",
+   "descricao": "arara-vermelha 3D rindo de bico aberto, figurino turista (chapéu de palha com faixa verde, hibisco vermelho e folhas, óculos de aviador espelhados, camisa havaiana verde com flores brancas, corrente de ouro com medalhão, relógio de ouro no pulso)",
+   "pose": "de frente; a asa da esquerda (na imagem) erguida segura com a mão fechada um leque de notas verdes acima do ombro; a asa da direita também erguida, de mão fechada e relógio no pulso, na frente da máquina caça-níquel; as penas compridas dessa asa caem até embaixo",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.4472,
+    0.0499,
+    0.5137,
+    0.9501
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "notas",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "reembolso",
+   "descricao": "leque de notas verdes de dinheiro, abertas em leque, seguras pela mão fechada da asa erguida à esquerda (na imagem)",
+   "caixa": [
+    0.444,
+    0.112,
+    0.153,
+    0.235
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "medalhao",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "reembolso",
+   "descricao": "medalhão redondo de ouro pendurado na corrente, com o ícone de um avião de papel em relevo",
+   "caixa": [
+    0.708,
+    0.66,
+    0.062,
+    0.14
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "relogio",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "reembolso",
+   "descricao": "relógio grande de ouro no pulso da asa erguida à direita (na imagem)",
+   "caixa": [
+    0.88,
+    0.68,
+    0.077,
+    0.105
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "caca_niquel",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "reembolso",
+   "descricao": "máquina caça-níquel de ouro atrás do mascote, à direita do chapéu, com coroas de ouro em cima e os rolos à mostra (cerejas em cima, um sete vermelho e dourado embaixo)",
+   "mascara": "mascaras/caca_niquel.png",
+   "caixa": [
+    0.8393,
+    0.0867,
+    0.1473,
+    0.4572
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moedas",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "reembolso",
+   "descricao": "moedas de ouro soltas no ar em volta do mascote (uma acima do leque de notas, uma no alto à direita, em cima da máquina, e uma à esquerda da asa, ao lado do texto)",
+   "mascara": "mascaras/moedas.png",
+   "caixa": [
+    0.4531,
+    0.0119,
+    0.5206,
+    0.7043
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 3
+  },
+  {
+   "id": "moedas_frente",
+   "tipo": "objeto_grupo",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "reembolso",
+   "descricao": "moedas de ouro grandes e desfocadas no primeiro plano, cortadas pela borda de baixo (uma no centro, na frente da barra da camisa, e uma no canto de baixo à direita, perto das penas da asa)",
+   "mascara": "mascaras/moedas_frente.png",
+   "caixa": [
+    0.5672,
+    0.7732,
+    0.4328,
+    0.2268
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 2
+  },
+  {
+   "id": "folhas_frente",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "duas folhas grandes desfocadas no primeiro plano, embaixo, uma sobre a outra, na frente da barriga do mascote, à direita da moeda grande",
+   "mascara": "mascaras/folhas_frente.png",
+   "caixa": [
+    0.6829,
+    0.8385,
+    0.1082,
+    0.1615
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     16.5,
+     12.0,
+     25.4,
+     69.9,
+     55.7,
+     50.2,
+     107.3,
+     61.8,
+     142.0,
+     55.5
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 478,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0498,
+    0.2352,
+    0.2191,
+    0.0903
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 76,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fce433",
+     "#fde230",
+     "#f4b105"
+    ],
+    "contorno_escuro_frac": 0.76
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0493,
+    0.329,
+    0.4162,
+    0.1093
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 92,
+    "peso_rel": 1.21,
+    "rampa_tercos": [
+     "#fce02b",
+     "#fde12a",
+     "#f3b104"
+    ],
+    "contorno_escuro_frac": 0.81
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0493,
+    0.4667,
+    0.4033,
+    0.0689
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 58,
+    "peso_rel": 0.76,
+    "rampa_tercos": [
+     "#fbfbf9",
+     "#f8f8f7",
+     "#e5e5e4"
+    ],
+    "contorno_escuro_frac": 0.86
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.2437,
+    0.5879,
+    0.1676,
+    0.2007
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 169,
+    "peso_rel": 2.22,
+    "rampa_tercos": [
+     "#fddf2a",
+     "#fcdf2a",
+     "#f1af05"
+    ],
+    "contorno_escuro_frac": 0.4
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l5",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l5.png",
+   "caixa": [
+    0.0536,
+    0.5962,
+    0.1757,
+    0.0713
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 60,
+    "peso_rel": 0.79,
+    "rampa_tercos": [
+     "#fbfbfa",
+     "#f9faf9",
+     "#eaeae9"
+    ],
+    "contorno_escuro_frac": 0.84
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l6",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l6.png",
+   "caixa": [
+    0.053,
+    0.6615,
+    0.1687,
+    0.095
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 80,
+    "peso_rel": 1.05,
+    "rampa_tercos": [
+     "#f3f5f2",
+     "#fafaf9",
+     "#e7e8e6"
+    ],
+    "contorno_escuro_frac": 0.73
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0305,
+    0.0523,
+    0.2169,
+    0.1033
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.886"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "notas",
+   "nota": "a asa erguida à esquerda mostra o leque de notas"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "medalhao"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "relogio"
+  },
+  {
+   "de": "caca_niquel",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "atrás do mascote",
+   "à direita do chapéu": null
+  },
+  {
+   "de": "moedas",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "moedas_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano",
+   "embaixo": null
+  },
+  {
+   "de": "folhas_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano",
+   "na frente da barriga": null
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "notas",
+   "tema": "reembolso"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "moedas",
+   "tema": "reembolso"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "caca_niquel",
+   "tema": "reembolso"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "moedas_frente",
+   "tema": "reembolso"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "caca_niquel",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "folhas_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 10.9,
+   "L_fundo_em_volta": 21.4
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.04
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.3,
+   "L_fundo_em_volta": 44.0
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.26
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 13.4,
+   "L_fundo_em_volta": 25.7
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.76
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 5.3,
+   "L_fundo_em_volta": 71.5
+  },
+  {
+   "de": "texto_l4",
+   "rel": "empilhado_acima",
+   "para": "texto_l5",
+   "vao_rel_altura": -0.96
+  },
+  {
+   "de": "texto_l5",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l5",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 15.2,
+   "L_fundo_em_volta": 18.1
+  },
+  {
+   "de": "texto_l5",
+   "rel": "empilhado_acima",
+   "para": "texto_l6",
+   "vao_rel_altura": -0.08
+  },
+  {
+   "de": "texto_l6",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l6",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 14.5,
+   "L_fundo_em_volta": 17.9
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.019
+  }
+ ],
+ "observacoes": [
+  "o medalhão da corrente mostra o ícone de avião de papel do tema telegram, e não um símbolo ligado a reembolso; a ficha v1.1 não diz o que vai no medalhão em cada tema",
+  "camada frente: duas moedas de ouro grandes e desfocadas no primeiro plano (uma embaixo no centro, na frente da barra da camisa, e uma no canto de baixo à direita) e uma folha grande desfocada na frente da barriga; a ficha v1.1 não tem camada frente",
+  "entorno: a máquina caça-níquel mostra cerejas e coroas de ouro além do sete, e a ficha só fala em setes; atrás da cabeça, à esquerda, há outra estrutura de ouro desfocada com moedas claras desfocadas (ficaram na cena)",
+  "texto: embaixo das três linhas empilhadas, o bloco vira duas colunas, uma frase branca de duas linhas ao lado de um número dourado enorme da mesma altura; a ficha descreve só uma pilha de linhas, e o bloco desce até perto de 0,81 da altura, abaixo da zona de texto do layout promo"
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}

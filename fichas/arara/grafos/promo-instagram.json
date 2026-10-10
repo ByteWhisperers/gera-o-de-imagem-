@@ -21,7 +21,10 @@
   "texto": "recortes/texto.webp",
   "logo": "recortes/logo.webp"
  },
- "placas": {},
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
  "nos": [
   {
    "id": "cena",
@@ -40,27 +43,27 @@
     "paleta": [
      {
       "cor": "#071907",
-      "fracao": 0.247
+      "fracao": 0.248
      },
      {
       "cor": "#1c2106",
-      "fracao": 0.189
+      "fracao": 0.187
      },
      {
-      "cor": "#3a430e",
-      "fracao": 0.177
+      "cor": "#3a420e",
+      "fracao": 0.174
      },
      {
-      "cor": "#635c16",
+      "cor": "#625c16",
       "fracao": 0.169
      },
      {
-      "cor": "#372905",
-      "fracao": 0.111
+      "cor": "#372a06",
+      "fracao": 0.113
      },
      {
-      "cor": "#b1912a",
-      "fracao": 0.108
+      "cor": "#b09129",
+      "fracao": 0.109
      }
     ],
     "fonte": "medido:só os pixels de fundo"
@@ -701,7 +704,7 @@
    "rel": "contraste",
    "para": "cena",
    "wcag": 10.9,
-   "L_fundo_em_volta": 44.0
+   "L_fundo_em_volta": 44.1
   },
   {
    "de": "texto_l1",

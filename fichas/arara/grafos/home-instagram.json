@@ -21,7 +21,10 @@
   "texto": "recortes/texto.webp",
   "logo": "recortes/logo.webp"
  },
- "placas": {},
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
  "nos": [
   {
    "id": "cena",
@@ -40,27 +43,27 @@
     "paleta": [
      {
       "cor": "#0d1306",
-      "fracao": 0.22
+      "fracao": 0.261
      },
      {
-      "cor": "#2a2306",
-      "fracao": 0.184
+      "cor": "#392906",
+      "fracao": 0.214
      },
      {
-      "cor": "#644e0f",
-      "fracao": 0.177
+      "cor": "#484a14",
+      "fracao": 0.153
      },
      {
-      "cor": "#8d7322",
-      "fracao": 0.151
+      "cor": "#80530b",
+      "fracao": 0.133
      },
      {
-      "cor": "#482e05",
-      "fracao": 0.145
-     },
-     {
-      "cor": "#cca631",
+      "cor": "#cda631",
       "fracao": 0.123
+     },
+     {
+      "cor": "#8e7522",
+      "fracao": 0.115
      }
     ],
     "fonte": "medido:só os pixels de fundo"
@@ -332,9 +335,9 @@
     "L_fundo_por_decimo_de_W": [
      24.4,
      31.4,
-     37.2,
+     37.4,
      98.9,
-     82.9,
+     84.8,
      56.3,
      48.8,
      71.3,
@@ -401,11 +404,11 @@
     "altura_px": 98,
     "peso_rel": 1.21,
     "rampa_tercos": [
-     "#fde006",
+     "#fde005",
      "#fddd05",
-     "#fdb402"
+     "#fcb302"
     ],
-    "contorno_escuro_frac": 0.6
+    "contorno_escuro_frac": 0.59
    },
    "fonte": "medido:limiar de cor + projeção por linha"
   },
@@ -455,11 +458,11 @@
     "altura_px": 49,
     "peso_rel": 0.6,
     "rampa_tercos": [
-     "#fbe34c",
-     "#f8df34",
-     "#eccb6f"
+     "#fbe458",
+     "#f8df3f",
+     "#eccc72"
     ],
-    "contorno_escuro_frac": 0.76
+    "contorno_escuro_frac": 0.75
    },
    "fonte": "medido:limiar de cor + projeção por linha"
   },
@@ -700,8 +703,8 @@
    "de": "texto_l1",
    "rel": "contraste",
    "para": "cena",
-   "wcag": 10.4,
-   "L_fundo_em_volta": 48.4
+   "wcag": 10.0,
+   "L_fundo_em_volta": 51.4
   },
   {
    "de": "texto_l1",
@@ -718,8 +721,8 @@
    "de": "texto_l2",
    "rel": "contraste",
    "para": "cena",
-   "wcag": 7.2,
-   "L_fundo_em_volta": 56.3
+   "wcag": 6.8,
+   "L_fundo_em_volta": 60.8
   },
   {
    "de": "texto_l2",
@@ -754,8 +757,8 @@
    "de": "texto_l4",
    "rel": "contraste",
    "para": "cena",
-   "wcag": 8.4,
-   "L_fundo_em_volta": 49.7
+   "wcag": 8.5,
+   "L_fundo_em_volta": 49.8
   },
   {
    "de": "texto_l1",

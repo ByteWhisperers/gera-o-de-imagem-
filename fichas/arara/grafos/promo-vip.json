@@ -1,0 +1,524 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-vip",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/promo/promo-1790981066-c225f1b5.webp",
+ "formato_peca": "promo",
+ "tema": "vip",
+ "tamanho_px": [
+  1867,
+  842
+ ],
+ "pasta": "fichas/arara/grafos/promo-vip",
+ "marcacao": "fichas/arara/grafos/promo-vip.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "mascote": "recortes/mascote.webp",
+  "entorno": "recortes/entorno.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio ao pôr do sol entre torres cársticas cobertas de selva; céu verde-escuro no alto à esquerda, sol baixo à esquerda do centro com reflexo dourado no rio; folhagem densa e palmeiras atrás do trono; folhas grandes desfocadas nos cantos de baixo e de cima à esquerda",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#021f05",
+      "fracao": 0.223
+     },
+     {
+      "cor": "#102507",
+      "fracao": 0.203
+     },
+     {
+      "cor": "#324e11",
+      "fracao": 0.192
+     },
+     {
+      "cor": "#606c1a",
+      "fracao": 0.164
+     },
+     {
+      "cor": "#b2a22f",
+      "fracao": 0.113
+     },
+     {
+      "cor": "#2d2f07",
+      "fracao": 0.105
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "turista",
+   "descricao": "arara-vermelha 3D rindo de bico aberto, figurino turista (chapéu de palha com faixa verde, hibisco amarelo e folhas, óculos de aviador dourados, camisa havaiana verde com flores brancas, corrente de ouro com medalhão VIP, relógio de ouro no pulso)",
+   "pose": "sentada no trono; a asa direita erguida mostra o cartão VIP, a outra asa descansa no braço do trono com as penas compridas caindo até embaixo",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.4981,
+    0.0095,
+    0.4692,
+    0.9905
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "cartao_vip",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "vip",
+   "descricao": "cartão VIP preto com bordas e desenhos de ouro e uma coroa dourada, erguido na mão da asa direita",
+   "caixa": [
+    0.795,
+    0.23,
+    0.158,
+    0.255
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "medalhao",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "vip",
+   "descricao": "medalhão redondo de ouro com coroa e as letras VIP em relevo, pendurado na corrente",
+   "caixa": [
+    0.676,
+    0.59,
+    0.056,
+    0.156
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "relogio",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "vip",
+   "descricao": "relógio grande de ouro no pulso da asa apoiada no braço do trono",
+   "caixa": [
+    0.562,
+    0.625,
+    0.062,
+    0.165
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "trono",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "mascote",
+   "tema": "vip",
+   "descricao": "trono de ouro entalhado com estofado de veludo verde; aparecem o encosto à esquerda e a barra de cima à direita, atrás da cabeça, o braço esquerdo com uma voluta de ouro embaixo e o braço direito de veludo verde com uma cabeça de leão de ouro na frente",
+   "mascara": "mascaras/trono.png",
+   "caixa": [
+    0.4997,
+    0.4145,
+    0.4301,
+    0.5855
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "esfera_coroa",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "vip",
+   "descricao": "esfera de vidro com uma coroa de ouro dentro, sobre um pedestal de ouro com inscrição, à esquerda do trono",
+   "mascara": "mascaras/esfera_coroa.png",
+   "caixa": [
+    0.3964,
+    0.6603,
+    0.1012,
+    0.3397
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "mesa",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "vip",
+   "descricao": "mesinha de vidro com borda de ouro no primeiro plano, embaixo à direita, com um par de óculos escuros de aviador em cima; cobre a parte de baixo do trono e do corpo do mascote",
+   "mascara": "mascaras/mesa.png",
+   "caixa": [
+    0.7359,
+    0.8575,
+    0.2641,
+    0.1425
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "bebida",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "vip",
+   "descricao": "taça de drinque tropical amarelo com guarda-chuvinha verde-azulado, rodela de laranja e flores brancas, em cima da mesinha; fica na frente do braço direito do trono",
+   "mascara": "mascaras/bebida.png",
+   "caixa": [
+    0.8982,
+    0.5784,
+    0.1018,
+    0.2886
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "folhas_frente",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "folha grande de costela-de-adão no primeiro plano, embaixo à esquerda do trono; cobre a parte de baixo da esfera, o pé do pedestal e a lateral de baixo do trono",
+   "mascara": "mascaras/folhas_frente.png",
+   "caixa": [
+    0.4478,
+    0.7838,
+    0.0964,
+    0.2162
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     19.7,
+     23.2,
+     34.9,
+     67.6,
+     59.4,
+     91.2,
+     89.9,
+     47.6,
+     67.3,
+     35.2
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 181,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0348,
+    0.3076,
+    0.451,
+    0.1271
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.01,
+    "altura_px": 107,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#f9fcf9",
+     "#fbfcfb",
+     "#f5f7f5"
+    ],
+    "contorno_escuro_frac": 0.82
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0343,
+    0.4584,
+    0.2657,
+    0.101
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 85,
+    "peso_rel": 0.79,
+    "rampa_tercos": [
+     "#fcfdfb",
+     "#fcfcfb",
+     "#fafbfa"
+    ],
+    "contorno_escuro_frac": 0.86
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0337,
+    0.5903,
+    0.2271,
+    0.215
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 181,
+    "peso_rel": 1.69,
+    "rampa_tercos": [
+     "#fddd36",
+     "#fcc103",
+     "#f3aa02"
+    ],
+    "contorno_escuro_frac": 0.74
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0305,
+    0.0523,
+    0.2169,
+    0.1033
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.921"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "cartao_vip",
+   "nota": "a asa direita erguida mostra o cartão"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "medalhao"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "relogio"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "trono",
+   "nota": "o mascote está sentado no trono"
+  },
+  {
+   "de": "esfera_coroa",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "mesa",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano",
+   "na frente do trono": null
+  },
+  {
+   "de": "bebida",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "em cima da mesinha",
+   "na frente do braço do trono": null
+  },
+  {
+   "de": "folhas_frente",
+   "rel": "cerca",
+   "para": "trono",
+   "nota": "no primeiro plano",
+   "embaixo à esquerda": null
+  },
+  {
+   "de": "texto_l3",
+   "rel": "tema_liga",
+   "para": "cartao_vip",
+   "tema": "vip"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "tema_liga",
+   "para": "medalhao",
+   "tema": "vip"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "tema_liga",
+   "para": "trono",
+   "tema": "vip"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "tema_liga",
+   "para": "esfera_coroa",
+   "tema": "vip"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "tema_liga",
+   "para": "bebida",
+   "tema": "vip"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "trono",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "esfera_coroa",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "mesa",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "bebida",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "folhas_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 9.0,
+   "L_fundo_em_volta": 54.2
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.19
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 11.6,
+   "L_fundo_em_volta": 41.5
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.31
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.2,
+   "L_fundo_em_volta": 38.3
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.004
+  }
+ ],
+ "observacoes": [
+  "o trono de ouro com estofado verde fica atrás do mascote e foi para a camada mascote (z 2); a ficha diz sentado num trono, mas não diz que o trono é uma parte própria, com contorno",
+  "camada frente: mesinha de vidro com óculos escuros, taça de drinque tropical e uma folha grande no primeiro plano cobrem a base do trono e do mascote; a ficha v1.1 não tem camada frente",
+  "entorno: uma esfera de vidro com coroa de ouro sobre um pedestal, à esquerda; a ficha fala em drinque e ornamentos de ouro, sem a esfera",
+  "cena: mais escura e fechada que nas outras peças, com céu verde-escuro em cima; o sol aparece pequeno, à esquerda do mascote",
+  "texto: três linhas; a última é uma palavra dourada enorme (1,7 vez a altura da primeira linha branca)"
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}

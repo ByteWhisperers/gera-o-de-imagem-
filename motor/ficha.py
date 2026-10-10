@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import yaml
@@ -53,9 +54,12 @@ def prompt_da_parte(ficha: dict, parte: str, tema: str | None = None) -> str:
     texto = " ".join(p["prompt"].split())
     if "{figurino}" in texto:
         texto = texto.replace("{figurino}", " ".join(ficha["partes"]["mascote"]["figurinos"][t["figurino"]].split()))
-    for chave in ("segura", "entorno"):
-        if "{" + chave + "}" in texto:
-            texto = texto.replace("{" + chave + "}", " ".join(t[chave].split()))
+    for chave, valor in t.items():                 # segura, entorno, frente... o que o tema trouxer
+        if isinstance(valor, str) and "{" + chave + "}" in texto:
+            texto = texto.replace("{" + chave + "}", " ".join(valor.split()))
+    falta = sorted(set(re.findall(r"\{(\w+)\}", texto)))
+    if falta:
+        raise FichaInvalida(f"o prompt da parte '{parte}' pede {falta}, que o tema '{t.get('nome')}' não traz")
     return texto
 
 

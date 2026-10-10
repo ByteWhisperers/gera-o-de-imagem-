@@ -18,3 +18,11 @@ def test_junta_medidas_por_formato_com_a_origem_de_cada_numero():
     assert len(promo["L_fundo_por_decimo_de_W"]) == 10
     assert set(r["cores_do_texto"]) == {"branco", "dourado"}
     assert len(r["cores_do_texto"]["dourado"]["dE00_ficha_x_medido"]) == 3
+
+
+def test_peca_de_composicao_diferente_fica_fora_das_caixas_das_figuras():
+    r = J.juntar([TELEGRAM], FICHA, fora_do_layout=["promo-telegram"])
+    promo = r["por_formato"]["promo"]
+    assert promo["mascote"] == {} and promo["frente"] == {}
+    assert promo["texto"]["pecas"] == ["promo-telegram"]
+    assert r["fora_do_layout"] == ["promo-telegram"]
