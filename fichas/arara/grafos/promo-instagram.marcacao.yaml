@@ -1,0 +1,221 @@
+# Marcação da referência promo instagram: o que o agente propõe para a desconstrução.
+#
+# Segue o modelo aprovado (promo-telegram.marcacao.yaml) e a marcação irmã
+# home-instagram.marcacao.yaml (mesma cena no formato home). Contornos a olho,
+# em frações da largura e da altura; a ferramenta encaixa cada um na borda real.
+#
+#   python ferramentas/desconstruir.py fichas/arara/grafos/promo-instagram.marcacao.yaml
+
+peca: promo-instagram
+referencia: referencias/arara/promo/promo-1790981412-117f1d73.webp
+ficha: fichas/arara/ficha-v1.1.yaml
+formato: promo
+tema: instagram
+
+# Onde procurar o que a ferramenta mede sozinha.
+zona_texto: [0.035, 0.24, 0.50, 0.47]
+zona_logo: [0.0, 0.0, 0.30, 0.22]
+
+# Caixas das linhas: a projeção pegava um brilho dourado logo depois da última palavra da linha 4.
+texto_linhas:
+  - [0.040, 0.250, 0.410, 0.125]
+  - [0.040, 0.380, 0.490, 0.152]
+  - [0.040, 0.536, 0.420, 0.078]
+  - [0.040, 0.618, 0.4725, 0.078]
+
+nos:
+  cena:
+    tipo: fundo
+    z: 0
+    camada_psd: cena
+    descricao: vale de rio ao pôr do sol entre torres cársticas com selva; sol baixo no centro, reflexo dourado no rio; folhagem escura embaixo à esquerda; anéis de luz dourada em volta do mascote
+  mascote:
+    tipo: personagem
+    z: 3
+    camada_psd: mascote
+    figurino: turista
+    descricao: arara-vermelha 3D rindo, figurino turista (chapéu de palha com faixa verde e hibisco, óculos escuros, camisa havaiana verde, corrente de ouro com medalhão, relógio de ouro e pulseira de ouro)
+    pose: de frente, um pouco virada; a mão esquerda aponta para o celular, a outra mão ergue o celular ao lado da cabeça
+    # O celular fica fora deste contorno (tem contorno próprio, com o polegar que aparece à esquerda
+    # dele): o vão de fundo entre o pescoço, o polegar e o celular fica fechado e a ferramenta
+    # encheria esse buraco se fosse um contorno só. Celular e polegar caem na mesma camada mascote.
+    contorno: [[0.7480, 0.000], [0.7800, 0.000], [0.7950, 0.004], [0.8130, 0.020], [0.8280, 0.040], [0.8400, 0.035],
+               [0.8530, 0.022], [0.8620, 0.050], [0.8690, 0.085], [0.8720, 0.100], [0.8800, 0.115], [0.8880, 0.112],
+               [0.8970, 0.140], [0.9000, 0.165], [0.8980, 0.185], [0.9120, 0.200], [0.9050, 0.230], [0.9000, 0.240],
+               [0.9075, 0.271], [0.8960, 0.271], [0.8920, 0.285], [0.8925, 0.310],
+               [0.8910, 0.324], [0.8890, 0.333], [0.8862, 0.326], [0.8835, 0.314], [0.8800, 0.302], [0.8760, 0.291],
+               [0.8745, 0.305], [0.8735, 0.322],
+               [0.8700, 0.334], [0.8600, 0.352],
+               [0.8450, 0.370], [0.8340, 0.375], [0.8220, 0.380], [0.8080, 0.378], [0.8030, 0.400], [0.8010, 0.425],
+               [0.7950, 0.452], [0.7900, 0.478], [0.7890, 0.505], [0.7950, 0.535], [0.7995, 0.558], [0.8050, 0.575],
+               [0.8115, 0.587], [0.8150, 0.603], [0.8175, 0.617], [0.8205, 0.628], [0.8225, 0.637], [0.8240, 0.648],
+               [0.8290, 0.665], [0.8420, 0.655], [0.8550, 0.615], [0.9000, 0.578], [0.9260, 0.548], [0.9350, 0.534],
+               [0.9460, 0.545], [0.9490, 0.570], [0.9480, 0.595], [0.9520, 0.620], [0.9540, 0.650], [0.9520, 0.690],
+               [0.9480, 0.730], [0.9380, 0.765], [0.9220, 0.795], [0.9140, 0.815], [0.9070, 0.840], [0.8990, 0.862],
+               [0.8950, 0.890], [0.8870, 0.918], [0.8800, 0.935], [0.8650, 0.960], [0.8500, 1.000], [0.6500, 1.000],
+               [0.6150, 0.955], [0.6060, 0.940], [0.5900, 0.932], [0.5740, 0.920], [0.5630, 0.898], [0.5560, 0.862],
+               [0.5500, 0.832], [0.5410, 0.815], [0.5360, 0.790], [0.5290, 0.750], [0.5290, 0.735], [0.5340, 0.705],
+               [0.5400, 0.672], [0.5435, 0.645], [0.5455, 0.622], [0.5480, 0.603], [0.5560, 0.594], [0.5650, 0.594], [0.5800, 0.597],
+               [0.5950, 0.592], [0.6070, 0.582], [0.6120, 0.565], [0.6120, 0.545], [0.6130, 0.520], [0.6090, 0.495],
+               [0.6010, 0.478], [0.6000, 0.475], [0.6090, 0.460], [0.6170, 0.447], [0.6235, 0.432], [0.6255, 0.410],
+               [0.6275, 0.390], [0.6295, 0.360], [0.6320, 0.333], [0.6340, 0.310], [0.6380, 0.292], [0.6360, 0.272],
+               [0.6280, 0.250], [0.6210, 0.225], [0.6200, 0.196], [0.6250, 0.168], [0.6480, 0.140], [0.6780, 0.115],
+               [0.6810, 0.100], [0.6860, 0.065], [0.6980, 0.040], [0.7150, 0.030], [0.7300, 0.010]]
+  celular:
+    tipo: objeto_segurado
+    z: 4
+    camada_psd: mascote
+    tema: instagram
+    descricao: celular de moldura dourada com o ícone de câmera rosa e laranja na tela, erguido numa mão
+    contorno: [[0.8620, 0.338], [0.8680, 0.331], [0.8760, 0.330], [0.9350, 0.347], [0.9430, 0.357], [0.9475, 0.375],
+               [0.9475, 0.420], [0.9460, 0.480], [0.9425, 0.535], [0.9310, 0.545], [0.9310, 0.590], [0.9380, 0.600],
+               [0.9100, 0.603], [0.8930, 0.613], [0.8870, 0.628], [0.8970, 0.648], [0.8800, 0.660], [0.8720, 0.678],
+               [0.8760, 0.700], [0.8740, 0.722], [0.8660, 0.730], [0.8470, 0.715], [0.8280, 0.697], [0.8210, 0.680],
+               [0.8210, 0.650], [0.8225, 0.637], [0.8205, 0.622], [0.8180, 0.6105],
+               [0.8162, 0.600], [0.8155, 0.586], [0.8162, 0.573], [0.8180, 0.562], [0.8215, 0.554], [0.8265, 0.548],
+               [0.8320, 0.548], [0.8370, 0.540], [0.8400, 0.520], [0.8510, 0.415], [0.8580, 0.355]]
+  medalhao:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    descricao: medalhão de ouro com uma coroa, na corrente de ouro
+    caixa: [0.743, 0.660, 0.048, 0.142]
+  relogio:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    descricao: relógio de ouro com pulseira de couro no pulso da mão que aponta
+    caixa: [0.560, 0.620, 0.060, 0.160]
+  pulseira:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    descricao: pulseira larga de ouro no pulso da mão que segura o celular
+    caixa: [0.866, 0.735, 0.062, 0.095]
+  coracao_meio:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: balão vermelho com coração branco, na frente do canto do ícone grande
+    contorno: [[0.5710, 0.336], [0.5800, 0.328], [0.6110, 0.327], [0.6180, 0.338], [0.6220, 0.383], [0.6180, 0.405],
+               [0.6090, 0.430], [0.6040, 0.430], [0.5960, 0.420], [0.5840, 0.418], [0.5740, 0.410], [0.5690, 0.370]]
+  icone_grande:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: ícone de câmera rosa, roxo e laranja, grande e brilhante, à esquerda da cabeça
+    contorno: [[0.4970, 0.178], [0.5030, 0.158], [0.5130, 0.147], [0.5450, 0.146], [0.5830, 0.150], [0.5920, 0.158],
+               [0.5980, 0.190], [0.6020, 0.250], [0.6035, 0.300], [0.6020, 0.325], [0.5750, 0.330], [0.5710, 0.350],
+               [0.5600, 0.368], [0.5300, 0.373], [0.5120, 0.364], [0.5030, 0.350], [0.4980, 0.300], [0.4960, 0.240]]
+  icone_topo:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: ícone de câmera em forma de balão, um pouco desfocado, acima da aba do chapéu
+    contorno: [[0.6310, 0.030], [0.6380, 0.008], [0.6500, 0.003], [0.6680, 0.018], [0.6820, 0.038], [0.6860, 0.060],
+               [0.6830, 0.095], [0.6790, 0.115], [0.6680, 0.123], [0.6460, 0.121], [0.6400, 0.104], [0.6300, 0.075]]
+  icone_vao:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: ícone de câmera entre o pescoço e o celular, atrás do polegar e da borda do celular
+    contorno: [[0.7955, 0.452], [0.8020, 0.441], [0.8155, 0.438], [0.8350, 0.440], [0.8420, 0.447], [0.8445, 0.460],
+               [0.8445, 0.500], [0.8410, 0.530], [0.8370, 0.552], [0.8350, 0.558], [0.8000, 0.560], [0.7945, 0.552],
+               [0.7920, 0.500], [0.7925, 0.465]]
+  coracao_direita:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: balão vermelho com coração branco, à direita do chapéu
+    contorno: [[0.9000, 0.150], [0.9120, 0.130], [0.9340, 0.106], [0.9570, 0.113], [0.9635, 0.138], [0.9645, 0.170],
+               [0.9580, 0.212], [0.9460, 0.240], [0.9380, 0.232], [0.9260, 0.228], [0.9100, 0.205], [0.9000, 0.175]]
+  coracao_mao:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: balão vermelho com coração branco, encostado no polegar da mão que segura o celular
+    contorno: [[0.9430, 0.520], [0.9520, 0.503], [0.9600, 0.498], [0.9900, 0.510], [1.0000, 0.520], [1.0000, 0.600],
+               [0.9850, 0.615], [0.9620, 0.625], [0.9550, 0.613], [0.9460, 0.590], [0.9420, 0.555]]
+  coracao_esquerda:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: instagram
+    descricao: balão vermelho com coração branco, à esquerda da asa
+    contorno: [[0.4580, 0.768], [0.4700, 0.745], [0.5080, 0.714], [0.5280, 0.722], [0.5370, 0.760], [0.5380, 0.800],
+               [0.5320, 0.822], [0.5180, 0.862], [0.5080, 0.856], [0.4920, 0.848], [0.4740, 0.855], [0.4620, 0.815]]
+  moedas:
+    tipo: objeto_grupo
+    z: 2
+    camada_psd: entorno
+    descricao: três moedas de ouro grossas com uma coroa, uma encostada no ombro à esquerda e duas à direita do celular
+    elipses: [[0.5425, 0.463, 0.0745, 0.140], [0.938, 0.288, 0.056, 0.110], [0.949, 0.673, 0.045, 0.098]]
+  coracao_frente:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    tema: instagram
+    descricao: balão vermelho com coração branco, grande e desfocado no primeiro plano, cobre a ponta da asa e a barriga
+    contorno: [[0.5850, 1.000], [0.5920, 0.945], [0.6000, 0.925], [0.6150, 0.897], [0.6400, 0.884], [0.6600, 0.857],
+               [0.6900, 0.848], [0.7120, 0.853], [0.7260, 0.866], [0.7350, 0.895], [0.7390, 0.930], [0.7400, 1.000]]
+  moeda_frente:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    descricao: moeda de ouro com coroa, grande e desfocada no primeiro plano, cobre o antebraço e a lateral da barriga
+    contorno: [[0.7980, 0.900], [0.8030, 0.870], [0.8150, 0.852], [0.8380, 0.842], [0.8550, 0.848], [0.8700, 0.875],
+               [0.8790, 0.915], [0.8790, 0.960], [0.8730, 1.000], [0.8020, 1.000], [0.7970, 0.950]]
+  icone_frente:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    tema: instagram
+    descricao: ícone de câmera grande e bem desfocado no primeiro plano, no canto de baixo à direita
+    contorno: [[0.9090, 1.000], [0.9095, 0.950], [0.9140, 0.905], [0.9210, 0.870], [0.9300, 0.845], [0.9420, 0.822],
+               [0.9600, 0.813], [0.9800, 0.810], [1.0000, 0.812], [1.0000, 1.000]]
+
+# Relações que o agente lê na peça.
+arestas:
+  - {de: mascote, rel: segura, para: celular}
+  - {de: mascote, rel: apresenta, para: celular, nota: a outra mão aponta para o celular}
+  - {de: mascote, rel: veste, para: medalhao}
+  - {de: mascote, rel: veste, para: relogio}
+  - {de: mascote, rel: veste, para: pulseira}
+  - {de: coracao_meio, rel: cerca, para: mascote}
+  - {de: icone_grande, rel: cerca, para: mascote}
+  - {de: icone_topo, rel: cerca, para: mascote}
+  - {de: icone_vao, rel: cerca, para: mascote}
+  - {de: coracao_direita, rel: cerca, para: mascote}
+  - {de: coracao_mao, rel: cerca, para: mascote}
+  - {de: coracao_esquerda, rel: cerca, para: mascote}
+  - {de: moedas, rel: cerca, para: mascote}
+  - {de: coracao_frente, rel: cerca, para: mascote, nota: no primeiro plano, na frente da asa e da barriga}
+  - {de: moeda_frente, rel: cerca, para: mascote, nota: no primeiro plano, na frente do antebraço}
+  - {de: icone_frente, rel: cerca, para: mascote, nota: no primeiro plano}
+  - {de: texto_l2, rel: tema_liga, para: celular, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: coracao_meio, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: icone_grande, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: icone_topo, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: icone_vao, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: coracao_direita, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: coracao_mao, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: coracao_esquerda, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: coracao_frente, tema: instagram}
+  - {de: texto_l2, rel: tema_liga, para: icone_frente, tema: instagram}
+
+observacoes:
+  - "camada frente: três objetos grandes e bem desfocados no primeiro plano, embaixo: um balão de coração na frente da ponta da asa e da barriga, uma moeda com coroa na frente do antebraço e um ícone de câmera no canto de baixo à direita; a ficha v1.1 não tem camada frente"
+  - "entorno: além dos ícones de câmera e dos corações que o tema instagram prevê, há três moedas de ouro grossas com uma coroa (uma encostada no ombro, duas à direita do celular); o tema não fala em moedas"
+  - "os ícones de câmera vêm em dois formatos (quadrado arredondado e balão com ponta, como balão de fala) e os corações vêm dentro de balões vermelhos com ponta; a ficha não tem palavra para esse balão"
+  - "medalhão: a corrente leva um medalhão de ouro com uma coroa, não o ícone do tema (na peça telegram o medalhão mostrava o ícone)"
+  - "figurino turista com extras que a ficha não cita: relógio de ouro com pulseira de couro no pulso da mão que aponta e uma pulseira larga de ouro no pulso da mão que segura o celular; a faixa do chapéu é verde"
+  - "o objeto segurado bate com o tema (celular com o ícone de câmera rosa e laranja na tela, moldura dourada), mas o mascote aponta com um dedo de uma mão escura de garras, não com a ponta da asa"
+  - "cena: anéis e riscos de luz dourada em volta do mascote e um brilho amarelo forte no vão entre o pescoço e o celular; a ficha só prevê poeira dourada e raios finos na camada brilho"
+  - "texto: quatro linhas (o exemplo do tema tem três); a segunda é dourada e bem maior, a terceira e a quarta são menores e do mesmo tamanho; a última mistura palavras brancas e uma palavra dourada na mesma linha, e a ficha só prevê um estilo por linha"
+  - "mesma cena, mesmo figurino e mesmos objetos da peça home-instagram, só reenquadrados no formato promo: as duas peças podem sair do mesmo conjunto de partes"

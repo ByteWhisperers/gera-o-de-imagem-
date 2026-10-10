@@ -98,3 +98,26 @@ def test_grade_desenha_marcacao_no_zoom():
     assert tela.size == (800, 800)
     diferente = np.abs(np.asarray(tela, int) - np.asarray(so_grade, int)).sum(2) > 0
     assert diferente[:, 150:].any()                        # o contorno "m" aparece no zoom
+
+
+def test_letra_grande_sai_inteira_e_o_miolo_do_o_continua_vazado():
+    H, W = 120, 400
+    rgb = np.zeros((H, W, 3), np.float32)
+    rgb[:] = [20, 50, 25]                                  # fundo escuro
+    yy, xx = np.mgrid[:H, :W]
+    # uma barra dourada grossa com contorno escuro: o limiar só pega a borda dela
+    rgb[16:104, 16:84] = [15, 10, 5]
+    rgb[20:100, 20:80] = [250, 215, 30]
+    rgb[60:100, 20:80] = [205, 125, 15]                   # parte de baixo laranja escura (fora do limiar)
+    # um "O": anel dourado com contorno, miolo de fundo
+    r = np.hypot(xx - 130, yy - 60)                        # colado na barra: mesma palavra
+    rgb[(r < 44)] = [15, 10, 5]
+    rgb[(r < 40) & (r > 18)] = [250, 215, 30]
+    rgb[(r <= 18)] = [15, 10, 5]
+    rgb[(r < 14)] = [20, 50, 25]
+    letras, linhas = D.medir_texto(rgb, [0, 0, 1, 1], np.zeros((H, W), bool))
+    assert len(linhas) == 1
+    assert letras[24:96, 24:76].mean() > 0.97              # a barra inteira, inclusive a base laranja
+    assert not letras[(r < 12)].any()                      # o miolo do O é fundo
+    assert letras[(r < 37) & (r > 21)].mean() > 0.97
+    assert linhas[0]["fracao_dourada"] == 1.0

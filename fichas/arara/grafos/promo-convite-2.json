@@ -1,0 +1,636 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-convite-2",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/promo/promo-1790981047-26876e08.webp",
+ "formato_peca": "promo",
+ "tema": "convite",
+ "tamanho_px": [
+  1867,
+  842
+ ],
+ "pasta": "fichas/arara/grafos/promo-convite-2",
+ "marcacao": "fichas/arara/grafos/promo-convite-2.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {},
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio ao pôr do sol entre torres cársticas cobertas de selva; sol baixo perto do centro, reflexo dourado no rio; folhas de palmeira na borda esquerda e selva escura atrás da árvore de medalhões; linhas douradas finas e brilhantes ligando os medalhões",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#041807",
+      "fracao": 0.217
+     },
+     {
+      "cor": "#132007",
+      "fracao": 0.212
+     },
+     {
+      "cor": "#314212",
+      "fracao": 0.194
+     },
+     {
+      "cor": "#57611b",
+      "fracao": 0.158
+     },
+     {
+      "cor": "#a1952b",
+      "fracao": 0.112
+     },
+     {
+      "cor": "#2d2706",
+      "fracao": 0.108
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "realeza",
+   "descricao": "arara-vermelha 3D sorrindo, figurino realeza (coroa de ouro com esmeraldas, colar verde com esmeralda), dentro de um medalhão redondo de ouro no topo da árvore de indicação, com um selo redondo de indicação no canto de baixo à direita",
+   "pose": "busto de frente, bico aberto sorrindo, faz sinal de positivo com a asa (mão de luva azul) do lado esquerdo do medalhão",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.6636,
+    0.0,
+    0.1414,
+    0.2957
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "coroa",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "coroa de ouro com pontas de bolinha e esmeraldas, sai por cima do medalhão",
+   "caixa": [
+    0.7195,
+    0.0,
+    0.072,
+    0.105
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "colar",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "colar verde com uma esmeralda grande no peito",
+   "caixa": [
+    0.707,
+    0.202,
+    0.049,
+    0.058
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "selo_convite",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "selo redondo escuro com borda de ouro e ícone dourado de bonequinho com sinal de mais, no canto de baixo do medalhão do topo (fica na frente da placa 1)",
+   "caixa": [
+    0.7527,
+    0.184,
+    0.0515,
+    0.1075
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "medalhoes",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "convite",
+   "descricao": "treze medalhões redondos de ouro com variantes da arara (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas), em três fileiras de 3, 4 e 6 abaixo do mascote",
+   "mascara": "mascaras/medalhoes.png",
+   "caixa": [
+    0.4681,
+    0.3076,
+    0.519,
+    0.6496
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 13
+  },
+  {
+   "id": "selos",
+   "tipo": "objeto_grupo",
+   "z": 3,
+   "camada_psd": "entorno",
+   "tema": "convite",
+   "descricao": "selos redondos escuros com borda de ouro e ícone dourado de bonequinho com sinal de mais, um no canto de baixo à direita de cada medalhão (ficam na frente do aro do medalhão)",
+   "mascara": "mascaras/selos.png",
+   "caixa": [
+    0.5244,
+    0.4204,
+    0.4633,
+    0.5297
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 13
+  },
+  {
+   "id": "bola",
+   "tipo": "objeto_segurado",
+   "z": 2,
+   "camada_psd": "entorno",
+   "descricao": "bola de futebol que a arara jogadora (fileira do meio, à esquerda) segura na frente do aro do medalhão dela; os pixels ficam no medalhão",
+   "caixa": [
+    0.5175,
+    0.6065,
+    0.0295,
+    0.062
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "placa_1",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "plaquinha verde arredondada com borda de ouro, logo abaixo do medalhão do topo (cobre a parte de baixo dele)",
+   "mascara": "mascaras/placa_1.png",
+   "caixa": [
+    0.6851,
+    0.2696,
+    0.0884,
+    0.0618
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "placa_2",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "plaquinha verde arredondada com borda de ouro, entre a primeira e a segunda fileira de medalhões",
+   "mascara": "mascaras/placa_2.png",
+   "caixa": [
+    0.6861,
+    0.4727,
+    0.0873,
+    0.0665
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "placa_3",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "plaquinha verde arredondada com borda de ouro, entre a segunda e a terceira fileira de medalhões",
+   "mascara": "mascaras/placa_3.png",
+   "caixa": [
+    0.6856,
+    0.6912,
+    0.0868,
+    0.0665
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     18.6,
+     24.6,
+     35.8,
+     60.5,
+     87.5,
+     39.3,
+     34.8,
+     33.9,
+     40.7,
+     26.7
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 711,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.037,
+    0.2399,
+    0.4708,
+    0.0808
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 68,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fcfdfb",
+     "#f9faf9",
+     "#efefef"
+    ],
+    "contorno_escuro_frac": 0.69
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0428,
+    0.3444,
+    0.2721,
+    0.0962
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 81,
+    "peso_rel": 1.19,
+    "rampa_tercos": [
+     "#fcfdfc",
+     "#f8f8f8",
+     "#ebeceb"
+    ],
+    "contorno_escuro_frac": 0.88
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0434,
+    0.4751,
+    0.4001,
+    0.1235
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 104,
+    "peso_rel": 1.53,
+    "rampa_tercos": [
+     "#fce307",
+     "#fddb06",
+     "#f0ac02"
+    ],
+    "contorno_escuro_frac": 0.73
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0412,
+    0.6081,
+    0.3824,
+    0.177
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 149,
+    "peso_rel": 2.19,
+    "rampa_tercos": [
+     "#fde407",
+     "#fcd505",
+     "#eda602"
+    ],
+    "contorno_escuro_frac": 0.61
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "rotulo_1",
+   "tipo": "texto",
+   "papel": "rotulo",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/rotulo_1.png",
+   "caixa": [
+    0.7086,
+    0.2886,
+    0.0418,
+    0.0238
+   ],
+   "descricao": "rótulo curto branco na placa 1, nome da primeira camada da árvore",
+   "estilo": {
+    "altura_px": 20,
+    "estilo_ficha": "branco"
+   },
+   "fonte": "medido:letras claras dentro da caixa do agente"
+  },
+  {
+   "id": "rotulo_2",
+   "tipo": "texto",
+   "papel": "rotulo",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/rotulo_2.png",
+   "caixa": [
+    0.7081,
+    0.4976,
+    0.0439,
+    0.0238
+   ],
+   "descricao": "rótulo curto branco na placa 2, nome da segunda camada da árvore (com acento)",
+   "estilo": {
+    "altura_px": 20,
+    "estilo_ficha": "branco"
+   },
+   "fonte": "medido:letras claras dentro da caixa do agente"
+  },
+  {
+   "id": "rotulo_3",
+   "tipo": "texto",
+   "papel": "rotulo",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/rotulo_3.png",
+   "caixa": [
+    0.707,
+    0.715,
+    0.0445,
+    0.0249
+   ],
+   "descricao": "rótulo curto branco na placa 3, nome da terceira camada da árvore (com acento)",
+   "estilo": {
+    "altura_px": 21,
+    "estilo_ficha": "branco"
+   },
+   "fonte": "medido:letras claras dentro da caixa do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0305,
+    0.0523,
+    0.2169,
+    0.1033
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.964"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "coroa"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "colar"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "selo_convite",
+   "nota": "o selo de indicação fica preso no canto do medalhão do mascote"
+  },
+  {
+   "de": "mascote",
+   "rel": "apresenta",
+   "para": "medalhoes",
+   "nota": "o mascote é o topo da árvore de indicação; linhas douradas descem dele até os medalhões"
+  },
+  {
+   "de": "medalhoes",
+   "rel": "veste",
+   "para": "selos",
+   "nota": "cada medalhão leva um selo de indicação no canto"
+  },
+  {
+   "de": "medalhoes",
+   "rel": "segura",
+   "para": "bola",
+   "nota": "só a arara jogadora de futebol segura a bola"
+  },
+  {
+   "de": "rotulo_1",
+   "rel": "fica_sobre",
+   "para": "placa_1"
+  },
+  {
+   "de": "rotulo_2",
+   "rel": "fica_sobre",
+   "para": "placa_2"
+  },
+  {
+   "de": "rotulo_3",
+   "rel": "fica_sobre",
+   "para": "placa_3"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "medalhoes",
+   "tema": "convite"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "selos",
+   "tema": "convite"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "selo_convite",
+   "tema": "convite"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "medalhoes",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "selos",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "placa_1",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "placa_2",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "placa_3",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 10.4,
+   "L_fundo_em_volta": 43.7
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.29
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 14.4,
+   "L_fundo_em_volta": 21.1
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.36
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 7.4,
+   "L_fundo_em_volta": 52.6
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.08
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 5.7,
+   "L_fundo_em_volta": 67.8
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.006
+  }
+ ],
+ "observacoes": [
+  "A peça não tem um mascote grande: mostra uma árvore de indicação com 14 medalhões redondos de ouro (1 no topo, depois fileiras de 3, 4 e 6). O do topo (arara de coroa fazendo positivo, num medalhão maior) foi marcado como personagem; os outros 13 são variantes da arara com figurinos próprios (chapéu de palha e óculos escuros, flor no cabelo, fone de ouvido, jogador de futebol, aviador, pescador, surfista, boné, colar de flores, explorador, cocar de penas) e entram como objeto_grupo no entorno. A ficha v1.1 não tem palavra para medalhão com retrato nem para diagrama em árvore.",
+  "O tema convite da ficha v1.1 pede o mascote segurando um baú do tesouro aberto cheio de moedas e, em volta, moedas e baús pequenos. Aqui o mascote não segura nada (faz sinal de positivo com a asa de luva azul) e o entorno é a árvore de medalhões: não há baú nem moeda na peça. Só o figurino confere (realeza: coroa de ouro com esmeraldas e colar verde com esmeralda).",
+  "Selos redondos escuros com borda de ouro e ícone de bonequinho com sinal de mais, um no canto de cada medalhão (14 no total, contando o do mascote): é um ícone de interface que a ficha v1.1 não prevê.",
+  "Linhas douradas finas e brilhantes ligam os medalhões como uma rede; ficaram na cena. Se a IA refizer o fundo elas somem, então a ficha v1.2 precisa dizer de onde vêm (código ou parte gerada).",
+  "Três plaquinhas verdes com borda de ouro entre as camadas da árvore, cada uma com um rótulo curto de texto (rotulo_1 a rotulo_3, tipo texto, fora do bloco principal: o texto sai de código). As placas ficam na frente do medalhão do topo e dos selos e medalhões vizinhos, por isso foram para a camada frente, que a ficha v1.1 não tem; placa e rótulo poderiam sair juntos de código.",
+  "O selo do medalhão do topo fica na frente da placa 1; as placas 2 e 3 cobrem a parte de baixo de selos e medalhões vizinhos; cada selo fica na frente do aro do seu medalhão. A ordem certa é: cena e linhas, medalhões, selos, mascote, placas, rótulos (com o selo do topo por cima da placa 1).",
+  "Uma das variantes (jogadora de futebol, a primeira da fileira do meio) segura uma bola na frente do aro do medalhão dela (nó bola, no entorno); a camisa dela tem um número impresso, que é texto dentro da imagem gerada.",
+  "O layout promo da ficha v1.1 põe o mascote em x 0,50 a 1,0 com a altura inteira; aqui o personagem é pequeno (cerca de 14% da largura e 35% da altura, no alto, em x 0,66 a 0,80) e o diagrama ocupa x 0,47 a 0,99 e quase a altura inteira.",
+  "O bloco de texto tem 4 linhas (duas brancas em cima, duas douradas embaixo, a última bem maior); o único texto_exemplo da ficha (no tema instagram; o tema convite não tem) tem 3. O bloco vai de y 0,24 a 0,79, mais alto que a caixa de texto do layout promo (y 0,26 a 0,74)."
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}

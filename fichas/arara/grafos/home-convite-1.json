@@ -1,0 +1,624 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "home-convite-1",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/home/banner1.webp",
+ "formato_peca": "home",
+ "tema": "convite",
+ "tamanho_px": [
+  2048,
+  682
+ ],
+ "pasta": "fichas/arara/grafos/home-convite-1",
+ "marcacao": "fichas/arara/grafos/home-convite-1.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {},
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio ao pôr do sol entre torres cársticas com selva; sol baixo no centro, reflexo dourado no rio; raios de luz dourados longos e diagonais por trás do mascote; um galho grosso com um tufo de folhas atravessa a parte de baixo, à direita, onde o mascote se apoia",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#091a09",
+      "fracao": 0.227
+     },
+     {
+      "cor": "#384719",
+      "fracao": 0.186
+     },
+     {
+      "cor": "#1e2607",
+      "fracao": 0.179
+     },
+     {
+      "cor": "#67621b",
+      "fracao": 0.167
+     },
+     {
+      "cor": "#392d07",
+      "fracao": 0.131
+     },
+     {
+      "cor": "#bc9d31",
+      "fracao": 0.11
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "realeza",
+   "descricao": "arara-vermelha 3D rindo, figurino realeza (coroa de ouro com esmeraldas e penas vermelhas, amarelas e azuis, colar de ouro com esmeralda grande, pulseiras de ouro com esmeraldas)",
+   "pose": "de frente, atrás do galho; a asa esquerda aberta e erguida segura um baú aberto no alto, a outra mão agarra o galho",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.604,
+    0.0,
+    0.3232,
+    0.8812
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "bau_segurado",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "baú de madeira com ferragens de ouro, aberto e cheio de moedas de ouro e pedras verdes, erguido numa mão",
+   "caixa": [
+    0.65,
+    0.125,
+    0.094,
+    0.268
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "coroa",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "coroa de ouro com esmeraldas e um penacho de penas vermelhas, amarelas e azuis",
+   "caixa": [
+    0.8,
+    0.065,
+    0.117,
+    0.275
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "colar",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "colar de ouro com uma esmeralda grande no peito",
+   "caixa": [
+    0.793,
+    0.465,
+    0.078,
+    0.182
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "pulseira_alta",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "pulseira larga de ouro com esmeraldas no pulso que ergue o baú",
+   "caixa": [
+    0.703,
+    0.385,
+    0.044,
+    0.12
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "pulseira_baixa",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "convite",
+   "descricao": "pulseira larga de ouro com esmeraldas no pulso apoiado no galho",
+   "caixa": [
+    0.778,
+    0.728,
+    0.042,
+    0.1
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "bau_esquerda",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "convite",
+   "descricao": "baú aberto cheio de moedas de ouro atrás do galho, à esquerda do mascote, com a parte de baixo escondida pelo galho e pelas folhas",
+   "mascara": "mascaras/bau_esquerda.png",
+   "caixa": [
+    0.6494,
+    0.5909,
+    0.082,
+    0.1628
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "bau_direita",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "convite",
+   "descricao": "baú aberto cheio de moedas de ouro atrás do ombro direito do mascote",
+   "mascara": "mascaras/bau_direita.png",
+   "caixa": [
+    0.8965,
+    0.3754,
+    0.0767,
+    0.2097
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "bau_frente",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "convite",
+   "descricao": "baú grande aberto transbordando moedas de ouro e uma esmeralda, no canto de baixo à direita; cobre a ponta da asa direita do mascote; um montinho de moedas ao lado",
+   "mascara": "mascaras/bau_frente.png",
+   "caixa": [
+    0.8672,
+    0.5381,
+    0.1328,
+    0.3739
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "bau_baixo",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "convite",
+   "descricao": "baú aberto cheio de moedas no primeiro plano, embaixo, na frente do galho e logo abaixo da mão apoiada",
+   "mascara": "mascaras/bau_baixo.png",
+   "caixa": [
+    0.7148,
+    0.8563,
+    0.147,
+    0.1437
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     25.5,
+     28.0,
+     30.5,
+     40.5,
+     86.7,
+     68.7,
+     44.0,
+     52.3,
+     47.9,
+     43.5
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 852,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0913,
+    0.2155,
+    0.3428,
+    0.0704
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 48,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#f7dd32",
+     "#f9e240",
+     "#ecc018"
+    ],
+    "contorno_escuro_frac": 0.78
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0928,
+    0.3079,
+    0.2295,
+    0.0968
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 66,
+    "peso_rel": 1.38,
+    "rampa_tercos": [
+     "#efefef",
+     "#f5f6f5",
+     "#dcdcdc"
+    ],
+    "contorno_escuro_frac": 0.88
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0928,
+    0.4076,
+    0.333,
+    0.1745
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 119,
+    "peso_rel": 2.48,
+    "rampa_tercos": [
+     "#fadd27",
+     "#f9dc28",
+     "#dea306"
+    ],
+    "contorno_escuro_frac": 0.78
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0918,
+    0.6026,
+    0.3369,
+    0.0718
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 49,
+    "peso_rel": 1.02,
+    "rampa_tercos": [
+     "#eeefee",
+     "#f5f6f5",
+     "#dbdbdb"
+    ],
+    "contorno_escuro_frac": 0.92
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l5",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l5.png",
+   "caixa": [
+    0.0923,
+    0.6877,
+    0.1934,
+    0.11
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 0.42,
+    "altura_px": 75,
+    "peso_rel": 1.56,
+    "rampa_tercos": [
+     "#f1e4cd",
+     "#f0ddd5",
+     "#f3cd1e"
+    ],
+    "contorno_escuro_frac": 0.87
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0298,
+    0.0777,
+    0.1377,
+    0.085
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.932"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "bau_segurado",
+   "nota": "a asa erguida mostra o baú aberto"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "coroa"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "colar"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "pulseira_alta"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "pulseira_baixa"
+  },
+  {
+   "de": "bau_esquerda",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "bau_direita",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "bau_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "na frente da asa direita"
+  },
+  {
+   "de": "bau_baixo",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "bau_segurado",
+   "tema": "convite"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "bau_esquerda",
+   "tema": "convite"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "bau_direita",
+   "tema": "convite"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "bau_frente",
+   "tema": "convite"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "bau_baixo",
+   "tema": "convite"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "bau_esquerda",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "bau_direita",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "bau_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "bau_baixo",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 7.9,
+   "L_fundo_em_volta": 43.9
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.31
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 12.8,
+   "L_fundo_em_volta": 25.7
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.03
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 7.6,
+   "L_fundo_em_volta": 45.4
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.12
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 10.7,
+   "L_fundo_em_volta": 36.1
+  },
+  {
+   "de": "texto_l4",
+   "rel": "empilhado_acima",
+   "para": "texto_l5",
+   "vao_rel_altura": 0.18
+  },
+  {
+   "de": "texto_l5",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l5",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.2,
+   "L_fundo_em_volta": 51.4
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.062
+  }
+ ],
+ "observacoes": [
+  "camada frente: dois baús ficam na frente do mascote (um cobre a ponta da asa direita, outro no primeiro plano embaixo, na frente do galho); a ficha v1.1 não tem camada frente",
+  "entorno: a ficha fala em algumas moedas soltas e baús pequenos; aqui não há moedas soltas no ar, são quatro baús grandes abertos e cheios de moedas (dois atrás do mascote, dois na frente)",
+  "cena: um galho grosso atravessa a parte de baixo e o mascote fica atrás dele, com uma mão agarrada no galho; a ficha não prevê galho nem apoio",
+  "um tufo de folhas em cima do galho esconde a parte de baixo do corpo do mascote; as folhas ficaram na cena (não viraram nó da camada frente), então um mascote novo em outra pose não seria coberto por elas",
+  "figurino realeza: as penas da coroa são vermelhas, amarelas e azuis (a ficha diz penas verdes); o colar tem uma esmeralda grande no peito e há duas pulseiras largas de ouro com esmeraldas",
+  "o objeto segurado bate com o tema (baú aberto erguido numa asa), mas o mascote segura com uma mão escura de dedos, não com a ponta da asa",
+  "texto: cinco linhas; a última mistura palavras brancas e uma parte dourada bem maior na mesma linha; a ficha só prevê um estilo por linha",
+  "raios de luz dourados longos e diagonais atravessam o fundo e somem por trás da asa erguida e do baú; a ficha só prevê poeira dourada e raios finos na camada brilho"
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}

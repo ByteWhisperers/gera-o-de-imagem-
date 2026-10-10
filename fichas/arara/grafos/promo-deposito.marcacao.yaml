@@ -1,0 +1,176 @@
+# Marcação da referência promo 1790980959 (tema deposito): o que o agente propõe para a desconstrução.
+#
+# Segue o modelo aprovado (promo-telegram.marcacao.yaml). Contornos a olho, em
+# frações da largura e da altura; a ferramenta encaixa cada um na borda real.
+#
+#   python ferramentas/desconstruir.py fichas/arara/grafos/promo-deposito.marcacao.yaml
+
+peca: promo-deposito
+referencia: referencias/arara/promo/promo-1790980959-9639e055.webp
+ficha: fichas/arara/ficha-v1.1.yaml
+formato: promo
+tema: deposito
+
+# Onde procurar o que a ferramenta mede sozinha.
+zona_texto: [0.035, 0.24, 0.548, 0.475]
+zona_logo: [0.0, 0.0, 0.28, 0.2]
+# Caixas das linhas: a terceira (dourada e enorme) começa logo antes da letra, para não pegar o risco de luz dourado da esquerda.
+texto_linhas:
+  - [0.035, 0.250, 0.490, 0.100]
+  - [0.035, 0.355, 0.548, 0.100]
+  - [0.048, 0.462, 0.280, 0.250]
+
+nos:
+  cena:
+    tipo: fundo
+    z: 0
+    camada_psd: cena
+    descricao: vale de rio entre torres cársticas com selva, todo em tons de verde, com o sol baixo atrás das torres e reflexo dourado no rio; riscos de luz verde neon cruzam o fundo por trás do mascote; folhas grandes desfocadas nos cantos de baixo
+  mascote:
+    tipo: personagem
+    z: 3
+    camada_psd: mascote
+    figurino: realeza
+    descricao: arara-vermelha 3D rindo, figurino realeza (coroa de ouro com esmeraldas e penas vermelhas, amarelas e azuis, colar de ouro com esmeralda grande, pulseiras de ouro com esmeraldas)
+    pose: de frente, pousada atrás de um galho; a asa esquerda aberta e erguida, a mão dessa asa ergue uma moeda de ouro; a outra mão agarra o galho; a cauda aparece embaixo do galho
+    contorno: [[0.5375, 0], [0.5533, 0], [0.5688, 0.0279], [0.5735, 0.036], [0.5702, 0.0261], [0.5637, 0.0107],
+               [0.5616, 0], [0.6, 0], [0.607, 0.03], [0.655, 0.088], [0.695, 0.145], [0.728, 0.2],
+               [0.725, 0.225], [0.734, 0.25], [0.738, 0.28], [0.74, 0.31], [0.745, 0.335], [0.7555, 0.352],
+               [0.762, 0.31], [0.762, 0.27], [0.764, 0.235], [0.77, 0.207], [0.771, 0.168], [0.778, 0.152],
+               [0.789, 0.125], [0.795, 0.076], [0.805, 0.066], [0.828, 0.034], [0.841, 0.008], [0.848, 0.045],
+               [0.856, 0.077], [0.864, 0.098], [0.875, 0.125], [0.89, 0.14], [0.905, 0.15], [0.914, 0.165],
+               [0.922, 0.2], [0.917, 0.238], [0.903, 0.275], [0.9, 0.31], [0.905, 0.36], [0.913, 0.4],
+               [0.926, 0.438], [0.941, 0.46], [0.949, 0.495], [0.954, 0.545], [0.9535, 0.597], [0.951, 0.643],
+               [0.949, 0.680], [0.941, 0.688], [0.939, 0.700], [0.9355, 0.715], [0.934, 0.722], [0.939, 0.731], [0.943, 0.745], [0.930, 0.752], [0.905, 0.760], [0.897, 0.772], [0.890, 0.787],
+               [0.878, 0.792], [0.868, 0.803], [0.858, 0.812], [0.845, 0.822],
+               [0.822, 0.8], [0.805, 0.795], [0.803, 0.8], [0.806, 0.925], [0.822, 0.935], [0.825, 0.97],
+               [0.822, 1], [0.773, 1], [0.778, 0.96], [0.786, 0.925], [0.794, 0.925], [0.793, 0.8],
+               [0.788, 0.8], [0.779, 0.822], [0.759, 0.838], [0.733, 0.836], [0.724, 0.815], [0.723, 0.762],
+               [0.729, 0.750], [0.737, 0.750], [0.750, 0.752], [0.760, 0.748], [0.769, 0.735], [0.769, 0.700], [0.764, 0.684], [0.752, 0.688], [0.742, 0.692], [0.735, 0.692], [0.722, 0.658],
+               [0.7, 0.62], [0.68, 0.602], [0.672, 0.572], [0.657, 0.522], [0.6596, 0.5166], [0.6631, 0.5077],
+               [0.6599, 0.5101], [0.647, 0.5089], [0.6414, 0.4988], [0.6366, 0.4893], [0.6371, 0.4774], [0.6438, 0.4614],
+               [0.6347, 0.465], [0.6288, 0.4638], [0.6197, 0.4567], [0.6168, 0.4501], [0.6125, 0.4359], [0.613, 0.4276],
+               [0.6176, 0.4258], [0.6269, 0.4074], [0.6122, 0.4056], [0.6047, 0.4008], [0.5953, 0.3812], [0.5967, 0.3723],
+               [0.5988, 0.3723], [0.6058, 0.3628], [0.6109, 0.3587], [0.6074, 0.3533], [0.5999, 0.3533], [0.5903, 0.3462],
+               [0.5798, 0.3219], [0.5801, 0.3129], [0.5886, 0.3106], [0.5929, 0.3058], [0.6031, 0.3005], [0.6105, 0.2972],
+               [0.603, 0.296], [0.5903, 0.2916], [0.579, 0.2809], [0.5653, 0.2542], [0.5616, 0.2411], [0.5619, 0.2322],
+               [0.5742, 0.2346], [0.592, 0.2345], [0.601, 0.2355], [0.592, 0.2305], [0.5817, 0.2239], [0.5688, 0.2061],
+               [0.5573, 0.1853], [0.5487, 0.1591], [0.545, 0.1401], [0.5463, 0.136], [0.5661, 0.1514], [0.5747, 0.1562],
+               [0.5782, 0.1544], [0.572, 0.1479], [0.556, 0.1182], [0.5487, 0.101], [0.5439, 0.0867], [0.5396, 0.0724],
+               [0.5343, 0.0499], [0.5321, 0.0356], [0.5329, 0.0279], [0.5442, 0.0445], [0.5463, 0.0505], [0.556, 0.064],
+               [0.5615, 0.0715], [0.5575, 0.062], [0.5434, 0.0261], [0.537, 0.0024]]
+  moeda_erguida:
+    tipo: objeto_segurado
+    z: 4
+    camada_psd: mascote
+    tema: deposito
+    descricao: moeda de ouro grande com furo quadrado no meio, erguida na mão da asa aberta
+    caixa: [0.628, 0.168, 0.073, 0.158]
+  coroa:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: deposito
+    descricao: coroa de ouro com esmeraldas e um penacho de penas vermelhas, amarelas e azuis
+    nota: contorno próprio (e não só caixa) porque o penacho tem vãos estreitos de fundo entre as penas que a faixa larga do contorno do mascote não separa; continua na camada mascote
+    contorno: [[0.783, 0.144], [0.786, 0.124], [0.795, 0.077], [0.8015, 0.092], [0.812, 0.068], [0.818, 0.072],
+               [0.822, 0.059], [0.830, 0.041], [0.834, 0.030], [0.841, 0.014], [0.844, 0.036], [0.846, 0.058],
+               [0.849, 0.066], [0.8585, 0.076], [0.860, 0.093], [0.863, 0.100], [0.867, 0.073], [0.872, 0.044],
+               [0.880, 0.024], [0.890, 0.009], [0.900, 0.000], [0.904, 0.000], [0.900, 0.022], [0.896, 0.040],
+               [0.905, 0.037], [0.915, 0.030], [0.926, 0.028], [0.931, 0.028], [0.922, 0.042], [0.913, 0.062],
+               [0.904, 0.082], [0.897, 0.095], [0.906, 0.097], [0.916, 0.104], [0.924, 0.112], [0.931, 0.121],
+               [0.922, 0.125], [0.926, 0.138], [0.930, 0.151], [0.934, 0.166], [0.926, 0.170], [0.918, 0.178],
+               [0.917, 0.200], [0.916, 0.222], [0.914, 0.236], [0.910, 0.244], [0.905, 0.267], [0.902, 0.284],
+               [0.900, 0.297], [0.896, 0.290], [0.889, 0.256], [0.880, 0.222], [0.870, 0.193], [0.860, 0.172],
+               [0.850, 0.161], [0.840, 0.155], [0.815, 0.157], [0.805, 0.143], [0.793, 0.143]]
+  colar:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: deposito
+    descricao: colar de ouro com uma esmeralda grande no peito
+    caixa: [0.775, 0.420, 0.130, 0.195]
+  pulseira_alta:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: deposito
+    descricao: pulseira larga de ouro com esmeraldas no pulso que ergue a moeda
+    caixa: [0.663, 0.350, 0.060, 0.118]
+  pulseira_baixa:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: deposito
+    descricao: pulseira larga de ouro com esmeraldas no pulso apoiado no galho
+    caixa: [0.757, 0.675, 0.059, 0.108]
+  moedas:
+    tipo: objeto_grupo
+    z: 2
+    camada_psd: entorno
+    tema: deposito
+    descricao: moedas de ouro com furo quadrado soltas no ar atrás do mascote (duas à direita da cabeça, uma acima do galho à esquerda)
+    elipses: [[0.912, 0.252, 0.040, 0.088], [0.946, 0.388, 0.040, 0.090], [0.638, 0.588, 0.045, 0.087]]
+  bau:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: deposito
+    descricao: baú aberto cheio de moedas de ouro e uma esmeralda, cortado pela borda direita, atrás da asa direita
+    contorno: [[0.951, 0.530], [0.953, 0.518], [0.957, 0.510], [0.963, 0.504], [0.972, 0.500], [0.983, 0.4975],
+               [0.992, 0.496], [1.000, 0.494], [1.000, 0.830], [0.975, 0.830], [0.955, 0.822], [0.948, 0.800],
+               [0.940, 0.770], [0.934, 0.745], [0.933, 0.725], [0.934, 0.695], [0.938, 0.688], [0.947, 0.686],
+               [0.949, 0.660], [0.951, 0.630], [0.954, 0.600], [0.955, 0.570], [0.953, 0.545]]
+  galho:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    descricao: galho grosso com um tufo de musgo verde em cima, atravessando a parte de baixo; esconde a parte de baixo do corpo e corta a cauda do mascote
+    contorno: [[0.607, 0.660], [0.613, 0.650], [0.620, 0.640], [0.627, 0.645], [0.630, 0.670], [0.640, 0.677],
+               [0.652, 0.679], [0.670, 0.693], [0.688, 0.709], [0.696, 0.722], [0.715, 0.744], [0.724, 0.752],
+               [0.722, 0.790], [0.726, 0.828], [0.736, 0.838], [0.758, 0.842], [0.780, 0.824], [0.790, 0.803],
+               [0.797, 0.790], [0.820, 0.798], [0.839, 0.809], [0.861, 0.826], [0.875, 0.835], [0.898, 0.838],
+               [0.900, 0.870], [0.896, 0.915], [0.860, 0.922], [0.820, 0.928], [0.776, 0.928], [0.745, 0.910],
+               [0.720, 0.905], [0.719, 0.864], [0.718, 0.842], [0.710, 0.820], [0.700, 0.802], [0.685, 0.791],
+               [0.670, 0.790], [0.656, 0.798], [0.652, 0.798], [0.640, 0.780], [0.625, 0.758], [0.613, 0.736],
+               [0.606, 0.713]]
+  monte_moedas:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    tema: deposito
+    descricao: montinho de moedas de ouro em cima do galho, na frente das pontas da asa direita
+    contorno: [[0.8625, 0.809], [0.866, 0.805], [0.872, 0.802], [0.877, 0.796], [0.882, 0.792], [0.889, 0.790],
+               [0.896, 0.790], [0.899, 0.795], [0.903, 0.815], [0.903, 0.828], [0.895, 0.829], [0.885, 0.826],
+               [0.875, 0.824], [0.868, 0.820], [0.863, 0.814]]
+  moedas_frente:
+    tipo: objeto_grupo
+    z: 5
+    camada_psd: frente
+    tema: deposito
+    descricao: moedas de ouro na frente do mascote e do galho (uma grande cobrindo a ponta da asa direita, uma desfocada na frente da cauda, uma pousada na frente do galho perto da mão e uma grande desfocada na frente do galho, embaixo à esquerda)
+    elipses: [[0.900, 0.740, 0.053, 0.107], [0.8175, 0.910, 0.055, 0.110], [0.692, 0.682, 0.046, 0.068],
+              [0.651, 0.787, 0.068, 0.125]]
+
+# Relações que o agente lê na peça.
+arestas:
+  - {de: mascote, rel: segura, para: moeda_erguida, nota: a asa erguida mostra a moeda}
+  - {de: mascote, rel: veste, para: coroa}
+  - {de: mascote, rel: veste, para: colar}
+  - {de: mascote, rel: veste, para: pulseira_alta}
+  - {de: mascote, rel: veste, para: pulseira_baixa}
+  - {de: moedas, rel: cerca, para: mascote}
+  - {de: bau, rel: cerca, para: mascote, nota: atrás da asa direita}
+  - {de: moedas_frente, rel: cerca, para: mascote, nota: na frente da asa direita, da cauda e do galho}
+  - {de: monte_moedas, rel: cerca, para: mascote, nota: na frente das pontas da asa direita}
+  - {de: texto_l1, rel: tema_liga, para: moeda_erguida, tema: deposito}
+  - {de: texto_l1, rel: tema_liga, para: moedas, tema: deposito}
+  - {de: texto_l1, rel: tema_liga, para: moedas_frente, tema: deposito}
+  - {de: texto_l1, rel: tema_liga, para: bau, tema: deposito}
+  - {de: texto_l1, rel: tema_liga, para: monte_moedas, tema: deposito}
+
+observacoes:
+  - "camada frente: o galho com o tufo de musgo esconde a parte de baixo do corpo e corta a cauda (a cauda aparece embaixo dele); quatro moedas soltas e um montinho de moedas ficam na frente do mascote ou do galho (cobrindo a ponta da asa direita e a cauda); a ficha v1.1 não tem camada frente"
+  - "cena: verde dominante (céu, torres e rio esverdeados), não o pôr do sol dourado e verde-azulado que a ficha descreve; riscos de luz verde neon no fundo; um galho grosso onde o mascote se apoia, que a ficha não prevê"
+  - "entorno: além das moedas soltas que o tema deposito pede, há um baú aberto cheio de moedas no canto direito; as moedas são do tipo com furo quadrado no meio"
+  - "o mascote segura a moeda erguida pela mão da asa (mão de dedos escuros com pulseira), não com a ponta da asa como o tema descreve"

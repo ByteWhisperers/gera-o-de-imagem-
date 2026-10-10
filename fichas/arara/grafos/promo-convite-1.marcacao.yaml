@@ -1,0 +1,173 @@
+# Marcação da referência promo 1790980982 (tema convite): o que o agente propõe para a desconstrução.
+#
+# Segue o modelo aprovado (promo-telegram.marcacao.yaml) e a mesma leitura da
+# home-convite-1 (mesma composição em formato promo). Contornos a olho, em
+# frações da largura e da altura; a ferramenta encaixa cada um na borda real.
+#
+#   python ferramentas/desconstruir.py fichas/arara/grafos/promo-convite-1.marcacao.yaml
+
+peca: promo-convite-1
+referencia: referencias/arara/promo/promo-1790980982-3c38ef02.webp
+ficha: fichas/arara/ficha-v1.1.yaml
+formato: promo
+tema: convite
+
+# Onde procurar o que a ferramenta mede sozinha.
+zona_texto: [0.045, 0.19, 0.47, 0.58]
+zona_logo: [0.0, 0.0, 0.30, 0.185]
+
+# Caixas das linhas, como na home-convite-1 (a parte dourada grande da última linha desce mais que as palavras brancas).
+texto_linhas:
+  - [0.050, 0.200, 0.455, 0.088]
+  - [0.050, 0.292, 0.310, 0.100]
+  - [0.050, 0.392, 0.440, 0.180]
+  - [0.050, 0.572, 0.445, 0.0775]
+  - [0.0555, 0.6495, 0.2545, 0.1125]
+
+nos:
+  cena:
+    tipo: fundo
+    z: 0
+    camada_psd: cena
+    descricao: vale de rio ao pôr do sol entre torres cársticas com selva; sol baixo no centro, reflexo dourado no rio; dois riscos longos de luz verde neon cruzam o fundo por trás do mascote; um galho grosso com um tufo de folhas atravessa a parte de baixo, à direita, onde o mascote se apoia
+  mascote:
+    tipo: personagem
+    z: 3
+    camada_psd: mascote
+    figurino: realeza
+    descricao: arara-vermelha 3D rindo, figurino realeza (coroa de ouro com esmeraldas e penas vermelhas, amarelas e azuis, colar de ouro com esmeralda grande, pulseiras de ouro com esmeraldas)
+    pose: de frente, atrás do galho; a asa esquerda aberta e erguida segura um baú aberto no alto, a outra mão agarra o galho
+    contorno: [[0.5435, 0.0], [0.574, 0.0], [0.582, 0.022], [0.584, 0.0], [0.6055, 0.0], [0.616, 0.01],
+               [0.64, 0.045], [0.663, 0.081], [0.686, 0.112], [0.7, 0.123], [0.708, 0.14], [0.712, 0.16],
+               [0.718, 0.178], [0.7205, 0.195], [0.7235, 0.216], [0.726, 0.236], [0.7285, 0.254], [0.7335, 0.277],
+               [0.7355, 0.3], [0.737, 0.322], [0.7395, 0.3375], [0.744, 0.3555], [0.748, 0.372], [0.755, 0.392],
+               [0.766, 0.4], [0.774, 0.372], [0.7745, 0.356], [0.7655, 0.3555], [0.7626, 0.35], [0.7595, 0.343],
+               [0.7567, 0.335], [0.7536, 0.325], [0.7513, 0.315], [0.749, 0.3], [0.7505, 0.281], [0.7495, 0.259],
+               [0.7505, 0.236], [0.7535, 0.214], [0.7585, 0.1935], [0.7635, 0.177], [0.762, 0.155], [0.769, 0.139],
+               [0.775, 0.128], [0.7845, 0.082], [0.7975, 0.073], [0.8117, 0.055], [0.8219, 0.037], [0.827, 0.026],
+               [0.832, 0.045], [0.834, 0.06], [0.8395, 0.049], [0.8455, 0.0425], [0.854, 0.049], [0.862, 0.04],
+               [0.8828, 0.018], [0.902, 0.01], [0.8945, 0.034], [0.908, 0.037], [0.888, 0.095], [0.912, 0.117],
+               [0.9145, 0.157], [0.896, 0.162], [0.898, 0.186], [0.9015, 0.217], [0.8995, 0.243], [0.891, 0.255],
+               [0.8875, 0.282], [0.888, 0.31], [0.887, 0.325], [0.893, 0.356], [0.897, 0.387], [0.898, 0.398],
+               [0.907, 0.396], [0.919, 0.41], [0.923, 0.434], [0.9285, 0.45], [0.9345, 0.48], [0.9385, 0.511],
+               [0.9415, 0.558], [0.9425, 0.604], [0.942, 0.635], [0.9395, 0.645], [0.924, 0.665], [0.9125, 0.69],
+               [0.901, 0.7], [0.8875, 0.703], [0.8865, 0.77], [0.875, 0.772], [0.863, 0.776], [0.855, 0.782],
+               [0.84, 0.783], [0.82, 0.778], [0.8, 0.773], [0.785, 0.775], [0.779, 0.778], [0.77, 0.792],
+               [0.76, 0.8], [0.735, 0.799], [0.727, 0.786], [0.7215, 0.76], [0.7225, 0.738], [0.729, 0.715],
+               [0.745, 0.711], [0.757, 0.711], [0.7585, 0.685], [0.7545, 0.6705], [0.7495, 0.6645], [0.7415, 0.6705],
+               [0.7385, 0.645], [0.738, 0.6225], [0.733, 0.6265], [0.7285, 0.6345], [0.7205, 0.6395], [0.7185, 0.62],
+               [0.719, 0.6025], [0.7165, 0.5915], [0.7115, 0.6005], [0.7065, 0.607], [0.7005, 0.6015], [0.6995, 0.5905],
+               [0.7015, 0.5755], [0.7, 0.5665], [0.697, 0.5665], [0.6865, 0.5695], [0.688, 0.556], [0.6915, 0.5455],
+               [0.688, 0.549], [0.6785, 0.5495], [0.679, 0.535], [0.6815, 0.523], [0.6845, 0.5135], [0.68, 0.5195],
+               [0.6725, 0.5245], [0.662, 0.5195], [0.6625, 0.5095], [0.6695, 0.4995], [0.6645, 0.5035], [0.6545, 0.4985],
+               [0.6585, 0.4855], [0.6635, 0.477], [0.6705, 0.4655], [0.66, 0.4705], [0.6475, 0.4745], [0.638, 0.467],
+               [0.643, 0.447], [0.624, 0.428], [0.6095, 0.404], [0.6178, 0.378], [0.598, 0.362], [0.592, 0.348],
+               [0.603, 0.333], [0.5875, 0.317], [0.578, 0.297], [0.5905, 0.2895], [0.5945, 0.2805], [0.5895, 0.2715],
+               [0.5755, 0.267], [0.566, 0.248], [0.5625, 0.232], [0.5725, 0.229], [0.58, 0.2285], [0.5935, 0.2245],
+               [0.5765, 0.2155], [0.5535, 0.196], [0.547, 0.172], [0.5445, 0.15], [0.56, 0.1515], [0.578, 0.1555],
+               [0.5945, 0.1575], [0.583, 0.1495], [0.572, 0.1395], [0.5635, 0.128], [0.556, 0.122], [0.5445, 0.096],
+               [0.539, 0.068], [0.5375, 0.041], [0.547, 0.05], [0.556, 0.0575], [0.566, 0.0665], [0.5755, 0.0755],
+               [0.5835, 0.0815], [0.5745, 0.0725], [0.5665, 0.0615], [0.56, 0.0475], [0.556, 0.0365], [0.5505, 0.03],
+               [0.545, 0.012]]
+  bau_segurado:
+    tipo: objeto_segurado
+    z: 4
+    camada_psd: mascote
+    tema: convite
+    descricao: baú de madeira com ferragens de ouro, aberto e cheio de moedas de ouro e pedras verdes, erguido numa mão
+    caixa: [0.590, 0.080, 0.122, 0.255]
+  coroa:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: convite
+    descricao: coroa de ouro com esmeraldas e um penacho de penas vermelhas, amarelas e azuis
+    caixa: [0.775, 0.010, 0.140, 0.275]
+  colar:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: convite
+    descricao: colar de ouro com uma esmeralda grande no peito
+    caixa: [0.775, 0.400, 0.085, 0.165]
+  pulseira_alta:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: convite
+    descricao: pulseira larga de ouro com esmeraldas no pulso que ergue o baú
+    caixa: [0.660, 0.330, 0.060, 0.120]
+  pulseira_baixa:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: convite
+    descricao: pulseira larga de ouro com esmeraldas no pulso apoiado no galho
+    caixa: [0.758, 0.650, 0.050, 0.100]
+  bau_esquerda:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: convite
+    descricao: baú aberto cheio de moedas de ouro atrás do galho, à esquerda do mascote, com a parte de baixo escondida pelo galho e pelas folhas
+    contorno: [[0.6155, 0.5475], [0.625, 0.5455], [0.65, 0.553], [0.668, 0.561], [0.6835, 0.569], [0.695, 0.583],
+               [0.7005, 0.6], [0.705, 0.63], [0.7065, 0.66], [0.7055, 0.704], [0.695, 0.699], [0.685, 0.692],
+               [0.675, 0.683], [0.665, 0.671], [0.655, 0.661], [0.645, 0.655], [0.633, 0.644], [0.6265, 0.628],
+               [0.6265, 0.611], [0.62, 0.599], [0.6145, 0.59], [0.6135, 0.565]]
+  bau_direita:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: convite
+    descricao: baú aberto cheio de moedas de ouro atrás do ombro direito do mascote
+    contorno: [[0.906, 0.305], [0.91, 0.297], [0.921, 0.2945], [0.948, 0.296], [0.975, 0.302], [0.9885, 0.309],
+               [0.9945, 0.327], [0.996, 0.355], [0.993, 0.382], [0.988, 0.4], [0.988, 0.478], [0.982, 0.4805],
+               [0.932, 0.4805], [0.926, 0.462], [0.92, 0.432], [0.9115, 0.412], [0.9, 0.4], [0.8975, 0.392],
+               [0.899, 0.378], [0.9055, 0.37], [0.9055, 0.32]]
+  bau_frente:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    tema: convite
+    descricao: baú grande aberto transbordando moedas de ouro e uma esmeralda, no canto direito; cobre a ponta da asa direita do mascote; um montinho de moedas ao lado
+    contorno: [[0.951, 0.512], [0.957, 0.503], [0.975, 0.5], [1.0, 0.497], [1.0, 0.83], [0.94, 0.83],
+               [0.8875, 0.826], [0.885, 0.81], [0.872, 0.81], [0.862, 0.8], [0.862, 0.785], [0.87, 0.772],
+               [0.8865, 0.77], [0.8865, 0.702], [0.9, 0.697], [0.912, 0.684], [0.925, 0.672], [0.938, 0.655],
+               [0.9405, 0.64], [0.9415, 0.58], [0.9435, 0.545], [0.947, 0.525]]
+  bau_baixo:
+    tipo: objeto
+    z: 5
+    camada_psd: frente
+    tema: convite
+    descricao: baú aberto cheio de moedas no primeiro plano, embaixo, na frente do galho e logo abaixo da mão apoiada
+    contorno: [[0.6965, 0.8], [0.705, 0.792], [0.7255, 0.797], [0.745, 0.8], [0.765, 0.8], [0.7775, 0.801],
+               [0.8, 0.82], [0.8225, 0.839], [0.845, 0.858], [0.854, 0.878], [0.857, 0.91], [0.857, 1.0],
+               [0.6595, 1.0], [0.6595, 0.95], [0.661, 0.92], [0.684, 0.918], [0.685, 0.86], [0.6855, 0.825],
+               [0.69, 0.807]]
+
+# Relações que o agente lê na peça.
+arestas:
+  - {de: mascote, rel: segura, para: bau_segurado, nota: a asa erguida mostra o baú aberto}
+  - {de: mascote, rel: veste, para: coroa}
+  - {de: mascote, rel: veste, para: colar}
+  - {de: mascote, rel: veste, para: pulseira_alta}
+  - {de: mascote, rel: veste, para: pulseira_baixa}
+  - {de: bau_esquerda, rel: cerca, para: mascote}
+  - {de: bau_direita, rel: cerca, para: mascote}
+  - {de: bau_frente, rel: cerca, para: mascote, nota: na frente da asa direita}
+  - {de: bau_baixo, rel: cerca, para: mascote, nota: no primeiro plano}
+  - {de: texto_l1, rel: tema_liga, para: bau_segurado, tema: convite}
+  - {de: texto_l1, rel: tema_liga, para: bau_esquerda, tema: convite}
+  - {de: texto_l1, rel: tema_liga, para: bau_direita, tema: convite}
+  - {de: texto_l1, rel: tema_liga, para: bau_frente, tema: convite}
+  - {de: texto_l1, rel: tema_liga, para: bau_baixo, tema: convite}
+
+observacoes:
+  - "camada frente: dois baús ficam na frente do mascote (um cobre a ponta da asa direita, outro no primeiro plano embaixo, na frente do galho); a ficha v1.1 não tem camada frente"
+  - "entorno: a ficha fala em algumas moedas soltas e baús pequenos; aqui não há moedas soltas no ar, são quatro baús grandes abertos e cheios de moedas (dois atrás do mascote, dois na frente)"
+  - "cena: um galho grosso atravessa a parte de baixo e o mascote fica atrás dele, com uma mão agarrada no galho; a ficha não prevê galho nem apoio"
+  - "um tufo de folhas em cima do galho esconde a parte de baixo do corpo do mascote; as folhas ficaram na cena (não viraram nó da camada frente), então um mascote novo em outra pose não seria coberto por elas"
+  - "figurino realeza: as penas da coroa são vermelhas, amarelas e azuis (a ficha diz penas verdes); o colar tem uma esmeralda grande no peito e há duas pulseiras largas de ouro com esmeraldas"
+  - "o objeto segurado bate com o tema (baú aberto erguido numa asa), mas o mascote segura com uma mão escura de dedos, não com a ponta da asa"
+  - "texto: cinco linhas; a última mistura palavras brancas e uma parte dourada bem maior na mesma linha; a ficha só prevê um estilo por linha"
+  - "dois riscos longos e curvos de luz verde neon atravessam o fundo e somem por trás da asa erguida; a ficha só prevê poeira dourada e raios finos dourados na camada brilho"

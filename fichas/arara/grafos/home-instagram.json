@@ -1,0 +1,782 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "home-instagram",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/home/banner3.webp",
+ "formato_peca": "home",
+ "tema": "instagram",
+ "tamanho_px": [
+  2048,
+  682
+ ],
+ "pasta": "fichas/arara/grafos/home-instagram",
+ "marcacao": "fichas/arara/grafos/home-instagram.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {},
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio ao pôr do sol entre torres cársticas com selva; sol baixo no centro, reflexo dourado no rio; anéis de luz dourada em volta do mascote",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#0d1306",
+      "fracao": 0.22
+     },
+     {
+      "cor": "#2a2306",
+      "fracao": 0.184
+     },
+     {
+      "cor": "#644e0f",
+      "fracao": 0.177
+     },
+     {
+      "cor": "#8d7322",
+      "fracao": 0.151
+     },
+     {
+      "cor": "#482e05",
+      "fracao": 0.145
+     },
+     {
+      "cor": "#cca631",
+      "fracao": 0.123
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "turista",
+   "descricao": "arara-vermelha 3D rindo, figurino turista (chapéu de palha com faixa verde e hibisco, óculos escuros, camisa havaiana verde, corrente de ouro com medalhão, relógio de ouro e pulseira de ouro)",
+   "pose": "de frente, um pouco virada; a mão esquerda aponta para o celular, a outra mão ergue o celular ao lado da cabeça",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.5728,
+    0.0,
+    0.3569,
+    1.0
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "celular",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "instagram",
+   "descricao": "celular de moldura dourada com o ícone de câmera rosa e laranja na tela, erguido numa mão",
+   "mascara": "mascaras/celular.png",
+   "caixa": [
+    0.8223,
+    0.3504,
+    0.1128,
+    0.3974
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "medalhao",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "descricao": "medalhão de ouro com uma coroa, na corrente de ouro",
+   "caixa": [
+    0.755,
+    0.7,
+    0.041,
+    0.16
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "relogio",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "descricao": "relógio de ouro com pulseira de couro no pulso da mão que aponta",
+   "caixa": [
+    0.59,
+    0.63,
+    0.056,
+    0.18
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "pulseira",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "descricao": "pulseira larga de ouro no pulso da mão que segura o celular",
+   "caixa": [
+    0.86,
+    0.76,
+    0.052,
+    0.1
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "icone_grande",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "ícone de câmera rosa, roxo e laranja, grande e brilhante, à esquerda da cabeça",
+   "mascara": "mascaras/icone_grande.png",
+   "caixa": [
+    0.5601,
+    0.1466,
+    0.0806,
+    0.2243
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "icone_topo",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "ícone de câmera em forma de balão, um pouco desfocado, acima do chapéu",
+   "mascara": "mascaras/icone_topo.png",
+   "caixa": [
+    0.6348,
+    0.0249,
+    0.0527,
+    0.1496
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "icone_esquerda",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "ícone de câmera pequeno em forma de balão, desfocado, à esquerda da moeda",
+   "mascara": "mascaras/icone_esquerda.png",
+   "caixa": [
+    0.522,
+    0.393,
+    0.0435,
+    0.1246
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "icone_vao",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "ícone de câmera entre o pescoço e o celular, atrás do polegar",
+   "mascara": "mascaras/icone_vao.png",
+   "caixa": [
+    0.7998,
+    0.478,
+    0.0435,
+    0.1114
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "coracao_ombro",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "balão vermelho com coração branco, atrás do ombro esquerdo",
+   "mascara": "mascaras/coracao_ombro.png",
+   "caixa": [
+    0.6348,
+    0.3519,
+    0.0405,
+    0.107
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "coracao_direita",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "balão vermelho com coração branco, à direita do chapéu",
+   "mascara": "mascaras/coracao_direita.png",
+   "caixa": [
+    0.9155,
+    0.2038,
+    0.0586,
+    0.1642
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "coracao_esquerda",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "instagram",
+   "descricao": "balão vermelho com coração branco, desfocado, à esquerda da asa",
+   "mascara": "mascaras/coracao_esquerda.png",
+   "caixa": [
+    0.5073,
+    0.6774,
+    0.0605,
+    0.151
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moedas",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "descricao": "quatro moedas de ouro grossas com uma coroa, uma à esquerda do mascote e três em fila à direita",
+   "mascara": "mascaras/moedas.png",
+   "caixa": [
+    0.5771,
+    0.4223,
+    0.4175,
+    0.5777
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 4
+  },
+  {
+   "id": "icone_frente",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "instagram",
+   "descricao": "ícone de câmera grande e bem desfocado no primeiro plano, embaixo à esquerda da asa",
+   "mascara": "mascaras/icone_frente.png",
+   "caixa": [
+    0.4712,
+    0.8094,
+    0.1094,
+    0.1906
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moeda_frente",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "moeda de ouro com coroa, grande e desfocada no primeiro plano, cobre a ponta da asa e a camisa",
+   "mascara": "mascaras/moeda_frente.png",
+   "caixa": [
+    0.6182,
+    0.8974,
+    0.0986,
+    0.1026
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "coracao_frente",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "instagram",
+   "descricao": "balão vermelho com coração branco, grande e desfocado no primeiro plano, cobre a barriga",
+   "mascara": "mascaras/coracao_frente.png",
+   "caixa": [
+    0.7417,
+    0.9003,
+    0.082,
+    0.0997
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     24.4,
+     31.4,
+     37.2,
+     98.9,
+     82.9,
+     56.3,
+     48.8,
+     71.3,
+     112.8,
+     50.9
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 493,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0522,
+    0.2507,
+    0.3618,
+    0.1188
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 81,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fdfdfd",
+     "#fafafa",
+     "#e7e7e6"
+    ],
+    "contorno_escuro_frac": 0.75
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0518,
+    0.3944,
+    0.4414,
+    0.1437
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 98,
+    "peso_rel": 1.21,
+    "rampa_tercos": [
+     "#fde006",
+     "#fddd05",
+     "#fdb402"
+    ],
+    "contorno_escuro_frac": 0.6
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0522,
+    0.563,
+    0.3784,
+    0.0718
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 49,
+    "peso_rel": 0.6,
+    "rampa_tercos": [
+     "#fcfbfa",
+     "#f9f9f9",
+     "#e7e7e7"
+    ],
+    "contorno_escuro_frac": 0.81
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0522,
+    0.6584,
+    0.4277,
+    0.0718
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.49,
+    "altura_px": 49,
+    "peso_rel": 0.6,
+    "rampa_tercos": [
+     "#fbe34c",
+     "#f8df34",
+     "#eccb6f"
+    ],
+    "contorno_escuro_frac": 0.76
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0298,
+    0.0777,
+    0.1377,
+    0.085
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.782"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "celular"
+  },
+  {
+   "de": "mascote",
+   "rel": "apresenta",
+   "para": "celular",
+   "nota": "a outra mão aponta para o celular"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "medalhao"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "relogio"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "pulseira"
+  },
+  {
+   "de": "icone_grande",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "icone_topo",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "icone_esquerda",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "icone_vao",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "coracao_ombro",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "coracao_direita",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "coracao_esquerda",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "moedas",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "icone_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano"
+  },
+  {
+   "de": "moeda_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano",
+   "na frente da asa": null
+  },
+  {
+   "de": "coracao_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "no primeiro plano",
+   "na frente da barriga": null
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "celular",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icone_grande",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icone_topo",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icone_esquerda",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icone_vao",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "coracao_ombro",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "coracao_direita",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "coracao_esquerda",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icone_frente",
+   "tema": "instagram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "coracao_frente",
+   "tema": "instagram"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "celular",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icone_grande",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icone_topo",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icone_esquerda",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icone_vao",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "coracao_ombro",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "coracao_direita",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "coracao_esquerda",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icone_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moeda_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "coracao_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 10.4,
+   "L_fundo_em_volta": 48.4
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.21
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 7.2,
+   "L_fundo_em_volta": 56.3
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.17
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 12.4,
+   "L_fundo_em_volta": 36.6
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.33
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.4,
+   "L_fundo_em_volta": 49.7
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.022
+  }
+ ],
+ "observacoes": [
+  "camada frente: três objetos grandes e bem desfocados no primeiro plano, embaixo: um ícone de câmera à esquerda da asa (não chega a cobrir o mascote), uma moeda com coroa na frente da ponta da asa e um balão de coração na frente da barriga; a ficha v1.1 não tem camada frente",
+  "entorno: além dos ícones de câmera e dos corações que o tema instagram prevê, há quatro moedas de ouro grossas com uma coroa (uma à esquerda do mascote e três em fila à direita); o tema não fala em moedas",
+  "os ícones de câmera vêm em dois formatos (quadrado arredondado e balão com ponta, como balão de fala) e os corações vêm dentro de balões vermelhos com ponta; a ficha não tem palavra para esse balão",
+  "medalhão: a corrente leva um medalhão de ouro com uma coroa, não o ícone do tema (na peça telegram o medalhão mostrava o ícone)",
+  "figurino turista com extras que a ficha não cita: relógio de ouro com pulseira de couro no pulso da mão que aponta e uma pulseira larga de ouro no pulso da mão que segura o celular; a faixa do chapéu é verde",
+  "o objeto segurado bate com o tema (celular com o ícone de câmera rosa e laranja na tela, moldura dourada), mas o mascote aponta com um dedo de uma mão escura de garras, não com a ponta da asa",
+  "cena: anéis e riscos de luz dourada em volta do mascote e um brilho amarelo forte no vão entre o pescoço e o celular; a ficha só prevê poeira dourada e raios finos na camada brilho",
+  "texto: quatro linhas (o exemplo do tema tem três); a segunda é dourada e bem maior, a terceira e a quarta são menores e do mesmo tamanho; a última mistura palavras brancas e uma palavra dourada na mesma linha, e a ficha só prevê um estilo por linha",
+  "mesma cena, mesmo figurino e mesmos objetos da peça promo-instagram, só reenquadrados no formato home: as duas peças podem sair do mesmo conjunto de partes"
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}

@@ -213,6 +213,54 @@ def _linhas_das_caixas(cand: np.ndarray, caixas: list) -> list[tuple[int, int, i
     return saida
 
 
+def completar_letras(rgb: np.ndarray, glifo: np.ndarray, caixa: tuple[int, int, int, int]) -> np.ndarray:
+    """A letra inteira, inclusive o miolo e a parte escura da rampa de cor.
+
+    O limiar de cor só pega as partes claras perto do contorno: o miolo das
+    letras grandes e a base cinza das brancas ficam de fora. Dois jeitos de
+    achar o resto, dentro de uma caixa um pouco maior que a linha:
+      1. a região clara (L >= 70) cercada pelo contorno escuro: pedaços claros
+         que não encostam na borda da caixa e que o limiar já toca em boa parte
+         (contorno furado vaza para o fundo, encosta na borda e fica de fora);
+      2. o miolo que o anel do limiar fecha (preencher buracos), quando a cor
+         do miolo é de letra (branco a cinza, ou ouro a laranja). O miolo do O,
+         do A e do R é fundo e não tem cor de letra: continua vazado.
+    """
+    ndi = _ndi()
+    H, W = glifo.shape
+    x, y, w, h = caixa
+    m = round(0.15 * h) + 2
+    x0, y0, x1, y1 = max(0, x - m), max(0, y - m), min(W, x + w + m), min(H, y + h + m)
+    px = rgb[y0:y1, x0:x1]
+    lum = luminancia(px)
+    g = glifo[y0:y1, x0:x1]
+    saida = glifo.copy()
+    rot, n = ndi.label(lum >= 70)
+    if n:
+        idx = np.arange(1, n + 1)
+        area = ndi.sum(np.ones_like(g), rot, idx)
+        cobre = ndi.sum(g, rot, idx)
+        na_borda = set(np.unique(np.concatenate([rot[0], rot[-1], rot[:, 0], rot[:, -1]]))) - {0}
+        bons = [i for i, a, c in zip(idx, area, cobre) if c / max(a, 1) > 0.1 and i not in na_borda]
+        saida[y0:y1, x0:x1] |= np.isin(rot, bons)
+    sat = (px.max(2) - px.min(2)) / np.maximum(px.max(2), 1)
+    cor_de_letra = ((sat < 0.2) & (lum > 120)) | ((px[..., 0] > 150) & (px[..., 2] < 110) & (px[..., 0] >= px[..., 1]))
+    fechado = ndi.binary_closing(g, iterations=2)
+    miolo = ndi.binary_fill_holes(fechado) & ~g
+    rot, n = ndi.label(miolo)
+    if n:
+        idx = np.arange(1, n + 1)
+        frac = ndi.mean(cor_de_letra, rot, idx)
+        saida[y0:y1, x0:x1] |= np.isin(rot, idx[np.asarray(frac) > 0.6])
+    # 3. o que tem cor de letra e se liga ao limiar sem atravessar o contorno escuro,
+    #    só dentro da caixa justa da linha (o vazamento, se houver, fica preso nela)
+    dentro = np.zeros_like(g)
+    dentro[y - y0 : y - y0 + h, x - x0 : x - x0 + w] = True
+    pode = cor_de_letra & ~ndi.binary_dilation(lum < 60, iterations=1) & dentro
+    saida[y0:y1, x0:x1] |= ndi.binary_propagation(g & pode, mask=pode)
+    return saida
+
+
 def medir_texto(rgb: np.ndarray, zona: list, proibido: np.ndarray,
                 caixas_linhas: list | None = None) -> tuple[np.ndarray, list[dict]]:
     """Linhas de texto da zona: letras claras (branco ou ouro) coladas num contorno escuro.
@@ -235,25 +283,31 @@ def medir_texto(rgb: np.ndarray, zona: list, proibido: np.ndarray,
     spans = _linhas_das_caixas(cand, caixas_linhas) if caixas_linhas else _linhas_por_projecao(cand)
     linhas, letras = [], np.zeros((H, W), bool)
     for x0, y0, x1, y1 in sorted(spans, key=lambda s: s[1]):
-        g = cand[y0:y1, x0:x1]
-        px = rgb[y0:y1, x0:x1]
-        tercos = []
-        for a, b in ((0, 0.33), (0.33, 0.66), (0.66, 1.0)):
-            sel = g[int(a * (y1 - y0)) : int(b * (y1 - y0))]
-            c = px[int(a * (y1 - y0)) : int(b * (y1 - y0))][sel].mean(0) if sel.any() else np.zeros(3)
-            tercos.append("#%02x%02x%02x" % tuple(int(v) for v in c))
         caixa = np.zeros((H, W), bool)
         caixa[y0:y1, x0:x1] = True
-        glifo = cand & caixa
+        limiar = cand & caixa
+        glifo = completar_letras(rgb, limiar, (x0, y0, x1 - x0, y1 - y0)) & ~proibido
+        inteira = glifo[y0:y1, x0:x1]
+        tercos = []                                    # rampa de cor da letra inteira, de cima para baixo
+        for a, b in ((0, 1 / 3), (1 / 3, 2 / 3), (2 / 3, 1)):
+            sel = inteira[int(a * (y1 - y0)) : int(b * (y1 - y0))]
+            c = np.median(rgb[y0:y1, x0:x1][int(a * (y1 - y0)) : int(b * (y1 - y0))][sel], axis=0) \
+                if sel.any() else np.zeros(3)
+            tercos.append("#%02x%02x%02x" % tuple(int(round(v)) for v in c))
+        cols = limiar[y0:y1, x0:x1]                    # colunas com letra: quanto da linha é dourado
+        com_letra = cols.any(0)
+        dourada = (cols & ouro[y0:y1, x0:x1]).sum(0) > 0.5 * cols.sum(0)
         acima = np.zeros((H, W), bool)                 # acentos ficam acima da linha
         acima[max(0, y0 - round(0.45 * (y1 - y0))) : y0, x0:x1] = True
-        anel = ndi.binary_dilation(caixa, iterations=25) & ~ndi.binary_dilation(cand, iterations=12) & ~proibido
+        anel = ndi.binary_dilation(caixa, iterations=25) & ~ndi.binary_dilation(cand | glifo, iterations=12) \
+            & ~proibido
         lt, lf = _l_rel(rgb[glifo].mean(0)), _l_rel(rgb[anel].mean(0))
         faixa = ndi.binary_dilation(glifo, iterations=6) & ~glifo
         linhas.append({
             "caixa_px": [x0, y0, x1 - x0, y1 - y0],
             "altura_px": y1 - y0,
-            "estilo_ficha": "dourado" if ouro[glifo].mean() > 0.5 else "branco",
+            "estilo_ficha": "dourado" if ouro[limiar].mean() > 0.5 else "branco",
+            "fracao_dourada": round(float((com_letra & dourada).sum() / max(1, com_letra.sum())), 2),
             "rampa_tercos": tercos,
             "contorno_escuro_frac": round(float((lum[faixa] < 50).mean()), 2),
             "contraste_wcag": round((max(lt, lf) + 0.05) / (min(lt, lf) + 0.05), 1),
@@ -558,8 +612,8 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict
         nos.append({"id": f"texto_l{i}", "tipo": "texto", "z": 6, "camada_psd": "texto",
                     "conteudo": "<não copiado: o texto sai de motor/texto.py>",
                     "mascara": f"mascaras/texto_l{i}.png", "caixa": G.caixa_frac(li["caixa_px"], W, H),
-                    "estilo": {k: li[k] for k in ("estilo_ficha", "altura_px", "peso_rel", "rampa_tercos",
-                                                  "contorno_escuro_frac")},
+                    "estilo": {k: li[k] for k in ("estilo_ficha", "fracao_dourada", "altura_px", "peso_rel",
+                                                  "rampa_tercos", "contorno_escuro_frac")},
                     "fonte": "medido:limiar de cor + " + ("caixas de linha do agente" if mc.get("texto_linhas")
                                                           else "projeção por linha")})
     for id_, (m, info) in rotulos.items():

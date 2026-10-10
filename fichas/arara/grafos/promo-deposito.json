@@ -1,0 +1,561 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-deposito",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/promo/promo-1790980959-9639e055.webp",
+ "formato_peca": "promo",
+ "tema": "deposito",
+ "tamanho_px": [
+  1867,
+  842
+ ],
+ "pasta": "fichas/arara/grafos/promo-deposito",
+ "marcacao": "fichas/arara/grafos/promo-deposito.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {},
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio entre torres cársticas com selva, todo em tons de verde, com o sol baixo atrás das torres e reflexo dourado no rio; riscos de luz verde neon cruzam o fundo por trás do mascote; folhas grandes desfocadas nos cantos de baixo",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#16450c",
+      "fracao": 0.245
+     },
+     {
+      "cor": "#012907",
+      "fracao": 0.236
+     },
+     {
+      "cor": "#32590d",
+      "fracao": 0.161
+     },
+     {
+      "cor": "#0b2706",
+      "fracao": 0.157
+     },
+     {
+      "cor": "#7c8620",
+      "fracao": 0.105
+     },
+     {
+      "cor": "#222c06",
+      "fracao": 0.096
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "realeza",
+   "descricao": "arara-vermelha 3D rindo, figurino realeza (coroa de ouro com esmeraldas e penas vermelhas, amarelas e azuis, colar de ouro com esmeralda grande, pulseiras de ouro com esmeraldas)",
+   "pose": "de frente, pousada atrás de um galho; a asa esquerda aberta e erguida, a mão dessa asa ergue uma moeda de ouro; a outra mão agarra o galho; a cauda aparece embaixo do galho",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.534,
+    0.0,
+    0.4226,
+    1.0
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moeda_erguida",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "deposito",
+   "descricao": "moeda de ouro grande com furo quadrado no meio, erguida na mão da asa aberta",
+   "caixa": [
+    0.628,
+    0.168,
+    0.073,
+    0.158
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "coroa",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "deposito",
+   "descricao": "coroa de ouro com esmeraldas e um penacho de penas vermelhas, amarelas e azuis",
+   "nota": "contorno próprio (e não só caixa) porque o penacho tem vãos estreitos de fundo entre as penas que a faixa larga do contorno do mascote não separa; continua na camada mascote",
+   "mascara": "mascaras/coroa.png",
+   "caixa": [
+    0.7863,
+    0.0,
+    0.1462,
+    0.2862
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "colar",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "deposito",
+   "descricao": "colar de ouro com uma esmeralda grande no peito",
+   "caixa": [
+    0.775,
+    0.42,
+    0.13,
+    0.195
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "pulseira_alta",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "deposito",
+   "descricao": "pulseira larga de ouro com esmeraldas no pulso que ergue a moeda",
+   "caixa": [
+    0.663,
+    0.35,
+    0.06,
+    0.118
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "pulseira_baixa",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "deposito",
+   "descricao": "pulseira larga de ouro com esmeraldas no pulso apoiado no galho",
+   "caixa": [
+    0.757,
+    0.675,
+    0.059,
+    0.108
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "moedas",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "deposito",
+   "descricao": "moedas de ouro com furo quadrado soltas no ar atrás do mascote (duas à direita da cabeça, uma acima do galho à esquerda)",
+   "mascara": "mascaras/moedas.png",
+   "caixa": [
+    0.6379,
+    0.2542,
+    0.3487,
+    0.4252
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 3
+  },
+  {
+   "id": "bau",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "deposito",
+   "descricao": "baú aberto cheio de moedas de ouro e uma esmeralda, cortado pela borda direita, atrás da asa direita",
+   "mascara": "mascaras/bau.png",
+   "caixa": [
+    0.9314,
+    0.4952,
+    0.0686,
+    0.3409
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "galho",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "descricao": "galho grosso com um tufo de musgo verde em cima, atravessando a parte de baixo; esconde a parte de baixo do corpo e corta a cauda do mascote",
+   "mascara": "mascaras/galho.png",
+   "caixa": [
+    0.6047,
+    0.639,
+    0.2973,
+    0.2981
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "monte_moedas",
+   "tipo": "objeto",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "deposito",
+   "descricao": "montinho de moedas de ouro em cima do galho, na frente das pontas da asa direita",
+   "mascara": "mascaras/monte_moedas.png",
+   "caixa": [
+    0.864,
+    0.7898,
+    0.0391,
+    0.0392
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moedas_frente",
+   "tipo": "objeto_grupo",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "deposito",
+   "descricao": "moedas de ouro na frente do mascote e do galho (uma grande cobrindo a ponta da asa direita, uma desfocada na frente da cauda, uma pousada na frente do galho perto da mão e uma grande desfocada na frente do galho, embaixo à esquerda)",
+   "mascara": "mascaras/moedas_frente.png",
+   "caixa": [
+    0.6486,
+    0.6829,
+    0.3048,
+    0.3171
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 4
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     25.7,
+     28.3,
+     35.9,
+     43.2,
+     46.7,
+     39.4,
+     51.4,
+     60.9,
+     36.2,
+     51.4
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 364,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0455,
+    0.2494,
+    0.4735,
+    0.0938
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 79,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#eef0ee",
+     "#f6f8f6",
+     "#e6e8e6"
+    ],
+    "contorno_escuro_frac": 0.89
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0461,
+    0.3646,
+    0.5297,
+    0.0903
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 76,
+    "peso_rel": 0.96,
+    "rampa_tercos": [
+     "#f9fdf9",
+     "#fafcf9",
+     "#ebedeb"
+    ],
+    "contorno_escuro_frac": 0.89
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0477,
+    0.4751,
+    0.2662,
+    0.2197
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 185,
+    "peso_rel": 2.34,
+    "rampa_tercos": [
+     "#fdea07",
+     "#fee907",
+     "#fbc604"
+    ],
+    "contorno_escuro_frac": 0.71
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0305,
+    0.0523,
+    0.2169,
+    0.1033
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.986"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "moeda_erguida",
+   "nota": "a asa erguida mostra a moeda"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "coroa"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "colar"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "pulseira_alta"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "pulseira_baixa"
+  },
+  {
+   "de": "moedas",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "bau",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "atrás da asa direita"
+  },
+  {
+   "de": "moedas_frente",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "na frente da asa direita",
+   "da cauda e do galho": null
+  },
+  {
+   "de": "monte_moedas",
+   "rel": "cerca",
+   "para": "mascote",
+   "nota": "na frente das pontas da asa direita"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "moeda_erguida",
+   "tema": "deposito"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "moedas",
+   "tema": "deposito"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "moedas_frente",
+   "tema": "deposito"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "bau",
+   "tema": "deposito"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "tema_liga",
+   "para": "monte_moedas",
+   "tema": "deposito"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "coroa",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "bau",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "galho",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "monte_moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas_frente",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 10.5,
+   "L_fundo_em_volta": 33.1
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.23
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 11.2,
+   "L_fundo_em_volta": 32.3
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.22
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 9.4,
+   "L_fundo_em_volta": 34.6
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.015
+  }
+ ],
+ "observacoes": [
+  "camada frente: o galho com o tufo de musgo esconde a parte de baixo do corpo e corta a cauda (a cauda aparece embaixo dele); quatro moedas soltas e um montinho de moedas ficam na frente do mascote ou do galho (cobrindo a ponta da asa direita e a cauda); a ficha v1.1 não tem camada frente",
+  "cena: verde dominante (céu, torres e rio esverdeados), não o pôr do sol dourado e verde-azulado que a ficha descreve; riscos de luz verde neon no fundo; um galho grosso onde o mascote se apoia, que a ficha não prevê",
+  "entorno: além das moedas soltas que o tema deposito pede, há um baú aberto cheio de moedas no canto direito; as moedas são do tipo com furo quadrado no meio",
+  "o mascote segura a moeda erguida pela mão da asa (mão de dedos escuros com pulseira), não com a ponta da asa como o tema descreve"
+ ],
+ "camadas_fora_da_ficha": [
+  "frente"
+ ]
+}
