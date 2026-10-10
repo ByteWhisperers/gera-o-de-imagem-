@@ -25,8 +25,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import json
-import time
-import urllib.parse
 import urllib.request
 import uuid
 
@@ -34,6 +32,7 @@ import numpy as np
 import yaml
 from PIL import Image, ImageDraw, ImageFilter
 
+from . import comfyui
 from . import ficha as F
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -151,25 +150,8 @@ def preencher(grafo, valores: dict):
 
 def executar_comfyui(url: str, grafo: dict, espera_max: float = 900, abrir=urllib.request.urlopen) -> Image.Image:
     """Manda o grafo (formato API) para o ComfyUI, espera e devolve a primeira imagem salva."""
-    corpo = json.dumps({"prompt": grafo, "client_id": uuid.uuid4().hex}).encode()
-    pedido = urllib.request.Request(f"{url}/prompt", corpo, {"Content-Type": "application/json"})
-    pid = json.load(abrir(pedido))["prompt_id"]
-    limite = time.time() + espera_max
-    while time.time() < limite:
-        hist = json.load(abrir(f"{url}/history/{pid}")).get(pid)
-        if hist and hist.get("status", {}).get("status_str") == "error":
-            raise RuntimeError(f"ComfyUI falhou: {hist['status']}")
-        if hist and hist.get("status", {}).get("completed"):
-            for saida in hist["outputs"].values():
-                for img in saida.get("images", []):
-                    q = urllib.parse.urlencode({k: img[k] for k in ("filename", "subfolder", "type")})
-                    with abrir(f"{url}/view?{q}") as r:
-                        im = Image.open(r)
-                        im.load()
-                        return im
-            raise RuntimeError("ComfyUI terminou sem imagem")
-        time.sleep(1)
-    raise TimeoutError(f"ComfyUI não terminou em {espera_max}s")
+    saidas = comfyui.executar(url, grafo, espera_max, abrir)
+    return next(iter(saidas.values()))[0]
 
 
 def _rascunho(ficha: dict, parte: str, formato: str) -> Image.Image:

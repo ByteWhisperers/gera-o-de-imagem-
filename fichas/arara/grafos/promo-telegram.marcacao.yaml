@@ -1,0 +1,79 @@
+# Marcação da referência promo Telegram: o que o agente propõe para a desconstrução.
+#
+# É a parte "semi-manual": o agente olha a peça e marca contornos aproximados
+# (polígonos e elipses, em frações da largura e da altura). A ferramenta
+# encaixa cada contorno na borda real da imagem, mede o texto, o logo e o
+# fundo sozinha e escreve o grafo. O dono aprova o recorte uma vez por peça.
+#
+#   python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml
+#   python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas   # + fundo limpo no ComfyUI
+
+peca: promo-telegram
+referencia: referencias/arara/promo/promo-1790981127-d91c22ef.webp
+ficha: fichas/arara/ficha-v1.1.yaml
+formato: promo
+tema: telegram
+
+# Onde procurar o que a ferramenta mede sozinha.
+zona_texto: [0.015, 0.22, 0.53, 0.54]
+zona_logo: [0.0, 0.0, 0.32, 0.26]
+
+nos:
+  cena:
+    tipo: fundo
+    z: 0
+    camada_psd: cena
+    descricao: vale de rio ao pôr do sol entre torres cársticas com selva; sol baixo perto do centro, reflexo dourado no rio
+  mascote:
+    tipo: personagem
+    z: 3
+    camada_psd: mascote
+    figurino: turista
+    descricao: arara-vermelha 3D rindo, figurino turista (chapéu de palha com hibisco, óculos escuros, camisa havaiana verde, corrente de ouro)
+    pose: asa esquerda aberta apresentando o ícone, a outra mão segura o celular
+    contorno: [[0.421, 0.196], [0.452, 0.235], [0.478, 0.268], [0.492, 0.300], [0.505, 0.345], [0.525, 0.380],
+               [0.548, 0.425], [0.594, 0.475], [0.631, 0.511],
+               [0.680, 0.475], [0.701, 0.392], [0.701, 0.297], [0.685, 0.178], [0.690, 0.095], [0.744, 0.059],
+               [0.808, 0.071], [0.840, 0.131], [0.894, 0.178], [0.921, 0.261], [0.905, 0.392], [0.972, 0.457],
+               [0.964, 0.594], [0.961, 0.665], [1.000, 0.689], [1.000, 0.879], [0.969, 0.891], [0.889, 0.903],
+               [0.862, 0.986], [0.851, 1.000], [0.658, 1.000], [0.631, 0.903], [0.648, 0.808], [0.641, 0.782],
+               [0.612, 0.792], [0.574, 0.750], [0.526, 0.702], [0.478, 0.614], [0.452, 0.545], [0.436, 0.475], [0.424, 0.392], [0.419, 0.300], [0.421, 0.215]]
+  celular:
+    tipo: objeto_segurado
+    z: 4
+    camada_psd: mascote
+    tema: telegram
+    descricao: celular com o ícone azul do Telegram na tela
+    caixa: [0.858, 0.410, 0.114, 0.309]
+  medalhao:
+    tipo: acessorio
+    z: 4
+    camada_psd: mascote
+    tema: telegram
+    descricao: medalhão de ouro com o avião de papel, na corrente
+    caixa: [0.776, 0.647, 0.048, 0.113]
+  icone_canal:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: telegram
+    descricao: ícone redondo azul com o avião de papel, com anel de luz dourada
+    elipses: [[0.520, 0.085, 0.145, 0.310]]
+  moedas:
+    tipo: objeto_grupo
+    z: 2
+    camada_psd: entorno
+    descricao: cinco moedas de ouro soltas em volta do mascote
+    elipses: [[0.504, 0.026, 0.046, 0.099], [0.653, 0.360, 0.043, 0.107], [0.931, 0.291, 0.049, 0.119],
+              [0.514, 0.752, 0.065, 0.139], [0.926, 0.837, 0.067, 0.131]]
+
+# Relações que o agente lê na peça. As medidas (contraste, alinhamento,
+# empilhamento do texto, quem fica sobre quem) a ferramenta calcula sozinha.
+arestas:
+  - {de: mascote, rel: segura, para: celular}
+  - {de: mascote, rel: veste, para: medalhao}
+  - {de: mascote, rel: apresenta, para: icone_canal, nota: a asa aberta aponta para o ícone}
+  - {de: moedas, rel: cerca, para: mascote}
+  - {de: texto_l2, rel: tema_liga, para: icone_canal, tema: telegram}
+  - {de: texto_l2, rel: tema_liga, para: celular, tema: telegram}
+  - {de: texto_l2, rel: tema_liga, para: medalhao, tema: telegram}

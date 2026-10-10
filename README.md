@@ -31,6 +31,31 @@ O **tema** liga a mensagem ao mascote: escolhe o figurino, o que ele segura, os 
 
 Saída em `saida/<marca>/`: um `.psd` com uma camada por item da ficha, `.png`, `.webp` e `relatorio-<provedor>-<tema>.json` com a origem de cada parte, o custo e o resultado do QA.
 
+## Reproduzir uma referência e medir (o loop)
+
+```
+referência ──► grafo da peça ──► workflow do ComfyUI ──► PSD ──► notas por parte ──► diário
+ (inteira)    (partes isoladas    (montado pelo           (texto e     (contra a mesma     (tentativas.jsonl)
+               + relações)          compilador)             logo de      parte isolada
+                                                            código)      na referência)
+```
+
+```bash
+pip install -r requirements-desconstrucao.txt
+# 1. desconstruir: o agente marca contornos aproximados, a ferramenta encaixa na borda e mede o resto
+python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas
+# 2. uma volta do loop: monta o workflow a partir do grafo, roda no ComfyUI, monta o PSD e compara
+python tentativa.py fichas/arara/grafos/promo-telegram.json
+# 3. a próxima volta muda uma coisa só e diz de onde partiu
+python tentativa.py fichas/arara/grafos/promo-telegram.json --denoise personagem=0.4 --pai promo-telegram-001 --mudanca "mascote mais fiel"
+```
+
+O **grafo** (`fichas/<marca>/grafos/<peca>.json`) guarda a peça inteira, cada parte isolada (máscara e recorte em `fichas/<marca>/grafos/<peca>/`), as placas sem texto e de fundo limpo, e as relações entre as partes (quem segura o quê, o que o tema liga, contraste do texto). Não substitui a ficha: descreve uma peça.
+
+O **compilador** (`motor/compilador.py`) transforma o grafo em workflow do ComfyUI: um ramo por camada gerada, cada um trabalhando na região da sua parte na referência. Texto e logo nunca viram ramo. O mesmo grafo sempre dá o mesmo workflow, guardado em `fluxos/<marca>/workflows/<sha256>.json`.
+
+O **comparador** (`motor/comparar.py`) mede cada parte contra a mesma parte isolada na referência: diferença de cor (ΔE CIEDE2000), estrutura (SSIM), paleta, cobertura e corte reto na borda. Cada tentativa vira uma linha em `fluxos/<marca>/tentativas.jsonl`, com o workflow, os parâmetros, o tempo e as notas.
+
 Integrações: `integracoes/comfyui/LEIA-ME.md` (geração e fluxo completo) e `integracoes/photocraft/LEIA-ME.md` (editor do PSD). Os dois têm MCP; veja `.mcp.json.exemplo`.
 
 ## Pastas
@@ -38,10 +63,11 @@ Integrações: `integracoes/comfyui/LEIA-ME.md` (geração e fluxo completo) e `
 | Pasta | O que tem |
 |---|---|
 | `referencias/` | As mídias que queremos copiar |
-| `fichas/` | Fichas de estilo, medidas e evidência |
+| `fichas/` | Fichas de estilo, medidas, evidência e o grafo de cada peça de referência |
 | `partes/` | Partes geradas por IA e o registro com a receita de cada uma |
-| `motor/` | Código: ficha, portão de geração, recorte, texto, compositor, QA |
-| `ferramentas/` | Medição das referências para a desconstrução |
+| `fluxos/` | Workflows montados pelo compilador e o diário das tentativas do loop |
+| `motor/` | Código: ficha, grafo, compilador, portão de geração, recorte, texto, compositor, QA, comparador |
+| `ferramentas/` | Medição e desconstrução das referências |
 | `integracoes/` | ComfyUI (nós, grafos, fluxo) e PhotoCraft (conferência do PSD) |
 | `.claude/skills/` | Protocolo e memória de cada agente especialista |
 | `testes/` | Testes automáticos |

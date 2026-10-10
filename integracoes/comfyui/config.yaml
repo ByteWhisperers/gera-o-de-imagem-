@@ -21,3 +21,17 @@ tamanhos:
 recorte:
   mascote: modelo
   entorno: cor_da_borda
+# Compilador grafo -> workflow (motor/compilador.py). São os botões que o loop
+# de produção ajusta, um por vez, anotando o resultado de cada tentativa.
+compilador:
+  # Quanto cada tipo de parte pode mudar em relação à referência (0 = igual, 1 = do zero).
+  denoise: {fundo: 0.35, personagem: 0.5, objeto: 0.5}
+  denoise_placa: 0.8          # inpainting das placas (apagar texto, logo, mascote e entorno)
+  lado: {fundo: 1024, personagem: 640, objeto: 640}   # lado maior da geração, em px
+  margem: 0.04                # folga em volta da caixa de cada parte, em fração do lado
+  sampler: euler_ancestral
+  scheduler: normal
+  # Trechos do prompt da ficha que não servem quando a parte é refeita no lugar dela.
+  tirar_do_prompt:
+    - ", isolated on a plain light grey studio background"
+    - ", centered"

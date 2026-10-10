@@ -10,6 +10,7 @@ monta a peça em PSD. A lógica fica em `motor/`; aqui estão só a ligação.
 | `grafos/fluxo.json` | Fluxo completo: 3 partes + nó "Compor peça (PSD)". |
 | `nos_gera_imagem/` | Nós próprios: "Ficha de estilo: prompt" e "Compor peça (PSD)". |
 | `rodar_fluxo.py` | Roda o fluxo completo pela API, sem abrir o navegador. |
+| (gerado) `fluxos/<marca>/workflows/*.json` | Workflows que o compilador (`motor/compilador.py`) monta a partir do grafo de uma referência. Não se escreve à mão. |
 
 ## Instalar (testado com ComfyUI 0.39.0, CPU)
 
@@ -32,6 +33,18 @@ python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo --said
 
 # ou parte por parte pelo portão, que registra a receita em partes/<marca>/registro.yaml
 python pipeline.py fichas/arara/ficha-v1.1.yaml --provedor comfyui --tema telegram --formato promo
+```
+
+## Workflow montado a partir do grafo (fase 1)
+
+O `motor/compilador.py` lê o grafo de uma referência (`fichas/<marca>/grafos/<peca>.json`)
+e monta o workflow: um ramo por camada gerada, cada um na região da sua parte na
+referência (recorte, img2img, máscara). Os botões ficam em `config.yaml`, chave `compilador`.
+
+```bash
+python tentativa.py fichas/arara/grafos/promo-telegram.json --so-compilar   # monta e confere (nós, modelos, nada pago)
+python tentativa.py fichas/arara/grafos/promo-telegram.json                 # roda, monta o PSD e compara
+comfy --json workflow validate --workflow fluxos/arara/workflows/<sha>.json # segunda conferência, com o comfy-cli
 ```
 
 O fluxo completo salva em `ComfyUI/output/gera/<marca>/<formato>-<tema>-comfyui.{psd,png,webp,qa.json}`.

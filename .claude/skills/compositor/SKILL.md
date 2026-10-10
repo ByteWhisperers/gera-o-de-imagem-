@@ -16,3 +16,5 @@ description: Monta as partes em camadas na ordem da ficha e entrega PSD editáve
 
 - Posições vêm do `layout` da ficha, em frações da peça. Não mova à mão sem registrar.
 - Texto sempre por `motor/texto.py`.
+- Na tentativa a partir do grafo (`tentativa.py`), texto e logo vão para as caixas medidas na referência
+  e os efeitos que já vêm no fundo da referência (escurecimento, brilho) entram no PSD desligados.

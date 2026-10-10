@@ -1,0 +1,4 @@
+# Só para a desconstrução semi-manual (ferramentas/desconstruir.py):
+# encaixe do contorno na borda (random walker) e busca do logo na peça.
+-r requirements.txt
+scikit-image>=0.22

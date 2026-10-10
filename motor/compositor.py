@@ -27,6 +27,7 @@ class Camada:
     imagem: Image.Image      # RGBA
     x: int = 0
     y: int = 0
+    visivel: bool = True
 
 
 def cobrir(im: Image.Image, largura: int, altura: int) -> Image.Image:
@@ -80,14 +81,27 @@ def encaixar(im: Image.Image, caixa: dict, largura: int, altura: int) -> tuple[I
 
 
 def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: list[dict],
-           recorte: dict[str, str] | None = None) -> list[Camada]:
-    """`recorte` diz o método de tirar o fundo de cada parte (padrão: liso)."""
+           recorte: dict[str, str] | None = None, posicionadas: dict[str, tuple] | None = None,
+           ocultas: set[str] | None = None) -> list[Camada]:
+    """`recorte` diz o método de tirar o fundo de cada parte (padrão: liso).
+
+    `posicionadas` traz partes que já chegam recortadas e no lugar certo, como
+    (imagem RGBA, x, y): é o caso das partes refeitas a partir do grafo da
+    referência. `ocultas` são camadas que entram no PSD desligadas (por exemplo,
+    um efeito que já vem embutido no fundo da referência).
+    """
     largura, altura = F.tamanho(ficha, formato)
     layout = ficha["layout"][formato]
+    posicionadas = posicionadas or {}
     camadas: list[Camada] = []
     for c in ficha["camadas"]:
         nome, tipo = c["id"], c["tipo"]
-        if tipo == "gerada" and c["parte"] == "cena":
+        if nome in posicionadas:
+            im, x, y = posicionadas[nome]
+            im = im.convert("RGBA")
+            caixa = im.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox() or (0, 0, im.width, im.height)
+            camadas.append(Camada(nome, im.crop(caixa), x + caixa[0], y + caixa[1]))
+        elif tipo == "gerada" and c["parte"] == "cena":
             camadas.append(Camada(nome, cobrir(partes["cena"], largura, altura).convert("RGBA")))
         elif tipo == "gerada":
             im = partes[c["parte"]]
@@ -110,12 +124,16 @@ def montar(ficha: dict, formato: str, partes: dict[str, Image.Image], linhas: li
             camadas.append(Camada(nome, im, x, y))
         else:
             raise ValueError(f"camada '{nome}' de tipo '{tipo}' não sei montar")
+    for c in camadas:
+        c.visivel = c.nome not in (ocultas or set())
     return camadas
 
 
 def achatar(camadas: list[Camada], largura: int, altura: int) -> Image.Image:
     final = Image.new("RGBA", (largura, altura), (0, 0, 0, 255))
     for c in camadas:
+        if not c.visivel:
+            continue
         tela = Image.new("RGBA", (largura, altura), (0, 0, 0, 0))
         tela.paste(c.imagem, (c.x, c.y), c.imagem)
         final.alpha_composite(tela)
@@ -133,7 +151,9 @@ def salvar(camadas: list[Camada], largura: int, altura: int, base: Path) -> dict
         # recorta o que sai da tela: o PSD guarda só a parte visível de cada camada
         caixa = (max(0, -c.x), max(0, -c.y), min(c.imagem.width, largura - c.x), min(c.imagem.height, altura - c.y))
         visivel = c.imagem.crop(caixa)
-        psd.append(PixelLayer.frompil(visivel, psd, c.nome, top=max(0, c.y), left=max(0, c.x)))
+        camada = PixelLayer.frompil(visivel, psd, c.nome, top=max(0, c.y), left=max(0, c.x))
+        camada.visible = c.visivel
+        psd.append(camada)
     caminhos = {"psd": base.with_suffix(".psd"), "png": base.with_suffix(".png"), "webp": base.with_suffix(".webp")}
     psd.save(caminhos["psd"])
     final = achatar(camadas, largura, altura).convert("RGB")

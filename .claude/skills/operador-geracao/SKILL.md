@@ -15,6 +15,11 @@ Você opera o modelo de imagem (ComfyUI local pelo portão, ou o MCP do fal com 
 4. Baixe para `partes/<marca>/` e registre em `registro.yaml`: arquivo, modelo, semente, tamanho, request_id, custo, prompt, `escolhida` e o `motivo` quando reprovar.
 5. Com ComfyUI, `--provedor comfyui` faz os passos 3 e 4 sozinho (custo 0, método de recorte de `integracoes/comfyui/config.yaml`) e reaproveita o que já está na biblioteca; `--novo <parte>` pede variação.
 6. Rode `python pipeline.py <ficha> --provedor registro --tema <tema>` e entregue ao revisor.
+7. Para reproduzir uma referência a partir do grafo dela: `python tentativa.py fichas/<marca>/grafos/<peca>.json`.
+   O workflow sai do compilador (`motor/compilador.py`), não se escreve à mão. Mude uma coisa por vez
+   (`--denoise personagem=0.4`, `--semente 520`, ou um botão de `compilador` no `config.yaml`), diga o que
+   mudou em `--mudanca` e de qual tentativa partiu em `--pai`. Antes, leia as linhas anteriores de
+   `fluxos/<marca>/tentativas.jsonl` para não repetir o que já falhou.
 
 ## Regras
 

@@ -1,0 +1,438 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-telegram",
+ "marca": "arara",
+ "ficha": "fichas/arara/ficha-v1.1.yaml",
+ "referencia": "referencias/arara/promo/promo-1790981127-d91c22ef.webp",
+ "formato_peca": "promo",
+ "tema": "telegram",
+ "tamanho_px": [
+  1867,
+  842
+ ],
+ "pasta": "fichas/arara/grafos/promo-telegram",
+ "marcacao": "fichas/arara/grafos/promo-telegram.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "mascote": "recortes/mascote.webp",
+  "entorno": "recortes/entorno.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "vale de rio ao pôr do sol entre torres cársticas com selva; sol baixo perto do centro, reflexo dourado no rio",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#07170d",
+      "fracao": 0.232
+     },
+     {
+      "cor": "#5f551d",
+      "fracao": 0.182
+     },
+     {
+      "cor": "#212409",
+      "fracao": 0.172
+     },
+     {
+      "cor": "#a68125",
+      "fracao": 0.16
+     },
+     {
+      "cor": "#443109",
+      "fracao": 0.136
+     },
+     {
+      "cor": "#dfc243",
+      "fracao": 0.118
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "turista",
+   "descricao": "arara-vermelha 3D rindo, figurino turista (chapéu de palha com hibisco, óculos escuros, camisa havaiana verde, corrente de ouro)",
+   "pose": "asa esquerda aberta apresentando o ícone, a outra mão segura o celular",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.4189,
+    0.0629,
+    0.5811,
+    0.9371
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "celular",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "telegram",
+   "descricao": "celular com o ícone azul do Telegram na tela",
+   "caixa": [
+    0.858,
+    0.41,
+    0.114,
+    0.309
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "medalhao",
+   "tipo": "acessorio",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "telegram",
+   "descricao": "medalhão de ouro com o avião de papel, na corrente",
+   "caixa": [
+    0.776,
+    0.647,
+    0.048,
+    0.113
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "icone_canal",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "telegram",
+   "descricao": "ícone redondo azul com o avião de papel, com anel de luz dourada",
+   "mascara": "mascaras/icone_canal.png",
+   "caixa": [
+    0.5212,
+    0.0867,
+    0.1435,
+    0.3088
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moedas",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "descricao": "cinco moedas de ouro soltas em volta do mascote",
+   "mascara": "mascaras/moedas.png",
+   "caixa": [
+    0.5024,
+    0.0238,
+    0.4922,
+    0.9513
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 5
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     16.9,
+     30.3,
+     47.9,
+     74.3,
+     57.9,
+     91.8,
+     95.5,
+     38.1,
+     61.8,
+     48.9
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 578,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0423,
+    0.2565,
+    0.2009,
+    0.0879
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "altura_px": 74,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fafaf9",
+     "#f7f7f7",
+     "#ededec"
+    ],
+    "contorno_escuro_frac": 0.38
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0364,
+    0.3729,
+    0.4135,
+    0.1093
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "altura_px": 92,
+    "peso_rel": 1.24,
+    "rampa_tercos": [
+     "#f9e012",
+     "#f8da0e",
+     "#f9c50b"
+    ],
+    "contorno_escuro_frac": 0.33
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.037,
+    0.5071,
+    0.2908,
+    0.0903
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "altura_px": 76,
+    "peso_rel": 1.03,
+    "rampa_tercos": [
+     "#f9f9f8",
+     "#f7f7f7",
+     "#ececec"
+    ],
+    "contorno_escuro_frac": 0.41
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0279,
+    0.6342,
+    0.4869,
+    0.0962
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "altura_px": 81,
+    "peso_rel": 1.09,
+    "rampa_tercos": [
+     "#f8e013",
+     "#f8d50d",
+     "#f8c50e"
+    ],
+    "contorno_escuro_frac": 0.34
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/arara/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0305,
+    0.0523,
+    0.2169,
+    0.1033
+   ],
+   "fonte_caixa": "medido:casamento com o arquivo do logo, correlação 0.865"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "celular"
+  },
+  {
+   "de": "mascote",
+   "rel": "veste",
+   "para": "medalhao"
+  },
+  {
+   "de": "mascote",
+   "rel": "apresenta",
+   "para": "icone_canal",
+   "nota": "a asa aberta aponta para o ícone"
+  },
+  {
+   "de": "moedas",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icone_canal",
+   "tema": "telegram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "celular",
+   "tema": "telegram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "medalhao",
+   "tema": "telegram"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icone_canal",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 16.0,
+   "L_fundo_em_volta": 23.8
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.32
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.7,
+   "L_fundo_em_volta": 49.9
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.23
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 13.5,
+   "L_fundo_em_volta": 38.4
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.41
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 8.1,
+   "L_fundo_em_volta": 53.3
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.012
+  }
+ ]
+}

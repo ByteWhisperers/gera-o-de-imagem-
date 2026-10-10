@@ -1,0 +1,511 @@
+"""Desconstrói uma referência: a peça inteira, as partes isoladas e o grafo das relações.
+
+Uso:
+    python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml
+    python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas
+
+É semi-manual. O agente escreve a marcação (contornos aproximados do mascote
+e dos objetos, e as relações que lê na peça). Esta ferramenta:
+  1. encaixa cada contorno na borda real da imagem (random walker numa faixa
+     em volta do contorno: dentro é parte, fora é fundo, a faixa se decide);
+  2. mede sozinha o logo (casamento com o arquivo do logo), as linhas de
+     texto (cor, altura, contorno, contraste) e o fundo (paleta, escurecimento);
+  3. escreve o grafo <peca>.json, as máscaras, os recortes isolados e uma
+     prancha de conferência para o dono aprovar;
+  4. com --placas, apaga texto e logo (placa "sem_texto") e também mascote e
+     entorno (placa "cena_limpa") por inpainting no ComfyUI local. Custo zero.
+
+Precisa de scikit-image (requirements-desconstrucao.txt). O grafo sai com
+estado "proposta": só o dono muda para "aprovada".
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+import warnings
+from pathlib import Path
+
+import numpy as np
+import yaml
+from PIL import Image, ImageDraw, ImageFilter
+
+RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ))
+
+from ferramentas.medir import luminancia, paleta  # noqa: E402
+from motor import ficha as F  # noqa: E402
+from motor import grafo as G  # noqa: E402
+
+
+def _ndi():
+    from scipy import ndimage
+
+    return ndimage
+
+
+# ---------------------------------------------------------------- contornos
+
+
+def mascara_poligono(pontos: list, largura: int, altura: int) -> np.ndarray:
+    m = Image.new("L", (largura, altura), 0)
+    ImageDraw.Draw(m).polygon([(x * largura, y * altura) for x, y in pontos], fill=255)
+    return np.asarray(m) > 127
+
+
+def mascara_elipse(caixa: list, largura: int, altura: int) -> np.ndarray:
+    x, y, w, h = caixa
+    m = Image.new("L", (largura, altura), 0)
+    ImageDraw.Draw(m).ellipse((x * largura, y * altura, (x + w) * largura, (y + h) * altura), fill=255)
+    return np.asarray(m) > 127
+
+
+def encaixar_na_borda(rgb: np.ndarray, aproximada: np.ndarray, banda: int | None = None) -> np.ndarray:
+    """Ajusta uma máscara aproximada à borda real da imagem.
+
+    Dentro do contorno (encolhido) é certeza de parte; fora (alargado) é certeza
+    de fundo; a faixa entre os dois o random walker decide pela cor.
+    """
+    from skimage.segmentation import random_walker
+
+    warnings.filterwarnings("ignore", message="The probability range is outside")
+    ndi = _ndi()
+    caixa = G.caixa_px(aproximada)
+    if caixa is None:
+        return aproximada
+    _, _, bw, bh = caixa
+    banda = banda or max(5, round(0.03 * min(bw, bh)))
+    dentro = ndi.binary_erosion(aproximada, iterations=banda)
+    fora = ~ndi.binary_dilation(aproximada, iterations=banda)
+    x, y, w, h = G.caixa_px(~fora)
+    passo = 2 if min(w, h) > 400 else 1
+    sub = rgb[y : y + h : passo, x : x + w : passo] / 255.0
+    sementes = np.zeros(sub.shape[:2], np.int32)
+    sementes[dentro[y : y + h : passo, x : x + w : passo]] = 1
+    sementes[fora[y : y + h : passo, x : x + w : passo]] = 2
+    if not (sementes == 1).any():
+        return aproximada
+    rotulo = random_walker(sub, sementes, beta=130, mode="cg_j", channel_axis=-1, tol=1e-2)
+    parte = Image.fromarray(((rotulo == 1) * 255).astype(np.uint8))
+    if passo > 1:
+        parte = parte.resize((w, h), Image.BILINEAR)
+    saida = np.zeros_like(aproximada)
+    saida[y : y + h, x : x + w] = np.asarray(parte)[:h, :w] > 127
+    return ndi.binary_fill_holes(saida)
+
+
+# ---------------------------------------------------------------- medidas automáticas
+
+
+def medir_logo(im: Image.Image, arquivo_logo: Path, zona: list) -> dict:
+    """Acha o logo na peça casando com o arquivo do logo, em várias escalas."""
+    from skimage.feature import match_template
+
+    W, H = im.size
+    esc = 4
+    logo = Image.open(arquivo_logo).convert("RGBA")
+    zx, zy, zw, zh = zona
+    cinza = np.asarray(im.convert("L").resize((W // esc, H // esc)), dtype=np.float32)
+    x0, y0 = int(zx * W / esc), int(zy * H / esc)
+    area = cinza[y0 : int((zy + zh) * H / esc), x0 : int((zx + zw) * W / esc)]
+    melhor = None
+    for frac in np.arange(0.10, zw, 0.005):
+        lw = int(W * frac / esc)
+        lh = int(lw * logo.height / logo.width)
+        if lw < 8 or lh >= area.shape[0] or lw >= area.shape[1]:
+            continue
+        lg = logo.resize((lw, lh))
+        a = np.asarray(lg.getchannel("A"), dtype=np.float32) / 255
+        molde = np.asarray(lg.convert("L"), dtype=np.float32) * a
+        r = match_template(area, molde)
+        k = np.unravel_index(np.argmax(r), r.shape)
+        if melhor is None or r[k] > melhor[0]:
+            melhor = (float(r[k]), k, lw, lh)
+    nota, (ly, lx), lw, lh = melhor
+    x, y, w, h = (lx + x0) * esc, (ly + y0) * esc, lw * esc, lh * esc
+    alfa = np.asarray(logo.resize((w, h)).getchannel("A")) > 127
+    m = np.zeros((H, W), bool)
+    m[y : y + h, x : x + w] = alfa[: max(0, min(h, H - y)), : max(0, min(w, W - x))]
+    return {"mascara": m, "correlacao": round(nota, 3)}
+
+
+def _l_rel(c: np.ndarray) -> float:
+    c = np.asarray(c, dtype=np.float64) / 255
+    c = np.where(c <= 0.03928, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
+    return float(0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2])
+
+
+def medir_texto(rgb: np.ndarray, zona: list, proibido: np.ndarray) -> tuple[np.ndarray, list[dict]]:
+    """Linhas de texto da zona: letras claras (branco ou ouro) coladas num contorno escuro.
+
+    Devolve a máscara das letras e, por linha, caixa, altura, estilo, rampa de
+    cor, contorno e contraste com o fundo em volta. O conteúdo não é copiado.
+    """
+    ndi = _ndi()
+    H, W = rgb.shape[:2]
+    lum = luminancia(rgb)
+    sat = (rgb.max(2) - rgb.min(2)) / np.maximum(rgb.max(2), 1)
+    ouro = (rgb[..., 0] > 200) & (rgb[..., 1] > 150) & (rgb[..., 2] < 120)
+    branco = (lum > 215) & (sat < 0.12)
+    zx, zy, zw, zh = zona
+    dentro_zona = np.zeros((H, W), bool)
+    dentro_zona[int(zy * H) : int((zy + zh) * H), int(zx * W) : int((zx + zw) * W)] = True
+    cand = (branco | ouro) & dentro_zona & ~proibido
+    borda_escura = ndi.binary_dilation(lum < 60, iterations=4)
+    cand &= borda_escura | ndi.binary_dilation(cand & borda_escura, iterations=6)
+    cand = ndi.binary_opening(cand, iterations=1)
+    lab, n = ndi.label(cand.mean(1) > 0.04)
+    linhas, letras = [], np.zeros((H, W), bool)
+    for j in range(1, n + 1):
+        ys = np.nonzero(lab == j)[0]
+        if len(ys) < 20:
+            continue
+        y0, y1 = int(ys[0]), int(ys[-1]) + 1
+        dens = cand[y0:y1].mean(0)
+        cols = np.nonzero(dens > 0.05)[0]
+        if len(cols) == 0:
+            continue
+        fim = cols[0]
+        for c in cols[1:]:                       # para no primeiro vão maior que um espaço entre palavras
+            if c - fim > 0.035 * W:
+                break
+            fim = c
+        x0, x1 = int(cols[0]), int(fim) + 1
+        g = cand[y0:y1, x0:x1]
+        px = rgb[y0:y1, x0:x1]
+        tercos = []
+        for a, b in ((0, 0.33), (0.33, 0.66), (0.66, 1.0)):
+            sel = g[int(a * (y1 - y0)) : int(b * (y1 - y0))]
+            c = px[int(a * (y1 - y0)) : int(b * (y1 - y0))][sel].mean(0) if sel.any() else np.zeros(3)
+            tercos.append("#%02x%02x%02x" % tuple(int(v) for v in c))
+        caixa = np.zeros((H, W), bool)
+        caixa[y0:y1, x0:x1] = True
+        glifo = cand & caixa
+        acima = np.zeros((H, W), bool)                 # acentos ficam acima da linha
+        acima[max(0, y0 - round(0.45 * (y1 - y0))) : y0, x0:x1] = True
+        anel = ndi.binary_dilation(caixa, iterations=25) & ~ndi.binary_dilation(cand, iterations=12) & ~proibido
+        lt, lf = _l_rel(rgb[glifo].mean(0)), _l_rel(rgb[anel].mean(0))
+        faixa = ndi.binary_dilation(glifo, iterations=6) & ~glifo
+        linhas.append({
+            "caixa_px": [x0, y0, x1 - x0, y1 - y0],
+            "altura_px": y1 - y0,
+            "estilo_ficha": "dourado" if ouro[glifo].mean() > 0.5 else "branco",
+            "rampa_tercos": tercos,
+            "contorno_escuro_frac": round(float((lum[faixa] < 50).mean()), 2),
+            "contraste_wcag": round((max(lt, lf) + 0.05) / (min(lt, lf) + 0.05), 1),
+            "L_fundo_em_volta": round(float(lum[anel].mean()), 1),
+        })
+        letras |= glifo | (cand & acima)
+    if linhas:
+        for li in linhas:
+            li["peso_rel"] = round(li["altura_px"] / linhas[0]["altura_px"], 2)
+    return letras, linhas
+
+
+def curva_escurecimento(lum: np.ndarray, fundo: np.ndarray, faixas: int = 10) -> list:
+    W = lum.shape[1]
+    curva = []
+    for k in range(faixas):
+        a, b = int(W * k / faixas), int(W * (k + 1) / faixas)
+        sel = fundo[:, a:b]
+        curva.append(round(float(np.median(lum[:, a:b][sel])), 1) if sel.any() else None)
+    return curva
+
+
+def paleta_de(rgb: np.ndarray, m: np.ndarray, n: int = 6) -> list[dict]:
+    amostra = rgb[m].astype(np.uint8)
+    if len(amostra) == 0:
+        return []
+    passo = max(1, len(amostra) // 65536)
+    amostra = amostra[::passo]
+    lado = int(np.sqrt(len(amostra)))
+    return paleta(Image.fromarray(amostra[: lado * lado].reshape(lado, lado, 3)), n)
+
+
+# ---------------------------------------------------------------- arquivos
+
+
+def _salvar_mascara(m: np.ndarray, caminho: Path) -> None:
+    caminho.parent.mkdir(parents=True, exist_ok=True)
+    Image.fromarray((m * 255).astype(np.uint8)).save(caminho, optimize=True)
+
+
+def recorte_isolado(im: Image.Image, m: np.ndarray) -> Image.Image | None:
+    caixa = G.caixa_px(m)
+    if caixa is None:
+        return None
+    x, y, w, h = caixa
+    rgba = im.convert("RGBA")
+    rgba.putalpha(Image.fromarray((m * 255).astype(np.uint8)))
+    return rgba.crop((x, y, x + w, y + h))
+
+
+def _xadrez(w: int, h: int, lado: int = 16) -> Image.Image:
+    yy, xx = np.mgrid[0:h, 0:w]
+    v = np.where(((xx // lado) + (yy // lado)) % 2 == 0, 70, 95).astype(np.uint8)
+    return Image.fromarray(np.dstack([v, v, v]), "RGB").convert("RGBA")
+
+
+def prancha(im: Image.Image, mascaras: dict[str, np.ndarray], recortes: dict[str, Image.Image],
+            placas: dict[str, Image.Image]) -> Image.Image:
+    """Referência com os contornos encaixados em cima e as partes isoladas embaixo."""
+    ndi = _ndi()
+    cores = {"mascote": (255, 60, 60), "entorno": (255, 170, 0), "texto": (80, 255, 80), "logo": (0, 220, 255)}
+    W, H = im.size
+    topo = np.asarray(im.convert("RGB")).copy()
+    for nome, m in mascaras.items():
+        borda = ndi.binary_dilation(m, iterations=3) & ~m
+        topo[borda] = cores.get(nome, (255, 255, 255))
+    largura = 1600
+    escala = largura / W
+    blocos = [Image.fromarray(topo).resize((largura, round(H * escala)))]
+    pecas = [(k, v) for k, v in placas.items()] + [(k, v) for k, v in recortes.items()]
+    if pecas:
+        alt = 300
+        linha = Image.new("RGB", (largura, alt + 30), (24, 24, 24))
+        x = 10
+        d = ImageDraw.Draw(linha)
+        for nome, p in pecas:
+            p = p.convert("RGBA")
+            f = min((alt - 10) / p.height, 520 / p.width)
+            p = p.resize((max(1, round(p.width * f)), max(1, round(p.height * f))))
+            fundo = _xadrez(p.width, p.height)
+            fundo.alpha_composite(p)
+            if x + p.width > largura:
+                break
+            linha.paste(fundo.convert("RGB"), (x, 26))
+            d.text((x, 6), nome, fill=(240, 240, 240))
+            x += p.width + 14
+        blocos.append(linha)
+    total = Image.new("RGB", (largura, sum(b.height for b in blocos)), (24, 24, 24))
+    y = 0
+    for b in blocos:
+        total.paste(b, (0, y))
+        y += b.height
+    return total
+
+
+# ---------------------------------------------------------------- placas (inpainting no ComfyUI)
+
+
+def preencher_buraco(rgb: np.ndarray, buraco: np.ndarray, reducao: int = 4) -> np.ndarray:
+    """Pré-preenche o buraco com as cores de volta (convolução normalizada).
+
+    O inpainting do SD-Turbo sai melhor partindo de cores plausíveis do que de um buraco.
+    """
+    ndi = _ndi()
+    H, W = buraco.shape
+    peq = np.asarray(Image.fromarray(rgb.astype(np.uint8)).resize((W // reducao, H // reducao)), np.float32)
+    conhecido = np.asarray(Image.fromarray(((~buraco) * 255).astype(np.uint8)).resize(
+        (W // reducao, H // reducao), Image.NEAREST)) > 127
+    conhecido = ndi.binary_erosion(conhecido, iterations=1)
+    acc, peso = peq * conhecido[..., None], conhecido.astype(np.float32)
+    cheio = np.where(conhecido[..., None], peq, 0)
+    feito = conhecido.copy()
+    for sigma in (2, 4, 8, 16, 32, 64, 128):
+        num = np.stack([ndi.gaussian_filter(acc[..., c], sigma) for c in range(3)], -1)
+        den = ndi.gaussian_filter(peso, sigma)
+        novo = ~feito & (den > 1e-3)
+        cheio[novo] = (num / np.maximum(den, 1e-6)[..., None])[novo]
+        feito |= novo
+    grande = np.asarray(Image.fromarray(cheio.clip(0, 255).astype(np.uint8)).resize((W, H), Image.BICUBIC), np.float32)
+    return np.where(buraco[..., None], grande, rgb)
+
+
+def buracos(grafo: dict, mascaras: dict[str, np.ndarray], linhas: list[dict]) -> dict[str, np.ndarray]:
+    ndi = _ndi()
+    W, H = grafo["tamanho_px"]
+    # as letras com folga para o contorno escuro e a sombra (cerca de 20% da altura da linha)
+    folga = round(0.2 * np.mean([li["altura_px"] for li in linhas])) if linhas else 0
+    texto = ndi.binary_dilation(mascaras["texto"], iterations=folga) if folga else mascaras["texto"]
+    sem_texto = texto | ndi.binary_dilation(mascaras["logo"], iterations=10)
+    figura = ndi.binary_dilation(mascaras["mascote"] | mascaras["entorno"], iterations=8)
+    return {"sem_texto": sem_texto, "cena_limpa": sem_texto | figura}
+
+
+def fazer_placas(grafo: dict, ficha: dict, im: Image.Image, buracos_: dict[str, np.ndarray],
+                 semente: int = 7) -> dict[str, Image.Image]:
+    from motor import comfyui as CU
+    from motor import compilador as C
+
+    cfg = C.ler_config()
+    rgb = np.asarray(im.convert("RGB"), np.float32)
+    saida = {}
+    for nome, buraco in buracos_.items():
+        cheio = preencher_buraco(rgb, buraco)
+        suave = Image.fromarray((buraco * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5)).filter(
+            ImageFilter.GaussianBlur(3))
+        comp = C.compilar_placa(ficha, grafo, cfg, Image.fromarray(cheio.astype(np.uint8)), suave,
+                                semente=semente, prefixo=f"gera/{grafo['peca']}-{nome}")
+        for arq, imagem in comp.entradas.items():
+            CU.enviar_imagem(cfg["url"], arq, imagem)
+        resultado = CU.executar(cfg["url"], comp.workflow)
+        saida[nome] = resultado[comp.saidas["placa"]["no"]][0].convert("RGB")
+        print(f"placa {nome}: pronta")
+    return saida
+
+
+# ---------------------------------------------------------------- principal
+
+
+def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict:
+    ndi = _ndi()
+    caminho_marcacao = Path(caminho_marcacao).resolve()
+    mc = yaml.safe_load(caminho_marcacao.read_text(encoding="utf-8"))
+    ficha = F.carregar(RAIZ / mc["ficha"])
+    im = Image.open(RAIZ / mc["referencia"]).convert("RGB")
+    W, H = im.size
+    rgb = np.asarray(im, dtype=np.float32)
+    lum = luminancia(rgb)
+    destino = caminho_marcacao.parent / mc["peca"]
+    rel = destino.relative_to(RAIZ).as_posix()
+
+    # logo e texto: medidos sozinhos
+    logo_arq = next(c["arquivo"] for c in ficha["camadas"] if c["tipo"] == "arquivo")
+    logo = medir_logo(im, RAIZ / logo_arq, mc["zona_logo"])
+    letras, linhas = medir_texto(rgb, mc["zona_texto"], ndi.binary_dilation(logo["mascara"], iterations=6))
+
+    # contornos marcados: encaixados na borda
+    mascaras_no: dict[str, np.ndarray] = {}
+    for id_, n in mc["nos"].items():
+        if "contorno" in n:
+            mascaras_no[id_] = encaixar_na_borda(rgb, mascara_poligono(n["contorno"], W, H))
+        elif "elipses" in n:
+            m = np.zeros((H, W), bool)
+            for e in n["elipses"]:
+                m |= encaixar_na_borda(rgb, mascara_elipse(e, W, H))
+            mascaras_no[id_] = m
+    # o que está na frente ganha a disputa pelos pixels
+    ordem = sorted(mascaras_no, key=lambda k: mc["nos"][k].get("z", 0), reverse=True)
+    ocupado = letras | logo["mascara"]
+    for k in ordem:
+        mascaras_no[k] &= ~ocupado
+        ocupado |= mascaras_no[k]
+    fundo = ~ocupado
+
+    camadas = {"mascote": np.zeros((H, W), bool), "entorno": np.zeros((H, W), bool)}
+    for k, m in mascaras_no.items():
+        c = mc["nos"][k].get("camada_psd")
+        if c in camadas:
+            camadas[c] |= m
+    camadas["texto"], camadas["logo"] = letras, logo["mascara"]
+
+    # nós do grafo
+    nos: list[dict] = []
+    for id_, n in mc["nos"].items():
+        no = {"id": id_, "tipo": n["tipo"], "z": n.get("z", 0), "camada_psd": n.get("camada_psd")}
+        no.update({k: v for k, v in n.items() if k in ("descricao", "figurino", "pose", "tema")})
+        if id_ in mascaras_no:
+            no["mascara"] = f"mascaras/{id_}.png"
+            no["caixa"] = G.caixa_frac(G.caixa_px(mascaras_no[id_]), W, H)
+            no["fonte_caixa"] = "medido:contorno do agente encaixado na borda (random walker)"
+        elif "caixa" in n:
+            no["caixa"] = n["caixa"]
+            no["fonte_caixa"] = "estimativa do agente"
+        if n["tipo"] == "fundo":
+            no["mascara"] = "mascaras/cena.png"
+            no["caixa"] = [0, 0, 1, 1]
+            no["estilo"] = {"paleta": paleta_de(rgb, fundo), "fonte": "medido:só os pixels de fundo"}
+        if id_ == "moedas":
+            no["quantidade"] = len(n["elipses"])
+        nos.append(no)
+    esc = ficha["escurecimento"]
+    nos.append({"id": "escurecimento", "tipo": "efeito", "z": 1, "camada_psd": "escurecimento",
+                "caixa": [0, 0, esc["fim_x"], 1], "na_referencia": "embutido no fundo",
+                "estilo": {"L_fundo_por_decimo_de_W": curva_escurecimento(lum, fundo),
+                           "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"}})
+    claros = (lum > 235) & (rgb[..., 2] < 200) & fundo
+    rot, nb = ndi.label(claros)
+    pequenos = int((ndi.sum(claros, rot, range(1, nb + 1)) < 40).sum()) if nb else 0
+    nos.append({"id": "brilho", "tipo": "efeito", "z": 5, "camada_psd": "brilho", "na_referencia": "embutido no fundo",
+                "estilo": {"pontos_claros_pequenos": pequenos, "fonte": "medido:L>235, <40 px (grosseiro)"}})
+    for i, li in enumerate(linhas, start=1):
+        m = np.zeros((H, W), bool)
+        x, y, w, h = li["caixa_px"]
+        m[y : y + h, x : x + w] = True
+        mascaras_no[f"texto_l{i}"] = letras & m
+        nos.append({"id": f"texto_l{i}", "tipo": "texto", "z": 6, "camada_psd": "texto",
+                    "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+                    "mascara": f"mascaras/texto_l{i}.png", "caixa": G.caixa_frac(li["caixa_px"], W, H),
+                    "estilo": {k: li[k] for k in ("estilo_ficha", "altura_px", "peso_rel", "rampa_tercos",
+                                                  "contorno_escuro_frac")},
+                    "fonte": "medido:limiar de cor + projeção por linha"})
+    mascaras_no["logo"] = logo["mascara"]
+    nos.append({"id": "logo", "tipo": "logo", "z": 7, "camada_psd": "logo", "arquivo": logo_arq,
+                "mascara": "mascaras/logo.png", "caixa": G.caixa_frac(G.caixa_px(logo["mascara"]), W, H),
+                "fonte_caixa": f"medido:casamento com o arquivo do logo, correlação {logo['correlacao']}"})
+    mascaras_no["cena"] = fundo
+
+    # arestas: as lidas pelo agente + as medidas
+    arestas = [dict(a) for a in mc.get("arestas", [])]
+    ids = {n["id"] for n in nos}
+    arestas = [a for a in arestas if a["de"] in ids and a["para"] in ids]
+    for n in nos:
+        if n["tipo"] in G.GERAVEIS and n["tipo"] != "fundo" and "mascara" in n:
+            arestas.append({"de": n["id"], "rel": "fica_sobre", "para": "cena"})
+    for i, li in enumerate(linhas, start=1):
+        arestas.append({"de": f"texto_l{i}", "rel": "fica_sobre", "para": "escurecimento"})
+        arestas.append({"de": f"texto_l{i}", "rel": "contraste", "para": "cena", "wcag": li["contraste_wcag"],
+                        "L_fundo_em_volta": li["L_fundo_em_volta"]})
+        if i < len(linhas):
+            prox = linhas[i]
+            vao = prox["caixa_px"][1] - (li["caixa_px"][1] + li["altura_px"])
+            arestas.append({"de": f"texto_l{i}", "rel": "empilhado_acima", "para": f"texto_l{i + 1}",
+                            "vao_rel_altura": round(vao / li["altura_px"], 2)})
+    if linhas:
+        lx = G.caixa_px(logo["mascara"])[0]
+        arestas.append({"de": "texto_l1", "rel": "alinhado_com", "para": "logo", "eixo": "esquerda",
+                        "delta_x": round((linhas[0]["caixa_px"][0] - lx) / W, 3)})
+
+    # arquivos
+    for k, m in mascaras_no.items():
+        _salvar_mascara(m, destino / "mascaras" / f"{k}.png")
+    recortes = {}
+    (destino / "recortes").mkdir(parents=True, exist_ok=True)
+    for nome in ("mascote", "entorno", "texto", "logo"):
+        r = recorte_isolado(im, camadas[nome])
+        if r is not None:
+            r.save(destino / "recortes" / f"{nome}.webp", "WEBP", quality=92)
+            recortes[nome] = r
+    grafo = {
+        "formato": G.FORMATO, "estado": "proposta", "peca": mc["peca"], "marca": ficha["marca"],
+        "ficha": mc["ficha"], "referencia": mc["referencia"], "formato_peca": mc["formato"], "tema": mc["tema"],
+        "tamanho_px": [W, H], "pasta": rel, "marcacao": caminho_marcacao.relative_to(RAIZ).as_posix(),
+        "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; "
+                     "cada número diz de onde veio (medido:<método> ou estimativa)",
+        "recortes": {k: f"recortes/{k}.webp" for k in recortes},
+        "placas": {},
+        "nos": nos, "arestas": arestas,
+    }
+    placas = {}
+    for nome in ("sem_texto", "cena_limpa"):
+        arq = destino / f"{nome.replace('_', '-')}.webp"
+        if arq.exists():
+            placas[nome] = Image.open(arq).convert("RGB")
+    if com_placas:
+        placas = fazer_placas(grafo, ficha, im, buracos(grafo, camadas, linhas))
+        for nome, p in placas.items():
+            p.save(destino / f"{nome.replace('_', '-')}.webp", "WEBP", quality=94)
+    grafo["placas"] = {nome: f"{nome.replace('_', '-')}.webp" for nome in placas}
+    G.conferir(grafo, caminho_marcacao)
+    saida = caminho_marcacao.parent / f"{mc['peca']}.json"
+    saida.write_text(json.dumps(grafo, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    vistas = {"cena limpa": placas["cena_limpa"]} if "cena_limpa" in placas else {}
+    prancha(im, {k: camadas[k] for k in ("mascote", "entorno", "texto", "logo")}, recortes, vistas).save(
+        destino / "conferencia.jpg", quality=88)
+    return {"grafo": saida, "nos": len(nos), "arestas": len(arestas), "linhas_texto": len(linhas),
+            "logo_correlacao": logo["correlacao"], "placas": sorted(placas)}
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("marcacao")
+    ap.add_argument("--placas", action="store_true", help="faz as placas sem texto e de fundo limpo no ComfyUI")
+    a = ap.parse_args()
+    r = desconstruir(a.marcacao, a.placas)
+    print(json.dumps({k: (v.as_posix() if isinstance(v, Path) else v) for k, v in r.items()}, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()
