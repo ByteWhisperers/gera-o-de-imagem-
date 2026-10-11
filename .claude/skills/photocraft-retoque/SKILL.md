@@ -37,7 +37,11 @@ sem máscara.
 |---|---|---|
 | loop (nitidez ~40% abaixo) | mascote e entorno 100/1,5/3, frente 60/1,5/3, cena 50/1,5/3. Receita `loop-nitidez.json` | A: mascote 1,85 -> 3,02 (ref 3,04), entorno 2,66 -> 4,40 (4,44), ΔE da peça +0,09, estouro 0,05% |
 | nova e mole (SD-Turbo, ~50% abaixo) | mascote 120/1,0/2 + `filter.cameraRaw {"texture": 40}`, entorno 100/1,2/3, cena 200/1,5/4. Receita `nova-nitidez.json` | B: mascote 1,66 -> 2,65 (ref 3,78). Mais que isso faz contorno branco no bico e nos óculos |
+| nova e mole, passe que só escurece | o de cima no mascote + 2º USM 200/0,8/2 e logo depois `layer.smartFilter.blendingOptions {"layer": "mascote", "blend": "darken"}`; entorno 160/1,2/3 + textura 40; cena 250/1,5/6 | B depois da cor: mascote 1,75 -> 3,20, entorno 0,96 -> 1,78 (ref 1,70), cena 1,0 -> 1,85, estouro dentro da meta. Escurecer acima de 200/0,8 faz linha escura nos óculos |
 
+- Parte com remendo: tire a área remendada da máscara do filtro (`select.lasso`/`select.rect`
+  com `"mode": "subtract"` antes de suavizar). As letras escondidas embaixo do remendo continuam
+  nos pixels da parte e contam no estouro.
 - Raio curto (1,0 a 1,5) e limiar 2 a 4. Para parte muito mole, `cameraRaw texture` dá detalhe
   médio sem contorno; força alta dá halo.
 - Só filtros que voltam do PSD: `unsharpMask`, `highPass` (cópia em Overlay), `cameraRaw`,

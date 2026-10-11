@@ -2,6 +2,7 @@
 
 Uma linha por aprendizado: data, peça, o que fez, números. O mais novo embaixo de cada seção.
 A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada do zero, SD-Turbo).
+C = promo-telegram-ac001 (a mesma B depois do recortista e do colorista; ensaio por sessão ~18 s por variante).
 
 ## Por tipo de peça
 
@@ -11,6 +12,9 @@ A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada d
   ruidosa (Reduzir Ruído baixou a nitidez 24% e não melhorou nada). A IA escreveu letras falsas
   amarelas na camisa do mascote (x 1300-1490, y 728-806) e dois risquinhos brancos (x 1350-1390,
   y 707-726).
+- 2026-10-11, C: depois da cor, mascote 1,75 x 3,78, entorno 0,96 x 1,70, cena 1,0 x 2,55. O estouro
+  do miolo do mascote vem quase todo do cabelo crespo (y 0-180), não do bico nem dos óculos; as
+  letras escondidas embaixo do remendo também contam (estão nos pixels do mascote).
 
 ## O que funcionou
 
@@ -24,6 +28,14 @@ A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada d
   (ref 3,78). Cena USM 200/1,5/4: 0,92 -> 1,88.
 - 2026-10-11, A: passa-alta raio 3 numa cópia em Overlay presa funciona (mascote 1,85 -> 2,82), mas
   sobe o ΔE o dobro do USM.
+- 2026-10-11, C: coordenadas do pseudo-texto da B ainda servem depois do recortista e do colorista
+  (amarelo 5570 -> 26 px, tirando a ponta da estrela; o laço come 3 px da ponta, não se vê).
+- 2026-10-11, C mascote: USM 120/1,0/2 + textura 40 + **2º USM 200/0,8/2 com
+  `layer.smartFilter.blendingOptions {"blend": "darken"}`** (só escurece): 1,75 -> 3,20 (ref 3,78),
+  estouro 0,11/2,55%, ΔE -0,25, luz 37,4 -> 35,7. O Escurecer volta do PSD (reaberto e refeito: igual).
+  Máscara do filtro = mascote encolhido menos a área remendada (`select.lasso` `mode subtract`).
+- 2026-10-11, C: entorno USM 160/1,2/3 + textura 40: 0,96 -> 1,78 (ref 1,70), estouro 0/0,69%, sem
+  contorno nas moedas. Cena USM 250/1,5/6 (limiar 6): 1,0 -> 1,85, limpa a 100%.
 
 ## O que não funcionou
 
@@ -33,3 +45,7 @@ A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada d
   PSD como filtro inteligente (o efeito some na próxima edição).
 - 2026-10-11, B: `contentAwareFill` com amostra automática e `edit.fill contentAware` pegaram cinza
   da asa e vermelho do short. `spotHealing` em grade deixa borrões em texto grande.
+- 2026-10-11, C mascote: passe Escurecer forte (250/1,0/2 = 3,42; 300/1,0/2 = 3,65, estouro 3,11%)
+  faz linha escura grossa nos óculos e cabelo crocante. Escurecer acima de 200/0,8 não vale.
+- 2026-10-11, C cena: 300/1,5/4 + textura 40 (2,47) e 320/1,5/4 (2,21) batem o número mas deixam a
+  folhagem pontilhada e o contorno do morro serrilhado a 100%. Textura na cena: não.
