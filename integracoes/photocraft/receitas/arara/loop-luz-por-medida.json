@@ -1,0 +1,26 @@
+{
+ "nome": "loop: luz por medida",
+ "estado": "proposta",
+ "serve_para": "peça do loop (tentativa img2img, parte no lugar da referência e cor já certa)",
+ "descricao": "Uma Curvas só de luz (modo Luminosidade) presa a cada parte, calculada contra a mesma parte na referência: devolve o contraste que a geração perde (mascote da promo-deposito: -11% -> -4%) sem mexer na cor (ΔE da peça +0,01). É o trabalho do colorista numa peça do loop.",
+ "passos": [
+  {
+   "camada": "entorno",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "mascote",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "frente",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  }
+ ]
+}

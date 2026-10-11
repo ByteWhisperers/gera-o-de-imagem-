@@ -1,0 +1,42 @@
+{
+ "nome": "loop: luz de contorno sutil",
+ "estado": "proposta",
+ "serve_para": "peça do loop (tentativa img2img, parte no lugar da referência e cor já certa)",
+ "descricao": "Estilo de camada no mascote: brilho externo dourado pequeno e sombra interna em Tela como luz de borda vinda de cima e da direita (como nas referências). Na promo-deposito: brilho em volta -3,2 -> +0,1 (ref +0,3), luz de borda 10,1 -> 12,9 (ref 12,1), ΔE da peça 7,88 -> 7,85.",
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "layer.layerStyle.replace",
+   "params": {
+    "layer": "mascote",
+    "effects": [
+     {
+      "kind": "outerGlow",
+      "params": {
+       "color": "#ffb52e",
+       "opacity": 35,
+       "blend": "screen",
+       "technique": "softer",
+       "spread": 0,
+       "size": 8,
+       "range": 50
+      }
+     },
+     {
+      "kind": "innerShadow",
+      "params": {
+       "color": "#ffd27a",
+       "opacity": 30,
+       "blend": "screen",
+       "angle": 45,
+       "useGlobalLight": false,
+       "distance": 6,
+       "choke": 0,
+       "size": 10
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

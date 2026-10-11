@@ -1,0 +1,90 @@
+{
+ "nome": "nova: luz e sombra completas",
+ "estado": "proposta",
+ "serve_para": "peça gerada do zero (pipeline, partes recortadas por rembg, fora do lugar da referência)",
+ "descricao": "Luz de contorno dourada forte no mascote, sombreado com direção (Luz Suave, claro em cima à direita), brilho dourado de dentro nas moedas do entorno e sombra radial na cena. Na promo-telegram-comfyui: ΔE da peça 32,74 -> 31,44. Os estilos de camada só aparecem no PhotoCraft (outro editor que recompõe o PSD não os desenha; a prévia gravada no PSD mostra).",
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "layer.layerStyle.replace",
+   "params": {
+    "layer": "mascote",
+    "effects": [
+     {
+      "kind": "outerGlow",
+      "params": {
+       "color": "#ffb52e",
+       "opacity": 60,
+       "blend": "screen",
+       "technique": "softer",
+       "spread": 0,
+       "size": 15,
+       "range": 50
+      }
+     },
+     {
+      "kind": "innerShadow",
+      "params": {
+       "color": "#ffd27a",
+       "opacity": 60,
+       "blend": "screen",
+       "angle": 45,
+       "useGlobalLight": false,
+       "distance": 8,
+       "choke": 0,
+       "size": 12
+      }
+     }
+    ]
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.newFillLayer.gradient",
+   "params": {
+    "from": "#a07040",
+    "to": "#000000",
+    "angle": 225,
+    "style": "linear",
+    "reverse": false
+   },
+   "prender": true,
+   "nome": "acabamento mascote sombreado",
+   "props": {
+    "blend": "Soft Light",
+    "opacity": 1.0
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.layerStyle.innerGlow",
+   "params": {
+    "layer": "entorno",
+    "color": "#ffc040",
+    "opacity": 50,
+    "blend": "screen",
+    "technique": "softer",
+    "source": "center",
+    "choke": 0,
+    "size": 30
+   }
+  },
+  {
+   "camada": "cena",
+   "comando": "layer.newFillLayer.gradient",
+   "params": {
+    "from": "#ffffff",
+    "to": "#2a1a10",
+    "angle": 0,
+    "style": "radial",
+    "reverse": false
+   },
+   "prender": true,
+   "nome": "acabamento cena sombra",
+   "props": {
+    "blend": "Multiply",
+    "opacity": 0.4
+   }
+  }
+ ]
+}

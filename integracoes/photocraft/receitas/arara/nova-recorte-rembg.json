@@ -1,0 +1,195 @@
+{
+ "nome": "nova: tirar névoa e fundo antigo do recorte",
+ "estado": "proposta",
+ "serve_para": "peça gerada do zero (pipeline, partes recortadas por rembg, fora do lugar da referência)",
+ "descricao": "Mascote: a transparência vai para um canal, Níveis 64-192 aperta a névoa, a máscara nova sai do canal, e a franja escura é descontaminada. Entorno: o mesmo, tirando antes os cinzas do fundo de estúdio que o rembg levou junto (Intervalo de Cores, 9 cinzas, tolerância 90) e os pontinhos (Mediana 2). Na promo-telegram-comfyui: franja do mascote -14,0 -> -1,6, névoa 13,4% -> 2,1%, franja do entorno +14,3 -> +3,7, ΔE do entorno 41,9 -> 39,9. Não serve para objeto cinza ou branco no entorno (o cinza sai junto).",
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.saveSelection",
+   "params": {
+    "name": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "channel.target",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "image.adjustments.levels",
+   "params": {
+    "inBlack": 64,
+    "inWhite": 192
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "channel.target",
+   "params": {
+    "channel": "composite"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.layerMask.revealSelection",
+   "params": {
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "channel.delete",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.matting.colorDecontaminate",
+   "params": {
+    "amount": 50,
+    "radius": 2
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.saveSelection",
+   "params": {
+    "name": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.colorRange",
+   "params": {
+    "colors": [
+     "#0a0b0d",
+     "#141619",
+     "#1e2226",
+     "#33393f",
+     "#484f58",
+     "#5d656e",
+     "#727b85",
+     "#8a949b",
+     "#a3acb3"
+    ],
+    "fuzziness": 90,
+    "invert": true,
+    "sampleAllLayers": false
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.saveSelection",
+   "params": {
+    "channel": "recorte",
+    "operation": "intersect"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "channel.target",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "image.adjustments.levels",
+   "params": {
+    "inBlack": 64,
+    "inWhite": 192
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.noise.median",
+   "params": {
+    "radius": 2
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "channel.target",
+   "params": {
+    "channel": "composite"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.layerMask.revealSelection",
+   "params": {
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "channel.delete",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.matting.colorDecontaminate",
+   "params": {
+    "amount": 100,
+    "radius": 2
+   }
+  }
+ ]
+}

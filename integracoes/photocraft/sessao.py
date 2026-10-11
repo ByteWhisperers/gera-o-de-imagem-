@@ -174,8 +174,9 @@ class Sessao:
         return saida
 
     def camada(self, nome: str) -> int:
-        """Id da camada com esse nome (a de cima, se houver repetidas)."""
-        for c in self.camadas():
-            if c.get("name") == nome:
-                return c["id"]
-        raise KeyError(f"não há camada {nome!r} no documento")
+        """Id da camada com esse nome: a de cima que está visível, se houver repetidas
+        (a mesma que a medida do acabamento lê); sem nenhuma visível, a de cima."""
+        iguais = [c for c in self.camadas() if c.get("name") == nome]
+        if not iguais:
+            raise KeyError(f"não há camada {nome!r} no documento")
+        return next((c for c in iguais if c.get("visible", True)), iguais[0])["id"]

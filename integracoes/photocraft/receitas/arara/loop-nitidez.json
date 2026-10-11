@@ -1,0 +1,145 @@
+{
+ "nome": "loop: nitidez com máscara de filtro",
+ "estado": "proposta",
+ "serve_para": "peça do loop (tentativa img2img, parte no lugar da referência e cor já certa)",
+ "descricao": "Cada parte vira objeto inteligente com Máscara de Nitidez editável; a seleção da própria parte, encolhida 3 px e suavizada 1,5 px, vira a máscara do filtro (sem halo na borda). Na promo-deposito: nitidez do mascote 1,85 -> 3,02 (ref 3,04), entorno 2,66 -> 4,40 (4,44), ΔE da peça +0,09.",
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 100,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 100,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "frente",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "frente",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "frente"
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 60,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 50,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  }
+ ]
+}

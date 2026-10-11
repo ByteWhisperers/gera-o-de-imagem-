@@ -1,0 +1,54 @@
+{
+ "nome": "nova: luz e saturação por parte, ouro quente",
+ "estado": "proposta",
+ "serve_para": "peça gerada do zero (pipeline, partes recortadas por rembg, fora do lugar da referência)",
+ "descricao": "Cena e mascote: casar_cor (curvas por canal contra a referência, inclinação limitada). Entorno (moedas): Níveis em Luminosidade para clarear e abrir as sombras, Filtro de Fotos quente e Vibração. Na promo-telegram-comfyui: as três partes dentro de ~10% em luz, contraste e saturação, ΔE da peça igual.",
+ "passos": [
+  {
+   "camada": "cena",
+   "casar_cor": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "mascote",
+   "casar_cor": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.newAdjustmentLayer.levels",
+   "params": {
+    "gamma": 1.5,
+    "outBlack": 40
+   },
+   "prender": true,
+   "nome": "acabamento entorno luz",
+   "props": {
+    "blend": "Luminosity"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.newAdjustmentLayer.photoFilter",
+   "params": {
+    "filter": "warming85",
+    "density": 50,
+    "preserveLuminosity": true
+   },
+   "prender": true,
+   "nome": "acabamento entorno ouro"
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.newAdjustmentLayer.vibrance",
+   "params": {
+    "vibrance": 50,
+    "saturation": 25
+   },
+   "prender": true,
+   "nome": "acabamento entorno saturação"
+  }
+ ]
+}

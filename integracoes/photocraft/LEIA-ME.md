@@ -23,8 +23,9 @@ página de versões do GitHub tem o CLI pronto (`photocraft-cli-<versão>-macos-
 | Arquivo | Para quê |
 |---|---|
 | `sessao.py` | Abre `photocraft-cli serve` e mantém um documento aberto: `abrir`, `executar(id, params)`, `camada(nome)`, `render`, `exportar`, `salvar` |
-| `acabar.py` | `medir` (ΔE e perfil de cada parte contra a referência), `curvas` (o casar_cor de uma camada) e `aplicar` (roda uma receita, grava PSD/PNG/WebP e prancha, anota no diário) |
-| `casar_cor.py` | Curvas por canal que levam as cores de uma parte para as da referência |
+| `acabar.py` | `medir` (ΔE, perfil e bordas de cada parte contra a referência), `curvas` (o casar_cor e o casar_luz de uma camada) e `aplicar` (roda uma receita, grava PSD/PNG/WebP e prancha, anota no diário) |
+| `casar_cor.py` | Curvas por canal (e a curva só de luz) que levam uma parte para a referência, com inclinação limitada |
+| `bordas.py` | Réguas de borda: recorte (franja, névoa, ilhas, corte reto), luz de contorno e estouro de nitidez |
 | `catalogo.py` | Escreve `.claude/skills/photocraft/referencia/catalogo.md` com os comandos do CLI instalado |
 | `receitas/<marca>/` | Receitas de acabamento; só viram padrão depois que o dono aprova |
 | `conferir_psd.py` | Confere que o PhotoCraft lê o nosso PSD com as camadas e o render certos |
@@ -38,23 +39,30 @@ python integracoes/photocraft/catalogo.py          # depois de atualizar o Photo
 
 `aplicar` grava em `saida/<marca>/acabamentos/<id>/` e acrescenta uma linha em
 `fluxos/<marca>/acabamentos.jsonl` com a receita guardada pelo sha256 e `"decisao": null`.
-Recusa receita que mexa no texto ou no logo (que saem de código) ou que ponha camada acima deles.
+Recusa receita que mexa no texto ou no logo (que saem de código), que ponha camada acima deles,
+que esconda uma parte, que use camada que a peça não tem ou comando que não volta do PSD (o
+`doc.save` avisa). O formato da receita (campos `alvo`, `props`, `prender`, `nome` e os passos
+medidos `casar_cor`, `casar_luz`, `selecao_do_grafo`, `mascara_do_grafo`) está no começo do
+`acabar.py` e na skill `photocraft`.
 
-## Duas réguas
+## Três réguas
 
 - **ΔE** (fidelidade): diferença de cor contra a referência, parte por parte. O acabamento não
   deve piorá-lo mais que uns 0,5.
 - **Perfil** (acabamento): luz, contraste, saturação e nitidez de cada parte, comparados com a
   mesma parte na referência. Serve até para parte nova, em outra posição. A meta é ficar a uns
   10% da referência.
+- **Bordas**: em volta do contorno de cada parte recortada, a franja e a névoa do recorte, a luz
+  de contorno e o brilho em volta (contra a referência) e o contorno claro de nitidez demais.
+  ΔE e perfil quase não mexem quando se limpa uma franja ou se acende o contorno.
 
 Nitidez a mais sobe um pouco o ΔE (o detalhe novo não cai no mesmo pixel do detalhe da
 referência); por isso as duas réguas andam juntas.
 
 ## Os agentes
 
-A equipe de acabamento está em `.claude/agents/` (colorista, recortista, retocador, iluminador)
-e o protocolo do diretor em `.claude/skills/acabamento/`. O que se sabe da ferramenta fica em
+A equipe de acabamento está em `.claude/agents/` (recortista, colorista, retocador, iluminador,
+nessa ordem) e o protocolo do diretor em `.claude/skills/acabamento/`. O que se sabe da ferramenta fica em
 `.claude/skills/photocraft/` (comandos testados, armadilhas, catálogo) e a experiência de cada
 especialista em `.claude/agent-memory/<nome>/MEMORY.md`.
 

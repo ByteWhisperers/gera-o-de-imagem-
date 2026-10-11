@@ -1,0 +1,111 @@
+{
+ "nome": "nova: nitidez de peça mole",
+ "estado": "proposta",
+ "serve_para": "peça gerada do zero (pipeline, partes recortadas por rembg, fora do lugar da referência)",
+ "descricao": "Mascote e entorno em objeto inteligente com máscara de filtro (sem halo), Máscara de Nitidez de raio curto e Textura do Camera Raw para o detalhe médio; cena com Máscara de Nitidez mais forte, sem máscara. Não chega à referência de propósito: acima disso aparece contorno branco no bico e nos óculos. Peça muito mole é assunto da geração, não do acabamento.",
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 120,
+    "radius": 1.0,
+    "threshold": 2
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.cameraRaw",
+   "params": {
+    "texture": 40
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 100,
+    "radius": 1.2,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 200,
+    "radius": 1.5,
+    "threshold": 4
+   }
+  }
+ ]
+}

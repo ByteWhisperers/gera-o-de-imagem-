@@ -1,0 +1,94 @@
+{
+ "nome": "promo-telegram-comfyui: tirar o pseudo-texto da camisa",
+ "estado": "proposta",
+ "serve_para": "só a peça saida/arara/promo-telegram-comfyui.psd (as coordenadas são dela)",
+ "descricao": "Laço nas letras que a IA desenhou na camisa e retângulo nos risquinhos, alargados 3 px; Preenchimento sensível ao conteúdo com amostra só do tecido verde, numa camada nova presa ao mascote (o mascote fica intacto embaixo: apagar a camada desfaz). Amarelo na caixa das letras 5279 -> 26 px.",
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "select.lasso",
+   "params": {
+    "points": [
+     [
+      1298,
+      728
+     ],
+     [
+      1402,
+      730
+     ],
+     [
+      1490,
+      740
+     ],
+     [
+      1492,
+      796
+     ],
+     [
+      1430,
+      796
+     ],
+     [
+      1430,
+      810
+     ],
+     [
+      1364,
+      810
+     ],
+     [
+      1364,
+      790
+     ],
+     [
+      1298,
+      786
+     ]
+    ],
+    "mode": "replace",
+    "feather": 0
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.rect",
+   "params": {
+    "x": 1345,
+    "y": 707,
+    "width": 46,
+    "height": 22,
+    "mode": "add"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.expand",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "edit.contentAwareFill",
+   "params": {
+    "sampling": "custom",
+    "area": [
+     1285,
+     690,
+     240,
+     135
+    ],
+    "colorAdaptation": "high",
+    "output": "new"
+   },
+   "prender": true,
+   "nome": "acabamento mascote sem texto"
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  }
+ ]
+}

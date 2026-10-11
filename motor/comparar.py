@@ -201,10 +201,46 @@ def borda_opaca(rgba: np.ndarray, x: int, y: int, largura: int, altura: int) -> 
 
 
 def camadas_do_psd(caminho: str | Path) -> dict[str, tuple[np.ndarray, int, int]]:
+    """Camadas de imagem do PSD por nome, de baixo para cima, com a máscara de camada no alfa.
+
+    Só camadas de pixels e objetos inteligentes (a prévia guardada do objeto já vem com
+    os filtros inteligentes); ajustes, preenchimentos e grupos ficam de fora. Com nomes
+    repetidos vale a de cima que está visível, a mesma que o PhotoCraft mostra por cima
+    e que `Sessao.camada` escolhe para editar.
+    """
     from psd_tools import PSDImage
 
-    psd = PSDImage.open(caminho)
-    return {l.name: (np.asarray(l.topil().convert("RGBA")), l.left, l.top) for l in psd}
+    escolhidas: dict[str, object] = {}
+    for l in reversed(list(PSDImage.open(caminho))):
+        if l.kind not in ("pixel", "smartobject") or not l.visible or l.name in escolhidas:
+            continue
+        escolhidas[l.name] = l
+    saida = {}
+    for nome, l in reversed(list(escolhidas.items())):
+        im = l.topil()
+        if im is None:
+            continue
+        rgba = np.asarray(im.convert("RGBA")).copy()
+        if l.mask is not None and not l.mask.disabled:
+            rgba[..., 3] = (rgba[..., 3].astype(np.uint16) * _mascara_na_camada(l) // 255).astype(np.uint8)
+        saida[nome] = (rgba, l.left, l.top)
+    return saida
+
+
+def _mascara_na_camada(l) -> np.ndarray:
+    """A máscara de camada do psd-tools no tamanho da camada (fora dela, a cor de fundo da máscara)."""
+    m = l.mask
+    h, w = l.height, l.width
+    tela = np.full((h, w), m.background_color, np.uint16)
+    im = m.topil()
+    if im is not None:
+        a = np.asarray(im.convert("L"), np.uint16)
+        x0, y0 = m.left - l.left, m.top - l.top
+        xa, ya = max(0, x0), max(0, y0)
+        xb, yb = min(w, x0 + a.shape[1]), min(h, y0 + a.shape[0])
+        if xb > xa and yb > ya:
+            tela[ya:yb, xa:xb] = a[ya - y0 : yb - y0, xa - x0 : xb - x0]
+    return tela
 
 
 def camadas_no_final(final: Image.Image, camadas: dict[str, tuple[np.ndarray, int, int]]) -> dict[str, tuple[np.ndarray, int, int]]:

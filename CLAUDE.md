@@ -8,7 +8,7 @@ O dono escreve em português e tem pouca base de design: responda em português 
 2. **Desconstrução**: skill `analista-referencia` escreve `fichas/<marca>/ficha-vX.Y.yaml` e, por peça, o grafo `fichas/<marca>/grafos/<peca>.json` com as partes isoladas.
 3. **Criação**: skill `operador-geracao` gera as partes e registra em `partes/<marca>/registro.yaml`.
 4. **Composição**: skill `compositor` roda `pipeline.py` e entrega PSD + PNG/WebP.
-5. **Acabamento**: skill `acabamento` (diretor) e os agentes `recortista`, `retocador`, `colorista` e `iluminador` editam o PSD no PhotoCraft; `integracoes/photocraft/acabar.py` aplica a receita, mede contra a referência e anota em `fluxos/<marca>/acabamentos.jsonl`.
+5. **Acabamento**: skill `acabamento` (diretor) e os agentes `recortista`, `colorista`, `retocador` e `iluminador` (nessa ordem) editam o PSD no PhotoCraft; `integracoes/photocraft/acabar.py` aplica a receita, mede contra a referência e anota em `fluxos/<marca>/acabamentos.jsonl`.
 6. **Revisão**: skill `revisor-qa` lê o relatório do QA e olha as imagens.
 7. **Loop**: `tentativa.py` monta o workflow a partir do grafo, roda, compara cada parte com a referência e anota em `fluxos/<marca>/tentativas.jsonl`.
 
