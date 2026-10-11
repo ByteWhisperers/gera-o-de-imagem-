@@ -150,6 +150,30 @@ def paleta_de(a: np.ndarray, b: np.ndarray, ma: np.ndarray, mb: np.ndarray) -> f
     return float(((d.min(1) * pa).sum() + (d.min(0) * pb).sum()) / 2)
 
 
+def perfil(rgb: np.ndarray, m: np.ndarray) -> dict:
+    """Quatro números de acabamento de uma região, comparáveis entre peças de posições diferentes.
+
+    luz        L* médio (0 preto, 100 branco)
+    contraste  desvio de L*
+    saturacao  croma médio (a*, b*)
+    nitidez    energia de detalhe fino: média de |L* - L* desfocado em 5x5|
+    """
+    if not m.any():
+        return {"luz": None, "contraste": None, "saturacao": None, "nitidez": None}
+    lab = rgb_para_lab(rgb)
+    L = lab[..., 0]
+    detalhe = np.abs(L - _media_janela(L, 2))
+    dentro = m & _sem_borda(m)
+    return {"luz": round(float(L[m].mean()), 1), "contraste": round(float(L[m].std()), 1),
+            "saturacao": round(float(np.hypot(lab[..., 1], lab[..., 2])[m].mean()), 1),
+            "nitidez": round(float(detalhe[dentro if dentro.any() else m].mean()), 2)}
+
+
+def _sem_borda(m: np.ndarray, r: int = 3) -> np.ndarray:
+    """A máscara sem uma faixa de r pixels na borda (o recorte não conta como detalhe)."""
+    return _media_janela(m.astype(np.float64), r) > 0.999
+
+
 def cobertura(alfa: np.ndarray, ref: np.ndarray) -> float:
     u = (alfa | ref).sum()
     return float((alfa & ref).sum() / u) if u else float("nan")
@@ -181,6 +205,27 @@ def camadas_do_psd(caminho: str | Path) -> dict[str, tuple[np.ndarray, int, int]
 
     psd = PSDImage.open(caminho)
     return {l.name: (np.asarray(l.topil().convert("RGBA")), l.left, l.top) for l in psd}
+
+
+def camadas_no_final(final: Image.Image, camadas: dict[str, tuple[np.ndarray, int, int]]) -> dict[str, tuple[np.ndarray, int, int]]:
+    """Cada camada com as cores da peça achatada no lugar dela e o alfa da própria camada.
+
+    Para medir as partes de um PSD em que ajustes, estilos e filtros só aparecem no
+    achatamento (o acabamento no PhotoCraft): a nota da parte passa a ser a de como
+    ela ficou na peça.
+    """
+    fim = np.asarray(final.convert("RGB"))
+    H, W = fim.shape[:2]
+    saida = {}
+    for nome, (rgba, x, y) in camadas.items():
+        h, w = rgba.shape[:2]
+        nova = np.zeros_like(rgba)
+        nova[..., 3] = rgba[..., 3]
+        x0, y0, x1, y1 = max(0, x), max(0, y), min(W, x + w), min(H, y + h)
+        if x1 > x0 and y1 > y0:
+            nova[y0 - y : y1 - y, x0 - x : x1 - x, :3] = fim[y0:y1, x0:x1]
+        saida[nome] = (nova, x, y)
+    return saida
 
 
 def na_tela(rgba: np.ndarray, x: int, y: int, largura: int, altura: int) -> np.ndarray:
