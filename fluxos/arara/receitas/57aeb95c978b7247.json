@@ -1,0 +1,197 @@
+{
+ "nome": "promo-deposito: acabamento da tentativa 001",
+ "estado": "proposta",
+ "serve_para": "saida/arara/tentativas/promo-deposito-001/peca.psd (e outras peças do loop com as mesmas partes)",
+ "descricao": "Diretor juntando as receitas da casa para peça do loop, na ordem da equipe: colorista (luz por medida em entorno, mascote e frente), retocador (nitidez com máscara de filtro) e iluminador (luz de contorno sutil). O recorte da peça do loop já é o do grafo: o recortista não entra.",
+ "passos": [
+  {
+   "camada": "entorno",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "mascote",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "frente",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 100,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 100,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "frente",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "frente",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "frente"
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 60,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "frente",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 50,
+    "radius": 1.5,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.layerStyle.replace",
+   "params": {
+    "layer": "mascote",
+    "effects": [
+     {
+      "kind": "outerGlow",
+      "params": {
+       "color": "#ffb52e",
+       "opacity": 35,
+       "blend": "screen",
+       "technique": "softer",
+       "spread": 0,
+       "size": 8,
+       "range": 50
+      }
+     },
+     {
+      "kind": "innerShadow",
+      "params": {
+       "color": "#ffd27a",
+       "opacity": 30,
+       "blend": "screen",
+       "angle": 45,
+       "useGlobalLight": false,
+       "distance": 6,
+       "choke": 0,
+       "size": 10
+      }
+     }
+    ]
+   }
+  }
+ ]
+}
