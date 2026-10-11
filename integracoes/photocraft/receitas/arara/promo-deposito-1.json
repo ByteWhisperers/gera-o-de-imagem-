@@ -1,6 +1,11 @@
 {
  "nome": "promo-deposito: acabamento da tentativa 001",
- "estado": "proposta",
+ "estado": "aprovada",
+ "aprovacao": {
+  "por": "Hermes",
+  "em": "2026-10-11",
+  "nota": "aprovada como padrão da equipe para peças do loop; a do Telegram continua como proposta"
+ },
  "serve_para": "saida/arara/tentativas/promo-deposito-001/peca.psd (e outras peças do loop com as mesmas partes)",
  "descricao": "Diretor juntando as receitas da casa para peça do loop, na ordem da equipe: colorista (luz por medida em entorno, mascote e frente), retocador (nitidez com máscara de filtro) e iluminador (luz de contorno sutil). O recorte da peça do loop já é o do grafo: o recortista não entra.",
  "passos": [

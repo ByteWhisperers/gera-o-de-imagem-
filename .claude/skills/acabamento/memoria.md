@@ -32,3 +32,5 @@ Uma linha por aprendizado, com data. O que o dono decidiu sobre acabamento vem p
 - 2026-10-11: corrigido com a `colorista-2` (máscara de neutros + cópia só de luz nos cinzas):
   bico, lentes e garganta voltam ao cinza (R-B 76 -> 9), ΔE da peça igual (32,2). Receita
   `promo-telegram-comfyui-2` substitui a -1.
+- 2026-10-11: o dono aprovou a `promo-deposito-1` como padrão para peças do loop (diário com
+  `decisao`). A do Telegram (`promo-telegram-comfyui-2`) segue como proposta: ponto de partida, não padrão.
