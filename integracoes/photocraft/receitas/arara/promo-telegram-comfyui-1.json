@@ -1,0 +1,685 @@
+{
+ "nome": "promo-telegram-comfyui-1",
+ "descricao": "Acabamento da equipe na peça do Telegram gerada do zero (ComfyUI + SD-Turbo), na ordem recortista -> colorista -> retocador -> iluminador: limpa a franja e a névoa do rembg e o corte reto das moedas; casa a cor da cena e do mascote e o contraste das moedas com a referência; tira as letras falsas da camisa e devolve a nitidez sem halo; dá brilho dourado e beirada acesa às moedas e halo, luz com direção e volume ao mascote.",
+ "estado": "proposta",
+ "serve_para": "só a peça saida/arara/promo-telegram-comfyui.psd com o grafo promo-telegram.json: o recorte, o pseudo-texto e o volume usam coordenadas desta peça",
+ "equipe": {
+  "recortista": "29 passos",
+  "colorista": "3 passos",
+  "retocador": "25 passos",
+  "iluminador": "4 passos"
+ },
+ "passos": [
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.saveSelection",
+   "params": {
+    "name": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "channel.target",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "image.adjustments.levels",
+   "params": {
+    "inBlack": 64,
+    "inWhite": 192
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "channel.target",
+   "params": {
+    "channel": "composite"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.layerMask.revealSelection",
+   "params": {
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "channel.delete",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.matting.colorDecontaminate",
+   "params": {
+    "amount": 30,
+    "radius": 2
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.saveSelection",
+   "params": {
+    "name": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.colorRange",
+   "params": {
+    "colors": [
+     "#0a0b0d",
+     "#141619",
+     "#1e2226",
+     "#33393f",
+     "#484f58",
+     "#5d656e",
+     "#727b85",
+     "#8a949b",
+     "#a3acb3"
+    ],
+    "fuzziness": 90,
+    "invert": true,
+    "sampleAllLayers": false
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.saveSelection",
+   "params": {
+    "channel": "recorte",
+    "operation": "intersect"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "channel.target",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "image.adjustments.levels",
+   "params": {
+    "inBlack": 104,
+    "inWhite": 152
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.noise.median",
+   "params": {
+    "radius": 2
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "paint.gradient",
+   "params": {
+    "from": [
+     0,
+     722
+    ],
+    "to": [
+     0,
+     698
+    ],
+    "stops": [
+     [
+      0,
+      "#000000"
+     ],
+     [
+      0.25,
+      "#a0a0a0"
+     ],
+     [
+      1,
+      "#ffffff"
+     ]
+    ],
+    "mode": "multiply"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.rect",
+   "params": {
+    "x": 784,
+    "y": 150,
+    "width": 60,
+    "height": 150
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "paint.gradient",
+   "params": {
+    "from": [
+     784,
+     0
+    ],
+    "to": [
+     808,
+     0
+    ],
+    "stops": [
+     [
+      0,
+      "#000000"
+     ],
+     [
+      0.25,
+      "#a0a0a0"
+     ],
+     [
+      1,
+      "#ffffff"
+     ]
+    ],
+    "mode": "multiply"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "channel.target",
+   "params": {
+    "channel": "composite"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.layerMask.revealSelection",
+   "params": {
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "channel.delete",
+   "params": {
+    "channel": "recorte"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.matting.colorDecontaminate",
+   "params": {
+    "amount": 100,
+    "radius": 2
+   }
+  },
+  {
+   "camada": "cena",
+   "casar_cor": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "mascote",
+   "casar_cor": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "entorno",
+   "casar_luz": {
+    "forca": 1.0
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.lasso",
+   "params": {
+    "points": [
+     [
+      1298,
+      728
+     ],
+     [
+      1402,
+      730
+     ],
+     [
+      1490,
+      740
+     ],
+     [
+      1492,
+      796
+     ],
+     [
+      1430,
+      796
+     ],
+     [
+      1430,
+      810
+     ],
+     [
+      1364,
+      810
+     ],
+     [
+      1364,
+      790
+     ],
+     [
+      1298,
+      786
+     ]
+    ],
+    "mode": "replace",
+    "feather": 0
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.rect",
+   "params": {
+    "x": 1345,
+    "y": 707,
+    "width": 46,
+    "height": 22,
+    "mode": "add"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.expand",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "edit.contentAwareFill",
+   "params": {
+    "sampling": "custom",
+    "area": [
+     1285,
+     690,
+     240,
+     135
+    ],
+    "colorAdaptation": "high",
+    "output": "new"
+   },
+   "prender": true,
+   "nome": "acabamento mascote sem texto"
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "mascote"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.lasso",
+   "params": {
+    "points": [
+     [
+      1298,
+      728
+     ],
+     [
+      1402,
+      730
+     ],
+     [
+      1490,
+      740
+     ],
+     [
+      1492,
+      796
+     ],
+     [
+      1430,
+      796
+     ],
+     [
+      1430,
+      810
+     ],
+     [
+      1364,
+      810
+     ],
+     [
+      1364,
+      790
+     ],
+     [
+      1298,
+      786
+     ]
+    ],
+    "mode": "subtract",
+    "feather": 0
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.rect",
+   "params": {
+    "x": 1342,
+    "y": 704,
+    "width": 52,
+    "height": 28,
+    "mode": "subtract"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 120,
+    "radius": 1.0,
+    "threshold": 2
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.cameraRaw",
+   "params": {
+    "texture": 40
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 200,
+    "radius": 0.8,
+    "threshold": 2
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.smartFilter.blendingOptions",
+   "params": {
+    "layer": "mascote",
+    "blend": "darken"
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.loadSelection",
+   "params": {
+    "channel": "transparency",
+    "layer": "entorno"
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.contract",
+   "params": {
+    "radius": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.modify.feather",
+   "params": {
+    "radius": 1.5
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 160,
+    "radius": 1.2,
+    "threshold": 3
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "filter.cameraRaw",
+   "params": {
+    "texture": 40
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "select.deselect",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "layer.smartObjects.convertToSmartObject",
+   "params": {}
+  },
+  {
+   "camada": "cena",
+   "comando": "filter.sharpen.unsharpMask",
+   "params": {
+    "amount": 250,
+    "radius": 1.5,
+    "threshold": 6
+   }
+  },
+  {
+   "camada": "entorno",
+   "comando": "layer.layerStyle.replace",
+   "params": {
+    "layer": "entorno",
+    "effects": [
+     {
+      "kind": "outerGlow",
+      "params": {
+       "color": "#ffb52e",
+       "opacity": 62,
+       "blend": "screen",
+       "technique": "softer",
+       "spread": 0,
+       "size": 20,
+       "range": 50
+      }
+     },
+     {
+      "kind": "innerShadow",
+      "params": {
+       "color": "#ffe08a",
+       "opacity": 100,
+       "blend": "overlay",
+       "angle": 45,
+       "useGlobalLight": false,
+       "distance": 4,
+       "choke": 0,
+       "size": 6
+      }
+     }
+    ]
+   }
+  },
+  {
+   "camada": "mascote",
+   "comando": "layer.layerStyle.replace",
+   "params": {
+    "layer": "mascote",
+    "effects": [
+     {
+      "kind": "outerGlow",
+      "params": {
+       "color": "#ffb52e",
+       "opacity": 46,
+       "blend": "screen",
+       "technique": "softer",
+       "spread": 0,
+       "size": 15,
+       "range": 50
+      }
+     },
+     {
+      "kind": "innerShadow",
+      "params": {
+       "color": "#ffd27a",
+       "opacity": 30,
+       "blend": "screen",
+       "angle": 30,
+       "useGlobalLight": false,
+       "distance": 8,
+       "choke": 0,
+       "size": 12
+      }
+     },
+     {
+      "kind": "innerShadow",
+      "params": {
+       "color": "#2a1408",
+       "opacity": 30,
+       "blend": "multiply",
+       "angle": 210,
+       "useGlobalLight": false,
+       "distance": 6,
+       "choke": 0,
+       "size": 10
+      }
+     }
+    ]
+   }
+  },
+  {
+   "camada": "mascote",
+   "alvo": "acabamento mascote cor por medida",
+   "comando": "layer.new.layer",
+   "params": {},
+   "prender": true,
+   "nome": "acabamento mascote volume",
+   "props": {
+    "blend": "Overlay",
+    "opacity": 0.6
+   }
+  },
+  {
+   "camada": "mascote",
+   "alvo": "acabamento mascote volume",
+   "comando": "paint.gradient",
+   "params": {
+    "from": [
+     1584,
+     200
+    ],
+    "to": [
+     1113,
+     700
+    ],
+    "style": "linear",
+    "stops": [
+     [
+      0,
+      "#ffe6b0"
+     ],
+     [
+      0.5,
+      "#808080"
+     ],
+     [
+      1,
+      "#505050"
+     ]
+    ]
+   }
+  }
+ ]
+}

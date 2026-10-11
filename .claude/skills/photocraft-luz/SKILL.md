@@ -7,7 +7,7 @@ description: Luz, sombra e profundidade no PhotoCraft - luz de contorno dourada,
 
 Base: skill `photocraft` (regras, formato da receita, réguas, pilha). Comandos com parâmetros
 exatos: `photocraft/referencia/comandos-testados.md`, seção "Luz, sombra e profundidade".
-Armadilhas 1, 4, 15, 19, 21 e 43 a 48 de `photocraft/referencia/armadilhas.md`.
+Armadilhas 1, 4, 15, 19, 21 e 43 a 50 de `photocraft/referencia/armadilhas.md`.
 
 ## Quando é com você
 

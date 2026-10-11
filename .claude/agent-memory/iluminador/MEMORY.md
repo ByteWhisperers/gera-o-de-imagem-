@@ -2,6 +2,7 @@
 
 Uma linha por aprendizado: data, peça, o que fez, números. O mais novo embaixo de cada seção.
 A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada do zero, SD-Turbo).
+B equipe = a B passando por recortista -> colorista -> retocador -> iluminador (PSD do retocador, ac001).
 
 ## Por tipo de peça
 
@@ -12,6 +13,9 @@ A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada d
   27 x 49). Moedas apagadas (luz do entorno 51 x 66).
 - 2026-10-11: na referência quase tudo é mais nítido que as peças; só os objetos mais perto (faixa
   de baixo) são desfocados. Desfocar a frente inteira piora (ΔE +0,45).
+- 2026-10-11, B equipe: chegou com moedas sem brilho (brilho em volta -1,7 x ref +11,2; luz de borda
+  -8,8 x +0,4) e mascote com a luz do lado errado (esq 38,7 / dir 22,8 / cima 33,2 x ref 35,2 /
+  49,2 / 56,8). A luz do mascote inteiro já batia (35,7): só contorno e direção.
 
 ## O que funcionou
 
@@ -24,6 +28,16 @@ A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada d
 - 2026-10-11, B: contorno forte (brilho 15/60, sombra interna 8/12/60) + gradiente #a07040 -> preto
   ângulo 225 em Luz Suave preso ao mascote + brilho interno nas moedas + gradiente radial
   Multiplicação 40% na cena: ΔE da peça 32,74 -> 31,44, mascote 41,2 -> 38,4, entorno 41,9 -> 36,1.
+- 2026-10-11, B equipe: moedas com brilho externo #ffb52e 20/62 + sombra interna #ffe08a em
+  Sobrepor (ângulo 45, 4/6/100): brilho em volta -1,7 -> +11,2 (ref +11,2), luz de borda -8,8 -> -1,7
+  (+0,4), contraste 21,2 -> 19,8 (21,8), nitidez 1,78 -> 1,72 (1,70); a cena ganha luz 30,6 -> 32,5 (32,5).
+- 2026-10-11, B equipe: mascote com brilho 15/46 + luz #ffd27a Tela ângulo 30 (8/12/30) + sombra
+  #2a1408 Multiplicação ângulo 210 (6/10/30) no mesmo `replace` + volume (`paint.gradient` numa camada
+  presa acima das curvas, de (1584,200) a (1113,700), #ffe6b0/#808080/#505050, Sobrepor 60%): brilho
+  em volta +4,4 (4,4), borda 8,0 (6,6), lados 38,5/38,8/42,9 (mesma ordem da ref), nitidez 3,20 ->
+  3,70 (3,78), luz 35,7 -> 36,9. ΔE da peça 32,52 -> 32,16. Receita na pasta da equipe (iluminador-2).
+- 2026-10-11, B equipe: varrer variantes por sessão (render + `B.contorno` + `A.perfis` + franja com
+  `renders_sem_partes`, ~15 s cada) antes do `aplicar`: 2 tentativas bastaram.
 
 ## O que não funcionou
 
@@ -35,3 +49,10 @@ A = promo-deposito-001 (tentativa do loop). B = promo-telegram-comfyui (gerada d
   remendo do pseudo-texto: a camisa remendada ficou sem sombra. Use `alvo` com o remendo.
 - 2026-10-11, B: somado à cor quente do colorista, o brilho interno nas moedas passou do ponto
   (+28% de luz, -63% de contraste, moedas chapadas). Meça sobre o PSD do colorista.
+- 2026-10-11, B equipe: `newFillLayer.gradient` cobre o documento todo; com o mascote à direita o
+  volume clareou a parte inteira (luz 35,7 -> 39,0). Use `paint.gradient` com início e fim na parte.
+- 2026-10-11, B equipe: volume em Luz Suave tira contraste do mascote (23,6 -> 23,1, passa de -10%);
+  em Sobrepor sobe (24,2). Luz de borda das moedas em Tela tira contraste (19,3); em Sobrepor, 20,1.
+- 2026-10-11, B equipe: o brilho das moedas atrás do mascote piorou a franja dele (-2,73 -> -3,29),
+  porque a régua só tira o estilo do mascote. Mudar tamanho ou opacidade do brilho não resolve
+  (-3,13). Resolveu aliviar o escuro do volume (#1e1e1e -> #505050): -2,96.

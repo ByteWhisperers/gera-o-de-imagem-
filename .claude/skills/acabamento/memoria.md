@@ -22,3 +22,10 @@ Uma linha por aprendizado, com data. O que o dono decidiu sobre acabamento vem p
   especialista trabalha sobre o PSD do anterior.
 - 2026-10-11: na A, luz por medida + nitidez com máscara + contorno sutil juntas deixaram o
   diagnóstico limpo (só "menos brilho em volta" na frente e no entorno), ΔE da peça +0,1.
+- 2026-10-11: na B, a equipe em cadeia (recortista-3, colorista-1, retocador-1, iluminador-2, cada
+  um sobre o PSD do anterior) juntada numa receita só (`promo-telegram-comfyui-1`) deu o mesmo
+  número da cadeia: diagnóstico 19 achados -> 1 (cena -28% de nitidez), ΔE da peça 32,7 -> 32,2.
+  Juntar no fim funciona; testar junto antes (pasta sua) confirma.
+- 2026-10-11: na B, o `casar_cor` no mascote inteiro puxou o bico e as lentes cinza para rosado
+  (a arara da referência é quente). A régua não pega: olhe a imagem. Partes neutras pedem máscara
+  ou casar só a luz.

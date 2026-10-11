@@ -138,3 +138,16 @@ Python você mesmo tem de cuidar. Erro novo: acrescente aqui, com a mensagem exa
     ΔE do entorno +15). Comece com opacidade baixa.
 47. **Desfocar a frente inteira piora** (a referência é mais nítida que a peça). Só a faixa mais perto.
 48. **Brilho interno amacia** o que acende (nitidez do entorno 1,63 -> 1,25).
+49. **O degradê de `layer.newFillLayer.gradient` cobre o documento inteiro, não a parte.** Com a
+    parte fora do centro (o mascote da B fica à direita), ela cai quase toda do lado claro e o
+    "volume" clareia a parte inteira (luz do mascote 35,7 -> 39,0 em Luz Suave 40%). **Saída:**
+    camada nova presa + `paint.gradient` com `from`/`to` nos cantos da parte e `stops` claro /
+    `#808080` / escuro, em Sobrepor (comandos testados). As coordenadas são da peça.
+50. **O brilho externo de uma parte de baixo piora a franja da parte de cima.** A régua de recorte
+    só esconde os estilos da própria parte. Na B, o brilho das moedas atrás do mascote, por baixo
+    da beirada meio transparente dele, levou a franja do mascote de -2,73 para -3,29, sem contorno
+    escuro visível (o brilho do próprio mascote cobre). Mudar o tamanho ou a opacidade do brilho
+    quase não muda nada (-3,13). **Saída:** depois de pôr o brilho, meça a franja das partes de
+    cima. O conserto de verdade é de recorte (a beirada escura do mascote); quem ilumina pode
+    aliviar a camada presa à parte de cima que escurece a beirada (o volume com escuro
+    `#505050` em vez de `#1e1e1e` deu -2,96).
