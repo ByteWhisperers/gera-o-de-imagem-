@@ -14,6 +14,13 @@ B2 = a mesma B depois do recortista (ac003, franja e sombra cinza já limpas).
 - 2026-10-11, B2: limpo o recorte, o entorno já vinha com luz e saturação certas (-1%) e só
   contraste -21%; cena só saturação -33%; mascote luz +14%, saturação -19%. A receita quente
   (Níveis + warming) não serve mais no entorno: clareia e esquenta o que já está certo.
+- 2026-10-11, B2: 37% do mascote é cinza (croma < 25: bico, lentes, armação, manchas pretas do
+  rosto, garganta, celular). O casar_cor da parte inteira (curva puxa vermelho e corta azul) pôs
+  rosa nesses cinzas: bico R-B 7 -> 76, lentes 6 -> 62, garganta 5 -> 55. A régua NÃO pega (o ΔE
+  até cai e a saturação "sobe" +3% por causa do rosa). Antes de entregar casar_cor numa parte com
+  cinza grande, meça o R-B médio dos pixels de croma < 25 do original e olhe a imagem.
+- 2026-10-11, B2: o retocador baixa a saturação do mascote ~2 (45,2 -> 43,1) e a luz ~1,7.
+  Entregue a saturação com folga (-4% no meu estágio deu -7% no fim da cadeia).
 
 ## O que funcionou
 
@@ -34,6 +41,17 @@ B2 = a mesma B depois do recortista (ac003, franja e sombra cinza já limpas).
 - 2026-10-11: testar variantes numa Sessao (A.aplicar_passos + A.medir + A.perfis, sem diário)
   dá os mesmos números do `aplicar` em ~12 s por variante (contra ~50 s). Cuidado: sem `docs`,
   casar_* olha os pixels originais; só vale com o casar_* como primeiro passo da parte.
+- 2026-10-11, B2 (colorista-2): neutros sem cor. casar_cor no mascote + `select.colorRange` na
+  camada do mascote (13 cinzas levemente quentes #0f0c0a..#fffcfa de 20 em 20, tolerância 40,
+  `sampleAllLayers` false) guardado no canal "neutros" -> `hideSelection` na "cor por medida" ->
+  `layer.duplicate` dela em Luminosidade com `revealSelection` dos neutros (mesma curva, só luz)
+  -> Vibração 20/5 com máscara = máscara do mascote encolhida 3 px menos os neutros. Bico R-B
+  76 -> 9 (entrada 7), lentes 62 -> 9, garganta 55 -> 8; chapéu, vermelho e verde iguais.
+  Mascote +5/-10/-4%, ΔE 39,70 (c1: +5/-10/+3%, 39,68), franja -2,72 (c1 -2,70), peça 32,54.
+  Cadeia com retocador-1 + iluminador-2: +4/-7/-7%, ΔE 38,90 (c1 38,70), franja -2,95 (c1 -2,96).
+- 2026-10-11: ensaio com a régua completa na sessão: salvar o PSD da variante e chamar
+  `A.medir_tudo(pc, grafo, psd_salvo)` dá notas, perfis e bordas (franja) em ~27 s; dá para
+  rodar a cadeia inteira (meus passos + retocador + iluminador) e ver o fim antes do `aplicar`.
 
 ## O que não funcionou
 
@@ -56,3 +74,12 @@ B2 = a mesma B depois do recortista (ac003, franja e sombra cinza já limpas).
   a luz (-5 -> -1%) mas o contraste cai para -8%, ΔE igual: deixe a luz para o iluminador.
 - 2026-10-11, B2: escurecer a cena em volta subiu o halo_fora do mascote (7,9 -> 11,2) e a
   franja (-2,1 -> -2,7, ainda dentro de ±3). Avise o recortista quando a cena escurecer.
+- 2026-10-11, B2 neutros: só esconder os cinzas do casar_cor (sem devolver saturação) dá o melhor
+  ΔE (39,53) mas a saturação cai 45,2 -> 39,5 (-10%) e, depois do retocador, -13%.
+  casar_luz nos cinzas em vez da cópia em Luminosidade clareia as lentes: ΔE 40,43. Matiz/
+  Saturação +10/+20 fora dos cinzas sobe a luz (+7/+8%) e o ΔE (39,85/40,13); Vibração 30/10:
+  saturação 0%, mas ΔE 39,91. Tolerância 25/40/60 dá quase o mesmo; 40 não pega o chapéu marrom.
+- 2026-10-11, B2: Vibração no mascote inteiro escureceu a beirada meio transparente (vermelho
+  mais saturado é mais escuro): franja -2,70 -> -2,92 e, na cadeia, -2,96 -> -3,15 (passa de ±3).
+  Máscara do mascote encolhida 3 px na Vibração resolve (-2,72; cadeia -2,95). Tirar a beirada
+  da máscara de neutros não muda nada (-2,94).

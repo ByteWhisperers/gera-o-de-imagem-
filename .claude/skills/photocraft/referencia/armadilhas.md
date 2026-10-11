@@ -113,6 +113,16 @@ Python você mesmo tem de cuidar. Erro novo: acrescente aqui, com a mensagem exa
 35. **Contraste com Níveis/Curvas em Normal também satura.** Em Luminosidade não.
 36. **Combinar Cor sem seleção na referência usa a imagem inteira** (mascote +15% de luz, -19% de
     saturação).
+51. **`casar_cor` na parte inteira tinge o que é cinza, e a régua não vê.** Na B o mascote da
+    referência é quente; a curva puxou o vermelho e cortou o azul, e o bico, as lentes e a garganta
+    cinza ficaram rosados ou marrons (R-B 7 -> 76), com o ΔE caindo e a saturação "subindo". **Saída:**
+    máscara de neutros na camada "cor ... por medida" (`select.colorRange` com cinzas do preto ao
+    branco, tolerância 40, `sampleAllLayers: false`, + `layer.layerMask.hideSelection`) e uma cópia
+    dela em Luminosidade só nos neutros (comandos testados, seção Cor). Olhe a imagem.
+52. **Saturar a parte até a beirada piora a franja.** Vermelho mais saturado é mais escuro: a
+    Vibração 20/5 no mascote inteiro levou a franja de -2,70 para -2,92 (na cadeia da B, de -2,96
+    para -3,15, fora de ±3). **Saída:** máscara do ajuste = máscara da parte encolhida 3 px
+    (`select.loadSelection {"channel": "mask", "layer": <parte>}` + `select.modify.contract`).
 
 ## Retoque
 

@@ -29,3 +29,6 @@ Uma linha por aprendizado, com data. O que o dono decidiu sobre acabamento vem p
 - 2026-10-11: na B, o `casar_cor` no mascote inteiro puxou o bico e as lentes cinza para rosado
   (a arara da referência é quente). A régua não pega: olhe a imagem. Partes neutras pedem máscara
   ou casar só a luz.
+- 2026-10-11: corrigido com a `colorista-2` (máscara de neutros + cópia só de luz nos cinzas):
+  bico, lentes e garganta voltam ao cinza (R-B 76 -> 9), ΔE da peça igual (32,2). Receita
+  `promo-telegram-comfyui-2` substitui a -1.
