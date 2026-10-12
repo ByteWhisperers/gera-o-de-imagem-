@@ -1,0 +1,167 @@
+entradas:
+- parte: cena
+  arquivo: gateway-cena-home-17d02286.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1536
+  - 480
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: intense fiery background, explosion of orange, red and golden light bursting behind the right
+    half, glowing embers and sparks flying, thin crackling white lightning bolts, warm bokeh, a few blurred
+    gold coins flying, dark smoky shadow covering the left third, 3D mobile casino game splash art background,
+    saturated warm colors, no people, no animals, no character, no text
+  formato: home
+- parte: entorno
+  arquivo: gateway-entorno-c45a044b.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1152
+  - 768
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: small glossy blue square paper plane app icons and gold coins flying, scattered floating objects
+    with empty space between them, motion blur on the far ones, 3D render, glossy, strong warm rim light,
+    isolated on a plain light grey studio background, no text, no letters, no character
+  recorte: modelo
+- parte: mascote
+  arquivo: gateway-mascote-a021ce8f.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 768
+  - 1056
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: 3D mobile game character render of a capybara mascot, chibi proportions with a big head, big
+    shiny expressive eyes, wide open excited smile, energetic dynamic pose leaning towards the camera,
+    friendly and inviting, wearing a flowing red and gold sorcerer robe with a high collar, crackling
+    blue lightning around the hands, holding out a big glowing blue crystal orb with a white paper plane
+    symbol inside, crackling with lightning, glossy stylized 3D like a slot game splash art, strong warm
+    golden rim light, waist-up, centered, isolated on a plain light grey studio background
+  recorte: modelo
+- parte: frente
+  arquivo: gateway-frente-c1b771ac.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1152
+  - 768
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: gold coins with fire trails, big objects very close to the camera at the bottom, slightly out
+    of focus, 3D render, glossy, warm rim light, isolated on a plain light grey studio background, no
+    text, no letters, no character
+  recorte: liso
+- parte: cena
+  arquivo: gateway-cena-promo-388d358c.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1536
+  - 672
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: intense fiery background, explosion of orange, red and golden light bursting behind the right
+    half, glowing embers and sparks flying, thin crackling white lightning bolts, warm bokeh, a few blurred
+    gold coins flying, dark smoky shadow covering the left third, 3D mobile casino game splash art background,
+    saturated warm colors, no people, no animals, no character, no text
+  formato: promo
+- parte: entorno
+  arquivo: gateway-entorno-120e43c1.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1152
+  - 768
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: one huge shiny gold medallion coin with an engraved crown, and gold coins flying, scattered
+    floating objects with empty space between them, motion blur on the far ones, 3D render, glossy, strong
+    warm rim light, isolated on a plain light grey studio background, no text, no letters, no character
+  recorte: modelo
+- parte: mascote
+  arquivo: gateway-mascote-0ddb4717.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 768
+  - 1056
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: 3D mobile game character render of a capybara mascot, chibi proportions with a big head, big
+    shiny expressive eyes, wide open excited smile, energetic dynamic pose leaning towards the camera,
+    friendly and inviting, wearing a golden pharaoh headdress with blue stripes, a wide gold collar with
+    turquoise gems and gold armor bracers, raising a fist with a gold armor bracer, glossy stylized 3D
+    like a slot game splash art, strong warm golden rim light, waist-up, centered, isolated on a plain
+    light grey studio background
+  recorte: modelo
+- parte: frente
+  arquivo: gateway-frente-b70655ba.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1152
+  - 768
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: small gold coins, big objects very close to the camera at the bottom, slightly out of focus,
+    3D render, glossy, warm rim light, isolated on a plain light grey studio background, no text, no letters,
+    no character
+  recorte: liso
+- parte: entorno
+  arquivo: gateway-entorno-aa8202df.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1152
+  - 768
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: red envelopes with gold details falling like rain, sharp near the mascot and blurred far away,
+    scattered floating objects with empty space between them, motion blur on the far ones, 3D render,
+    glossy, strong warm rim light, isolated on a plain light grey studio background, no text, no letters,
+    no character
+  recorte: modelo
+- parte: mascote
+  arquivo: gateway-mascote-a927c250.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 768
+  - 1056
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: 3D mobile game character render of a capybara mascot, chibi proportions with a big head, big
+    shiny expressive eyes, wide open excited smile, energetic dynamic pose leaning towards the camera,
+    friendly and inviting, wearing a red Chinese silk tang jacket with gold frog buttons and a red cap
+    with a gold rim, one paw stretched towards the camera and the other arm raised holding a red envelope,
+    glossy stylized 3D like a slot game splash art, strong warm golden rim light, waist-up, centered,
+    isolated on a plain light grey studio background
+  recorte: modelo
+- parte: frente
+  arquivo: gateway-frente-e4fa3a3e.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 1152
+  - 768
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: red envelopes and gold coins with a square hole on the ground, big objects very close to the
+    camera at the bottom, slightly out of focus, 3D render, glossy, warm rim light, isolated on a plain
+    light grey studio background, no text, no letters, no character
+  recorte: liso

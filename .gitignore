@@ -3,3 +3,7 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .venv/
+# Banners de concorrente: o repositório é público, então as imagens deles e os
+# recortes feitos delas ficam fora do git (cópia em /mnt/project-files/gera-imagem/9pmbet/).
+referencias/9pmbet/
+fichas/capivara362/grafos/*/

@@ -54,12 +54,16 @@ def _rel(caminho: Path) -> str:
 
 
 def ficha_no_lugar(ficha: dict, grafo: dict) -> dict:
-    """A ficha com as caixas medidas no grafo (texto e logo) no lugar das estimativas.
+    """A ficha com as caixas medidas no grafo (texto e logo) no lugar das estimativas,
+    e no tamanho da referência: as partes vêm em pixels dela (a ficha pode pedir a
+    peça final maior, como o dobro das referências pequenas da 9pmbet).
 
     Só vale para esta tentativa, em memória: a ficha aprovada não muda.
     """
     efetiva = copy.deepcopy(ficha)
     efetiva["layout"][grafo["formato_peca"]].update(G.layout_medido(grafo))
+    largura, altura = grafo["tamanho_px"]
+    efetiva["formatos"][grafo["formato_peca"]] = {"largura": largura, "altura": altura}
     return efetiva
 
 

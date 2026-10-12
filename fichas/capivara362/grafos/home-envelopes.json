@@ -1,0 +1,438 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "home-envelopes",
+ "marca": "capivara362",
+ "ficha": "fichas/capivara362/ficha-v1.0.yaml",
+ "referencia": "referencias/9pmbet/home/home-envelopes.webp",
+ "formato_peca": "home",
+ "tema": "envelopes",
+ "tamanho_px": [
+  1020,
+  300
+ ],
+ "pasta": "fichas/capivara362/grafos/home-envelopes",
+ "marcacao": "fichas/capivara362/grafos/home-envelopes.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "mascote": "recortes/mascote.webp",
+  "frente": "recortes/frente.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "luz dourada e vermelha forte atrás do mascote, rastros de fogo; esquerda escura",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#1e0e03",
+      "fracao": 0.288
+     },
+     {
+      "cor": "#661b06",
+      "fracao": 0.163
+     },
+     {
+      "cor": "#5f4a16",
+      "fracao": 0.161
+     },
+     {
+      "cor": "#bf4f16",
+      "fracao": 0.142
+     },
+     {
+      "cor": "#b8852e",
+      "fracao": 0.129
+     },
+     {
+      "cor": "#e1c75b",
+      "fracao": 0.117
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "sorte",
+   "descricao": "personagem 3D de jogo (tigre) em roupa chinesa vermelha, boca aberta animado",
+   "pose": "pata esticada para a câmera à esquerda, o outro braço erguido para a direita com um envelope",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.3882,
+    0.0,
+    0.5775,
+    1.0
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "envelope",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "envelopes",
+   "descricao": "envelope vermelho na mão erguida",
+   "caixa": [
+    0.87,
+    0.03,
+    0.12,
+    0.2
+   ],
+   "fonte_caixa": "estimativa do agente"
+  },
+  {
+   "id": "envelopes_chao",
+   "tipo": "objeto_grupo",
+   "z": 5,
+   "camada_psd": "frente",
+   "tema": "envelopes",
+   "descricao": "envelopes vermelhos e moedas furadas no chão, na frente do mascote",
+   "mascara": "mascaras/envelopes_chao.png",
+   "caixa": [
+    0.3696,
+    0.7033,
+    0.6304,
+    0.2967
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 3
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     9.5,
+     30.0,
+     46.3,
+     73.1,
+     148.1,
+     162.9,
+     143.8,
+     94.3,
+     160.7,
+     127.0
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 108,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0814,
+    0.3133,
+    0.2127,
+    0.0833
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 25,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fdf50f",
+     "#fdf50d",
+     "#fdf511"
+    ],
+    "contorno_escuro_frac": 0.57
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0814,
+    0.4333,
+    0.251,
+    0.0867
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 26,
+    "peso_rel": 1.04,
+    "rampa_tercos": [
+     "#fdf515",
+     "#fdf50f",
+     "#fdf414"
+    ],
+    "contorno_escuro_frac": 0.67
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.1833,
+    0.54,
+    0.0343,
+    0.07
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 21,
+    "peso_rel": 0.84,
+    "rampa_tercos": [
+     "#fffae7",
+     "#fffcf6",
+     "#fffcf7"
+    ],
+    "contorno_escuro_frac": 0.99
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0784,
+    0.6467,
+    0.2549,
+    0.07
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 0.53,
+    "altura_px": 21,
+    "peso_rel": 0.84,
+    "rampa_tercos": [
+     "#fef235",
+     "#fff660",
+     "#fef23f"
+    ],
+    "contorno_escuro_frac": 1.0
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l5",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l5.png",
+   "caixa": [
+    0.0794,
+    0.7567,
+    0.1863,
+    0.07
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 21,
+    "peso_rel": 0.84,
+    "rampa_tercos": [
+     "#fffcfa",
+     "#fffdfb",
+     "#fffdfa"
+    ],
+    "contorno_escuro_frac": 0.99
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/capivara362/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0412,
+    0.1133,
+    0.1373,
+    0.1567
+   ],
+   "fonte_caixa": "estimativa do agente (logo_caixa)"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "envelope"
+  },
+  {
+   "de": "envelopes_chao",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelope",
+   "tema": "envelopes"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "envelopes_chao",
+   "tema": "envelopes"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "envelopes_chao",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 9.7,
+   "L_fundo_em_volta": 44.8
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.44
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 11.2,
+   "L_fundo_em_volta": 37.4
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.23
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 12.4,
+   "L_fundo_em_volta": 35.3
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.52
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 12.4,
+   "L_fundo_em_volta": 27.6
+  },
+  {
+   "de": "texto_l4",
+   "rel": "empilhado_acima",
+   "para": "texto_l5",
+   "vao_rel_altura": 0.57
+  },
+  {
+   "de": "texto_l5",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l5",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 15.7,
+   "L_fundo_em_volta": 12.9
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.04
+  }
+ ],
+ "observacoes": [
+  "o mascote do concorrente é um tigre; na nossa geração vira a capivara com o figurino \"sorte\""
+ ]
+}

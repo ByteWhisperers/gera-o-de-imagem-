@@ -1,0 +1,349 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "promo-vip",
+ "marca": "capivara362",
+ "ficha": "fichas/capivara362/ficha-v1.0.yaml",
+ "referencia": "referencias/9pmbet/promo/promo-vip.webp",
+ "formato_peca": "promo",
+ "tema": "vip",
+ "tamanho_px": [
+  710,
+  320
+ ],
+ "pasta": "fichas/capivara362/grafos/promo-vip",
+ "marcacao": "fichas/capivara362/grafos/promo-vip.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "fundo vermelho e laranja com anel de luz e moedas desfocadas; esquerda preta",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#060202",
+      "fracao": 0.24
+     },
+     {
+      "cor": "#ae4a26",
+      "fracao": 0.182
+     },
+     {
+      "cor": "#8b2319",
+      "fracao": 0.173
+     },
+     {
+      "cor": "#1a0607",
+      "fracao": 0.167
+     },
+     {
+      "cor": "#440c0b",
+      "fracao": 0.128
+     },
+     {
+      "cor": "#da9046",
+      "fracao": 0.11
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "farao",
+   "descricao": "personagem 3D de jogo com toucado de faraó listrado de azul e ouro, rindo, braçadeiras de ouro",
+   "pose": "de frente, punho erguido à direita, outro punho para a frente",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.493,
+    0.0406,
+    0.4465,
+    0.9594
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "medalhao",
+   "tipo": "objeto",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "vip",
+   "descricao": "moeda gigante de ouro gravada, atrás do mascote, à esquerda",
+   "mascara": "mascaras/medalhao.png",
+   "caixa": [
+    0.4817,
+    0.1719,
+    0.1465,
+    0.4719
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "moedas",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "descricao": "moedas de ouro voando em volta",
+   "mascara": "mascaras/moedas.png",
+   "caixa": [
+    0.5169,
+    0.0312,
+    0.4113,
+    0.9469
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 5
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     2.6,
+     3.4,
+     8.4,
+     19.8,
+     62.9,
+     111.6,
+     161.7,
+     163.9,
+     155.0,
+     97.5
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 9,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0549,
+    0.3281,
+    0.3859,
+    0.0656
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 21,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fffdfc",
+     "#fffdfd",
+     "#fffdfd"
+    ],
+    "contorno_escuro_frac": 0.93
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0535,
+    0.4219,
+    0.2183,
+    0.0656
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 21,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fffefd",
+     "#fffeff",
+     "#fffefe"
+    ],
+    "contorno_escuro_frac": 0.97
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0563,
+    0.525,
+    0.3127,
+    0.2625
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 84,
+    "peso_rel": 4.0,
+    "rampa_tercos": [
+     "#fffa02",
+     "#fffa02",
+     "#fffa02"
+    ],
+    "contorno_escuro_frac": 0.99
+   },
+   "fonte": "medido:limiar de cor + projeção por linha"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/capivara362/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0408,
+    0.0938,
+    0.1859,
+    0.1375
+   ],
+   "fonte_caixa": "estimativa do agente (logo_caixa)"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "medalhao",
+   "rel": "apresenta",
+   "para": "mascote",
+   "nota": "a moeda gigante fica atrás",
+   "como um halo": null
+  },
+  {
+   "de": "moedas",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "tema_liga",
+   "para": "medalhao",
+   "tema": "vip"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "medalhao",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 16.2,
+   "L_fundo_em_volta": 20.2
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.43
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 18.2,
+   "L_fundo_em_volta": 5.6
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.57
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 15.8,
+   "L_fundo_em_volta": 20.3
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.014
+  }
+ ],
+ "observacoes": [
+  "o mascote do concorrente é um chacal faraó; na nossa geração vira a capivara com o figurino \"farao\""
+ ]
+}

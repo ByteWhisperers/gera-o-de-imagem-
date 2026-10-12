@@ -31,6 +31,8 @@ A marcação (YAML), em frações da largura e da altura:
   arestas                 relações que se leem na peça (segura, apresenta, cerca, veste, tema_liga)
   texto_linhas            opcional: caixas [x, y, w, h] das linhas, quando a projeção erra
   logo_caixa              opcional: [x, y, w] do logo, quando o casamento com o arquivo erra
+  texto_sem_contorno      opcional: true quando as letras são chapadas, sem contorno escuro (ex.: 9pmbet);
+                          aí a letra clara não precisa encostar no escuro e o amarelo é o limão puro
   observacoes             opcional: o que não cabe na ficha atual (vai para a próxima versão)
   estado, aprovacao       "proposta" até o dono aprovar o recorte; então "aprovada" + quem e quando
 
@@ -269,23 +271,29 @@ def completar_letras(rgb: np.ndarray, glifo: np.ndarray, caixa: tuple[int, int, 
 
 
 def medir_texto(rgb: np.ndarray, zona: list, proibido: np.ndarray,
-                caixas_linhas: list | None = None) -> tuple[np.ndarray, list[dict]]:
+                caixas_linhas: list | None = None, sem_contorno: bool = False) -> tuple[np.ndarray, list[dict]]:
     """Linhas de texto da zona: letras claras (branco ou ouro) coladas num contorno escuro.
 
     Devolve a máscara das letras e, por linha, caixa, altura, estilo, rampa de
     cor, contorno e contraste com o fundo em volta. O conteúdo não é copiado.
     Com `caixas_linhas` (frações, marcadas pelo agente quando a projeção falha),
     cada caixa vira uma linha, apertada nas letras que estão dentro dela.
+    Com `sem_contorno` (letras chapadas, sem borda escura), a letra não precisa
+    encostar no escuro e o amarelo vale só o limão puro, para o fogo amarelo
+    atrás das letras não entrar como letra.
     """
     ndi = _ndi()
     H, W = rgb.shape[:2]
     lum, _, ouro, branco = _cores_de_letra(rgb)
+    if sem_contorno:
+        ouro = ouro & (rgb[..., 1] > 225) & (rgb[..., 2] < 80)
     zx, zy, zw, zh = zona
     dentro_zona = np.zeros((H, W), bool)
     dentro_zona[int(zy * H) : int((zy + zh) * H), int(zx * W) : int((zx + zw) * W)] = True
     cand = (branco | ouro) & dentro_zona & ~proibido
-    borda_escura = ndi.binary_dilation(lum < 60, iterations=4)
-    cand &= borda_escura | ndi.binary_dilation(cand & borda_escura, iterations=6)
+    if not sem_contorno:
+        borda_escura = ndi.binary_dilation(lum < 60, iterations=4)
+        cand &= borda_escura | ndi.binary_dilation(cand & borda_escura, iterations=6)
     cand = ndi.binary_opening(cand, iterations=1)
     spans = _linhas_das_caixas(cand, caixas_linhas) if caixas_linhas else _linhas_por_projecao(cand)
     linhas, letras = [], np.zeros((H, W), bool)
@@ -555,7 +563,8 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False, motor: 
     else:
         logo = medir_logo(im, RAIZ / logo_arq, mc["zona_logo"])
     perto_do_logo = ndi.binary_dilation(logo["mascara"], iterations=6)
-    letras, linhas = medir_texto(rgb, mc["zona_texto"], perto_do_logo, mc.get("texto_linhas"))
+    letras, linhas = medir_texto(rgb, mc["zona_texto"], perto_do_logo, mc.get("texto_linhas"),
+                                  sem_contorno=mc.get("texto_sem_contorno", False))
     rotulos: dict[str, tuple[np.ndarray, dict]] = {}
     for id_, n in mc["nos"].items():
         if n["tipo"] == "texto":

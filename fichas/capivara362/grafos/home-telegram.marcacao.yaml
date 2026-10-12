@@ -1,0 +1,69 @@
+# Marcação da referência home Telegram (9pmbet). Só o estilo entra: a logo
+# deles é apagada (logo_caixa marca onde ela fica) e o personagem é trocado
+# pela capivara na geração.
+#
+#   python ferramentas/desconstruir.py fichas/capivara362/grafos/home-telegram.marcacao.yaml --placas --motor gateway --teto 0.02
+
+peca: home-telegram
+referencia: referencias/9pmbet/home/home-telegram.webp
+ficha: fichas/capivara362/ficha-v1.0.yaml
+formato: home
+tema: telegram
+estado: proposta
+
+texto_sem_contorno: true      # letras chapadas, sem contorno escuro
+zona_texto: [0.055, 0.27, 0.35, 0.55]
+zona_logo: [0.0, 0.0, 0.25, 0.27]
+logo_caixa: [0.040, 0.110, 0.140]
+# O fundo amarelo atrás das letras confunde a projeção: uma caixa por linha.
+texto_linhas: [[0.065, 0.310, 0.150, 0.110], [0.065, 0.440, 0.240, 0.110], [0.065, 0.565, 0.215, 0.110], [0.065, 0.690, 0.335, 0.120]]
+
+nos:
+  cena:
+    tipo: fundo
+    z: 0
+    camada_psd: cena
+    descricao: explosão de fogo laranja e dourada atrás da metade direita, raios brancos, brasas; esquerda quase preta
+  mascote:
+    tipo: personagem
+    z: 3
+    camada_psd: mascote
+    figurino: mago
+    descricao: personagem 3D de jogo, mago de cabelo e barba brancos, gritando, manto vermelho e dourado
+    pose: de frente, inclinado para a câmera, uma mão estendida para a direita segurando o orbe
+    contorno: [[0.470, 0.120], [0.520, 0.020], [0.600, 0.000], [0.670, 0.000], [0.720, 0.080], [0.720, 0.220],
+               [0.700, 0.350], [0.700, 0.550], [0.680, 0.700], [0.660, 0.850], [0.630, 1.000], [0.480, 1.000],
+               [0.480, 0.850], [0.460, 0.600], [0.450, 0.400], [0.470, 0.250]]
+  orbe:
+    tipo: objeto_segurado
+    z: 4
+    camada_psd: mascote
+    tema: telegram
+    descricao: orbe de cristal azul com o avião de papel dentro, com raios, na mão estendida
+    contorno: [[0.700, 0.250], [0.760, 0.170], [0.840, 0.180], [0.900, 0.300], [0.920, 0.500], [0.880, 0.650],
+               [0.900, 0.800], [0.930, 0.950], [0.850, 1.000], [0.760, 0.970], [0.720, 0.850], [0.690, 0.650],
+               [0.680, 0.450]]
+  icones:
+    tipo: objeto_grupo
+    z: 2
+    camada_psd: entorno
+    tema: telegram
+    descricao: ícones quadrados azuis do avião de papel voando
+    elipses: [[0.440, 0.080, 0.080, 0.170], [0.505, 0.850, 0.075, 0.150]]
+  moedas:
+    tipo: objeto_grupo
+    z: 2
+    camada_psd: entorno
+    descricao: moedas de ouro voando
+    elipses: [[0.915, 0.000, 0.060, 0.090], [0.830, 0.280, 0.045, 0.090], [0.770, 0.470, 0.050, 0.100],
+              [0.880, 0.730, 0.060, 0.090], [0.960, 0.400, 0.040, 0.100]]
+
+arestas:
+  - {de: mascote, rel: segura, para: orbe}
+  - {de: icones, rel: cerca, para: mascote}
+  - {de: moedas, rel: cerca, para: mascote}
+  - {de: texto_l2, rel: tema_liga, para: orbe, tema: telegram}
+  - {de: texto_l2, rel: tema_liga, para: icones, tema: telegram}
+
+observacoes:
+  - o mascote do concorrente é um mago humano; na nossa geração vira a capivara com o figurino "mago"

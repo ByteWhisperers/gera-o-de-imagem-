@@ -1,0 +1,56 @@
+# Marcação da referência promo VIP (9pmbet). Logo deles apagada; personagem trocado pela capivara.
+#
+#   python ferramentas/desconstruir.py fichas/capivara362/grafos/promo-vip.marcacao.yaml --placas --motor gateway --teto 0.02
+
+peca: promo-vip
+referencia: referencias/9pmbet/promo/promo-vip.webp
+ficha: fichas/capivara362/ficha-v1.0.yaml
+formato: promo
+tema: vip
+estado: proposta
+
+texto_sem_contorno: true      # letras chapadas, sem contorno escuro
+zona_texto: [0.040, 0.290, 0.420, 0.520]
+zona_logo: [0.0, 0.0, 0.30, 0.26]
+logo_caixa: [0.040, 0.090, 0.190]
+
+nos:
+  cena:
+    tipo: fundo
+    z: 0
+    camada_psd: cena
+    descricao: fundo vermelho e laranja com anel de luz e moedas desfocadas; esquerda preta
+  mascote:
+    tipo: personagem
+    z: 3
+    camada_psd: mascote
+    figurino: farao
+    descricao: personagem 3D de jogo com toucado de faraó listrado de azul e ouro, rindo, braçadeiras de ouro
+    pose: de frente, punho erguido à direita, outro punho para a frente
+    contorno: [[0.640, 0.060], [0.670, 0.040], [0.720, 0.100], [0.760, 0.040], [0.790, 0.080], [0.800, 0.220],
+               [0.820, 0.320], [0.860, 0.360], [0.910, 0.400], [0.930, 0.500], [0.940, 0.700], [0.920, 0.830],
+               [0.870, 0.870], [0.860, 1.000], [0.620, 1.000], [0.600, 0.880], [0.540, 0.900], [0.490, 0.850],
+               [0.500, 0.770], [0.550, 0.750], [0.600, 0.720], [0.630, 0.600], [0.650, 0.500], [0.645, 0.400],
+               [0.630, 0.250], [0.640, 0.120]]
+  medalhao:
+    tipo: objeto
+    z: 2
+    camada_psd: entorno
+    tema: vip
+    descricao: moeda gigante de ouro gravada, atrás do mascote, à esquerda
+    elipses: [[0.490, 0.170, 0.130, 0.470]]
+  moedas:
+    tipo: objeto_grupo
+    z: 2
+    camada_psd: entorno
+    descricao: moedas de ouro voando em volta
+    elipses: [[0.550, 0.030, 0.060, 0.100], [0.810, 0.080, 0.080, 0.130], [0.850, 0.130, 0.070, 0.160],
+              [0.520, 0.600, 0.050, 0.120], [0.870, 0.830, 0.060, 0.130]]
+
+arestas:
+  - {de: medalhao, rel: apresenta, para: mascote, nota: a moeda gigante fica atrás, como um halo}
+  - {de: moedas, rel: cerca, para: mascote}
+  - {de: texto_l3, rel: tema_liga, para: medalhao, tema: vip}
+
+observacoes:
+  - o mascote do concorrente é um chacal faraó; na nossa geração vira a capivara com o figurino "farao"
