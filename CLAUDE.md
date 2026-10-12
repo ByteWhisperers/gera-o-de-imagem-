@@ -26,6 +26,8 @@ A ficha é o contrato. Só a desconstrução escreve nela; as outras etapas só 
 
 ## Comandos
 
+Primeira vez numa máquina nova: siga o `INSTALAR.md` (quatro níveis, do rascunho ao PhotoCraft).
+
 ```bash
 pip install -r requirements-dev.txt
 python -m pytest -q

@@ -2,3 +2,4 @@ numpy>=1.26
 pillow>=10.0
 pyyaml>=6.0
 psd-tools>=1.9
+scipy>=1.11              # integracoes/photocraft/bordas.py (réguas de borda do acabamento)

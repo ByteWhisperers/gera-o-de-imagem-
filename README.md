@@ -2,6 +2,8 @@
 
 Copia o padrão visual de uma mídia de referência e gera peças novas no mesmo padrão, em camadas.
 
+**Primeira vez aqui? Leia o [INSTALAR.md](INSTALAR.md):** ele leva do download até o fluxo funcionando, em quatro níveis (rascunho, geração no ComfyUI, loop de medição, acabamento no PhotoCraft). Tudo é grátis e local.
+
 ```
 referências ──► ficha de estilo ──► partes geradas ──► composição em camadas ──► PSD + PNG/WebP
  (exemplos)     (desconstrução)     (portão de geração)  (pela ficha)              + relatório de QA
@@ -10,6 +12,8 @@ referências ──► ficha de estilo ──► partes geradas ──► compos
 A **ficha de estilo** (`fichas/<marca>/ficha-vX.Y.yaml`) é o contrato entre as etapas. A desconstrução escreve nela; criação e composição só leem.
 
 ## Rodar
+
+Depois de instalar (nível 1 do INSTALAR.md, com o ambiente virtual ativo):
 
 ```bash
 pip install -r requirements-dev.txt
@@ -76,5 +80,7 @@ Integrações: `integracoes/comfyui/LEIA-ME.md` (geração e fluxo completo) e `
 
 - Teste 1 (09/10/2026): ficha ARARA v1.0, partes geradas com `fal-ai/flux/schnell` (cerca de US$0,018 no total), composição em PSD funcionando.
 - Fluxo ComfyUI (09/10/2026): ficha v1.1 aprovada com temas; ComfyUI local com SD-Turbo (grátis, CPU, licença não comercial) gera as 3 partes e monta o PSD num só fluxo; o PhotoCraft abre o PSD com as mesmas camadas.
+- Loop e desconstrução (10/10/2026): as 11 referências viraram grafos de partes isoladas; o compilador monta o workflow do ComfyUI a partir do grafo e cada tentativa é medida contra a referência e anotada em `fluxos/arara/tentativas.jsonl`. Ficha v1.2 aprovada.
+- Acabamento no PhotoCraft (11/10/2026): quatro agentes especialistas (recortista, colorista, retocador, iluminador) com memória, skills e réguas de medida. A receita do depósito é padrão aprovado; a do Telegram é proposta.
 
 Fontes: Montserrat (SIL Open Font License 1.1, `fontes/OFL.txt`).

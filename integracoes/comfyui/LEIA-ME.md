@@ -14,16 +14,10 @@ monta a peça em PSD. A lógica fica em `motor/`; aqui estão só a ligação.
 
 ## Instalar (testado com ComfyUI 0.39.0, CPU)
 
-```bash
-git clone https://github.com/comfyanonymous/ComfyUI
-python -m venv comfy-venv && . comfy-venv/bin/activate
-pip install torch --index-url https://download.pytorch.org/whl/cpu   # ou a versão da sua GPU
-pip install -r ComfyUI/requirements.txt
-pip install -r <repo>/requirements.txt "rembg[cpu]"                  # o motor e o recorte por modelo
-ln -s <repo>/integracoes/comfyui/nos_gera_imagem ComfyUI/custom_nodes/nos_gera_imagem
-# modelo de teste: sd_turbo.safetensors em ComfyUI/models/checkpoints/
-python ComfyUI/main.py --cpu --listen 127.0.0.1 --port 8188
-```
+Os passos completos, com versões, modelo e conferências, estão no **[INSTALAR.md](../../INSTALAR.md), Nível 2**.
+Em resumo: um ambiente Python só (projeto + ComfyUI + `requirements-comfyui.txt`), o link desta pasta
+`nos_gera_imagem/` em `ComfyUI/custom_nodes/`, o modelo `sd_turbo.safetensors` em
+`ComfyUI/models/checkpoints/` e o servidor ligado com `python ComfyUI/main.py --cpu --listen 127.0.0.1 --port 8188`.
 
 ## Rodar
 

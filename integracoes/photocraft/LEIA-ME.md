@@ -11,11 +11,12 @@ O ArtCraft, do mesmo time, não tem MCP; o MCP é do PhotoCraft.
 ## Instalar (testado com a 0.7.0)
 
 ```bash
-git clone https://github.com/storytold/photocraft
-cd photocraft && cargo build --release -p photocraft-cli    # gera target/release/photocraft-cli
+git clone https://github.com/storytold/photocraft && cd photocraft
+git checkout 7926161                                        # a versão 0.7.0 (a testada)
+cargo build --release -p photocraft-cli                     # precisa do Rust 1.95+; gera target/release/photocraft-cli (cerca de 6 min)
 ```
 
-Ponha o `photocraft-cli` no PATH ou aponte `PHOTOCRAFT_CLI` para ele. No macOS a
+Ponha o `photocraft-cli` no PATH ou aponte `PHOTOCRAFT_CLI` para ele. O passo a passo completo, com as conferências, está no [INSTALAR.md](../../INSTALAR.md), Nível 4. No macOS a
 página de versões do GitHub tem o CLI pronto (`photocraft-cli-<versão>-macos-universal.zip`).
 
 ## O que tem aqui

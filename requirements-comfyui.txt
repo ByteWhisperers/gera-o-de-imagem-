@@ -1,0 +1,5 @@
+# Para gerar partes no ComfyUI local (--provedor comfyui, rodar_fluxo.py, tentativa.py).
+# Vai no MESMO ambiente Python do ComfyUI: os nós do projeto rodam dentro dele.
+# O ComfyUI e o PyTorch têm instalação própria: veja INSTALAR.md, Nível 2.
+-r requirements.txt
+rembg[cpu]>=2.0          # recorte do mascote por modelo (motor/recorte.py); baixa o isnet-general-use na 1ª vez
