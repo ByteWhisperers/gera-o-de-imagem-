@@ -141,9 +141,18 @@ cerca de US$ 0,005 por parte nova. Não precisa de PyTorch nem do ComfyUI.
 python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor gateway --teto 0.05 --tema telegram --formato promo
 ```
 
-Como no ComfyUI, a parte que já está na biblioteca com a mesma receita é reaproveitada e não custa nada. Cada
-parte nova entra em `partes/<marca>/registro.yaml` com o custo que o gateway informou. Se a próxima parte
-passaria do teto, a rodada para antes de pedir. Modelo, preço e tamanhos ficam em `integracoes/gateway/config.yaml`.
+Como no ComfyUI, a parte que já está na biblioteca com a mesma receita é reaproveitada e não custa nada (o
+gateway só reaproveita partes feitas pelo próprio modelo dele). Cada parte nova entra em
+`partes/<marca>/registro.yaml` com o custo que o gateway informou. Se a próxima parte passaria do teto, a rodada
+para antes de pedir. Modelo, preço, tamanhos e recorte ficam em `integracoes/gateway/config.yaml`.
+
+O loop e as placas também rodam pelo gateway, sem ComfyUI, com image-to-image (cada parte refeita a partir da
+região dela na referência, com a mesma força do ComfyUI):
+
+```bash
+python tentativa.py fichas/arara/grafos/promo-telegram.json --motor gateway --teto 0.03          # 2 a 4 imagens
+python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas --motor gateway --teto 0.01
+```
 
 ## Nível 3: o loop (reproduzir uma referência e medir)
 

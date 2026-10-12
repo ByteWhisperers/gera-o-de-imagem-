@@ -11,18 +11,25 @@ modelo: rapido
 preco_por_imagem_usd: 0.005
 # Quanto esperar cada imagem, em segundos.
 espera_max: 300
-# Proporção de cada parte (a mesma do ComfyUI). O gateway gera no tamanho aceito
-# de proporção mais parecida e o portão corta o centro nesta proporção.
+# Tamanho de geração de cada parte nova (cada lado entre 256 e 1536). Maior que no
+# ComfyUI porque a GPU da RunPod aguenta; a composição redimensiona.
 tamanhos:
   cena:
-    home: [1024, 320]
-    promo: [1024, 448]
-  mascote: [512, 704]
-  entorno: [768, 512]
-  frente: [768, 512]
+    home: [1536, 480]
+    promo: [1536, 672]
+  mascote: [768, 1056]
+  entorno: [1152, 768]
+  frente: [1152, 768]
 # Como tirar o fundo de cada parte transparente (ver motor/recorte.py).
-# Começa igual ao ComfyUI; ajustar depois de ver as primeiras partes do modelo novo.
+# O Z-Image Turbo obedece ao "fundo cinza liso"; no entorno o recorte por cor da borda
+# comia o branco do ícone do Telegram e o modelo de recorte ficou limpo (teste de 2026-10-12).
 recorte:
   mascote: modelo
-  entorno: cor_da_borda
+  entorno: modelo
   frente: liso
+# Loop (tentativa.py --motor gateway) e placas (desconstruir.py --placas --motor gateway):
+# lado maior da geração por tipo de parte. A força (denoise) e o prompt vêm do
+# compilador, iguais aos do ComfyUI, para as tentativas serem comparáveis.
+loop:
+  lado: {fundo: 1536, personagem: 1024, objeto: 1024}
+  lado_placa: 1536

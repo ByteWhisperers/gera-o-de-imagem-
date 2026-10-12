@@ -3,6 +3,7 @@
 Uso:
     python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml
     python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas
+    python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas --motor gateway --teto 0.02
 
 É semi-manual. O agente escreve a marcação (contornos aproximados do mascote
 e dos objetos, e as relações que lê na peça). Esta ferramenta:
@@ -13,7 +14,8 @@ e dos objetos, e as relações que lê na peça). Esta ferramenta:
   3. escreve o grafo <peca>.json, as máscaras, os recortes isolados e uma
      prancha de conferência para o dono aprovar;
   4. com --placas, apaga texto e logo (placa "sem_texto") e também mascote e
-     entorno (placa "cena_limpa") por inpainting no ComfyUI local. Custo zero.
+     entorno (placa "cena_limpa") por inpainting no ComfyUI local (custo zero) ou,
+     com --motor gateway, pelo gateway de imagem (pago, exige --teto).
 
 Precisa de scikit-image (requirements-desconstrucao.txt).
 
@@ -496,17 +498,30 @@ def buracos(grafo: dict, mascaras: dict[str, np.ndarray], linhas: list[dict],
 
 
 def fazer_placas(grafo: dict, ficha: dict, im: Image.Image, buracos_: dict[str, np.ndarray],
-                 semente: int = 7) -> dict[str, Image.Image]:
+                 semente: int = 7, motor: str = "comfyui", teto_usd: float | None = None) -> dict[str, Image.Image]:
     from motor import comfyui as CU
     from motor import compilador as C
+    from motor import gateway as GW
 
     cfg = C.ler_config()
+    if motor == "gateway":
+        if teto_usd is None:
+            raise GW.TetoDeGasto("o motor gateway é pago: defina o teto de gasto (--teto)")
+        cfg_gw = GW.ler_config()
+        caixa = GW.Caixa(teto_usd, cfg_gw["preco_por_imagem_usd"])
     rgb = np.asarray(im.convert("RGB"), np.float32)
     saida = {}
     for nome, buraco in buracos_.items():
         cheio = preencher_buraco(rgb, buraco)
         suave = Image.fromarray((buraco * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5)).filter(
             ImageFilter.GaussianBlur(3))
+        if motor == "gateway":
+            prompt = C.prompt_no_lugar(ficha, "cena", grafo["tema"], cfg)
+            saida[nome] = GW.placa(Image.fromarray(cheio.astype(np.uint8)), suave, prompt,
+                                   cfg["compilador"]["denoise_placa"], semente, cfg_gw, caixa,
+                                   lado=cfg_gw.get("loop", {}).get("lado_placa", 1536))
+            print(f"placa {nome}: pronta (gateway, US${caixa.gasto_usd:.3f} na rodada)")
+            continue
         comp = C.compilar_placa(ficha, grafo, cfg, Image.fromarray(cheio.astype(np.uint8)), suave,
                                 semente=semente, prefixo=f"gera/{grafo['peca']}-{nome}")
         for arq, imagem in comp.entradas.items():
@@ -520,7 +535,8 @@ def fazer_placas(grafo: dict, ficha: dict, im: Image.Image, buracos_: dict[str, 
 # ---------------------------------------------------------------- principal
 
 
-def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict:
+def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False, motor: str = "comfyui",
+                 teto_usd: float | None = None) -> dict:
     ndi = _ndi()
     caminho_marcacao = Path(caminho_marcacao).resolve()
     mc = yaml.safe_load(caminho_marcacao.read_text(encoding="utf-8"))
@@ -694,7 +710,8 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict
         if arq.exists():
             placas[nome] = Image.open(arq).convert("RGB")
     if com_placas:
-        placas = fazer_placas(grafo, ficha, im, buracos(grafo, camadas, linhas, set(ficha["partes"])))
+        placas = fazer_placas(grafo, ficha, im, buracos(grafo, camadas, linhas, set(ficha["partes"])),
+                              motor=motor, teto_usd=teto_usd)
         for nome, p in placas.items():
             p.save(destino / f"{nome.replace('_', '-')}.webp", "WEBP", quality=94)
     grafo["placas"] = {nome: f"{nome.replace('_', '-')}.webp" for nome in placas}
@@ -712,9 +729,14 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("marcacao")
-    ap.add_argument("--placas", action="store_true", help="faz as placas sem texto e de fundo limpo no ComfyUI")
+    ap.add_argument("--placas", action="store_true", help="faz as placas sem texto e de fundo limpo")
+    ap.add_argument("--motor", default="comfyui", choices=["comfyui", "gateway"],
+                    help="onde fazer as placas: ComfyUI local (grátis) ou gateway de imagem (pago, exige --teto)")
+    ap.add_argument("--teto", type=float, metavar="US$", help="com --motor gateway: quanto as placas podem gastar")
     a = ap.parse_args()
-    r = desconstruir(a.marcacao, a.placas)
+    if a.placas and a.motor == "gateway" and a.teto is None:
+        ap.error("--motor gateway é pago: informe o teto de gasto com --teto (por exemplo --teto 0.02)")
+    r = desconstruir(a.marcacao, a.placas, a.motor, a.teto)
     print(json.dumps({k: (v.as_posix() if isinstance(v, Path) else v) for k, v in r.items()}, ensure_ascii=False))
 
 

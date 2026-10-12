@@ -28,7 +28,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import json
-import os
 import urllib.request
 import uuid
 
@@ -47,8 +46,7 @@ class ParteRecusada(RuntimeError):
     pass
 
 
-class TetoDeGasto(RuntimeError):
-    pass
+TetoDeGasto = gateway.TetoDeGasto
 
 
 @dataclass
@@ -71,28 +69,31 @@ class Portao:
         if self.provedor in ("comfyui", "gateway"):
             if self.provedor == "gateway" and self.teto_usd is None:
                 raise TetoDeGasto("o provedor gateway é pago: defina o teto de gasto (--teto)")
+            # o gateway só reaproveita partes feitas pelo próprio modelo dele (as do SD-Turbo são piores)
+            modelo = f"gateway/{gateway.ler_config(RAIZ)['modelo']}" if self.provedor == "gateway" else None
             if parte not in self.novas:
                 try:
-                    return self._do_registro(ficha, parte, formato, prompt)
+                    return self._do_registro(ficha, parte, formato, prompt, modelo)
                 except ParteRecusada:
                     pass                      # ainda não está na biblioteca: gera
             if self.provedor == "comfyui":
                 self._do_comfyui(ficha, parte, formato, prompt)
             else:
                 self._do_gateway(ficha, parte, formato, prompt)
-            im = self._do_registro(ficha, parte, formato, prompt)
+            im = self._do_registro(ficha, parte, formato, prompt, modelo)
             self.log[-1]["gerada_agora"] = True
             return im
         if self.provedor == "registro":
             return self._do_registro(ficha, parte, formato, prompt)
         raise ValueError(f"provedor desconhecido: {self.provedor}")
 
-    def _do_registro(self, ficha, parte, formato, prompt) -> Image.Image:
+    def _do_registro(self, ficha, parte, formato, prompt, modelo: str | None = None) -> Image.Image:
         pasta = RAIZ / "partes" / ficha["marca"]
         registro = _ler_registro(pasta)
         candidatas = [
             e for e in registro["entradas"]
             if e["parte"] == parte and e.get("escolhida") and e.get("formato", formato) == formato
+            and (modelo is None or e.get("modelo") == modelo)
         ]
         if not candidatas:
             raise ParteRecusada(f"nenhuma parte escolhida para {parte}/{formato} em {pasta}/registro.yaml")
@@ -124,15 +125,14 @@ class Portao:
 
     def _do_gateway(self, ficha, parte, formato, prompt) -> None:
         """Gera a parte pelo gateway, dentro do teto de gasto, e acrescenta a entrada ao registro."""
-        cfg = yaml.safe_load((RAIZ / "integracoes/gateway/config.yaml").read_text(encoding="utf-8"))
+        cfg = gateway.ler_config(RAIZ)
         preco = cfg["preco_por_imagem_usd"]
         if self.gasto_novo_usd + preco > self.teto_usd + 1e-9:
             raise TetoDeGasto(f"{parte}/{formato}: gerar custaria US${preco}, a rodada já gastou "
                               f"US${self.gasto_novo_usd:.3f} e o teto é US${self.teto_usd}")
         tam = cfg["tamanhos"][parte]
         largura, altura = tam[formato] if isinstance(tam, dict) else tam
-        url = os.environ.get("GATEWAY_URL") or cfg["url"]
-        imagem, custo = gerar_no_gateway(url, gateway.chave(), cfg["modelo"], prompt, largura, altura,
+        imagem, custo = gerar_no_gateway(cfg["url"], gateway.chave(), cfg["modelo"], prompt, largura, altura,
                                          self.semente, cfg.get("espera_max", 300))
         custo = preco if custo is None else custo
         self.gasto_novo_usd += custo
@@ -191,7 +191,7 @@ def preencher(grafo, valores: dict):
 
 def gerar_no_gateway(url, chave_app, modelo, prompt, largura, altura, semente, espera_max=300):
     """Pede a parte ao gateway. Devolve (imagem, custo em US$ ou None)."""
-    return gateway.gerar(url, chave_app, modelo, prompt, largura, altura, semente, espera_max)
+    return gateway.gerar(url, chave_app, modelo, prompt, largura, altura, semente, espera_max=espera_max)
 
 
 def executar_comfyui(url: str, grafo: dict, espera_max: float = 900, abrir=urllib.request.urlopen) -> Image.Image:

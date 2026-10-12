@@ -40,6 +40,7 @@ python ferramentas/medir.py referencias/arara > fichas/arara/medidas.json
 pip install -r requirements-desconstrucao.txt
 python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas   # grafo + partes isoladas
 python tentativa.py fichas/arara/grafos/promo-telegram.json                                    # uma volta do loop, grátis
+python tentativa.py fichas/arara/grafos/promo-telegram.json --motor gateway --teto 0.03       # loop pelo gateway, PAGO: só com autorização do dono
 python integracoes/photocraft/acabar.py medir saida/arara/tentativas/promo-telegram-005/peca.psd   # diagnóstico contra a referência
 python integracoes/photocraft/acabar.py aplicar <psd> --receita integracoes/photocraft/receitas/arara/<r>.json --mudanca "..."   # acabamento, grátis
 ```

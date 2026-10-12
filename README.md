@@ -55,6 +55,8 @@ python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.y
 python tentativa.py fichas/arara/grafos/promo-telegram.json
 # 3. a próxima volta muda uma coisa só e diz de onde partiu
 python tentativa.py fichas/arara/grafos/promo-telegram.json --denoise personagem=0.4 --pai promo-telegram-001 --mudanca "mascote mais fiel"
+# a mesma volta pelo gateway de imagem (pago, Z-Image Turbo, com teto de gasto)
+GATEWAY_CHAVE=... python tentativa.py fichas/arara/grafos/promo-telegram.json --motor gateway --teto 0.03
 ```
 
 O **grafo** (`fichas/<marca>/grafos/<peca>.json`) guarda a peça inteira, cada parte isolada (máscara e recorte em `fichas/<marca>/grafos/<peca>/`), as placas sem texto e de fundo limpo, e as relações entre as partes (quem segura o quê, o que o tema liga, contraste do texto). Não substitui a ficha: descreve uma peça.
