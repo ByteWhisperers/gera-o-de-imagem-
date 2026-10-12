@@ -25,6 +25,9 @@ python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram
 # partes geradas no ComfyUI local (grátis) e registradas em partes/arara/registro.yaml
 python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor comfyui --tema telegram --formato promo
 
+# partes geradas pelo gateway de imagem (pago, Z-Image Turbo, US$ 0,005 por parte nova), com teto de gasto
+GATEWAY_CHAVE=... python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor gateway --teto 0.05 --tema telegram --formato promo
+
 # partes já registradas (por exemplo as do fal no teste 1, ficha v1.0)
 python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema turista
 ```

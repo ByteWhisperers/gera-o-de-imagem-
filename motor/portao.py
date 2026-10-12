@@ -15,8 +15,11 @@ Provedores:
              Se não existe, ou se a parte foi pedida em `novas`, gera num
              ComfyUI local com o grafo integracoes/comfyui/grafos/parte.json e
              a registra no registro.yaml. Custo zero.
-
-Próximo provedor: API externa com teto de gasto obrigatório.
+  gateway    como o comfyui (biblioteca primeiro), mas gera pelo gateway de
+             imagem (22kofking/gateway-imagem), configurado em
+             integracoes/gateway/config.yaml. É pago: exige teto de gasto
+             (teto_usd) e recusa a parte que passaria do teto. O custo de cada
+             parte nova vai para o registro.yaml.
 """
 
 from __future__ import annotations
@@ -25,6 +28,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import json
+import os
 import urllib.request
 import uuid
 
@@ -33,12 +37,17 @@ import yaml
 from PIL import Image, ImageDraw, ImageFilter
 
 from . import comfyui
+from . import gateway
 from . import ficha as F
 
 RAIZ = Path(__file__).resolve().parent.parent
 
 
 class ParteRecusada(RuntimeError):
+    pass
+
+
+class TetoDeGasto(RuntimeError):
     pass
 
 
@@ -50,6 +59,8 @@ class Portao:
     semente: int = 519
     recorte: dict = field(default_factory=dict)   # método de recorte de cada parte, vindo da receita
     novas: set = field(default_factory=set)       # partes que o dono pediu para gerar de novo (variação)
+    teto_usd: float | None = None                 # gateway: quanto esta rodada pode gastar em partes novas
+    gasto_novo_usd: float = 0.0                   # gateway: quanto esta rodada já gastou em partes novas
 
     def parte(self, ficha: dict, parte: str, formato: str, tema: str | None = None) -> Image.Image:
         prompt = F.prompt_da_parte(ficha, parte, tema)
@@ -57,13 +68,18 @@ class Portao:
             im = _rascunho(ficha, parte, formato)
             self.log.append({"parte": parte, "formato": formato, "provedor": "rascunho", "custo_usd": 0.0})
             return im
-        if self.provedor == "comfyui":
+        if self.provedor in ("comfyui", "gateway"):
+            if self.provedor == "gateway" and self.teto_usd is None:
+                raise TetoDeGasto("o provedor gateway é pago: defina o teto de gasto (--teto)")
             if parte not in self.novas:
                 try:
                     return self._do_registro(ficha, parte, formato, prompt)
                 except ParteRecusada:
                     pass                      # ainda não está na biblioteca: gera
-            self._do_comfyui(ficha, parte, formato, prompt)
+            if self.provedor == "comfyui":
+                self._do_comfyui(ficha, parte, formato, prompt)
+            else:
+                self._do_gateway(ficha, parte, formato, prompt)
             im = self._do_registro(ficha, parte, formato, prompt)
             self.log[-1]["gerada_agora"] = True
             return im
@@ -102,23 +118,48 @@ class Portao:
                    "passos": cfg["passos"], "cfg": cfg["cfg"], "prefixo": f"gera/{ficha['marca']}-{parte}"}
         grafo = preencher(json.loads((RAIZ / "integracoes/comfyui/grafos/parte.json").read_text()), valores)
         imagem = executar_comfyui(cfg["url"], grafo)
-        pasta = RAIZ / "partes" / ficha["marca"]
-        arquivo = f"comfyui-{parte}{'-' + formato if parte == 'cena' else ''}-{uuid.uuid4().hex[:8]}.png"
-        imagem.save(pasta / arquivo)
-        entrada = {"parte": parte, "arquivo": arquivo, "modelo": f"comfyui/{cfg['checkpoint']}",
-                   "semente": self.semente, "tamanho": [largura, altura], "passos": cfg["passos"],
-                   "custo_usd": 0.0, "escolhida": True, "ficha_versao": ficha["versao"], "prompt": prompt}
-        if ficha["partes"][parte].get("transparente"):
-            entrada["recorte"] = cfg.get("recorte", {}).get(parte, "liso")
-        if parte == "cena":
-            entrada["formato"] = formato
-        registro = _ler_registro(pasta)
-        registro["entradas"].append(entrada)
-        caminho = pasta / "registro.yaml"
-        texto = caminho.read_text(encoding="utf-8") if caminho.exists() else ""
-        cabecalho = "".join(l for l in texto.splitlines(keepends=True)[: _fim_do_cabecalho(texto)])
-        (pasta / "registro.yaml").write_text(
-            cabecalho + yaml.safe_dump(registro, allow_unicode=True, sort_keys=False, width=100), encoding="utf-8")
+        _registrar(ficha, parte, formato, prompt, imagem, cfg, "comfyui", {
+            "modelo": f"comfyui/{cfg['checkpoint']}", "semente": self.semente, "tamanho": [largura, altura],
+            "passos": cfg["passos"], "custo_usd": 0.0})
+
+    def _do_gateway(self, ficha, parte, formato, prompt) -> None:
+        """Gera a parte pelo gateway, dentro do teto de gasto, e acrescenta a entrada ao registro."""
+        cfg = yaml.safe_load((RAIZ / "integracoes/gateway/config.yaml").read_text(encoding="utf-8"))
+        preco = cfg["preco_por_imagem_usd"]
+        if self.gasto_novo_usd + preco > self.teto_usd + 1e-9:
+            raise TetoDeGasto(f"{parte}/{formato}: gerar custaria US${preco}, a rodada já gastou "
+                              f"US${self.gasto_novo_usd:.3f} e o teto é US${self.teto_usd}")
+        tam = cfg["tamanhos"][parte]
+        largura, altura = tam[formato] if isinstance(tam, dict) else tam
+        url = os.environ.get("GATEWAY_URL") or cfg["url"]
+        imagem, custo = gerar_no_gateway(url, gateway.chave(), cfg["modelo"], prompt, largura, altura,
+                                         self.semente, cfg.get("espera_max", 300))
+        custo = preco if custo is None else custo
+        self.gasto_novo_usd += custo
+        _registrar(ficha, parte, formato, prompt, imagem, cfg, "gateway", {
+            "modelo": f"gateway/{cfg['modelo']}", "semente": self.semente, "tamanho": list(imagem.size),
+            "custo_usd": custo})
+
+
+def _registrar(ficha, parte, formato, prompt, imagem, cfg, origem: str, receita: dict) -> None:
+    """Guarda a imagem em partes/<marca>/ e acrescenta a entrada, com a receita, ao registro.yaml."""
+    pasta = RAIZ / "partes" / ficha["marca"]
+    pasta.mkdir(parents=True, exist_ok=True)
+    arquivo = f"{origem}-{parte}{'-' + formato if parte == 'cena' else ''}-{uuid.uuid4().hex[:8]}.png"
+    imagem.save(pasta / arquivo)
+    entrada = {"parte": parte, "arquivo": arquivo, **receita,
+               "escolhida": True, "ficha_versao": ficha["versao"], "prompt": prompt}
+    if ficha["partes"][parte].get("transparente"):
+        entrada["recorte"] = cfg.get("recorte", {}).get(parte, "liso")
+    if parte == "cena":
+        entrada["formato"] = formato
+    registro = _ler_registro(pasta)
+    registro["entradas"].append(entrada)
+    caminho = pasta / "registro.yaml"
+    texto = caminho.read_text(encoding="utf-8") if caminho.exists() else ""
+    cabecalho = "".join(l for l in texto.splitlines(keepends=True)[: _fim_do_cabecalho(texto)])
+    (pasta / "registro.yaml").write_text(
+        cabecalho + yaml.safe_dump(registro, allow_unicode=True, sort_keys=False, width=100), encoding="utf-8")
 
 
 def _fim_do_cabecalho(texto: str) -> int:
@@ -146,6 +187,11 @@ def preencher(grafo, valores: dict):
     if isinstance(grafo, str) and grafo.startswith("{{") and grafo.endswith("}}"):
         return valores[grafo[2:-2]]
     return grafo
+
+
+def gerar_no_gateway(url, chave_app, modelo, prompt, largura, altura, semente, espera_max=300):
+    """Pede a parte ao gateway. Devolve (imagem, custo em US$ ou None)."""
+    return gateway.gerar(url, chave_app, modelo, prompt, largura, altura, semente, espera_max)
 
 
 def executar_comfyui(url: str, grafo: dict, espera_max: float = 900, abrir=urllib.request.urlopen) -> Image.Image:

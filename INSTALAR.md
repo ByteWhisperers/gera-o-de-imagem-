@@ -126,6 +126,25 @@ pelo portão grava em `saida/arara/`.
 A configuração do modelo, dos tamanhos e do recorte está em `integracoes/comfyui/config.yaml`. Para o
 ComfyUI em outro endereço, mude a chave `url` nesse arquivo.
 
+### Opcional: gerar as partes pelo gateway de imagem (pago)
+
+Em vez do ComfyUI local, o portão pode pedir as partes ao gateway de imagem (repositório
+`22kofking/gateway-imagem`), que usa o Z-Image Turbo na RunPod: melhor qualidade, uso comercial permitido,
+cerca de US$ 0,005 por parte nova. Não precisa de PyTorch nem do ComfyUI.
+
+1. Ligue o gateway (veja o README dele) com uma chave para este app em `GATEWAY_APP_KEYS`.
+2. Neste terminal, informe a chave do app (nunca grave em arquivo): `export GATEWAY_CHAVE=...`.
+   Se o gateway não estiver em `http://127.0.0.1:8000`, defina também `GATEWAY_URL`.
+3. Rode com teto de gasto, que é obrigatório:
+
+```bash
+python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor gateway --teto 0.05 --tema telegram --formato promo
+```
+
+Como no ComfyUI, a parte que já está na biblioteca com a mesma receita é reaproveitada e não custa nada. Cada
+parte nova entra em `partes/<marca>/registro.yaml` com o custo que o gateway informou. Se a próxima parte
+passaria do teto, a rodada para antes de pedir. Modelo, preço e tamanhos ficam em `integracoes/gateway/config.yaml`.
+
 ## Nível 3: o loop (reproduzir uma referência e medir)
 
 Precisa do ComfyUI ligado (Nível 2) e de mais um pacote:

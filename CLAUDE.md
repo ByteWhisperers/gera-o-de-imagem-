@@ -34,6 +34,7 @@ python -m pytest -q
 python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram                      # rascunho, custo zero
 python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram --provedor comfyui   # ComfyUI local, grátis
 python pipeline.py fichas/arara/ficha-v1.0.yaml --tema turista --provedor registro   # partes do teste 1 (fal)
+python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram --provedor gateway --teto 0.05   # gateway de imagem, PAGO: só com autorização do dono
 python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo            # fluxo completo no ComfyUI
 python ferramentas/medir.py referencias/arara > fichas/arara/medidas.json
 pip install -r requirements-desconstrucao.txt
