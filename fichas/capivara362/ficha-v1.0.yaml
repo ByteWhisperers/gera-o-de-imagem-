@@ -85,8 +85,8 @@ partes:
   cena:
     transparente: false
     prompt: >-
-      intense fiery background, explosion of orange, red and golden light
-      bursting behind the right half, glowing embers and sparks flying,
+      intense fiery background, a bright golden light burst with radiating sun
+      rays behind the right third, explosion of orange, red and golden light, glowing embers and sparks flying,
       thin crackling white lightning bolts, warm bokeh, a few blurred gold
       coins flying, dark smoky shadow covering the left third, 3D mobile
       casino game splash art background, saturated warm colors, no people,
@@ -94,12 +94,18 @@ partes:
   mascote:
     transparente: true
     figurino_padrao: sorte
+    # Pedido do dono (12/10): capivara adulta, não infantil, mas amistosa e
+    # chamativa. O "chibi de cabeça grande" da primeira rodada saiu infantil;
+    # "not chibi, not baby" com focinho longo de capivara adulta e cara
+    # expressiva acertou (rodada 2 de 2, escolhida entre 4 variações).
     prompt: >-
-      3D mobile game character render of a capybara mascot, chibi
-      proportions with a big head, big shiny expressive eyes, wide open
-      excited smile, energetic dynamic pose leaning towards the camera,
-      friendly and inviting, {figurino}, {segura}, glossy stylized 3D like a
-      slot game splash art, strong warm golden rim light, waist-up, centered,
+      3D animated movie character render of an adult capybara mascot, natural
+      adult capybara head with a long blunt muzzle, not chibi, not baby,
+      detailed warm brown fur, big joyful open-mouth grin, lively sparkling
+      eyes looking straight at the viewer, raised eyebrows, expressive cartoon
+      face, leaning slightly towards the camera, charismatic and welcoming like
+      a casino host inviting you to play, {figurino}, {segura}, vibrant
+      saturated colors, strong warm golden rim light, waist-up, centered,
       isolated on a plain light grey studio background
     # O concorrente troca de personagem a cada tema (touro, pandas, mago,
     # tigre, chacal, coelho, rainha, pirata). Nós trocamos o figurino da capivara.
@@ -170,7 +176,7 @@ temas:
     ligacao: forte
     figurino: sorte
     segura: one paw stretched towards the camera and the other arm raised holding a red envelope
-    entorno: red envelopes with gold details falling like rain, sharp near the mascot and blurred far away
+    entorno: about twelve small flat red paper envelopes with gold trim scattered all over the frame at different angles, each one small, wide empty space between them, only envelopes
     frente: red envelopes and gold coins with a square hole on the ground
     referencias: [home/home-envelopes, promo/promo-envelopes]
     texto_exemplo:

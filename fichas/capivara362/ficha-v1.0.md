@@ -80,7 +80,14 @@ Estado: **proposta** (falta o dono aprovar).
   para medir mascote, entorno e frente no promo.
 - **Fonte.** A Montserrat Black é mais estreita que a letra deles; vale testar uma
   sem serifa larga e pesada (OFL).
-- **Luz atrás do mascote.** A cena gerada tem menos clarão dourado atrás do mascote que a
-  referência.
-- **Objetos estranhos.** No tema envelopes, o entorno gerou um boneco vermelho. A ideia é
-  pedir só envelopes no prompt ou gerar mais de uma opção.
+- **Luz atrás do mascote.** Corrigido em 12/10: a cena pede um clarão dourado com raios atrás do terço direito.
+- **Objetos estranhos.** Corrigido em 12/10: o entorno dos envelopes agora pede "só envelopes, pequenos e espalhados".
+
+## Mascote adulto (pedido do dono, 12/10)
+
+A primeira rodada fez uma capivara chibi, de cabeça grande, que saiu infantil. O dono
+pediu uma capivara mais adulta, ainda amistosa e chamativa, como o mascote de smoking
+do banner "Convide 1 amigo". Testamos 4 prompts em 3 figurinos (12 imagens, US$ 0,06).
+O vencedor pede "adult capybara, long blunt muzzle, not chibi, not baby" junto com uma
+cara expressiva (sorriso aberto, olhar para quem vê, sobrancelhas levantadas). Sem a
+parte da expressão, a capivara adulta saía com cara parada.
