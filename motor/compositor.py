@@ -41,9 +41,11 @@ def cobrir(im: Image.Image, largura: int, altura: int) -> Image.Image:
 def escurecimento(cfg: dict, largura: int, altura: int) -> Image.Image:
     r, g, b = ImageColor.getrgb(cfg["cor"])
     fim = max(1, int(largura * cfg["fim_x"]))
+    cheio = min(fim - 1, int(largura * cfg.get("cheio_ate", 0.0)))   # opcional: opacidade cheia até aqui
     alfa = np.zeros(largura, dtype=np.float32)
-    t = np.linspace(0, 1, fim, dtype=np.float32)
-    alfa[:fim] = cfg["opacidade_inicio"] * (1 - t) ** 1.5 * 255
+    alfa[:cheio] = cfg["opacidade_inicio"] * 255
+    t = np.linspace(0, 1, fim - cheio, dtype=np.float32)
+    alfa[cheio:fim] = cfg["opacidade_inicio"] * (1 - t) ** 1.5 * 255
     camada = np.zeros((altura, largura, 4), dtype=np.uint8)
     camada[..., 0], camada[..., 1], camada[..., 2] = r, g, b
     camada[..., 3] = alfa[None, :].astype(np.uint8)

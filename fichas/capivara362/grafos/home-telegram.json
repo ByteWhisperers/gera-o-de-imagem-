@@ -1,0 +1,425 @@
+{
+ "formato": "grafo-peca/0.1",
+ "estado": "proposta",
+ "peca": "home-telegram",
+ "marca": "capivara362",
+ "ficha": "fichas/capivara362/ficha-v1.0.yaml",
+ "referencia": "referencias/9pmbet/home/home-telegram.webp",
+ "formato_peca": "home",
+ "tema": "telegram",
+ "tamanho_px": [
+  1020,
+  300
+ ],
+ "pasta": "fichas/capivara362/grafos/home-telegram",
+ "marcacao": "fichas/capivara362/grafos/home-telegram.marcacao.yaml",
+ "convencao": "caixa = [x, y, w, h] em fração de W e H; z = ordem de baixo (0) para cima; cada número diz de onde veio (medido:<método> ou estimativa)",
+ "recortes": {
+  "entorno": "recortes/entorno.webp",
+  "mascote": "recortes/mascote.webp",
+  "texto": "recortes/texto.webp",
+  "logo": "recortes/logo.webp"
+ },
+ "placas": {
+  "sem_texto": "sem-texto.webp",
+  "cena_limpa": "cena-limpa.webp"
+ },
+ "nos": [
+  {
+   "id": "cena",
+   "tipo": "fundo",
+   "z": 0,
+   "camada_psd": "cena",
+   "descricao": "explosão de fogo laranja e dourada atrás da metade direita, raios brancos, brasas; esquerda quase preta",
+   "mascara": "mascaras/cena.png",
+   "caixa": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "estilo": {
+    "paleta": [
+     {
+      "cor": "#ab6923",
+      "fracao": 0.261
+     },
+     {
+      "cor": "#201407",
+      "fracao": 0.23
+     },
+     {
+      "cor": "#532d0d",
+      "fracao": 0.174
+     },
+     {
+      "cor": "#973a11",
+      "fracao": 0.116
+     },
+     {
+      "cor": "#98a473",
+      "fracao": 0.113
+     },
+     {
+      "cor": "#e2ad51",
+      "fracao": 0.106
+     }
+    ],
+    "fonte": "medido:só os pixels de fundo"
+   }
+  },
+  {
+   "id": "mascote",
+   "tipo": "personagem",
+   "z": 3,
+   "camada_psd": "mascote",
+   "figurino": "mago",
+   "descricao": "personagem 3D de jogo, mago de cabelo e barba brancos, gritando, manto vermelho e dourado",
+   "pose": "de frente, inclinado para a câmera, uma mão estendida para a direita segurando o orbe",
+   "mascara": "mascaras/mascote.png",
+   "caixa": [
+    0.45,
+    0.0,
+    0.2784,
+    1.0
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "orbe",
+   "tipo": "objeto_segurado",
+   "z": 4,
+   "camada_psd": "mascote",
+   "tema": "telegram",
+   "descricao": "orbe de cristal azul com o avião de papel dentro, com raios, na mão estendida",
+   "mascara": "mascaras/orbe.png",
+   "caixa": [
+    0.6804,
+    0.17,
+    0.2431,
+    0.83
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)"
+  },
+  {
+   "id": "icones",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "tema": "telegram",
+   "descricao": "ícones quadrados azuis do avião de papel voando",
+   "mascara": "mascaras/icones.png",
+   "caixa": [
+    0.4392,
+    0.0767,
+    0.049,
+    0.1733
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 2
+  },
+  {
+   "id": "moedas",
+   "tipo": "objeto_grupo",
+   "z": 2,
+   "camada_psd": "entorno",
+   "descricao": "moedas de ouro voando",
+   "mascara": "mascaras/moedas.png",
+   "caixa": [
+    0.8922,
+    0.0,
+    0.1078,
+    0.8267
+   ],
+   "fonte_caixa": "medido:contorno do agente encaixado na borda (random walker)",
+   "quantidade": 5
+  },
+  {
+   "id": "escurecimento",
+   "tipo": "efeito",
+   "z": 1,
+   "camada_psd": "escurecimento",
+   "caixa": [
+    0,
+    0,
+    0.55,
+    1
+   ],
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "L_fundo_por_decimo_de_W": [
+     13.1,
+     33.6,
+     68.9,
+     134.8,
+     138.6,
+     98.8,
+     148.8,
+     126.0,
+     149.1,
+     159.5
+    ],
+    "fonte": "medido:mediana de L do fundo por faixa de 10% da largura"
+   }
+  },
+  {
+   "id": "brilho",
+   "tipo": "efeito",
+   "z": 5,
+   "camada_psd": "brilho",
+   "na_referencia": "embutido no fundo",
+   "estilo": {
+    "pontos_claros_pequenos": 12,
+    "fonte": "medido:L>235, <40 px (grosseiro)"
+   }
+  },
+  {
+   "id": "texto_l1",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l1.png",
+   "caixa": [
+    0.0696,
+    0.3233,
+    0.1402,
+    0.09
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 27,
+    "peso_rel": 1.0,
+    "rampa_tercos": [
+     "#fffefb",
+     "#fffefb",
+     "#fffefb"
+    ],
+    "contorno_escuro_frac": 0.83
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l2",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l2.png",
+   "caixa": [
+    0.0696,
+    0.4533,
+    0.2275,
+    0.0867
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 26,
+    "peso_rel": 0.96,
+    "rampa_tercos": [
+     "#fef515",
+     "#fef510",
+     "#fdf416"
+    ],
+    "contorno_escuro_frac": 0.49
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l3",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l3.png",
+   "caixa": [
+    0.0716,
+    0.58,
+    0.2039,
+    0.0867
+   ],
+   "estilo": {
+    "estilo_ficha": "branco",
+    "fracao_dourada": 0.0,
+    "altura_px": 26,
+    "peso_rel": 0.96,
+    "rampa_tercos": [
+     "#fffefa",
+     "#fffefc",
+     "#fffefb"
+    ],
+    "contorno_escuro_frac": 0.5
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "texto_l4",
+   "tipo": "texto",
+   "z": 6,
+   "camada_psd": "texto",
+   "conteudo": "<não copiado: o texto sai de motor/texto.py>",
+   "mascara": "mascaras/texto_l4.png",
+   "caixa": [
+    0.0716,
+    0.6867,
+    0.3225,
+    0.1133
+   ],
+   "estilo": {
+    "estilo_ficha": "dourado",
+    "fracao_dourada": 1.0,
+    "altura_px": 34,
+    "peso_rel": 1.26,
+    "rampa_tercos": [
+     "#d5bd16",
+     "#fef40d",
+     "#fef30e"
+    ],
+    "contorno_escuro_frac": 0.51
+   },
+   "fonte": "medido:limiar de cor + caixas de linha do agente"
+  },
+  {
+   "id": "logo",
+   "tipo": "logo",
+   "z": 7,
+   "camada_psd": "logo",
+   "arquivo": "referencias/capivara362/logo/logo.webp",
+   "mascara": "mascaras/logo.png",
+   "caixa": [
+    0.0412,
+    0.1133,
+    0.1373,
+    0.1567
+   ],
+   "fonte_caixa": "estimativa do agente (logo_caixa)"
+  }
+ ],
+ "arestas": [
+  {
+   "de": "mascote",
+   "rel": "segura",
+   "para": "orbe"
+  },
+  {
+   "de": "icones",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "moedas",
+   "rel": "cerca",
+   "para": "mascote"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "orbe",
+   "tema": "telegram"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "tema_liga",
+   "para": "icones",
+   "tema": "telegram"
+  },
+  {
+   "de": "mascote",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "orbe",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "icones",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "moedas",
+   "rel": "fica_sobre",
+   "para": "cena"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l1",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 13.1,
+   "L_fundo_em_volta": 38.0
+  },
+  {
+   "de": "texto_l1",
+   "rel": "empilhado_acima",
+   "para": "texto_l2",
+   "vao_rel_altura": 0.44
+  },
+  {
+   "de": "texto_l2",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l2",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 6.2,
+   "L_fundo_em_volta": 78.3
+  },
+  {
+   "de": "texto_l2",
+   "rel": "empilhado_acima",
+   "para": "texto_l3",
+   "vao_rel_altura": 0.46
+  },
+  {
+   "de": "texto_l3",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l3",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 11.3,
+   "L_fundo_em_volta": 49.8
+  },
+  {
+   "de": "texto_l3",
+   "rel": "empilhado_acima",
+   "para": "texto_l4",
+   "vao_rel_altura": 0.23
+  },
+  {
+   "de": "texto_l4",
+   "rel": "fica_sobre",
+   "para": "escurecimento"
+  },
+  {
+   "de": "texto_l4",
+   "rel": "contraste",
+   "para": "cena",
+   "wcag": 6.0,
+   "L_fundo_em_volta": 70.5
+  },
+  {
+   "de": "texto_l1",
+   "rel": "alinhado_com",
+   "para": "logo",
+   "eixo": "esquerda",
+   "delta_x": 0.028
+  }
+ ],
+ "observacoes": [
+  "o mascote do concorrente é um mago humano; na nossa geração vira a capivara com o figurino \"mago\""
+ ]
+}

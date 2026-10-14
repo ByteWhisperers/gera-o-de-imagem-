@@ -1,0 +1,259 @@
+# Ficha de estilo CAPIVARA362 v1.0, no padrão visual dos banners da 9pmbet
+#
+# É o contrato entre as etapas: a desconstrução escreve aqui, a criação e a
+# composição só leem. Mudou um número? Crie ficha-v1.1.yaml em vez de editar
+# esta, e o dono aprova a nova versão.
+#
+# De onde vem: 13 banners da 9pmbet (pasta "IMAGENS CONCORRÊNTES/9pmbet" no
+# Drive do dono), copiados em referencias/9pmbet/. Do concorrente só entra o
+# ESTILO (composição, luz, cor, tipografia, efeitos). A logo deles foi
+# ignorada e os personagens deles não são copiados: o mascote é a nossa
+# capivara, e o que muda por tema é o figurino dela.
+#
+# Convenções
+#   x, y, w, h   frações da largura (x, w) e da altura (y, h) da peça
+#   L            luminância 0–255
+#   estimativa   número lido a olho nas referências, sem medição de pixel
+#
+# Evidência: ficha-v1.0.md, medidas.json (ferramentas/medir.py) e os grafos
+# de 3 peças em grafos/ (ferramentas/desconstruir.py).
+
+versao: "1.0"
+marca: capivara362
+estado: proposta
+referencias: referencias/9pmbet
+
+em_uma_frase: >-
+  Fundo de fogo laranja, vermelho e dourado com raios, faíscas e moedas
+  voando; à direita um mascote 3D de jogo mobile, cabeçudo e animado, com
+  figurino e objetos do tema; à esquerda, num preto quase puro, um bloco de
+  texto em caixa alta pesada, branco e amarelo-limão chapados, sem contorno,
+  com a palavra-chave enorme em amarelo; logo pequeno no canto superior esquerdo.
+
+formatos:
+  home:   {largura: 2040, altura: 600}   # 3,4:1, 5 referências em 1020x300 (medidas.json), dobro do tamanho
+  promo:  {largura: 1420, altura: 640}   # 2,22:1, 8 referências em 710x320 (medidas.json), dobro do tamanho
+
+# Ordem de baixo para cima. Cada camada vira uma camada nomeada no PSD.
+camadas:
+  - {id: cena,          tipo: gerada, parte: cena}
+  - {id: escurecimento, tipo: efeito}
+  - {id: entorno,       tipo: gerada, parte: entorno}
+  - {id: mascote,       tipo: gerada, parte: mascote}
+  - {id: frente,        tipo: gerada, parte: frente}   # envelopes, moedas e fichas no pé da peça (6 de 13)
+  - {id: brilho,        tipo: efeito}
+  - {id: texto,         tipo: texto}
+  - {id: logo,          tipo: arquivo, arquivo: referencias/capivara362/logo/logo.webp}   # o NOSSO logo
+
+# Onde cada camada fica, por formato. Logo, texto, mascote e entorno medidos
+# nos grafos de 3 peças (grafos/medidas-dos-grafos.json: home = 2 peças,
+# promo = 1); o que diz (estimativa) foi lido a olho nas 13 peças.
+# A divisão é sempre a mesma: texto até ~45% da largura, mascote de ~42%
+# até perto da borda direita, cortado pela base (meio corpo).
+layout:
+  home:
+    logo:    {x: 0.041, y: 0.113, w: 0.137}                 # 2 peças, iguais
+    texto:   {x: 0.074, y: 0.300, w: 0.320, h: 0.530}       # grafos: 0.074, 0.318, 0.290, 0.495; alargado porque "5%" e "VIP" passam (estimativa)
+    mascote: {x: 0.420, y: 0.000, w: 0.525, h: 1.000, ancora: base}   # 2 peças (com o braço esticado)
+    entorno: {x: 0.420, y: 0.000, w: 0.580, h: 1.000}       # grafos: x 0.439, w 0.561; até a borda (estimativa)
+    frente:  {x: 0.370, y: 0.703, w: 0.630, h: 0.297, ancora: base}   # 1 peça (envelopes)
+  promo:
+    logo:    {x: 0.041, y: 0.094, w: 0.186}                 # 1 peça
+    texto:   {x: 0.053, y: 0.328, w: 0.387, h: 0.459}       # 1 peça
+    mascote: {x: 0.493, y: 0.000, w: 0.447, h: 1.000, ancora: base}   # 1 peça
+    entorno: {x: 0.440, y: 0.000, w: 0.560, h: 1.000}       # grafo: x 0.482, w 0.447; até a borda (estimativa)
+    frente:  {x: 0.440, y: 0.680, w: 0.560, h: 0.320, ancora: base}   # estimativa (envelopes, convite, resgate)
+
+escurecimento:
+  # A esquerda é quase preta e clareia até o meio. Medido (L mediana por
+  # décimo da largura, mediana das 13 peças): 5 13 21 47 86 123 135 145 161 131.
+  # Nas peças mais escuras (VIP, convite, redes) os 3 primeiros décimos ficam abaixo de 15.
+  # Grafos: home 11 32 58 104 143..., promo 3 3 8 20 63 112...: preto chapado
+  # até ~30% e some até ~50%.
+  cor: "#050203"
+  opacidade_inicio: 0.97
+  cheio_ate: 0.22
+  fim_x: 0.55
+
+brilho:
+  # Faíscas e brasas laranja espalhadas pela peça (todas as 13 têm).
+  cor: "#ffb33a"
+  particulas: 120
+  semente: 9
+
+partes:
+  cena:
+    transparente: false
+    prompt: >-
+      intense fiery background, a bright golden light burst with radiating sun
+      rays behind the right third, explosion of orange, red and golden light, glowing embers and sparks flying,
+      thin crackling white lightning bolts, warm bokeh, a few blurred gold
+      coins flying, dark smoky shadow covering the left third, 3D mobile
+      casino game splash art background, saturated warm colors, no people,
+      no animals, no character, no text
+  mascote:
+    transparente: true
+    figurino_padrao: sorte
+    # Estilo escolhido pelo dono em 14/10: A, quadrinho com óculos escuros (rodada 5 do
+    # teste de mascote 2D). Antes era a capivara 3D (12/10), que saiu infantil.
+    prompt: >-
+      Vibrant 2D cartoon illustration in bold comic style, thick black outlines,
+      rich saturated colors, dramatic golden rim lighting, stylish adult cartoon
+      casino mascot, not cute, not for kids, not chibi. Waist-up portrait cropped
+      at the waist of a charismatic anthropomorphic capybara man with an athletic
+      human body and broad shoulders, long blunt capybara muzzle, leaning towards
+      the viewer, huge hyped open-mouth grin showing teeth, eyebrows raised, dark
+      sunglasses pushed slightly down the nose, pointing at the viewer as if saying
+      come play, {figurino}, {segura}, centered, isolated on a plain light grey
+      studio background, no text, no letters
+    # O concorrente troca de personagem a cada tema (touro, pandas, mago,
+    # tigre, chacal, coelho, rainha, pirata). Nós trocamos o figurino da capivara.
+    figurinos:
+      sorte: >-
+        wearing a red Chinese silk tang jacket with gold frog buttons and a
+        red cap with a gold rim
+      mago: >-
+        wearing a flowing red and gold sorcerer robe with a high collar,
+        crackling blue lightning around the hands
+      farao: >-
+        wearing a golden pharaoh headdress with blue stripes, a wide gold
+        collar with turquoise gems and gold armor bracers
+      rua: >-
+        wearing a red baseball cap backwards, a green varsity jacket with
+        white sleeves and a thick gold chain
+      pirata: >-
+        wearing a brown pirate tricorn hat and a red captain coat with gold trim
+  entorno:
+    transparente: true
+    prompt: >-
+      {entorno}, scattered floating objects with empty space between them,
+      motion blur on the far ones, 3D render, glossy, strong warm rim light,
+      isolated on a plain light grey studio background, no text, no letters,
+      no character
+  frente:
+    transparente: true
+    prompt: >-
+      {frente}, big objects very close to the camera at the bottom, slightly
+      out of focus, 3D render, glossy, warm rim light, isolated on a plain
+      light grey studio background, no text, no letters, no character
+
+# O TEXTO MANDA NO MASCOTE. Nas 13 peças a mensagem decide o figurino, o que
+# o mascote segura e os objetos em volta. Ligação forte quando o tema tem um
+# objeto próprio (Telegram, envelopes, redes sociais, VIP).
+tema_padrao: telegram
+temas:
+  resgate:
+    ligacao: media
+    figurino: sorte
+    segura: holding a red lucky pouch with gold details in one hand and a red envelope in the other
+    entorno: red envelopes and stacks of gold bars flying with fire trails
+    frente: glowing gold coins and red envelopes
+    referencias: [home/home-resgate, promo/promo-resgate]
+  convite:
+    ligacao: media
+    figurino: rua
+    segura: holding up a smartphone showing a colorful slot game screen
+    entorno: two more smartphones with slot game screens and small golden sparkles
+    frente: a big pile of gold coins
+    referencias: [home/home-convite, promo/promo-convite]
+    texto_exemplo:
+      - {texto: "CONVIDE UM AMIGO", estilo: amarelo, peso: 1.0}
+      - {texto: "E JOGUEM JUNTOS", estilo: branco, peso: 1.0}
+  telegram:
+    ligacao: forte
+    figurino: mago
+    segura: holding out a big glowing blue crystal orb with a white paper plane symbol inside, crackling with lightning
+    entorno: small glossy blue square paper plane app icons and gold coins flying
+    frente: gold coins with fire trails
+    referencias: [home/home-telegram]
+    texto_exemplo:
+      - {texto: "SIGA O", estilo: branco, peso: 1.0}
+      - {texto: "TELEGRAM", estilo: amarelo, peso: 1.0}
+      - {texto: "E FIQUE", estilo: branco, peso: 1.0}
+      - {texto: "POR DENTRO", estilo: amarelo, peso: 1.0}
+  envelopes:
+    ligacao: forte
+    figurino: sorte
+    segura: one paw stretched towards the camera and the other arm raised holding a red envelope
+    entorno: about twelve small flat red paper envelopes with gold trim scattered all over the frame at different angles, each one small, wide empty space between them, only envelopes
+    frente: red envelopes and gold coins with a square hole on the ground
+    referencias: [home/home-envelopes, promo/promo-envelopes]
+    texto_exemplo:
+      - {texto: "CHUVA DE", estilo: amarelo, peso: 1.0}
+      - {texto: "ENVELOPES", estilo: amarelo, peso: 1.0}
+      - {texto: "TODOS OS DIAS", estilo: branco, peso: 0.8}
+  vip:
+    ligacao: forte
+    figurino: farao
+    segura: raising a fist with a gold armor bracer
+    entorno: one huge shiny gold medallion coin with an engraved crown, and gold coins flying
+    frente: small gold coins
+    referencias: [home/home-vip, promo/promo-vip]
+    texto_exemplo:
+      - {texto: "ÁREA DE", estilo: branco, peso: 1.0}
+      - {texto: "MEMBRO", estilo: branco, peso: 1.0}
+      - {texto: "VIP", estilo: amarelo, peso: 4.0}     # grafo promo-vip: a linha amarela tem 4 vezes a altura das brancas
+  rebate:
+    ligacao: media
+    figurino: rua
+    segura: holding a red money bag with a gold dollar sign in one hand and a fan of green banknotes in the other
+    entorno: a golden slot machine with sevens, flying green banknotes and a glowing golden ring
+    frente: green banknotes
+    referencias: [promo/promo-rebate]
+  apostas:
+    ligacao: media
+    figurino: sorte
+    segura: arms open, presenting the slot machines around
+    entorno: golden slot machines with HOT signs and lucky symbols, fire and lightning
+    frente: gold coins
+    referencias: [promo/promo-apostas]
+  login:
+    ligacao: media
+    figurino: farao
+    segura: holding a shiny gold bar in each hand
+    entorno: gold bars, a big smartphone frame with a golden glow behind the mascot and confetti
+    frente: a pile of gold bars
+    referencias: [promo/promo-login]
+  redes:
+    ligacao: forte
+    figurino: pirata
+    segura: holding a smartphone showing a red video play icon
+    entorno: glossy social media style icons (pink camera, blue round icon, red play button, heart bubble) floating, crackling purple lightning
+    frente: a glossy pink camera app icon
+    referencias: [promo/promo-redes]
+
+cores:
+  preto_esquerda: "#050203"    # mediana dos 3 primeiros décimos (medidas.json, a cor mais frequente em 8 de 13)
+  laranja_fogo: "#e5682d"      # entre as 4 cores principais em 9 de 13
+  vermelho: "#aa251c"
+  ouro: "#f0b03a"              # moedas e brilho (estimativa a partir das paletas: #d8b763, #ebb84c, #fbdf4f)
+  amarelo_texto: "#fef60a"     # medido nas letras amarelas, mediana das 13 peças
+
+texto:
+  fonte: fontes/montserrat-900.woff2    # o concorrente usa uma sem serifa geométrica larga e pesada; a Montserrat Black é a mais próxima que temos
+  caixa_alta: true
+  vao_entre_linhas: 0.28       # grafos: vão de 0,44 a 0,50 da altura da letra (0,28 do corpo na Montserrat)
+  # Letras chapadas: medido nas 13 peças, branco (255, 254, 252) e amarelo
+  # (254, 247, 12); nos grafos os três terços da letra têm a mesma cor
+  # (branco #fffefb, amarelo #fef510).
+  estilos:
+    branco:
+      rampa: [[0.0, "#fffefc"], [1.0, "#f7f5f0"]]
+    amarelo:
+      rampa: [[0.0, "#fef80c"], [1.0, "#fde804"]]
+  contorno: {cor: "#120804", espessura: 0.0}     # sem contorno (sai 1 px escuro, invisível no preto)
+  sombra: {cor: "#000000", opacidade: 0.35, desvio: [0.0, 0.03], desfoque: 0.04}
+  # Linhas de exemplo para testes quando o tema não traz as suas.
+  # Nunca use textos de oferta nos testes.
+  exemplo:
+    - {texto: "VALIDAÇÃO DO", estilo: branco, peso: 1.0}
+    - {texto: "PADRÃO", estilo: amarelo, peso: 2.5}     # a palavra-chave amarela fica de 2 a 4 vezes maior (5%, VIP, R$) (estimativa + grafo promo-vip)
+    - {texto: "TESTE 1", estilo: branco, peso: 0.7}
+
+# Conferência automática (revisor). Faixas tiradas de medidas.json.
+qa:
+  L_mediana: [45, 150]          # referências: 46,8 a 146,0
+  esquerda_mais_escura_que_centro: true   # verdadeiro em 13 de 13 peças
+  ouro_presente_min: 0.01
+  texto_dentro_da_zona: true
+  recorte_vazio_min: 0.15

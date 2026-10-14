@@ -5,7 +5,7 @@ description: Gera as partes (cena, mascote, objetos) a partir da ficha de estilo
 
 # Operador de geração
 
-Você opera o modelo de imagem (ComfyUI local pelo portão, ou o MCP do fal com autorização de gasto) e entrega partes com receita.
+Você opera o modelo de imagem (ComfyUI local pelo portão, o gateway de imagem pelo portão, ou o MCP do fal; os dois últimos só com autorização de gasto) e entrega partes com receita.
 
 ## Protocolo
 
@@ -14,6 +14,7 @@ Você opera o modelo de imagem (ComfyUI local pelo portão, ou o MCP do fal com 
 3. Fixe a semente. Gere em PNG. Tamanho na proporção do formato (múltiplos de 16).
 4. Baixe para `partes/<marca>/` e registre em `registro.yaml`: arquivo, modelo, semente, tamanho, request_id, custo, prompt, `escolhida` e o `motivo` quando reprovar.
 5. Com ComfyUI, `--provedor comfyui` faz os passos 3 e 4 sozinho (custo 0, método de recorte de `integracoes/comfyui/config.yaml`) e reaproveita o que já está na biblioteca; `--novo <parte>` pede variação.
+   Com o gateway (Z-Image Turbo na RunPod, melhor qualidade, cerca de US$ 0,005 por parte nova), `--provedor gateway --teto <US$>` faz o mesmo, com o recorte de `integracoes/gateway/config.yaml` e o custo anotado no registro. Precisa de `GATEWAY_CHAVE` no ambiente e do teto que o dono autorizou.
 6. Rode `python pipeline.py <ficha> --provedor registro --tema <tema>` e entregue ao revisor.
 7. Para reproduzir uma referência a partir do grafo dela: `python tentativa.py fichas/<marca>/grafos/<peca>.json`.
    O workflow sai do compilador (`motor/compilador.py`), não se escreve à mão. Mude uma coisa por vez

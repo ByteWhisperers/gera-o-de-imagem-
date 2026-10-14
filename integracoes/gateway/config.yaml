@@ -1,0 +1,35 @@
+# Como o portão usa o gateway de imagem (repositório 22kofking/gateway-imagem).
+# Isto é do modelo, não do estilo: trocar de modelo mexe aqui, a ficha continua a mesma.
+#
+# A chave do app NÃO fica aqui: vai na variável de ambiente GATEWAY_CHAVE.
+# GATEWAY_URL, se definida, troca a `url` abaixo.
+url: http://127.0.0.1:8000
+# Nome do catálogo do gateway (GET /v1/models). "rapido" = Z-Image Turbo, Apache 2.0, uso comercial ok.
+modelo: rapido
+# Preço de cada imagem nova, usado para conferir o teto ANTES de pedir.
+# O custo registrado é o que o gateway informa (cost_usd); este só entra quando ele não informa.
+preco_por_imagem_usd: 0.005
+# Quanto esperar cada imagem, em segundos.
+espera_max: 300
+# Tamanho de geração de cada parte nova (cada lado entre 256 e 1536). Maior que no
+# ComfyUI porque a GPU da RunPod aguenta; a composição redimensiona.
+tamanhos:
+  cena:
+    home: [1536, 480]
+    promo: [1536, 672]
+  mascote: [768, 1056]
+  entorno: [1152, 768]
+  frente: [1152, 768]
+# Como tirar o fundo de cada parte transparente (ver motor/recorte.py).
+# O Z-Image Turbo obedece ao "fundo cinza liso"; no entorno o recorte por cor da borda
+# comia o branco do ícone do Telegram e o modelo de recorte ficou limpo (teste de 2026-10-12).
+recorte:
+  mascote: modelo
+  entorno: modelo
+  frente: liso
+# Loop (tentativa.py --motor gateway) e placas (desconstruir.py --placas --motor gateway):
+# lado maior da geração por tipo de parte. A força (denoise) e o prompt vêm do
+# compilador, iguais aos do ComfyUI, para as tentativas serem comparáveis.
+loop:
+  lado: {fundo: 1536, personagem: 1024, objeto: 1024}
+  lado_placa: 1536

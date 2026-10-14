@@ -1,0 +1,621 @@
+{
+ "formato": "medidas-dos-grafos/0.1",
+ "pecas": [
+  {
+   "peca": "home-envelopes",
+   "formato": "home",
+   "tema": "envelopes",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0833,
+     "peso_rel": 1.0,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fdf50f",
+      "#fdf50d",
+      "#fdf511"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0867,
+     "peso_rel": 1.04,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fdf515",
+      "#fdf50f",
+      "#fdf414"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "branco",
+     "altura_frac_H": 0.07,
+     "peso_rel": 0.84,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fffae7",
+      "#fffcf6",
+      "#fffcf7"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.07,
+     "peso_rel": 0.84,
+     "fracao_dourada": 0.53,
+     "rampa_tercos": [
+      "#fef235",
+      "#fff660",
+      "#fef23f"
+     ]
+    },
+    {
+     "id": "texto_l5",
+     "estilo": "branco",
+     "altura_frac_H": 0.07,
+     "peso_rel": 0.84,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fffcfa",
+      "#fffdfb",
+      "#fffdfa"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [],
+   "quantidades": {
+    "envelopes_chao": 3
+   }
+  },
+  {
+   "peca": "home-telegram",
+   "formato": "home",
+   "tema": "telegram",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.09,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fffefb",
+      "#fffefb",
+      "#fffefb"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "dourado",
+     "altura_frac_H": 0.0867,
+     "peso_rel": 0.96,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fef515",
+      "#fef510",
+      "#fdf416"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "branco",
+     "altura_frac_H": 0.0867,
+     "peso_rel": 0.96,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fffefa",
+      "#fffefc",
+      "#fffefb"
+     ]
+    },
+    {
+     "id": "texto_l4",
+     "estilo": "dourado",
+     "altura_frac_H": 0.1133,
+     "peso_rel": 1.26,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#d5bd16",
+      "#fef40d",
+      "#fef30e"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [],
+   "quantidades": {
+    "icones": 2,
+    "moedas": 5
+   }
+  },
+  {
+   "peca": "promo-vip",
+   "formato": "promo",
+   "tema": "vip",
+   "estado": "proposta",
+   "linhas": [
+    {
+     "id": "texto_l1",
+     "estilo": "branco",
+     "altura_frac_H": 0.0656,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fffdfc",
+      "#fffdfd",
+      "#fffdfd"
+     ]
+    },
+    {
+     "id": "texto_l2",
+     "estilo": "branco",
+     "altura_frac_H": 0.0656,
+     "peso_rel": 1.0,
+     "fracao_dourada": 0.0,
+     "rampa_tercos": [
+      "#fffefd",
+      "#fffeff",
+      "#fffefe"
+     ]
+    },
+    {
+     "id": "texto_l3",
+     "estilo": "dourado",
+     "altura_frac_H": 0.2625,
+     "peso_rel": 4.0,
+     "fracao_dourada": 1.0,
+     "rampa_tercos": [
+      "#fffa02",
+      "#fffa02",
+      "#fffa02"
+     ]
+    }
+   ],
+   "rotulos": [],
+   "camadas_fora_da_ficha": [],
+   "quantidades": {
+    "moedas": 5
+   }
+  }
+ ],
+ "por_formato": {
+  "home": {
+   "pecas": 2,
+   "logo": {
+    "x": {
+     "mediana": 0.041,
+     "min": 0.041,
+     "max": 0.041,
+     "n": 2
+    },
+    "y": {
+     "mediana": 0.113,
+     "min": 0.113,
+     "max": 0.113,
+     "n": 2
+    },
+    "w": {
+     "mediana": 0.137,
+     "min": 0.137,
+     "max": 0.137,
+     "n": 2
+    },
+    "pecas": [
+     "home-envelopes",
+     "home-telegram"
+    ]
+   },
+   "texto": {
+    "x": {
+     "mediana": 0.074,
+     "min": 0.07,
+     "max": 0.078,
+     "n": 2
+    },
+    "y": {
+     "mediana": 0.318,
+     "min": 0.313,
+     "max": 0.323,
+     "n": 2
+    },
+    "w": {
+     "mediana": 0.29,
+     "min": 0.255,
+     "max": 0.325,
+     "n": 2
+    },
+    "h": {
+     "mediana": 0.495,
+     "min": 0.477,
+     "max": 0.513,
+     "n": 2
+    },
+    "pecas": [
+     "home-envelopes",
+     "home-telegram"
+    ]
+   },
+   "mascote": {
+    "x": {
+     "mediana": 0.419,
+     "min": 0.388,
+     "max": 0.45,
+     "n": 2
+    },
+    "y": {
+     "mediana": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "w": {
+     "mediana": 0.525,
+     "min": 0.473,
+     "max": 0.578,
+     "n": 2
+    },
+    "h": {
+     "mediana": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 2
+    },
+    "pecas": [
+     "home-envelopes",
+     "home-telegram"
+    ]
+   },
+   "entorno": {
+    "x": {
+     "mediana": 0.439,
+     "min": 0.439,
+     "max": 0.439,
+     "n": 1
+    },
+    "y": {
+     "mediana": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 1
+    },
+    "w": {
+     "mediana": 0.561,
+     "min": 0.561,
+     "max": 0.561,
+     "n": 1
+    },
+    "h": {
+     "mediana": 0.827,
+     "min": 0.827,
+     "max": 0.827,
+     "n": 1
+    },
+    "pecas": [
+     "home-telegram"
+    ]
+   },
+   "frente": {
+    "x": {
+     "mediana": 0.37,
+     "min": 0.37,
+     "max": 0.37,
+     "n": 1
+    },
+    "y": {
+     "mediana": 0.703,
+     "min": 0.703,
+     "max": 0.703,
+     "n": 1
+    },
+    "w": {
+     "mediana": 0.63,
+     "min": 0.63,
+     "max": 0.63,
+     "n": 1
+    },
+    "h": {
+     "mediana": 0.297,
+     "min": 0.297,
+     "max": 0.297,
+     "n": 1
+    },
+    "pecas": [
+     "home-envelopes"
+    ]
+   },
+   "linhas_por_peca": {
+    "mediana": 4.5,
+    "min": 4.0,
+    "max": 5.0,
+    "n": 2
+   },
+   "altura_linha_frac_H": {
+    "mediana": 0.087,
+    "min": 0.07,
+    "max": 0.113,
+    "n": 9
+   },
+   "vao_entre_linhas_rel_altura": {
+    "mediana": 0.44,
+    "min": 0.23,
+    "max": 0.57,
+    "n": 7
+   },
+   "pares_de_linhas_lado_a_lado": 0,
+   "contraste_wcag": {
+    "mediana": 11.3,
+    "min": 6.0,
+    "max": 15.7,
+    "n": 9
+   },
+   "contorno_escuro_frac": {
+    "mediana": 0.67,
+    "min": 0.49,
+    "max": 1.0,
+    "n": 9
+   },
+   "texto_x_menos_logo_x": {
+    "mediana": 0.034,
+    "min": 0.028,
+    "max": 0.04,
+    "n": 2
+   },
+   "linhas_mistas": [
+    "home-envelopes:texto_l4"
+   ],
+   "L_fundo_por_decimo_de_W": [
+    11.3,
+    31.8,
+    57.6,
+    104.0,
+    143.3,
+    130.8,
+    146.3,
+    110.2,
+    154.9,
+    143.2
+   ]
+  },
+  "promo": {
+   "pecas": 1,
+   "logo": {
+    "x": {
+     "mediana": 0.041,
+     "min": 0.041,
+     "max": 0.041,
+     "n": 1
+    },
+    "y": {
+     "mediana": 0.094,
+     "min": 0.094,
+     "max": 0.094,
+     "n": 1
+    },
+    "w": {
+     "mediana": 0.186,
+     "min": 0.186,
+     "max": 0.186,
+     "n": 1
+    },
+    "pecas": [
+     "promo-vip"
+    ]
+   },
+   "texto": {
+    "x": {
+     "mediana": 0.053,
+     "min": 0.053,
+     "max": 0.053,
+     "n": 1
+    },
+    "y": {
+     "mediana": 0.328,
+     "min": 0.328,
+     "max": 0.328,
+     "n": 1
+    },
+    "w": {
+     "mediana": 0.387,
+     "min": 0.387,
+     "max": 0.387,
+     "n": 1
+    },
+    "h": {
+     "mediana": 0.459,
+     "min": 0.459,
+     "max": 0.459,
+     "n": 1
+    },
+    "pecas": [
+     "promo-vip"
+    ]
+   },
+   "mascote": {
+    "x": {
+     "mediana": 0.493,
+     "min": 0.493,
+     "max": 0.493,
+     "n": 1
+    },
+    "y": {
+     "mediana": 0.041,
+     "min": 0.041,
+     "max": 0.041,
+     "n": 1
+    },
+    "w": {
+     "mediana": 0.447,
+     "min": 0.447,
+     "max": 0.447,
+     "n": 1
+    },
+    "h": {
+     "mediana": 0.959,
+     "min": 0.959,
+     "max": 0.959,
+     "n": 1
+    },
+    "pecas": [
+     "promo-vip"
+    ]
+   },
+   "entorno": {
+    "x": {
+     "mediana": 0.482,
+     "min": 0.482,
+     "max": 0.482,
+     "n": 1
+    },
+    "y": {
+     "mediana": 0.031,
+     "min": 0.031,
+     "max": 0.031,
+     "n": 1
+    },
+    "w": {
+     "mediana": 0.447,
+     "min": 0.447,
+     "max": 0.447,
+     "n": 1
+    },
+    "h": {
+     "mediana": 0.947,
+     "min": 0.947,
+     "max": 0.947,
+     "n": 1
+    },
+    "pecas": [
+     "promo-vip"
+    ]
+   },
+   "frente": {},
+   "linhas_por_peca": {
+    "mediana": 3.0,
+    "min": 3.0,
+    "max": 3.0,
+    "n": 1
+   },
+   "altura_linha_frac_H": {
+    "mediana": 0.066,
+    "min": 0.066,
+    "max": 0.263,
+    "n": 3
+   },
+   "vao_entre_linhas_rel_altura": {
+    "mediana": 0.5,
+    "min": 0.43,
+    "max": 0.57,
+    "n": 2
+   },
+   "pares_de_linhas_lado_a_lado": 0,
+   "contraste_wcag": {
+    "mediana": 16.2,
+    "min": 15.8,
+    "max": 18.2,
+    "n": 3
+   },
+   "contorno_escuro_frac": {
+    "mediana": 0.97,
+    "min": 0.93,
+    "max": 0.99,
+    "n": 3
+   },
+   "texto_x_menos_logo_x": {
+    "mediana": 0.014,
+    "min": 0.014,
+    "max": 0.014,
+    "n": 1
+   },
+   "linhas_mistas": [],
+   "L_fundo_por_decimo_de_W": [
+    2.6,
+    3.4,
+    8.4,
+    19.8,
+    62.9,
+    111.6,
+    161.7,
+    163.9,
+    155.0,
+    97.5
+   ]
+  }
+ },
+ "cores_do_texto": {
+  "dourado": {
+   "rampa_tercos": [
+    "#fdf515",
+    "#fef50d",
+    "#fdf411"
+   ],
+   "linhas": 5
+  },
+  "branco": {
+   "rampa_tercos": [
+    "#fffefa",
+    "#fffefc",
+    "#fffefb"
+   ],
+   "linhas": 6,
+   "ficha_nos_tercos": [
+    "#fefcfa",
+    "#fbfaf6",
+    "#f8f6f2"
+   ],
+   "dE00_ficha_x_medido": [
+    0.8,
+    1.2,
+    1.7
+   ]
+  }
+ },
+ "camadas_fora_da_ficha": {},
+ "rotulos_fora_do_bloco": {},
+ "temas": {
+  "envelopes": {
+   "pecas": [
+    "home-envelopes"
+   ],
+   "figurinos": [
+    "sorte"
+   ]
+  },
+  "telegram": {
+   "pecas": [
+    "home-telegram"
+   ],
+   "figurinos": [
+    "mago"
+   ]
+  },
+  "vip": {
+   "pecas": [
+    "promo-vip"
+   ],
+   "figurinos": [
+    "farao"
+   ]
+  }
+ },
+ "observacoes": {
+  "home-envelopes": [
+   "o mascote do concorrente é um tigre; na nossa geração vira a capivara com o figurino \"sorte\""
+  ],
+  "home-telegram": [
+   "o mascote do concorrente é um mago humano; na nossa geração vira a capivara com o figurino \"mago\""
+  ],
+  "promo-vip": [
+   "o mascote do concorrente é um chacal faraó; na nossa geração vira a capivara com o figurino \"farao\""
+  ]
+ },
+ "fora_do_layout": [],
+ "convencao": "caixas em fração de W e H; mediana, mínimo e máximo das peças de cada formato"
+}

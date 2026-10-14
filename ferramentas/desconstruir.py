@@ -3,6 +3,7 @@
 Uso:
     python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml
     python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas
+    python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.yaml --placas --motor gateway --teto 0.02
 
 É semi-manual. O agente escreve a marcação (contornos aproximados do mascote
 e dos objetos, e as relações que lê na peça). Esta ferramenta:
@@ -13,7 +14,8 @@ e dos objetos, e as relações que lê na peça). Esta ferramenta:
   3. escreve o grafo <peca>.json, as máscaras, os recortes isolados e uma
      prancha de conferência para o dono aprovar;
   4. com --placas, apaga texto e logo (placa "sem_texto") e também mascote e
-     entorno (placa "cena_limpa") por inpainting no ComfyUI local. Custo zero.
+     entorno (placa "cena_limpa") por inpainting no ComfyUI local (custo zero) ou,
+     com --motor gateway, pelo gateway de imagem (pago, exige --teto).
 
 Precisa de scikit-image (requirements-desconstrucao.txt).
 
@@ -29,6 +31,8 @@ A marcação (YAML), em frações da largura e da altura:
   arestas                 relações que se leem na peça (segura, apresenta, cerca, veste, tema_liga)
   texto_linhas            opcional: caixas [x, y, w, h] das linhas, quando a projeção erra
   logo_caixa              opcional: [x, y, w] do logo, quando o casamento com o arquivo erra
+  texto_sem_contorno      opcional: true quando as letras são chapadas, sem contorno escuro (ex.: 9pmbet);
+                          aí a letra clara não precisa encostar no escuro e o amarelo é o limão puro
   observacoes             opcional: o que não cabe na ficha atual (vai para a próxima versão)
   estado, aprovacao       "proposta" até o dono aprovar o recorte; então "aprovada" + quem e quando
 
@@ -267,23 +271,29 @@ def completar_letras(rgb: np.ndarray, glifo: np.ndarray, caixa: tuple[int, int, 
 
 
 def medir_texto(rgb: np.ndarray, zona: list, proibido: np.ndarray,
-                caixas_linhas: list | None = None) -> tuple[np.ndarray, list[dict]]:
+                caixas_linhas: list | None = None, sem_contorno: bool = False) -> tuple[np.ndarray, list[dict]]:
     """Linhas de texto da zona: letras claras (branco ou ouro) coladas num contorno escuro.
 
     Devolve a máscara das letras e, por linha, caixa, altura, estilo, rampa de
     cor, contorno e contraste com o fundo em volta. O conteúdo não é copiado.
     Com `caixas_linhas` (frações, marcadas pelo agente quando a projeção falha),
     cada caixa vira uma linha, apertada nas letras que estão dentro dela.
+    Com `sem_contorno` (letras chapadas, sem borda escura), a letra não precisa
+    encostar no escuro e o amarelo vale só o limão puro, para o fogo amarelo
+    atrás das letras não entrar como letra.
     """
     ndi = _ndi()
     H, W = rgb.shape[:2]
     lum, _, ouro, branco = _cores_de_letra(rgb)
+    if sem_contorno:
+        ouro = ouro & (rgb[..., 1] > 225) & (rgb[..., 2] < 80)
     zx, zy, zw, zh = zona
     dentro_zona = np.zeros((H, W), bool)
     dentro_zona[int(zy * H) : int((zy + zh) * H), int(zx * W) : int((zx + zw) * W)] = True
     cand = (branco | ouro) & dentro_zona & ~proibido
-    borda_escura = ndi.binary_dilation(lum < 60, iterations=4)
-    cand &= borda_escura | ndi.binary_dilation(cand & borda_escura, iterations=6)
+    if not sem_contorno:
+        borda_escura = ndi.binary_dilation(lum < 60, iterations=4)
+        cand &= borda_escura | ndi.binary_dilation(cand & borda_escura, iterations=6)
     cand = ndi.binary_opening(cand, iterations=1)
     spans = _linhas_das_caixas(cand, caixas_linhas) if caixas_linhas else _linhas_por_projecao(cand)
     linhas, letras = [], np.zeros((H, W), bool)
@@ -496,17 +506,30 @@ def buracos(grafo: dict, mascaras: dict[str, np.ndarray], linhas: list[dict],
 
 
 def fazer_placas(grafo: dict, ficha: dict, im: Image.Image, buracos_: dict[str, np.ndarray],
-                 semente: int = 7) -> dict[str, Image.Image]:
+                 semente: int = 7, motor: str = "comfyui", teto_usd: float | None = None) -> dict[str, Image.Image]:
     from motor import comfyui as CU
     from motor import compilador as C
+    from motor import gateway as GW
 
     cfg = C.ler_config()
+    if motor == "gateway":
+        if teto_usd is None:
+            raise GW.TetoDeGasto("o motor gateway é pago: defina o teto de gasto (--teto)")
+        cfg_gw = GW.ler_config()
+        caixa = GW.Caixa(teto_usd, cfg_gw["preco_por_imagem_usd"])
     rgb = np.asarray(im.convert("RGB"), np.float32)
     saida = {}
     for nome, buraco in buracos_.items():
         cheio = preencher_buraco(rgb, buraco)
         suave = Image.fromarray((buraco * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5)).filter(
             ImageFilter.GaussianBlur(3))
+        if motor == "gateway":
+            prompt = C.prompt_no_lugar(ficha, "cena", grafo["tema"], cfg)
+            saida[nome] = GW.placa(Image.fromarray(cheio.astype(np.uint8)), suave, prompt,
+                                   cfg["compilador"]["denoise_placa"], semente, cfg_gw, caixa,
+                                   lado=cfg_gw.get("loop", {}).get("lado_placa", 1536))
+            print(f"placa {nome}: pronta (gateway, US${caixa.gasto_usd:.3f} na rodada)")
+            continue
         comp = C.compilar_placa(ficha, grafo, cfg, Image.fromarray(cheio.astype(np.uint8)), suave,
                                 semente=semente, prefixo=f"gera/{grafo['peca']}-{nome}")
         for arq, imagem in comp.entradas.items():
@@ -520,7 +543,8 @@ def fazer_placas(grafo: dict, ficha: dict, im: Image.Image, buracos_: dict[str, 
 # ---------------------------------------------------------------- principal
 
 
-def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict:
+def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False, motor: str = "comfyui",
+                 teto_usd: float | None = None) -> dict:
     ndi = _ndi()
     caminho_marcacao = Path(caminho_marcacao).resolve()
     mc = yaml.safe_load(caminho_marcacao.read_text(encoding="utf-8"))
@@ -539,7 +563,8 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict
     else:
         logo = medir_logo(im, RAIZ / logo_arq, mc["zona_logo"])
     perto_do_logo = ndi.binary_dilation(logo["mascara"], iterations=6)
-    letras, linhas = medir_texto(rgb, mc["zona_texto"], perto_do_logo, mc.get("texto_linhas"))
+    letras, linhas = medir_texto(rgb, mc["zona_texto"], perto_do_logo, mc.get("texto_linhas"),
+                                  sem_contorno=mc.get("texto_sem_contorno", False))
     rotulos: dict[str, tuple[np.ndarray, dict]] = {}
     for id_, n in mc["nos"].items():
         if n["tipo"] == "texto":
@@ -694,7 +719,8 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict
         if arq.exists():
             placas[nome] = Image.open(arq).convert("RGB")
     if com_placas:
-        placas = fazer_placas(grafo, ficha, im, buracos(grafo, camadas, linhas, set(ficha["partes"])))
+        placas = fazer_placas(grafo, ficha, im, buracos(grafo, camadas, linhas, set(ficha["partes"])),
+                              motor=motor, teto_usd=teto_usd)
         for nome, p in placas.items():
             p.save(destino / f"{nome.replace('_', '-')}.webp", "WEBP", quality=94)
     grafo["placas"] = {nome: f"{nome.replace('_', '-')}.webp" for nome in placas}
@@ -712,9 +738,14 @@ def desconstruir(caminho_marcacao: str | Path, com_placas: bool = False) -> dict
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("marcacao")
-    ap.add_argument("--placas", action="store_true", help="faz as placas sem texto e de fundo limpo no ComfyUI")
+    ap.add_argument("--placas", action="store_true", help="faz as placas sem texto e de fundo limpo")
+    ap.add_argument("--motor", default="comfyui", choices=["comfyui", "gateway"],
+                    help="onde fazer as placas: ComfyUI local (grátis) ou gateway de imagem (pago, exige --teto)")
+    ap.add_argument("--teto", type=float, metavar="US$", help="com --motor gateway: quanto as placas podem gastar")
     a = ap.parse_args()
-    r = desconstruir(a.marcacao, a.placas)
+    if a.placas and a.motor == "gateway" and a.teto is None:
+        ap.error("--motor gateway é pago: informe o teto de gasto com --teto (por exemplo --teto 0.02)")
+    r = desconstruir(a.marcacao, a.placas, a.motor, a.teto)
     print(json.dumps({k: (v.as_posix() if isinstance(v, Path) else v) for k, v in r.items()}, ensure_ascii=False))
 
 

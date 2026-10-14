@@ -1,0 +1,437 @@
+{
+ "1": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "sd_turbo.safetensors"
+  }
+ },
+ "10": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/home-telegram/cena",
+   "images": [
+    "9",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "gera_sem_texto_24021cf93617.png"
+  }
+ },
+ "12": {
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 258,
+   "image": [
+    "11",
+    0
+   ],
+   "width": 595,
+   "x": 425,
+   "y": 0
+  }
+ },
+ "13": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 256,
+   "image": [
+    "12",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 640
+  }
+ },
+ "14": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "13",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "15": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "small glossy blue square paper plane app icons and gold coins flying, scattered floating objects with empty space between them, motion blur on the far ones, 3D render, glossy, strong warm rim light, no text, no letters, no character"
+  }
+ },
+ "16": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.5,
+   "latent_image": [
+    "14",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "15",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "17": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "16",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "18": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 258,
+   "image": [
+    "17",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 595
+  }
+ },
+ "19": {
+  "class_type": "LoadImageMask",
+  "inputs": {
+   "channel": "red",
+   "image": "gera_mascara_entorno_f1c281c2ae29.png"
+  }
+ },
+ "2": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "text, letters, words, watermark, logo, blurry, deformed"
+  }
+ },
+ "20": {
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 258,
+   "mask": [
+    "19",
+    0
+   ],
+   "width": 595,
+   "x": 425,
+   "y": 0
+  }
+ },
+ "21": {
+  "class_type": "InvertMask",
+  "inputs": {
+   "mask": [
+    "20",
+    0
+   ]
+  }
+ },
+ "22": {
+  "class_type": "JoinImageWithAlpha",
+  "inputs": {
+   "alpha": [
+    "21",
+    0
+   ],
+   "image": [
+    "18",
+    0
+   ]
+  }
+ },
+ "23": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/home-telegram/entorno",
+   "images": [
+    "22",
+    0
+   ]
+  }
+ },
+ "24": {
+  "class_type": "ImageCrop",
+  "inputs": {
+   "height": 300,
+   "image": [
+    "11",
+    0
+   ],
+   "width": 521,
+   "x": 440,
+   "y": 0
+  }
+ },
+ "25": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 384,
+   "image": [
+    "24",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 640
+  }
+ },
+ "26": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "25",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "27": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "3D mobile game character render of a capybara mascot, chibi proportions with a big head, big shiny expressive eyes, wide open excited smile, energetic dynamic pose leaning towards the camera, friendly and inviting, wearing a flowing red and gold sorcerer robe with a high collar, crackling blue lightning around the hands, holding out a big glowing blue crystal orb with a white paper plane symbol inside, crackling with lightning, glossy stylized 3D like a slot game splash art, strong warm golden rim light, waist-up"
+  }
+ },
+ "28": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.5,
+   "latent_image": [
+    "26",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "27",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "29": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "28",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "3": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "gera_cena_limpa_802c140380f3.png"
+  }
+ },
+ "30": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 300,
+   "image": [
+    "29",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 521
+  }
+ },
+ "31": {
+  "class_type": "LoadImageMask",
+  "inputs": {
+   "channel": "red",
+   "image": "gera_mascara_mascote_c56f713562bb.png"
+  }
+ },
+ "32": {
+  "class_type": "CropMask",
+  "inputs": {
+   "height": 300,
+   "mask": [
+    "31",
+    0
+   ],
+   "width": 521,
+   "x": 440,
+   "y": 0
+  }
+ },
+ "33": {
+  "class_type": "InvertMask",
+  "inputs": {
+   "mask": [
+    "32",
+    0
+   ]
+  }
+ },
+ "34": {
+  "class_type": "JoinImageWithAlpha",
+  "inputs": {
+   "alpha": [
+    "33",
+    0
+   ],
+   "image": [
+    "30",
+    0
+   ]
+  }
+ },
+ "35": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "filename_prefix": "gera/home-telegram/mascote",
+   "images": [
+    "34",
+    0
+   ]
+  }
+ },
+ "4": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 320,
+   "image": [
+    "3",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 1024
+  }
+ },
+ "5": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "4",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "6": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "1",
+    1
+   ],
+   "text": "intense fiery background, explosion of orange, red and golden light bursting behind the right half, glowing embers and sparks flying, thin crackling white lightning bolts, warm bokeh, a few blurred gold coins flying, dark smoky shadow covering the left third, 3D mobile casino game splash art background, saturated warm colors, no people, no animals, no character, no text"
+  }
+ },
+ "7": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 1.0,
+   "denoise": 0.35,
+   "latent_image": [
+    "5",
+    0
+   ],
+   "model": [
+    "1",
+    0
+   ],
+   "negative": [
+    "2",
+    0
+   ],
+   "positive": [
+    "6",
+    0
+   ],
+   "sampler_name": "euler_ancestral",
+   "scheduler": "normal",
+   "seed": 519,
+   "steps": 4
+  }
+ },
+ "8": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "7",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "9": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "crop": "disabled",
+   "height": 300,
+   "image": [
+    "8",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 1020
+  }
+ }
+}

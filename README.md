@@ -25,6 +25,9 @@ python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram
 # partes geradas no ComfyUI local (grátis) e registradas em partes/arara/registro.yaml
 python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor comfyui --tema telegram --formato promo
 
+# partes geradas pelo gateway de imagem (pago, Z-Image Turbo, US$ 0,005 por parte nova), com teto de gasto
+GATEWAY_CHAVE=... python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor gateway --teto 0.05 --tema telegram --formato promo
+
 # partes já registradas (por exemplo as do fal no teste 1, ficha v1.0)
 python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema turista
 ```
@@ -52,6 +55,8 @@ python ferramentas/desconstruir.py fichas/arara/grafos/promo-telegram.marcacao.y
 python tentativa.py fichas/arara/grafos/promo-telegram.json
 # 3. a próxima volta muda uma coisa só e diz de onde partiu
 python tentativa.py fichas/arara/grafos/promo-telegram.json --denoise personagem=0.4 --pai promo-telegram-001 --mudanca "mascote mais fiel"
+# a mesma volta pelo gateway de imagem (pago, Z-Image Turbo, com teto de gasto)
+GATEWAY_CHAVE=... python tentativa.py fichas/arara/grafos/promo-telegram.json --motor gateway --teto 0.03
 ```
 
 O **grafo** (`fichas/<marca>/grafos/<peca>.json`) guarda a peça inteira, cada parte isolada (máscara e recorte em `fichas/<marca>/grafos/<peca>/`), as placas sem texto e de fundo limpo, e as relações entre as partes (quem segura o quê, o que o tema liga, contraste do texto). Não substitui a ficha: descreve uma peça.
