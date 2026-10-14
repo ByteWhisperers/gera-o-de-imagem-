@@ -282,3 +282,61 @@ entradas:
     with empty space between them, motion blur on the far ones, 3D render, glossy, strong warm rim light,
     isolated on a plain light grey studio background, no text, no letters, no character
   recorte: modelo
+- parte: mascote
+  arquivo: gateway-mascote-363f283e.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 768
+  - 1056
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: Vibrant 2D cartoon illustration in bold comic style, thick black outlines, rich saturated colors,
+    dramatic golden rim lighting, stylish adult cartoon casino mascot, not cute, not for kids, not chibi.
+    Waist-up portrait cropped at the waist of a charismatic anthropomorphic capybara man with an athletic
+    human body and broad shoulders, long blunt capybara muzzle, leaning towards the viewer, huge hyped
+    open-mouth grin showing teeth, eyebrows raised, dark sunglasses pushed slightly down the nose, pointing
+    at the viewer as if saying come play, wearing a flowing red and gold sorcerer robe with a high collar,
+    crackling blue lightning around the hands, holding out a big glowing blue crystal orb with a white
+    paper plane symbol inside, crackling with lightning, centered, isolated on a plain light grey studio
+    background, no text, no letters
+  recorte: modelo
+- parte: mascote
+  arquivo: gateway-mascote-a0545a20.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 768
+  - 1056
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: Vibrant 2D cartoon illustration in bold comic style, thick black outlines, rich saturated colors,
+    dramatic golden rim lighting, stylish adult cartoon casino mascot, not cute, not for kids, not chibi.
+    Waist-up portrait cropped at the waist of a charismatic anthropomorphic capybara man with an athletic
+    human body and broad shoulders, long blunt capybara muzzle, leaning towards the viewer, huge hyped
+    open-mouth grin showing teeth, eyebrows raised, dark sunglasses pushed slightly down the nose, pointing
+    at the viewer as if saying come play, wearing a golden pharaoh headdress with blue stripes, a wide
+    gold collar with turquoise gems and gold armor bracers, raising a fist with a gold armor bracer, centered,
+    isolated on a plain light grey studio background, no text, no letters
+  recorte: modelo
+- parte: mascote
+  arquivo: gateway-mascote-fb37aff2.png
+  modelo: gateway/rapido
+  semente: 519
+  tamanho:
+  - 768
+  - 1056
+  custo_usd: 0.005
+  escolhida: true
+  ficha_versao: '1.0'
+  prompt: Vibrant 2D cartoon illustration in bold comic style, thick black outlines, rich saturated colors,
+    dramatic golden rim lighting, stylish adult cartoon casino mascot, not cute, not for kids, not chibi.
+    Waist-up portrait cropped at the waist of a charismatic anthropomorphic capybara man with an athletic
+    human body and broad shoulders, long blunt capybara muzzle, leaning towards the viewer, huge hyped
+    open-mouth grin showing teeth, eyebrows raised, dark sunglasses pushed slightly down the nose, pointing
+    at the viewer as if saying come play, wearing a red Chinese silk tang jacket with gold frog buttons
+    and a red cap with a gold rim, one paw stretched towards the camera and the other arm raised holding
+    a red envelope, centered, isolated on a plain light grey studio background, no text, no letters
+  recorte: modelo
