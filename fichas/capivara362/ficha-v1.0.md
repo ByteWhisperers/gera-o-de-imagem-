@@ -91,3 +91,14 @@ do banner "Convide 1 amigo". Testamos 4 prompts em 3 figurinos (12 imagens, US$ 
 O vencedor pede "adult capybara, long blunt muzzle, not chibi, not baby" junto com uma
 cara expressiva (sorriso aberto, olhar para quem vê, sobrancelhas levantadas). Sem a
 parte da expressão, a capivara adulta saía com cara parada.
+
+## Estilo do mascote: A, quadrinho com óculos escuros (escolhido pelo dono, 14/10)
+
+O dono escolheu o estilo A entre quatro testes em 2D (quadrinho com óculos, mascote de
+time, série adulta, ilustração pintada). O prompt do mascote na ficha agora é o do estilo A:
+traço grosso, cores vivas, capivara adulta com corpo de homem atlético, óculos escuros
+caídos no focinho e dedo apontando para quem vê ("vem jogar"). A cena, o entorno e a frente
+não mudam; os objetos de tema (moedas, ícones do Telegram) continuam separados em
+`camadas/*/objetos/` na pasta de entrega.
+
+Custo desta troca: 3 mascotes novos pelo gateway (um por tema), US$ 0,015.
