@@ -8,10 +8,10 @@ O projeto tem quatro níveis. Cada um funciona sozinho e o seguinte só acrescen
 
 | Nível | Para que serve | O que acrescenta | Instalação | Espaço |
 |---|---|---|---|---|
-| 1. Rascunho | Montar a peça em camadas (PSD + PNG + WebP) com partes de rascunho, rodar os testes | Python e 5 pacotes | 5 min | pouco |
+| 1. Rascunho | Montar a peça em camadas (PSD + PNG + WebP) com partes de rascunho, rodar os testes | Python e 5 pacotes | alguns minutos | pouco |
 | 2. Geração | Gerar fundo, mascote e objetos com IA no ComfyUI, no seu computador | ComfyUI, PyTorch, modelo de imagem (5,2 GB), modelo de recorte | 30 a 60 min | cerca de 8 GB |
-| 3. Loop | Reproduzir uma referência, medir contra ela e anotar cada tentativa | Mais 1 pacote (e o ComfyUI do Nível 2 ligado) | 2 min | pouco |
-| 4. Acabamento | Corrigir recorte, cor, nitidez e luz do PSD no PhotoCraft | PhotoCraft (compilado do código-fonte) | cerca de 10 min | cerca de 1,5 GB |
+| 3. Loop | Reproduzir uma referência, medir contra ela e anotar cada tentativa | O ComfyUI do Nível 2 ligado (e 1 pacote, só para desconstruir imagem nova) | 2 min | pouco |
+| 4. Acabamento | Corrigir recorte, cor, nitidez e luz do PSD no PhotoCraft | PhotoCraft (compilado do código-fonte) | cerca de 10 min a 15 min | cerca de 2,5 GB (com o Rust) |
 
 Os agentes especialistas (`.claude/`) são opcionais: veja "Agentes" no fim.
 
@@ -33,7 +33,7 @@ cd gera-o-de-imagem-
 ```
 
 O repositório só tem esse ramo (não existe `main`). Se for privado, o `git clone` pede o login da conta
-com acesso. Precisa de Python 3.10 ou mais novo (testado com o 3.13) e de `git`.
+com acesso. Precisa de `git` e de Python 3.11 ou mais novo (**testado só com o 3.13**; confira com `python3 --version`).
 
 Crie **um ambiente Python só** para tudo (projeto, ComfyUI e recorte). É o que o projeto espera, porque os
 nós do ComfyUI importam o código do projeto:
@@ -43,6 +43,9 @@ python3 -m venv .venv
 . .venv/bin/activate          # sempre que abrir um terminal novo, rode esta linha na pasta do projeto
 ```
 
+No Ubuntu ou Debian (e no WSL), se o primeiro comando reclamar de `ensurepip` ou `venv`, rode antes
+`sudo apt install python3-venv python3-pip`.
+
 ## Nível 1: rascunho (sem IA)
 
 ```bash
@@ -51,13 +54,18 @@ python -m pytest -q
 python pipeline.py fichas/arara/ficha-v1.2.yaml --tema telegram
 ```
 
-**Deu certo se:** os testes terminam em `passed` (os que dependem do PhotoCraft ou do scikit-image aparecem
-como `skipped` enquanto você não instalar os Níveis 3 e 4) e existe `saida/arara/home-telegram-rascunho.psd`
-com o `.png` e o `.webp` ao lado. Abra o PNG: é a peça com texto, logo e partes de rascunho.
+**Deu certo se:**
+- os testes terminam em `passed`, em menos de 3 minutos. Numa máquina limpa, **5 testes aparecem como
+  `skipped`**: 1 do scikit-image e 4 do PhotoCraft, que só rodam depois de você instalar o Nível 4
+  (e com o `photocraft-cli` no `PATH`, veja lá);
+- existem `saida/arara/home-telegram-rascunho.psd` e `saida/arara/promo-telegram-rascunho.psd`, cada um com o
+  `.png` e o `.webp` ao lado, mais `relatorio-rascunho-telegram.json`. Sem `--formato`, saem os dois formatos.
+  Abra um PNG: é a peça com texto, logo e partes de rascunho. O comando leva alguns segundos.
 
-Os temas ficam na ficha: `instagram`, `telegram`, `envelopes`, `vip`, `reembolso`, `deposito`, `convite`.
-`--formato home` ou `--formato promo` escolhe o tamanho. O texto e o logo sempre saem de código
-(`motor/texto.py`), nunca da IA.
+Os temas ficam na chave `temas` da ficha, por exemplo `instagram`, `telegram`, `envelopes`, `vip`,
+`reembolso`, `deposito`, `convite` (a lista completa está em `fichas/arara/ficha-v1.2.yaml`).
+`--formato home` (2048 x 682) ou `--formato promo` (1867 x 842) escolhe só um tamanho. O texto e o logo
+sempre saem de código (`motor/texto.py`), nunca da IA.
 
 Também funciona sem instalar mais nada: `--provedor registro`, que usa as partes que já estão guardadas em
 `partes/arara/` (as do teste 1, feitas com o `fal-ai/flux/schnell`), só com a ficha antiga:
@@ -65,6 +73,9 @@ Também funciona sem instalar mais nada: `--provedor registro`, que usa as parte
 ```bash
 python pipeline.py fichas/arara/ficha-v1.0.yaml --provedor registro --tema turista
 ```
+
+No fim ele mostra um custo (cerca de US$ 0,008). É o custo **antigo** dessas partes, que já estavam
+guardadas: o comando em si não gasta nada.
 
 ## Nível 2: gerar as partes com IA (ComfyUI local)
 
@@ -117,8 +128,9 @@ python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor comfyui --tema telegr
 ```
 
 Na **primeira vez** o recorte do mascote baixa o modelo `isnet-general-use` (cerca de 180 MB, para
-`~/.rembg/models/`). Isso precisa de internet uma única vez. Sem ele o recorte cai para um método pior e o
-QA reclama.
+`~/.rembg/models/`). Isso precisa de internet uma única vez: sem internet nessa primeira vez, o comando
+termina com erro. O recorte só cai para um método mais simples (pela cor da borda) se o pacote `rembg`
+nem estiver instalado, e então o QA reclama: rode de novo o `pip install -r requirements-comfyui.txt`.
 
 O fluxo completo grava em `ComfyUI/output/gera/arara/` (PSD, PNG, WebP e o relatório do QA). O comando
 pelo portão grava em `saida/arara/`.
@@ -151,14 +163,16 @@ desconstruir uma imagem **nova** (marcar contornos e gerar o grafo):
 
 ## Nível 4: acabamento no PhotoCraft
 
-O PhotoCraft é um editor de imagem tipo Photoshop, livre, que o projeto dirige por comando. Não existe
-pacote pronto para instalar: compile do código-fonte (precisa do Rust 1.95 ou mais novo, de
-https://rustup.rs). O binário não pede nenhuma biblioteca extra além das do sistema.
+O PhotoCraft é um editor de imagem tipo Photoshop, livre, que o projeto dirige por comando. No Linux
+e no Windows (WSL), compile do código-fonte. Precisa do **Rust 1.95 ou mais novo** (https://rustup.rs) e de um
+compilador C: no Ubuntu ou Debian (inclusive WSL), `sudo apt install build-essential`; no macOS,
+`xcode-select --install`. O binário pronto não pede nenhuma biblioteca além das do sistema. No macOS, a
+página de versões do PhotoCraft no GitHub pode ter o `photocraft-cli` já compilado.
 
 ```bash
 git clone https://github.com/storytold/photocraft ../photocraft
 git -C ../photocraft checkout 7926161                     # a versão 0.7.0
-(cd ../photocraft && cargo build --release -p photocraft-cli)   # cerca de 6 minutos com 4 núcleos
+(cd ../photocraft && cargo build --release -p photocraft-cli)   # cerca de 6 minutos com 4 núcleos, mais o download das dependências
 export PHOTOCRAFT_CLI="$PWD/../photocraft/target/release/photocraft-cli"
 ```
 
@@ -166,24 +180,40 @@ O `export` vale só para este terminal. Para ficar fixo, ponha o `photocraft-cli
 (`ln -s ... /usr/local/bin/photocraft-cli`) ou repita a linha no arquivo de inicialização do seu terminal.
 No macOS, a página de versões do PhotoCraft no GitHub pode ter o executável pronto.
 
-**Deu certo se** `"$PHOTOCRAFT_CLI" --version` mostra `photocraft-cli 0.7.0`.
+**Deu certo se** `"$PHOTOCRAFT_CLI" --version` mostra uma linha que começa com `photocraft-cli 0.7.0`
+(o `(dev build)` no fim é normal). Com o `PHOTOCRAFT_CLI` definido, os 4 testes do PhotoCraft deixam de
+aparecer como `skipped` no `python -m pytest -q`.
 
-Para usar, você precisa de um PSD de peça (o Nível 1 ou o 2 gera um). O diagnóstico mede cada parte
-contra a referência e **não altera nada**:
+Para testar, você precisa de um PSD de peça. O do Nível 1 serve:
+`saida/arara/promo-telegram-rascunho.psd`. O diagnóstico mede cada parte contra a referência e **não
+altera nada** (cerca de 20 segundos):
 
 ```bash
-python integracoes/photocraft/acabar.py medir saida/arara/promo-telegram-comfyui.psd \
+python integracoes/photocraft/acabar.py medir saida/arara/promo-telegram-rascunho.psd \
     --grafo fichas/arara/grafos/promo-telegram.json
-# aplicar uma receita (grava em saida/arara/acabamentos/ e anota fluxos/arara/acabamentos.jsonl):
-python integracoes/photocraft/acabar.py aplicar saida/arara/promo-telegram-comfyui.psd \
-    --grafo fichas/arara/grafos/promo-telegram.json \
-    --receita integracoes/photocraft/receitas/arara/promo-telegram-comfyui-2.json \
-    --mudanca "teste da instalação"
 ```
 
-Cada medida leva cerca de 20 segundos e cada `aplicar`, cerca de 1 minuto. As receitas ficam em
-`integracoes/photocraft/receitas/arara/`: a do depósito (`promo-deposito-1`) é padrão aprovado; a do Telegram
-ainda é proposta. Receita só vale para o tipo de peça para o qual foi feita (veja `serve_para` dentro dela).
+Aplicar uma receita (cerca de 1 minuto). Este é só um **teste da instalação**: o rascunho tem partes de mentira
+e a receita `nova-nitidez` está aqui só para exercitar o caminho todo. Os dois destinos abaixo deixam o teste
+fora de `saida/` e do diário do projeto:
+
+```bash
+python integracoes/photocraft/acabar.py aplicar saida/arara/promo-telegram-rascunho.psd \
+    --grafo fichas/arara/grafos/promo-telegram.json \
+    --receita integracoes/photocraft/receitas/arara/nova-nitidez.json \
+    --mudanca "teste da instalação" \
+    --saida ../teste-acabamento/saida --fluxos ../teste-acabamento/fluxos
+```
+
+**Deu certo se** existe `../teste-acabamento/saida/arara/acabamentos/promo-telegram-ac001/` com `acabado.psd`,
+`acabado.png`, `acabado.webp` e a `prancha.jpg` (antes x depois). Sem os dois destinos, o `aplicar` grava em
+`saida/` e **acrescenta uma linha em `fluxos/arara/acabamentos.jsonl`**, que é versionado.
+
+As receitas ficam em `integracoes/photocraft/receitas/arara/`. A do depósito (`promo-deposito-1`) é padrão
+aprovado; as outras, inclusive a do Telegram, ainda são proposta. **Cada receita serve para um tipo de peça**
+(o campo `serve_para`, dentro dela): o `acabar.py` mostra esse aviso, mas não confere. Uma receita feita para
+outra peça roda sem erro e dá resultado sem sentido. Por exemplo, `promo-telegram-comfyui-2.json` só faz
+sentido na peça gerada pelo Nível 2 (`saida/arara/promo-telegram-comfyui.psd`).
 Mais detalhes em `integracoes/photocraft/LEIA-ME.md`.
 
 ## Agentes (opcional)
@@ -192,7 +222,9 @@ A pasta `.claude/` tem os agentes especialistas (recortista, colorista, retocado
 memória de cada um. Para usá-los, abra a pasta do projeto no **Claude Code**; ele lê o `CLAUDE.md` e carrega
 sozinho tudo o que está em `.claude/`. Sem o Claude Code, nada muda: os mesmos comandos acima rodam à mão.
 
-Para o Claude Code controlar o ComfyUI e o PhotoCraft por MCP, veja `.mcp.json.exemplo`.
+Para o Claude Code controlar o ComfyUI e o PhotoCraft por MCP: copie `.mcp.json.exemplo` para `.mcp.json`,
+instale `pip install comfy-mcp "comfy-cli>=1.14.0"` no mesmo ambiente e abra o Claude Code a partir dele
+(o `photocraft-cli` precisa estar no `PATH`). Detalhes em `integracoes/comfyui/LEIA-ME.md`.
 
 ## O que não vem no repositório
 
@@ -209,11 +241,11 @@ Para o Claude Code controlar o ComfyUI e o PhotoCraft por MCP, veja `.mcp.json.e
 |---|---|
 | `ModuleNotFoundError` | O `.venv` não está ativo (rode `. .venv/bin/activate`) ou falta um `pip install -r` do nível que você está usando |
 | `Connection refused` ou o ComfyUI não responde | O servidor do ComfyUI não está rodando: ligue-o (Nível 2) e deixe o terminal aberto |
-| `GeraComporPeca` (ou `GeraFichaPrompt`) desconhecido | O link do passo 4 do Nível 2 não existe ou aponta para o lugar errado: `ls -l ../ComfyUI/custom_nodes/` |
-| `sd_turbo.safetensors` não encontrado | O modelo não está em `ComfyUI/models/checkpoints/` (passo 5) ou o nome no `config.yaml` é outro |
+| `Node 'GeraComporPeca' not found` (ou `GeraFichaPrompt`) | O link do passo 4 do Nível 2 não existe ou aponta para o lugar errado: `ls -l ../ComfyUI/custom_nodes/`. Reinicie o ComfyUI depois de criar o link |
+| `WorkflowRecusado` ou `Prompt outputs failed validation`, citando `ckpt_name` | O modelo não está em `ComfyUI/models/checkpoints/` (passo 5) ou o nome no `integracoes/comfyui/config.yaml` é outro. O motivo completo aparece no terminal do ComfyUI |
 | `photocraft-cli não encontrado` | Defina `PHOTOCRAFT_CLI` ou ponha o executável no `PATH` (Nível 4) |
 | Memória acabando na geração | O modelo em CPU usa muita memória: feche outros programas; com menos de 12 GB não foi testado |
 | `acabar.py` recusa a receita | Leu a mensagem: ela diz qual passo e por quê (por exemplo, camada que a peça não tem) |
 
-Para conferir tudo de uma vez depois de instalar: `python -m pytest -q` (os testes do Nível 3 e 4 só
-rodam se o scikit-image e o PhotoCraft estiverem instalados).
+Para conferir tudo de uma vez depois de instalar: `python -m pytest -q`. Os testes que dependem do
+scikit-image ou do PhotoCraft aparecem como `skipped` enquanto eles não estiverem instalados.

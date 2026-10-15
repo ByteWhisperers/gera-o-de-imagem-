@@ -1,4 +1,5 @@
 import json
+import os
 import shutil
 
 import numpy as np
@@ -13,7 +14,7 @@ from motor import ficha as F
 
 from test_tentativa import GRAFO, RAIZ, _comfyui_falso
 
-TEM_PHOTOCRAFT = shutil.which("photocraft-cli") is not None
+TEM_PHOTOCRAFT = bool(os.environ.get("PHOTOCRAFT_CLI") or shutil.which("photocraft-cli"))
 FICHA = F.carregar(RAIZ / "fichas/arara/ficha-v1.2.yaml")
 
 

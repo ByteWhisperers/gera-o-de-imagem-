@@ -31,6 +31,9 @@ página de versões do GitHub tem o CLI pronto (`photocraft-cli-<versão>-macos-
 | `receitas/<marca>/` | Receitas de acabamento; só viram padrão depois que o dono aprova |
 | `conferir_psd.py` | Confere que o PhotoCraft lê o nosso PSD com as camadas e o render certos |
 
+Os caminhos abaixo existem depois de rodar o loop (`tentativa.py`). Para um primeiro teste logo depois de
+instalar, use o PSD de rascunho como mostra o [INSTALAR.md](../../INSTALAR.md), Nível 4.
+
 ```bash
 python integracoes/photocraft/acabar.py medir saida/arara/tentativas/promo-deposito-001/peca.psd
 python integracoes/photocraft/acabar.py aplicar saida/arara/tentativas/promo-deposito-001/peca.psd \
@@ -95,7 +98,7 @@ python integracoes/testar_mcp.py -- photocraft-cli mcp --automation-read-root .
 ## Conferir um PSD nosso
 
 ```bash
-python integracoes/photocraft/conferir_psd.py saida/arara/promo-telegram-comfyui.psd \
+python integracoes/photocraft/conferir_psd.py saida/arara/promo-telegram-rascunho.psd \
     --ficha fichas/arara/ficha-v1.2.yaml --cli photocraft-cli
 ```
 

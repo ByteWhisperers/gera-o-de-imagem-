@@ -713,6 +713,10 @@ def main() -> None:
         print(json.dumps({"casar_cor": curvas_da_camada(grafo, camadas, args.camada, args.forca),
                           "casar_luz": curva_de_luz_da_camada(grafo, camadas, args.camada, args.forca)}))
     else:
+        serve = json.loads(args.receita.read_text()).get("serve_para")
+        if serve:
+            print(f"aviso: esta receita diz servir para: {serve}\n"
+                  "       o acabar.py não confere: veja se é a sua peça.", file=sys.stderr)
         linha = aplicar(args.psd, args.receita, args.grafo, args.mudanca, args.saida, args.fluxos)
         print("\n".join(resumo(linha["notas_antes"], linha["notas"])))
         print("\n".join(linha["diagnostico"]) or "acabamento parecido com a referência em luz, contraste, saturação, "
