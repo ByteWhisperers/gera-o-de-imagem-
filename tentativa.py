@@ -26,6 +26,7 @@ import argparse
 import copy
 import json
 import time
+import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -181,7 +182,11 @@ def main() -> None:
     ap.add_argument("--so-compilar", action="store_true")
     a = ap.parse_args()
     denoise = {k: float(v) for k, v in (x.split("=") for x in a.denoise)}
-    r = rodar(a.grafo, a.tema, a.semente, denoise, Path(a.saida), a.controles, a.mudanca, a.pai, a.so_compilar)
+    try:
+        r = rodar(a.grafo, a.tema, a.semente, denoise, Path(a.saida), a.controles, a.mudanca, a.pai, a.so_compilar)
+    except urllib.error.URLError as e:
+        raise SystemExit(f"o ComfyUI não respondeu ({e.reason}).\n"
+                         "Ligue o servidor (INSTALAR.md, Nível 2) ou ajuste a chave url em integracoes/comfyui/config.yaml.")
     if a.so_compilar:
         print(json.dumps(r, ensure_ascii=False))
         return

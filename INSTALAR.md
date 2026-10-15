@@ -1,7 +1,9 @@
 # Instalar e rodar o projeto
 
 Este guia leva uma pessoa que acabou de baixar o projeto até o fluxo funcionando. Tudo é **grátis e
-local**: nada aqui chama serviço pago nem pede chave de API.
+local**: nada aqui chama serviço pago nem pede chave de API. Alguns comandos imprimem no fim um "custo das
+partes usadas" (por exemplo US$ 0,0032): é o custo **antigo** de partes que já estavam guardadas no
+repositório (feitas no teste 1, com um serviço pago), não um gasto novo.
 
 O projeto tem quatro níveis. Cada um funciona sozinho e o seguinte só acrescenta coisas ao anterior.
 **Comece pelo Nível 1** e só avance se precisar.
@@ -83,8 +85,9 @@ O ComfyUI fica **fora** da pasta do projeto, ao lado dela. Estes comandos partem
 projeto, com o `.venv` ativo:
 
 ```bash
-# 1. PyTorch na versão de CPU (para placa de vídeo NVIDIA, use a linha que pytorch.org/get-started mostra)
-pip install torch --index-url https://download.pytorch.org/whl/cpu
+# 1. PyTorch na versão de CPU (para placa de vídeo NVIDIA, use a linha que pytorch.org/get-started mostra).
+#    O torchvision TEM de vir junto e do mesmo lugar: senão o passo 2 traz um que não casa com o torch
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
 # 2. ComfyUI, na versão testada
 git clone https://github.com/comfyanonymous/ComfyUI ../ComfyUI
@@ -98,8 +101,11 @@ pip install -r requirements-comfyui.txt
 ln -s "$PWD/integracoes/comfyui/nos_gera_imagem" ../ComfyUI/custom_nodes/nos_gera_imagem
 
 # 5. o modelo de imagem: SD-Turbo, 5,2 GB, grátis
-curl -L -o ../ComfyUI/models/checkpoints/sd_turbo.safetensors \
+curl -fL -o ../ComfyUI/models/checkpoints/sd_turbo.safetensors \
   https://huggingface.co/stabilityai/sd-turbo/resolve/main/sd_turbo.safetensors
+
+# 6. o modelo de recorte do mascote (cerca de 180 MB, de github.com): baixe já, com internet
+python -c "from rembg import new_session; new_session('isnet-general-use')"
 ```
 
 **A licença do SD-Turbo é de pesquisa, não comercial** (confira em stability.ai/license). Ele serve para
@@ -112,14 +118,20 @@ Ligue o ComfyUI e **deixe esse terminal aberto** (use outro para os comandos do 
 python ../ComfyUI/main.py --cpu --listen 127.0.0.1 --port 8188
 ```
 
-**Deu certo se**, em outro terminal:
+Espere cerca de 20 segundos, até aparecer `To see the GUI go to: http://127.0.0.1:8188` nesse terminal.
+Se aparecer um `Traceback`, o servidor não subiu: veja "Quando algo dá errado".
+
+**Deu certo se**, em outro terminal (se você mudou a porta, mude também nestes comandos):
 
 ```bash
 curl -s http://127.0.0.1:8188/system_stats | head -c 120                     # responde com um JSON
-curl -s http://127.0.0.1:8188/object_info/GeraComporPeca | head -c 120      # responde: os nós do projeto carregaram
+curl -s http://127.0.0.1:8188/object_info/GeraComporPeca | head -c 120      # começa com {"GeraComporPeca": ...
 ```
 
-Agora gere uma peça inteira (cerca de 2,5 minutos em CPU):
+Se o segundo comando responder só `{}`, o link do passo 4 está errado.
+
+Agora gere uma peça inteira. Em CPU de 4 núcleos a conta é de **3 a 12 minutos**: a primeira geração depois
+de ligar o servidor é a mais lenta, porque carrega o modelo de 5,2 GB para a memória.
 
 ```bash
 python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo --saida peca.png
@@ -127,24 +139,28 @@ python integracoes/comfyui/rodar_fluxo.py --tema telegram --formato promo --said
 python pipeline.py fichas/arara/ficha-v1.2.yaml --provedor comfyui --tema telegram --formato promo
 ```
 
-Na **primeira vez** o recorte do mascote baixa o modelo `isnet-general-use` (cerca de 180 MB, para
-`~/.rembg/models/`). Isso precisa de internet uma única vez: sem internet nessa primeira vez, o comando
-termina com erro. O recorte só cai para um método mais simples (pela cor da borda) se o pacote `rembg`
-nem estiver instalado, e então o QA reclama: rode de novo o `pip install -r requirements-comfyui.txt`.
+**Deu certo se** o `rodar_fluxo.py` termina com `ok: 1867x842 -> peca.png` e o `peca.png` é uma peça com
+selva, mascote, moedas, texto e logo (é rascunho de modelo de teste: tem recortes retos e rosto estranho).
 
 O fluxo completo grava em `ComfyUI/output/gera/arara/` (PSD, PNG, WebP e o relatório do QA). O comando
-pelo portão grava em `saida/arara/`.
+pelo portão grava em `saida/arara/`. **O portão reaproveita** as partes que já estão em `partes/arara/` e só
+gera o que falta (por isso é mais rápido e a cena pode ser a do repositório, não a do modelo local). O que ele
+gera entra em `partes/arara/` e em `partes/arara/registro.yaml`, que são arquivos versionados: o
+`git status` mostra a diferença. Para pedir uma versão nova de uma parte, use `--novo mascote` (ou `cena`,
+`entorno`, `frente`).
+
+Sobre o recorte do mascote: se o passo 6 não foi feito, o modelo baixa na primeira geração e **precisa de
+internet nessa hora**: sem ela o comando termina com erro de conexão com `github.com`. O recorte só cai
+para um método mais simples (pela cor da borda) se o pacote `rembg` nem estiver instalado, e então o QA
+reclama: rode de novo o `pip install -r requirements-comfyui.txt`.
 
 A configuração do modelo, dos tamanhos e do recorte está em `integracoes/comfyui/config.yaml`. Para o
 ComfyUI em outro endereço, mude a chave `url` nesse arquivo.
 
 ## Nível 3: o loop (reproduzir uma referência e medir)
 
-Precisa do ComfyUI ligado (Nível 2) e de mais um pacote:
-
-```bash
-pip install -r requirements-desconstrucao.txt
-```
+Precisa do ComfyUI **ligado** (Nível 2), até para o `--so-compilar`, que lê do servidor a lista de nós e
+modelos para conferir o workflow:
 
 ```bash
 # monta o workflow a partir do grafo e confere nós e modelos, sem gerar nada
@@ -153,13 +169,17 @@ python tentativa.py fichas/arara/grafos/promo-telegram.json --so-compilar
 python tentativa.py fichas/arara/grafos/promo-telegram.json
 ```
 
-**Deu certo se** aparece uma pasta nova em `saida/arara/tentativas/promo-telegram-NNN/` com `peca.psd`, a
-prancha de comparação, e uma linha nova em `fluxos/arara/tentativas.jsonl`. A volta leva cerca de 2 minutos
-(40 a 55 segundos quando o ComfyUI reaproveita partes iguais).
+**Deu certo se** o `--so-compilar` imprime `"conferencia": "ok"` em cerca de 1 segundo, e a volta completa cria
+uma pasta nova em `saida/arara/tentativas/promo-telegram-NNN/` (o número continua o do diário) com `peca.psd`,
+a prancha de comparação, e acrescenta uma linha em `fluxos/arara/tentativas.jsonl`. A volta leva de 3 a 12
+minutos em CPU de 4 núcleos (menos quando o servidor já está com o modelo carregado). Os dois comandos mexem em
+arquivos versionados de `fluxos/arara/` (o workflow montado e o diário): o `git status` mostra o que mudou.
 
 As referências, os grafos das 11 peças, as máscaras e as placas já estão no repositório. Para
 desconstruir uma imagem **nova** (marcar contornos e gerar o grafo):
-`python ferramentas/desconstruir.py fichas/arara/grafos/<peca>.marcacao.yaml --placas`.
+`python ferramentas/desconstruir.py fichas/arara/grafos/<peca>.marcacao.yaml --placas`. Isso usa o
+scikit-image, que o Nível 2 já instalou (junto com o `rembg`). Sem o Nível 2:
+`pip install -r requirements-desconstrucao.txt`.
 
 ## Nível 4: acabamento no PhotoCraft
 
@@ -240,7 +260,8 @@ instale `pip install comfy-mcp "comfy-cli>=1.14.0"` no mesmo ambiente e abra o C
 | O que aparece | O que fazer |
 |---|---|
 | `ModuleNotFoundError` | O `.venv` não está ativo (rode `. .venv/bin/activate`) ou falta um `pip install -r` do nível que você está usando |
-| `Connection refused` ou o ComfyUI não responde | O servidor do ComfyUI não está rodando: ligue-o (Nível 2) e deixe o terminal aberto |
+| `o ComfyUI não respondeu` ou `Connection refused` | O servidor do ComfyUI não está rodando: ligue-o (Nível 2) e deixe o terminal aberto. Confira também a porta e a chave `url` do `integracoes/comfyui/config.yaml` |
+| `operator torchvision::nms does not exist` ao ligar o ComfyUI | O torchvision não casa com o torch (veio um de placa de vídeo). Rode `pip install --force-reinstall --no-deps torchvision --index-url https://download.pytorch.org/whl/cpu` |
 | `Node 'GeraComporPeca' not found` (ou `GeraFichaPrompt`) | O link do passo 4 do Nível 2 não existe ou aponta para o lugar errado: `ls -l ../ComfyUI/custom_nodes/`. Reinicie o ComfyUI depois de criar o link |
 | `WorkflowRecusado` ou `Prompt outputs failed validation`, citando `ckpt_name` | O modelo não está em `ComfyUI/models/checkpoints/` (passo 5) ou o nome no `integracoes/comfyui/config.yaml` é outro. O motivo completo aparece no terminal do ComfyUI |
 | `photocraft-cli não encontrado` | Defina `PHOTOCRAFT_CLI` ou ponha o executável no `PATH` (Nível 4) |
